@@ -421,6 +421,33 @@
             text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
         }
 
+        /* קישורי רשתות חברתיות */
+        .social-links {
+            margin-top: 15px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 28px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            width: 45px;
+            height: 45px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-5px) scale(1.1);
+            background: rgba(255,255,255,0.35);
+        }
+
         /* הנגשה - כפתור ראשי */
         .accessibility-btn {
             position: fixed;
@@ -533,20 +560,40 @@
             text-decoration: none;
         }
 
-        @keyframes pulse-whatsapp {
-            0%, 100% {
-                transform: scale(1);
-                box-shadow: 0 6px 25px rgba(37, 211, 102, 0.6);
-            }
-            50% {
-                transform: scale(1.05);
-                box-shadow: 0 8px 35px rgba(37, 211, 102, 0.8);
-            }
+        .whatsapp-float:hover {
+            transform: scale(1.15);
+            box-shadow: 0 8px 25px rgba(37,211,102,0.7);
         }
 
-        .whatsapp-float:hover {
-            transform: scale(1.1);
-            box-shadow: 0 8px 35px rgba(37, 211, 102, 0.9);
+        /* כפתור חזרה למעלה */
+        .back-to-top {
+            position: fixed;
+            bottom: 110px;
+            left: 30px;
+            background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
+            color: white;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            box-shadow: 0 6px 20px rgba(255,117,140,0.5);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            border: none;
+        }
+
+        .back-to-top.show {
+            display: flex;
+        }
+
+        .back-to-top:hover {
+            transform: scale(1.15);
+            box-shadow: 0 8px 25px rgba(255,117,140,0.7);
         }
 
         .accessibility-option.active {
@@ -759,7 +806,7 @@
                 font-size: 24px;
                 left: 15px;
                 top: auto;
-                bottom: 30px;
+                bottom: 180px;
                 transform: none;
             }
 
@@ -767,13 +814,20 @@
                 transform: scale(1.1);
             }
 
-            /* WhatsApp במובייל */
             .whatsapp-float {
                 width: 55px;
                 height: 55px;
                 font-size: 28px;
-                bottom: 100px;
-                right: 15px;
+                bottom: 20px;
+                left: 20px;
+            }
+            
+            .back-to-top {
+                width: 48px;
+                height: 48px;
+                font-size: 20px;
+                bottom: 90px;
+                left: 20px;
             }
 
             .accessibility-menu {
@@ -805,14 +859,23 @@
                 width: 50px;
                 height: 50px;
                 font-size: 22px;
-                bottom: 25px;
+                bottom: 165px;
             }
 
             .whatsapp-float {
                 width: 50px;
                 height: 50px;
                 font-size: 26px;
+                bottom: 165px;
+                left: 20px;
+            }
+
+            .back-to-top {
+                width: 45px;
+                height: 45px;
+                font-size: 18px;
                 bottom: 90px;
+                left: 20px;
             }
 
             .accessibility-menu {
@@ -861,7 +924,7 @@
 </header>
 
 <div class="gallery-header">
-    <h2> תמונות מהספא שלנו ✨</h2>
+    <h2>✨ תמונות מהספא שלנו ✨</h2>
     <p>גלו את האווירה הקסומה ואת הטיפולים המקצועיים בסאנרייז ספא</p>
 </div>
 
@@ -917,13 +980,14 @@
 </div>
 
 <!-- כפתור WhatsApp צף -->
-<a href="https://wa.me/972586588751?text=שלום, אני מעוניין/ת בפרטים נוספים על הטיפולים בסאנרייז ספא" 
-   class="whatsapp-float" 
-   target="_blank" 
-   aria-label="פנה אלינו בוואטסאפ">
+<a href="https://wa.me/972586588751" class="whatsapp-float" target="_blank" aria-label="שלח הודעה בוואטסאפ">
     <i class="fa-brands fa-whatsapp"></i>
 </a>
 
+<!-- כפתור חזרה למעלה -->
+<button class="back-to-top" id="backToTop" aria-label="חזרה למעלה">
+    <i class="fa-solid fa-arrow-up"></i>
+</button>
 
 <!-- הנגשה -->
 <button class="accessibility-btn" id="accessibilityBtn" aria-label="תפריט הנגשה" title="הנגשה">
@@ -980,7 +1044,7 @@
     <div class="accessibility-option" tabindex="0" role="button" aria-pressed="false" data-feature="readable-font">
         <span class="option-label">
             <i class="fa-solid fa-font"></i>
-            
+            גופן קריא
         </span>
         <div class="option-toggle"></div>
     </div>
@@ -1032,6 +1096,21 @@
 
 <footer>
     © 2025 סאנרייז ספא – ההסתדרות 2, פתח תקווה
+    
+    <div class="social-links">
+        <a href="https://www.facebook.com/snryyzsp/" target="_blank" aria-label="עמוד הפייסבוק שלנו" title="Facebook">
+            <i class="fa-brands fa-facebook-f"></i>
+        </a>
+        <a href="https://www.instagram.com/sunrise._.spa/" target="_blank" aria-label="עמוד האינסטגרם שלנו" title="Instagram">
+            <i class="fa-brands fa-instagram"></i>
+        </a>
+        <a href="https://wa.me/972586588751" target="_blank" aria-label="שלח הודעה בוואטסאפ" title="WhatsApp">
+            <i class="fa-brands fa-whatsapp"></i>
+        </a>
+        <a href="https://www.tiktok.com/@sunrise.spa7" target="_blank" aria-label="עמוד הטיקטוק שלנו" title="TikTok">
+            <i class="fa-brands fa-tiktok"></i>
+        </a>
+    </div>
 </footer>
 
 <script>
@@ -1125,6 +1204,24 @@
             if (e.key === 'ArrowLeft') nextBtn.click();
             if (e.key === 'ArrowRight') prevBtn.click();
         }
+    });
+
+    // כפתור חזרה למעלה
+    const backToTopBtn = document.getElementById('backToTop');
+    
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 300) {
+            backToTopBtn.classList.add('show');
+        } else {
+            backToTopBtn.classList.remove('show');
+        }
+    });
+
+    backToTopBtn.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
     });
 
     // מערכת הנגשה
@@ -1256,5 +1353,4 @@
 </script>
 
 </body>
-
 </html>
