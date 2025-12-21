@@ -512,6 +512,43 @@
             outline-offset: 2px;
         }
 
+        /* כפתור WhatsApp צף */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: #25D366;
+            color: white;
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 35px;
+            box-shadow: 0 6px 20px rgba(37,211,102,0.5);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        @keyframes pulse-whatsapp {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 6px 25px rgba(37, 211, 102, 0.6);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 8px 35px rgba(37, 211, 102, 0.8);
+            }
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 35px rgba(37, 211, 102, 0.9);
+        }
+
         .accessibility-option.active {
             background: #2196F3;
             color: white;
@@ -730,6 +767,15 @@
                 transform: scale(1.1);
             }
 
+            /* WhatsApp במובייל */
+            .whatsapp-float {
+                width: 55px;
+                height: 55px;
+                font-size: 28px;
+                bottom: 100px;
+                right: 15px;
+            }
+
             .accessibility-menu {
                 left: 15px;
                 right: 15px;
@@ -760,6 +806,13 @@
                 height: 50px;
                 font-size: 22px;
                 bottom: 25px;
+            }
+
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                font-size: 26px;
+                bottom: 90px;
             }
 
             .accessibility-menu {
@@ -863,6 +916,15 @@
     </div>
 </div>
 
+<!-- כפתור WhatsApp צף -->
+<a href="https://wa.me/972586588751?text=שלום, אני מעוניין/ת בפרטים נוספים על הטיפולים בסאנרייז ספא" 
+   class="whatsapp-float" 
+   target="_blank" 
+   aria-label="פנה אלינו בוואטסאפ">
+    <i class="fa-brands fa-whatsapp"></i>
+</a>
+
+
 <!-- הנגשה -->
 <button class="accessibility-btn" id="accessibilityBtn" aria-label="תפריט הנגשה" title="הנגשה">
     <i class="fa-solid fa-universal-access"></i>
@@ -918,7 +980,7 @@
     <div class="accessibility-option" tabindex="0" role="button" aria-pressed="false" data-feature="readable-font">
         <span class="option-label">
             <i class="fa-solid fa-font"></i>
-            גופן קריא
+            
         </span>
         <div class="option-toggle"></div>
     </div>
