@@ -429,16 +429,31 @@
             text-decoration: none;
             width: 45px;
             height: 45px;
-            background: rgba(255,255,255,0.2);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
+        .social-links a:nth-child(1) {
+            background: #1877F2;
+        }
+
+        .social-links a:nth-child(2) {
+            background: linear-gradient(45deg, #F58529, #DD2A7B, #8134AF, #515BD4);
+        }
+
+        .social-links a:nth-child(3) {
+            background: #25D366;
+        }
+
+        .social-links a:nth-child(4) {
+            background: #000000;
+        }
+
         .social-links a:hover {
             transform: translateY(-5px) scale(1.1);
-            background: rgba(255,255,255,0.35);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
         }
 
         /* הנגשה - כפתור ראשי */
@@ -1124,7 +1139,7 @@
 
 <footer>
     © 2025 סאנרייז ספא – ההסתדרות 2, פתח תקווה
-
+    
     <div class="social-title">
         קישורים לרשתות החברתיות שלנו:
     </div>
