@@ -33,7 +33,7 @@
     </div>
 
     <nav>
-        <a href="sunrise.html" title="דף הבית"><i class="fa-solid fa-house"></i> דף הבית</a>
+        <a href="index.html" title="דף הבית"><i class="fa-solid fa-house"></i> דף הבית</a>
         <a href="gallery.html" title="גלריה"><i class="fa-solid fa-image"></i> גלריה</a>
         <a href="https://wa.me/972586588751" target="_blank" title="שלח הודעה בוואטסאפ"><i class="fa-brands fa-whatsapp"></i> צור קשר</a>
         <a href="https://www.waze.com/live-map/directions/il/center-district/%D7%A4%D7%AA/sunrise-spa-%D7%A1%D7%A4%D7%90-%D7%A2%D7%99%D7%A1%D7%95%D7%99-%D7%A4%D7%AA%D7%97-%D7%AA%D7%A7%D7%95%D7%95%D7%94?navigate=yes&to=place.ChIJSZXBMVY3HRURy-oaXLqTcrg" target="_blank" title="ניווט ב-Waze"><i class="fa-brands fa-waze"></i> Waze</a>
@@ -101,6 +101,50 @@
 <a href="https://wa.me/972586588751" class="whatsapp-float" target="_blank" aria-label="שלח הודעה בוואטסאפ">
     <i class="fa-brands fa-whatsapp"></i>
 </a>
+
+<!-- צ'אטבוט -->
+<button class="chatbot-btn" id="chatbotBtn" aria-label="פתח צ'אט" title="יש לך שאלה? אני כאן לעזור!">
+    <i class="fa-solid fa-comments"></i>
+</button>
+
+<div class="chatbot-container" id="chatbotContainer">
+    <div class="chatbot-header">
+        <div class="chatbot-header-content">
+            <img src="SunriseLogo.png" alt="לוגו" class="chatbot-logo">
+            <div>
+                <h3>סאנרייז ספא</h3>
+                <p class="chatbot-status">
+                    <span class="status-dot"></span>
+                    זמין עכשיו
+                </p>
+            </div>
+        </div>
+        <button class="chatbot-close" id="chatbotClose" aria-label="סגור צ'אט">
+            <i class="fa-solid fa-times"></i>
+        </button>
+    </div>
+    
+    <div class="chatbot-messages" id="chatbotMessages">
+        <div class="bot-message">
+            <div class="message-avatar">
+                <i class="fa-solid fa-spa"></i>
+            </div>
+            <div class="message-content">
+                שלום! 👋 אני עוזר וירטואלי של סאנרייז ספא.<br>
+                איך אוכל לעזור לך היום?
+            </div>
+        </div>
+        
+        <div class="quick-questions">
+            <button class="quick-btn" data-question="hours">🕐 שעות פעילות</button>
+            <button class="quick-btn" data-question="prices">💰 מחירון</button>
+            <button class="quick-btn" data-question="location">📍 איפה אתם נמצאים?</button>
+            <button class="quick-btn" data-question="services">💆 אילו עיסויים יש?</button>
+            <button class="quick-btn" data-question="booking">📅 איך מזמינים תור?</button>
+        </div>
+    </div>
+    
+</div>
 
 <!-- כפתור חזרה למעלה -->
 <button class="back-to-top" id="backToTop" aria-label="חזרה למעלה">
