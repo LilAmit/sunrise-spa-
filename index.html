@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="סאנרייז ספא בפתח תקווה - עיסויים מקצועיים, אווירה מרגיעה, צוות מומחה">
+    <title>סאנרייז ספא - פתח תקווה</title>
+    <link rel="icon" type="image/png" href="SunriseLogo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<header>
+    <div class="logo-container">
+        <img src="SunriseLogo.png" class="logo" alt="סאנרייז ספא לוגו">
+        <h1>סאנרייז ספא</h1>
+    </div>
+
+    <div class="contact-details">
+        <p class="contact-badge">
+            <i class="fa-solid fa-location-dot"></i>
+            <strong>כתובת:</strong> ההסתדרות 2, קומה 2, פתח תקווה
+        </p>
+        <p class="contact-badge">
+            <i class="fa-solid fa-phone"></i>
+            <strong>טלפון:</strong> <a href="tel:0586588751" style="color: inherit; text-decoration: none;">058-658-8751</a>
+        </p>
+    </div>
+
+    <nav>
+        <a href="#prices" title="מחירון"><i class="fa-solid fa-tags"></i> מחירון</a>
+        <a href="gallery.html" title="גלריה"><i class="fa-solid fa-image"></i> גלריה</a>
+        <a href="https://wa.me/972586588751" target="_blank" title="שלח הודעה בוואטסאפ"><i class="fa-brands fa-whatsapp"></i> צור קשר</a>
+        <a href="https://www.waze.com/live-map/directions/il/center-district/%D7%A4%D7%AA/sunrise-spa-%D7%A1%D7%A4%D7%90-%D7%A2%D7%99%D7%A1%D7%95%D7%99-%D7%A4%D7%AA%D7%97-%D7%AA%D7%A7%D7%95%D7%95%D7%94?navigate=yes&to=place.ChIJSZXBMVY3HRURy-oaXLqTcrg" target="_blank" title="ניווט ב-Waze"><i class="fa-brands fa-waze"></i> Waze</a>
+        <a href="https://www.google.com/maps/dir//Sunrise+Spa" target="_blank" title="צפייה במפה"><i class="fa-solid fa-map-location-dot"></i> Maps</a>
+    </nav>
+</header>
+
+<div class="page-wrapper">
+    <div class="content-box fade-in" id="about">
+        <p>
+            בפתח תקווה, בלב העיר, מסתתר מקום קטן שבו הזמן עוצר והעולם החיצון נשכח.
+            <strong>סאנרייז ספא</strong> הוא לא סתם ספא – זה מקום שבו כל פרט נבחר בקפידה כדי ליצור חוויה מושלמת:
+            מהשמנים האתריים שממלאים את האוויר, דרך התאורה הרכה, ועד לצוות המומחים שמעניק לכל אורח
+            את תשומת הלב האישית שהוא ראוי לה.
+        </p>
+    </div>
+
+    <div class="content-box fade-in">
+        <h2>שעות פעילות</h2>
+        <div id="statusIndicator" style="margin-bottom: 20px; text-align: center;"></div>
+        <p>ראשון–חמישי: 22:00 - 10:00</p>
+        <p>שישי: 16:00 - 09:00</p>
+        <p>שבת: סגור</p>
+    </div>
+
+    <!-- סליידר -->
+    <div class="side-slider">
+        <div class="slider-container">
+            <div class="slider-track" id="sliderTrack">
+                <img src="Sunrise1.jpg" alt="מחירון">
+                <img src="Sunrise2.jpg" alt="עיסוי">
+                <img src="Sunrise3.jpg" alt="חדר טיפול">
+                <img src="Sunrise4.jpg" alt="כניסה">
+                <img src="Sunrise5.jpg" alt="אווירה">
+                <img src="Sunrise6.jpg" alt="רפלקסולוגיה">
+                <img src="Sunrise7.jpg" alt="חדר זוגי">
+                <img src="Sunrise8.jpg" alt="עיסוי כתפיים">
+                <img src="Sunrise9.jpg" alt="אבנים חמות">
+                <img src="Sunrise10.jpg" alt="עיסוי רגליים">
+            </div>
+            <button class="slider-btn right" onclick="nextSlide()" aria-label="תמונה הבאה">❯</button>
+            <button class="slider-btn left" onclick="prevSlide()" aria-label="תמונה קודמת">❮</button>
+            <div class="slider-indicators" id="indicators"></div>
+        </div>
+    </div>
+
+    <div class="content-box fade-in" id="prices">
+        <h2>מחירון</h2>
+        
+        <h3>עיסוי גוף</h3>
+        <p style="font-size: 16px; color: #666; margin-bottom: 15px;">תאילנדי, שוודי, ורקמות עמוק.</p>
+        <div class="price-item">
+            <span class="price-time">45 דקות</span>
+            <span class="price-amount">₪220</span>
+        </div>
+        <div class="price-item">
+            <span class="price-time">60 דקות</span>
+            <span class="price-amount">₪270</span>
+        </div>
+        <div class="price-item">
+            <span class="price-time">75 דקות</span>
+            <span class="price-amount">₪325</span>
+        </div>
+        <div class="price-item">
+            <span class="price-time">90 דקות</span>
+            <span class="price-amount">₪380</span>
+        </div>
+        <div class="price-item">
+            <span class="price-time">120 דקות</span>
+            <span class="price-amount">₪500</span>
+        </div>
+
+        <h3>עיסוי זוגי</h3>
+        <div class="price-item">
+            <span class="price-time">60 דקות</span>
+            <span class="price-amount">₪500</span>
+        </div>
+        <div class="price-item">
+            <span class="price-time">75 דקות</span>
+            <span class="price-amount">₪600</span>
+        </div>
+        <div class="price-item">
+            <span class="price-time">90 דקות</span>
+            <span class="price-amount">₪700</span>
+        </div>
+        <div class="price-item">
+            <span class="price-time">120 דקות</span>
+            <span class="price-amount">₪850</span>
+        </div>
+
+        <h3>עיסוי רגליים</h3>
+        <div class="price-item">
+            <span class="price-time">30 דקות</span>
+            <span class="price-amount">₪150</span>
+        </div>
+        <div class="price-item">
+            <span class="price-time">45 דקות</span>
+            <span class="price-amount">₪200</span>
+        </div>
+        <div class="price-item">
+            <span class="price-time">60 דקות</span>
+            <span class="price-amount">₪240</span>
+        </div>
+    </div>
+
+    <div class="map-container fade-in">
+        <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3387.5118950345736!2d34.883062!3d32.085739!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x151d375631c19549%3A0xb87293ba5c1aeacb!2sSunrise%20Spa!5e0!3m2!1she!2sil!4v1700000000000!5m2!1she!2sil"
+            width="100%"
+            height="100%"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy">
+        </iframe>
+    </div>
+</div>
+
+<!-- כפתור WhatsApp צף -->
+<a href="https://wa.me/972586588751" class="whatsapp-float" target="_blank" aria-label="שלח הודעה בוואטסאפ">
+    <i class="fa-brands fa-whatsapp"></i>
+</a>
+
+<!-- כפתור חזרה למעלה -->
+<button class="back-to-top" id="backToTop" aria-label="חזרה למעלה">
+    <i class="fa-solid fa-arrow-up"></i>
+</button>
+
+<!-- הנגשה -->
+<button class="accessibility-btn" id="accessibilityBtn" aria-label="תפריט הנגשה" title="הנגשה">
+    <i class="fa-solid fa-universal-access"></i>
+</button>
+
+<div class="accessibility-menu" id="accessibilityMenu" role="dialog" aria-label="תפריט הנגשה">
+    <button class="accessibility-close" id="closeAccessibility" aria-label="סגור תפריט הנגשה">
+        <i class="fa-solid fa-times"></i>
+    </button>
+    
+    <h3>הנגשה</h3>
+    
+    <div class="accessibility-option" tabindex="0" role="button" aria-pressed="false" data-feature="high-contrast">
+        <span class="option-label">
+            <i class="fa-solid fa-adjust"></i>
+            ניגודיות גבוהה
+        </span>
+        <div class="option-toggle"></div>
+    </div>
+    
+    <div class="accessibility-option" tabindex="0" role="button" aria-pressed="false" data-feature="invert-colors">
+        <span class="option-label">
+            <i class="fa-solid fa-palette"></i>
+            היפוך צבעים
+        </span>
+        <div class="option-toggle"></div>
+    </div>
+    
+    <div class="accessibility-option" tabindex="0" role="button" aria-pressed="false" data-feature="grayscale">
+        <span class="option-label">
+            <i class="fa-solid fa-circle-half-stroke"></i>
+            גווני אפור
+        </span>
+        <div class="option-toggle"></div>
+    </div>
+    
+    <div class="accessibility-option" tabindex="0" role="button" aria-pressed="false" data-feature="large-text">
+        <span class="option-label">
+            <i class="fa-solid fa-text-height"></i>
+            טקסט גדול
+        </span>
+        <div class="option-toggle"></div>
+    </div>
+    
+    <div class="accessibility-option" tabindex="0" role="button" aria-pressed="false" data-feature="extra-large-text">
+        <span class="option-label">
+            <i class="fa-solid fa-text-height"></i>
+            טקסט גדול במיוחד
+        </span>
+        <div class="option-toggle"></div>
+    </div>
+    
+    <div class="accessibility-option" tabindex="0" role="button" aria-pressed="false" data-feature="readable-font">
+        <span class="option-label">
+            <i class="fa-solid fa-font"></i>
+            גופן קריא
+        </span>
+        <div class="option-toggle"></div>
+    </div>
+    
+    <div class="accessibility-option" tabindex="0" role="button" aria-pressed="false" data-feature="highlight-links">
+        <span class="option-label">
+            <i class="fa-solid fa-link"></i>
+            הדגש קישורים
+        </span>
+        <div class="option-toggle"></div>
+    </div>
+    
+    <div class="accessibility-option" tabindex="0" role="button" aria-pressed="false" data-feature="highlight-headings">
+        <span class="option-label">
+            <i class="fa-solid fa-heading"></i>
+            הדגש כותרות
+        </span>
+        <div class="option-toggle"></div>
+    </div>
+    
+    <div class="accessibility-option" tabindex="0" role="button" aria-pressed="false" data-feature="cursor-large">
+        <span class="option-label">
+            <i class="fa-solid fa-arrow-pointer"></i>
+            סמן גדול
+        </span>
+        <div class="option-toggle"></div>
+    </div>
+    
+    <div class="accessibility-option" tabindex="0" role="button" aria-pressed="false" data-feature="line-height-large">
+        <span class="option-label">
+            <i class="fa-solid fa-arrows-up-down"></i>
+            ריווח שורות גדול
+        </span>
+        <div class="option-toggle"></div>
+    </div>
+    
+    <div class="accessibility-option" tabindex="0" role="button" aria-pressed="false" data-feature="letter-spacing">
+        <span class="option-label">
+            <i class="fa-solid fa-arrows-left-right"></i>
+            ריווח אותיות
+        </span>
+        <div class="option-toggle"></div>
+    </div>
+    
+    <button class="reset-btn" id="resetAccessibility">
+        <i class="fa-solid fa-rotate-left"></i> אפס הגדרות
+    </button>
+</div>
+
+<footer>
+    © 2025 סאנרייז ספא – ההסתדרות 2, פתח תקווה
+    
+    <div class="social-title">
+        קישורים לרשתות החברתיות שלנו:
+    </div>
+
+    <div class="social-links">
+        <a href="https://www.facebook.com/snryyzsp/" target="_blank" aria-label="עמוד הפייסבוק שלנו" title="Facebook">
+            <i class="fa-brands fa-facebook-f"></i>
+        </a>
+        <a href="https://www.instagram.com/sunrise._.spa/" target="_blank" aria-label="עמוד האינסטגרם שלנו" title="Instagram">
+            <i class="fa-brands fa-instagram"></i>
+        </a>
+        <a href="https://wa.me/972586588751" target="_blank" aria-label="שלח הודעה בוואטסאפ" title="WhatsApp">
+            <i class="fa-brands fa-whatsapp"></i>
+        </a>
+        <a href="https://www.tiktok.com/@sunrise.spa7" target="_blank" aria-label="עמוד הטיקטוק שלנו" title="TikTok">
+            <i class="fa-brands fa-tiktok"></i>
+        </a>
+    </div>
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>
