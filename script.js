@@ -1,453 +1,1258 @@
-// אפקט Fade-in
-const faders = document.querySelectorAll('.fade-in');
-const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            observer.unobserve(entry.target);
-        }
-    });
-}, { threshold: 0.1 });
-faders.forEach(f => observer.observe(f));
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-// סליידר
-let currentSlide = 0;
-const track = document.getElementById('sliderTrack');
-const totalSlides = track.children.length;
-const indicatorsContainer = document.getElementById('indicators');
-let autoSlideInterval;
-let touchStartX = 0;
-let touchEndX = 0;
+html, body {
+    height: 100%;
+    scroll-behavior: smooth;
+}
 
-function createIndicators() {
-    for (let i = 0; i < totalSlides; i++) {
-        const indicator = document.createElement('div');
-        indicator.className = 'indicator';
-        if (i === 0) indicator.classList.add('active');
-        indicator.onclick = () => goToSlide(i);
-        indicatorsContainer.appendChild(indicator);
+body {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Heebo', sans-serif;
+    background-image: url('WallpaperIndex.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    overflow-x: hidden;
+}
+
+header {
+    background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #ffdde1 100%);
+    color: white;
+    padding: 25px;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 10000;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    width: 100%;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.logo {
+    width: 120px;
+    height: auto;
+    border-radius: 15px;
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.logo:hover {
+    transform: scale(1.1) rotate(2deg);
+}
+
+header h1 {
+    margin: 15px 0 0 0;
+    font-size: 48px;
+    font-weight: 700;
+    color: #fff;
+    text-shadow: 3px 3px 8px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease;
+}
+
+header h1:hover {
+    transform: scale(1.05);
+}
+
+.contact-details {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+.contact-details p {
+    margin: 6px 0;
+    display: inline-block;
+    margin: 5px 10px;
+}
+
+.contact-details i {
+    margin-left: 6px;
+}
+
+.contact-badge {
+    color: #333;
+    background-color: rgba(255,255,255,0.95);
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-weight: 500;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+nav {
+    margin-top: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+}
+
+nav a {
+    color: #333;
+    text-decoration: none;
+    padding: 10px 18px;
+    background: rgba(255,255,255,0.95);
+    border-radius: 25px;
+    font-size: 17px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+}
+
+nav a:hover {
+    color: white;
+    background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255,117,140,0.4);
+}
+
+/* סליידר */
+.side-slider {
+    position: fixed;
+    top: 280px;
+    right: 60px;
+    width: 380px;
+    height: 520px;
+    background: rgba(255,255,255,0.98);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+    z-index: 900;
+    border: 3px solid rgba(255,182,193,0.5);
+}
+
+@media (max-width: 900px) {
+    .side-slider {
+        position: static;
+        right: auto;
+        top: auto;
+        margin: 30px auto;
+        width: 90%;
+        max-width: 380px;
+        height: 450px;
     }
 }
 
-function updateSlider() {
-    const sliderWidth = document.querySelector('.side-slider').offsetWidth;
-    const offset = currentSlide * -sliderWidth;
-    track.style.transform = `translateX(${offset}px)`;
-    
-    const indicators = document.querySelectorAll('.indicator');
-    indicators.forEach((ind, i) => {
-        ind.classList.toggle('active', i === currentSlide);
-    });
+.slider-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    direction: ltr;
 }
 
-function goToSlide(index) {
-    currentSlide = index;
-    updateSlider();
-    resetAutoSlide();
+.slider-track {
+    display: flex;
+    height: 100%;
+    transition: transform 0.6s ease;
+    will-change: transform;
+    direction: ltr;
 }
 
-function nextSlide() {
-    currentSlide = (currentSlide + 1) % totalSlides;
-    updateSlider();
-    resetAutoSlide();
+.slider-track img {
+    width: 100%;
+    height: 520px;
+    object-fit: cover;
+    flex-shrink: 0;
 }
 
-function prevSlide() {
-    currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-    updateSlider();
-    resetAutoSlide();
+.slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255,117,140,0.8);
+    color: white;
+    border: none;
+    font-size: 22px;
+    width: 45px;
+    height: 45px;
+    cursor: pointer;
+    border-radius: 50%;
+    z-index: 10;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
 }
 
-function resetAutoSlide() {
-    clearInterval(autoSlideInterval);
-    autoSlideInterval = setInterval(nextSlide, 4000);
+.slider-btn.left { 
+    left: 12px; 
 }
 
-createIndicators();
-autoSlideInterval = setInterval(nextSlide, 4000);
+.slider-btn.right { 
+    right: 12px; 
+}
 
-const slider = document.querySelector('.side-slider');
-slider.addEventListener('mouseenter', () => clearInterval(autoSlideInterval));
-slider.addEventListener('mouseleave', () => {
-    autoSlideInterval = setInterval(nextSlide, 4000);
-});
+.slider-btn:hover {
+    background: #ff758c;
+    transform: translateY(-50%) scale(1.1);
+}
 
-// תמיכה ב-Touch
-slider.addEventListener('touchstart', (e) => {
-    touchStartX = e.changedTouches[0].screenX;
-    clearInterval(autoSlideInterval);
-});
+.slider-indicators {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 10;
+}
 
-slider.addEventListener('touchend', (e) => {
-    touchEndX = e.changedTouches[0].screenX;
-    handleSwipe();
-    autoSlideInterval = setInterval(nextSlide, 4000);
-});
+.indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.6);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid rgba(255,117,140,0.5);
+}
 
-function handleSwipe() {
-    const swipeThreshold = 50;
-    const diff = touchStartX - touchEndX;
-    
-    if (Math.abs(diff) > swipeThreshold) {
-        if (diff > 0) {
-            nextSlide();
-        } else {
-            prevSlide();
-        }
+.indicator.active {
+    background: #ff758c;
+    transform: scale(1.2);
+}
+
+.page-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    perspective: 1000px;
+}
+
+.content-box {
+    width: 45%;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 30px;
+    margin: 20px;
+    border-radius: 20px;
+    line-height: 1.8;
+    transition: 0.3s transform, 0.3s box-shadow;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    border: 2px solid rgba(255,182,193,0.3);
+}
+
+.content-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(255,117,140,0.3);
+}
+
+.content-box h2 {
+    color: #2c3e50;
+    font-size: 32px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: 700;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+
+.content-box h3 {
+    color: #34495e;
+    font-size: 24px;
+    margin: 25px 0 15px 0;
+    font-weight: 600;
+    border-bottom: 3px solid #ff758c;
+    padding-bottom: 10px;
+}
+
+.content-box p {
+    font-size: 19px;
+    color: #2c3e50;
+    margin: 10px 0;
+}
+
+.price-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px;
+    margin: 8px 0;
+    background: rgba(255,245,250,0.8);
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.price-item:hover {
+    background: rgba(255,182,193,0.3);
+    transform: translateX(-5px);
+}
+
+.price-time {
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.price-amount {
+    font-weight: 700;
+    color: #c2185b;
+    font-size: 19px;
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-weight: 700;
+    font-size: 19px;
+    animation: pulse 2s infinite;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.status-open {
+    background: linear-gradient(135deg, #4CAF50, #81C784);
+    color: white;
+}
+
+.status-closed {
+    background: linear-gradient(135deg, #f44336, #ef5350);
+    color: white;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.85; transform: scale(1.02); }
+}
+
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+footer {
+    background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
+    color: white;
+    text-align: center;
+    padding: 25px;
+    font-size: 18px;
+    margin-top: auto;
+    box-shadow: 0 -4px 15px rgba(0,0,0,0.2);
+    font-weight: 500;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+}
+
+.map-container {
+    width: 85%;
+    height: 450px;
+    margin: 30px auto;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+    border: 3px solid rgba(255,182,193,0.5);
+}
+
+/* כפתור WhatsApp צף */
+.whatsapp-float {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    background: #25D366;
+    color: white;
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 35px;
+    box-shadow: 0 6px 20px rgba(37,211,102,0.5);
+    z-index: 1000;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.15);
+    box-shadow: 0 8px 25px rgba(37,211,102,0.7);
+}
+
+/* כפתור חזרה למעלה */
+.back-to-top {
+    position: fixed;
+    bottom: 110px;
+    left: 30px;
+    background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
+    color: white;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    box-shadow: 0 6px 20px rgba(255,117,140,0.5);
+    z-index: 1000;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    text-decoration: none;
+    border: none;
+}
+
+.back-to-top.show {
+    display: flex;
+}
+
+.back-to-top:hover {
+    transform: scale(1.15);
+    box-shadow: 0 8px 25px rgba(255,117,140,0.7);
+}
+
+/* קישורי רשתות חברתיות */
+.social-title {
+    margin-top: 20px;
+    font-size: 20px;
+    font-weight: 600;
+    color: white;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+}
+
+.social-links {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.social-links a {
+    color: white;
+    font-size: 28px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* צבעים ייחודיים לכל רשת חברתית */
+.social-links a:nth-child(1) {
+    background: #1877F2; /* Facebook */
+}
+
+.social-links a:nth-child(2) {
+    background: linear-gradient(45deg, #F58529, #DD2A7B, #8134AF, #515BD4); /* Instagram */
+}
+
+.social-links a:nth-child(3) {
+    background: #25D366; /* WhatsApp */
+}
+
+.social-links a:nth-child(4) {
+    background: #000000; /* TikTok */
+}
+
+.social-links a:nth-child(5) {
+    background: #FF0000; /* YouTube */
+}
+
+.social-links a:hover {
+    transform: translateY(-5px) scale(1.1);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+}
+
+/* הנגשה - כפתור ראשי */
+.accessibility-btn {
+    position: fixed;
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%);
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #2196F3, #1976D2);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 28px;
+    cursor: pointer;
+    box-shadow: 0 6px 20px rgba(33, 150, 243, 0.5);
+    z-index: 9998;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.accessibility-btn:hover {
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 8px 25px rgba(33, 150, 243, 0.7);
+}
+
+.accessibility-btn:focus {
+    outline: 3px solid #FFC107;
+    outline-offset: 3px;
+}
+
+/* תפריט הנגשה */
+.accessibility-menu {
+    position: fixed;
+    top: 50%;
+    left: 90px;
+    transform: translateY(-50%) scale(0.9);
+    background: white;
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+    z-index: 9999;
+    width: 320px;
+    max-height: 85vh;
+    overflow-y: auto;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.accessibility-menu.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(-50%) scale(1);
+}
+
+.accessibility-menu h3 {
+    color: #1976D2;
+    font-size: 24px;
+    margin: 0 0 20px 0;
+    text-align: center;
+    font-weight: 700;
+    border-bottom: 3px solid #2196F3;
+    padding-bottom: 10px;
+}
+
+.accessibility-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+    margin: 10px 0;
+    background: #f5f5f5;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.accessibility-option:hover {
+    background: #e3f2fd;
+    transform: translateX(-3px);
+    border-color: #2196F3;
+}
+
+.accessibility-option:focus {
+    outline: 3px solid #FFC107;
+    outline-offset: 2px;
+}
+
+.accessibility-option.active {
+    background: #2196F3;
+    color: white;
+}
+
+.option-label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.option-label i {
+    font-size: 20px;
+    width: 25px;
+    text-align: center;
+}
+
+.option-toggle {
+    width: 50px;
+    height: 26px;
+    background: #ccc;
+    border-radius: 13px;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.option-toggle::after {
+    content: '';
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    background: white;
+    border-radius: 50%;
+    top: 2px;
+    right: 2px;
+    transition: all 0.3s ease;
+}
+
+.accessibility-option.active .option-toggle {
+    background: #4CAF50;
+}
+
+.accessibility-option.active .option-toggle::after {
+    right: 26px;
+}
+
+.accessibility-close {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #666;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.accessibility-close:hover {
+    background: #f44336;
+    color: white;
+    transform: rotate(90deg);
+}
+
+.accessibility-close:focus {
+    outline: 3px solid #FFC107;
+}
+
+.reset-btn {
+    width: 100%;
+    padding: 12px;
+    margin-top: 15px;
+    background: linear-gradient(135deg, #ff758c, #ff7eb3);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.reset-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 117, 140, 0.4);
+}
+
+.reset-btn:focus {
+    outline: 3px solid #FFC107;
+}
+
+/* מצבי הנגשה */
+body.high-contrast {
+    filter: contrast(1.5);
+}
+
+body.invert-colors {
+    filter: invert(1) hue-rotate(180deg);
+}
+
+body.invert-colors img,
+body.invert-colors .logo {
+    filter: invert(1) hue-rotate(180deg);
+}
+
+body.grayscale {
+    filter: grayscale(100%);
+}
+
+body.large-text * {
+    font-size: 120% !important;
+}
+
+body.extra-large-text * {
+    font-size: 140% !important;
+}
+
+body.readable-font * {
+    font-family: Arial, sans-serif !important;
+}
+
+body.highlight-links a {
+    background-color: yellow !important;
+    color: black !important;
+    text-decoration: underline !important;
+    padding: 2px 4px !important;
+}
+
+body.highlight-headings h1,
+body.highlight-headings h2,
+body.highlight-headings h3 {
+    background-color: #90EE90 !important;
+    padding: 5px !important;
+}
+
+body.cursor-large * {
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path d="M2 2 L2 28 L10 20 L14 30 L18 28 L14 18 L24 18 Z" fill="black" stroke="white" stroke-width="2"/></svg>'), auto !important;
+}
+
+body.line-height-large * {
+    line-height: 2 !important;
+}
+
+body.letter-spacing * {
+    letter-spacing: 2px !important;
+}
+
+/* צ'אטבוט */
+.chatbot-btn {
+    position: fixed;
+    bottom: 200px;
+    left: 30px;
+    width: 65px;
+    height: 65px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 30px;
+    cursor: pointer;
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+    z-index: 1000;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.chatbot-btn:hover {
+    transform: scale(1.15) rotate(5deg);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.7);
+}
+
+.chatbot-btn:active {
+    transform: scale(1.05);
+}
+
+.chatbot-container {
+    position: fixed;
+    bottom: 110px;
+    left: 30px;
+    width: 380px;
+    height: 500px;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    z-index: 1001;
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+    animation: slideUp 0.3s ease-out;
+}
+
+.chatbot-container.active {
+    display: flex;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 
-window.addEventListener('resize', updateSlider);
+.chatbot-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 20px 20px 0 0;
+}
 
-// סטטוס פתוח/סגור
-function updateStatus() {
-    const now = new Date();
-    const day = now.getDay();
-    const hours = now.getHours();
-    const minutes = now.getMinutes();
-    const timeInMinutes = hours * 60 + minutes;
+.chatbot-header-content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
 
-    const statusDiv = document.getElementById('statusIndicator');
-    let isOpen = false;
+.chatbot-logo {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: 2px solid white;
+}
 
-    if (day === 6) {
-        isOpen = false;
-    } else if (day >= 0 && day <= 4) {
-        const openTime = 10 * 60;
-        const closeTime = 22 * 60;
-        isOpen = timeInMinutes >= openTime && timeInMinutes < closeTime;
-    } else if (day === 5) {
-        const openTime = 9 * 60;
-        const closeTime = 16 * 60;
-        isOpen = timeInMinutes >= openTime && timeInMinutes < closeTime;
+.chatbot-header h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.chatbot-status {
+    margin: 3px 0 0 0;
+    font-size: 13px;
+    opacity: 0.9;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    background: #4CAF50;
+    border-radius: 50%;
+    animation: pulse-dot 2s infinite;
+}
+
+@keyframes pulse-dot {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+.chatbot-close {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 18px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.chatbot-close:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: rotate(90deg);
+}
+
+.chatbot-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+    background: #f8f9fa;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.chatbot-messages::-webkit-scrollbar {
+    width: 6px;
+}
+
+.chatbot-messages::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 3px;
+}
+
+.bot-message,
+.user-message {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    animation: fadeInMessage 0.3s ease-out;
+}
+
+@keyframes fadeInMessage {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
     }
-
-    if (isOpen) {
-        statusDiv.innerHTML = '<span class="status-badge status-open">🟢 פתוח עכשיו</span>';
-    } else {
-        statusDiv.innerHTML = '<span class="status-badge status-closed">🔴 סגור כעת</span>';
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 
-updateStatus();
-setInterval(updateStatus, 60000);
-
-// כפתור חזרה למעלה
-const backToTopBtn = document.getElementById('backToTop');
-
-window.addEventListener('scroll', () => {
-    if (window.pageYOffset > 300) {
-        backToTopBtn.classList.add('show');
-    } else {
-        backToTopBtn.classList.remove('show');
-    }
-});
-
-backToTopBtn.addEventListener('click', () => {
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-    });
-});
-
-// מערכת הנגשה
-const accessibilityBtn = document.getElementById('accessibilityBtn');
-const accessibilityMenu = document.getElementById('accessibilityMenu');
-const closeAccessibility = document.getElementById('closeAccessibility');
-const resetBtn = document.getElementById('resetAccessibility');
-const accessibilityOptions = document.querySelectorAll('.accessibility-option');
-
-// שמירה והחזרת הגדרות הנגשה
-function saveAccessibilitySettings() {
-    const activeFeatures = [];
-    accessibilityOptions.forEach(option => {
-        if (option.classList.contains('active')) {
-            activeFeatures.push(option.dataset.feature);
-        }
-    });
-    localStorage.setItem('accessibilityFeatures', JSON.stringify(activeFeatures));
+.user-message {
+    flex-direction: row-reverse;
 }
 
-function loadAccessibilitySettings() {
-    const saved = localStorage.getItem('accessibilityFeatures');
-    if (saved) {
-        const activeFeatures = JSON.parse(saved);
-        activeFeatures.forEach(feature => {
-            const option = document.querySelector(`[data-feature="${feature}"]`);
-            if (option) {
-                option.classList.add('active');
-                option.setAttribute('aria-pressed', 'true');
-                document.body.classList.add(feature);
-            }
-        });
-    }
+.message-avatar {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
 }
 
-// פתיחה/סגירה של תפריט הנגשה
-accessibilityBtn.addEventListener('click', () => {
-    const isOpen = accessibilityMenu.classList.contains('active');
-    accessibilityMenu.classList.toggle('active');
-    accessibilityBtn.setAttribute('aria-expanded', !isOpen);
-    
-    if (!isOpen) {
-        setTimeout(() => {
-            accessibilityOptions[0].focus();
-        }, 100);
-    }
-});
-
-closeAccessibility.addEventListener('click', () => {
-    accessibilityMenu.classList.remove('active');
-    accessibilityBtn.setAttribute('aria-expanded', 'false');
-    accessibilityBtn.focus();
-});
-
-// סגירה בלחיצה מחוץ לתפריט
-document.addEventListener('click', (e) => {
-    if (!accessibilityMenu.contains(e.target) && !accessibilityBtn.contains(e.target)) {
-        accessibilityMenu.classList.remove('active');
-        accessibilityBtn.setAttribute('aria-expanded', 'false');
-    }
-});
-
-// סגירה ב-ESC
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && accessibilityMenu.classList.contains('active')) {
-        accessibilityMenu.classList.remove('active');
-        accessibilityBtn.setAttribute('aria-expanded', 'false');
-        accessibilityBtn.focus();
-    }
-});
-
-// הפעלה/כיבוי של אפשרויות הנגשה
-accessibilityOptions.forEach(option => {
-    const toggleFeature = () => {
-        const feature = option.dataset.feature;
-        const isActive = option.classList.contains('active');
-        
-        // ביטול אפשרויות מנוגדות
-        if (feature === 'large-text' || feature === 'extra-large-text') {
-            document.querySelectorAll('[data-feature="large-text"], [data-feature="extra-large-text"]')
-                .forEach(opt => {
-                    opt.classList.remove('active');
-                    opt.setAttribute('aria-pressed', 'false');
-                    document.body.classList.remove(opt.dataset.feature);
-                });
-        }
-        
-        if (!isActive) {
-            option.classList.add('active');
-            option.setAttribute('aria-pressed', 'true');
-            document.body.classList.add(feature);
-        } else {
-            option.classList.remove('active');
-            option.setAttribute('aria-pressed', 'false');
-            document.body.classList.remove(feature);
-        }
-        
-        saveAccessibilitySettings();
-    };
-
-    // תמיכה בקליק ומקלדת
-    option.addEventListener('click', toggleFeature);
-    option.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            toggleFeature();
-        }
-    });
-});
-
-// איפוס הגדרות
-resetBtn.addEventListener('click', () => {
-    accessibilityOptions.forEach(option => {
-        option.classList.remove('active');
-        option.setAttribute('aria-pressed', 'false');
-        document.body.classList.remove(option.dataset.feature);
-    });
-    localStorage.removeItem('accessibilityFeatures');
-    
-    const originalText = resetBtn.innerHTML;
-    resetBtn.innerHTML = '<i class="fa-solid fa-check"></i> אופס!';
-    setTimeout(() => {
-        resetBtn.innerHTML = originalText;
-    }, 1500);
-});
-
-// טעינת הגדרות בטעינת הדף
-loadAccessibilitySettings();
-
-// ===== צ'אטבוט =====
-const chatbotBtn = document.getElementById('chatbotBtn');
-const chatbotContainer = document.getElementById('chatbotContainer');
-const chatbotClose = document.getElementById('chatbotClose');
-const chatbotMessages = document.getElementById('chatbotMessages');
-const quickBtns = document.querySelectorAll('.quick-btn');
-
-// מאגר תשובות
-const responses = {
-    hours: {
-        text: `שעות הפעילות שלנו:<br><br>
-        📅 <strong>ראשון - חמישי:</strong> 10:00 - 22:00<br>
-        📅 <strong>שישי:</strong> 09:00 - 16:00<br>
-        📅 <strong>שבת:</strong> סגור<br><br>
-        מומלץ לתאם תור מראש!`
-    },
-    prices: {
-        text: `המחירים שלנו:<br><br>
-        <strong>💆 עיסוי גוף:</strong><br>
-        • 45 דקות - ₪220<br>
-        • 60 דקות - ₪270<br>
-        • 90 דקות - ₪380<br><br>
-        <strong>👫 עיסוי זוגי:</strong><br>
-        • 60 דקות - ₪500<br>
-        • 90 דקות - ₪700<br><br>
-        <strong>🦶 עיסוי רגליים:</strong><br>
-        • 30 דקות - ₪150<br>
-        • 60 דקות - ₪240`
-    },
-    location: {
-        text: `אנחנו נמצאים ב:<br><br>
-        📍 <strong>ההסתדרות 2, קומה 2</strong><br>
-        🏙️ <strong>פתח תקווה</strong><br><br>
-        ניתן להגיע אלינו בקלות באמצעות:<br><br>
-        🚗 <a href="https://www.waze.com/live-map/directions/il/center-district/%D7%A4%D7%AA/sunrise-spa-%D7%A1%D7%A4%D7%90-%D7%A2%D7%99%D7%A1%D7%95%D7%99-%D7%A4%D7%AA%D7%97-%D7%AA%D7%A7%D7%95%D7%95%D7%94?navigate=yes&to=place.ChIJSZXBMVY3HRURy-oaXLqTcrg" target="_blank" style="color: #1565C0; font-weight: bold; text-decoration: underline;">ניווט בוויז</a><br><br>
-        🗺️ <a href="https://www.google.com/maps/dir//Sunrise+Spa" target="_blank" style="color: #1565C0; font-weight: bold; text-decoration: underline;">ניווט בגוגל מפות</a>`
-    },
-    services: {
-        text: `אנחנו מציעים:<br><br>
-        ✨ <strong>עיסוי תאילנדי</strong> - עיסוי מסורתי עם מתיחות<br>
-        ✨ <strong>עיסוי שוודי</strong> - עיסוי מרגיע ונעים<br>
-        ✨ <strong>עיסוי רקמות עמוק</strong> - לשחרור מתחים<br>
-        ✨ <strong>עיסוי רגליים</strong> - רפלקסולוגיה<br>
-        ✨ <strong>עיסוי זוגי</strong> - חוויה משותפת<br><br>
-        כל העיסויים מבוצעים על ידי מעסים מקצועיים ומוסמכים.`
-    },
-    booking: {
-        text: `📞 <strong>להזמנת תור:</strong><br><br>
-        ניתן להזמין תור בקלות באחת מהדרכים הבאות:<br><br>
-        💬 <a href="https://wa.me/972586588751" target="_blank" style="color: #128C7E; font-weight: bold; text-decoration: underline;">שליחת הודעה בוואטסאפ</a><br>
-        📱 <strong>058-658-8751</strong><br><br>
-        📞 <a href="tel:0586588751" style="color: #667eea; font-weight: bold; text-decoration: underline;">התקשרות ישירה - 058-658-8751</a><br><br>
-        💡 מומלץ להזמין מראש!`
-    }
-};
-
-// פתיחה/סגירה של הצ'אט
-chatbotBtn.addEventListener('click', () => {
-    chatbotContainer.classList.add('active');
-});
-
-chatbotClose.addEventListener('click', () => {
-    chatbotContainer.classList.remove('active');
-});
-
-// סגירה בלחיצה על ESC
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && chatbotContainer.classList.contains('active')) {
-        chatbotContainer.classList.remove('active');
-    }
-});
-
-// הוספת הודעה לצ'אט
-function addMessage(text, sender) {
-    const messageDiv = document.createElement('div');
-    messageDiv.className = sender === 'user' ? 'user-message' : 'bot-message';
-    
-    const avatar = document.createElement('div');
-    avatar.className = 'message-avatar';
-    avatar.innerHTML = sender === 'user' ? '<i class="fa-solid fa-user"></i>' : '<i class="fa-solid fa-spa"></i>';
-    
-    const content = document.createElement('div');
-    content.className = 'message-content';
-    content.innerHTML = text;
-    
-    messageDiv.appendChild(avatar);
-    messageDiv.appendChild(content);
-    
-    chatbotMessages.appendChild(messageDiv);
-    chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+.user-message .message-avatar {
+    background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
 }
 
-// הצגת אינדיקטור הקלדה
-function showTypingIndicator() {
-    const typingDiv = document.createElement('div');
-    typingDiv.className = 'bot-message typing-message';
-    typingDiv.innerHTML = `
-        <div class="message-avatar">
-            <i class="fa-solid fa-spa"></i>
-        </div>
-        <div class="message-content typing-indicator">
-            <div class="typing-dot"></div>
-            <div class="typing-dot"></div>
-            <div class="typing-dot"></div>
-        </div>
-    `;
-    chatbotMessages.appendChild(typingDiv);
-    chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+.message-content {
+    background: white;
+    padding: 12px 16px;
+    border-radius: 18px;
+    max-width: 75%;
+    line-height: 1.5;
+    font-size: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    color: #333;
 }
 
-// הסרת אינדיקטור הקלדה
-function hideTypingIndicator() {
-    const typingMsg = chatbotMessages.querySelector('.typing-message');
-    if (typingMsg) {
-        typingMsg.remove();
+.message-content a {
+    color: inherit;
+    font-weight: bold;
+    text-decoration: underline;
+    transition: opacity 0.2s ease;
+    display: inline-block;
+}
+
+.message-content a:hover {
+    opacity: 0.8;
+    text-decoration: underline;
+}
+
+.user-message .message-content {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.quick-questions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.quick-btn {
+    background: white;
+    border: 2px solid #667eea;
+    color: #667eea;
+    padding: 8px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Heebo', sans-serif;
+}
+
+.quick-btn:hover {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(102, 126, 234, 0.3);
+}
+
+.quick-btn:active {
+    transform: translateY(0);
+}
+
+.chatbot-input-area {
+    display: none;
+}
+
+#chatbotInput {
+    display: none;
+}
+
+#chatbotSend {
+    display: none;
+}
+
+.typing-indicator {
+    display: flex;
+    gap: 4px;
+    padding: 10px 16px;
+}
+
+.typing-dot {
+    width: 8px;
+    height: 8px;
+    background: #999;
+    border-radius: 50%;
+    animation: typing 1.4s infinite;
+}
+
+.typing-dot:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.typing-dot:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes typing {
+    0%, 60%, 100% {
+        transform: translateY(0);
+    }
+    30% {
+        transform: translateY(-10px);
     }
 }
 
-// הוספת כל הכפתורים הראשיים
-function addAllQuestions() {
-    const quickDiv = document.createElement('div');
-    quickDiv.className = 'quick-questions';
-    quickDiv.style.marginTop = '10px';
-    
-    const allQuestions = [
-        { id: 'hours', label: '🕐 שעות פעילות' },
-        { id: 'prices', label: '💰 מחירון' },
-        { id: 'location', label: '📍 איפה אתם נמצאים?' },
-        { id: 'services', label: '💆 אילו עיסויים יש?' },
-        { id: 'booking', label: '📅 איך מזמינים תור?' }
-    ];
-    
-    allQuestions.forEach(q => {
-        const btn = document.createElement('button');
-        btn.className = 'quick-btn';
-        btn.textContent = q.label;
-        btn.onclick = () => handleQuickQuestion(q.id);
-        quickDiv.appendChild(btn);
-    });
-    
-    chatbotMessages.appendChild(quickDiv);
-    chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+@media (max-width: 900px) {
+    .chatbot-btn {
+        bottom: 260px;
+        left: 20px;
+        width: 60px;
+        height: 60px;
+        font-size: 26px;
+    }
+
+    .chatbot-container {
+        bottom: 20px;
+        right: 20px;
+        left: 20px;
+        width: auto;
+        height: 450px;
+    }
 }
 
-// טיפול בשאלה מהירה
-function handleQuickQuestion(question) {
-    const labels = {
-        hours: 'שעות פעילות',
-        prices: 'מחירון',
-        location: 'איפה אתם נמצאים?',
-        services: 'אילו עיסויים יש?',
-        booking: 'איך מזמינים תור?'
-    };
-    
-    addMessage(labels[question], 'user');
-    showTypingIndicator();
-    
-    setTimeout(() => {
-        hideTypingIndicator();
-        const response = responses[question];
-        addMessage(response.text, 'bot');
-        
-        // תמיד להציג את כל השאלות אחרי התשובה
-        addAllQuestions();
-    }, 1000);
+@media (max-width: 600px) {
+    .chatbot-btn {
+        width: 55px;
+        height: 55px;
+        font-size: 24px;
+        bottom: 240px;
+        left: 15px;
+    }
+
+    .chatbot-container {
+        bottom: 15px;
+        right: 15px;
+        left: 15px;
+        height: 400px;
+        max-height: 70vh;
+    }
+
+    .chatbot-header {
+        padding: 15px;
+    }
+
+    .chatbot-logo {
+        width: 40px;
+        height: 40px;
+    }
+
+    .chatbot-header h3 {
+        font-size: 16px;
+    }
+
+    .chatbot-messages {
+        padding: 15px;
+    }
+
+    .message-content {
+        font-size: 14px;
+        max-width: 80%;
+    }
+
+    .quick-btn {
+        font-size: 12px;
+        padding: 7px 12px;
+    }
 }
 
-// כפתורים מהירים ראשוניים
-quickBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-        const question = btn.dataset.question;
-        handleQuickQuestion(question);
-    });
-});
+@media (max-width: 900px) {
+    .side-slider {
+        position: static;
+        right: auto;
+        top: auto;
+        margin: 30px auto;
+        width: 90%;
+        max-width: 380px;
+        height: 450px;
+    }
+    
+    .page-wrapper {
+        padding: 20px 20px 40px 20px;
+    }
+
+    .slider-track img {
+        width: 100%;
+        height: 450px;
+    }
+
+    .content-box {
+        width: 90%;
+        font-size: 17px;
+        padding: 25px;
+    }
+
+    header h1 {
+        font-size: 36px;
+    }
+
+    .logo {
+        width: 90px;
+    }
+
+    .contact-details {
+        font-size: 16px;
+    }
+
+    nav a {
+        font-size: 15px;
+        padding: 8px 14px;
+    }
+
+    .map-container {
+        width: 90%;
+        height: 350px;
+    }
+
+    .whatsapp-float {
+        width: 55px;
+        height: 55px;
+        font-size: 28px;
+        bottom: 20px;
+        left: 20px;
+    }
+    
+    .back-to-top {
+        width: 48px;
+        height: 48px;
+        font-size: 20px;
+        bottom: 90px;
+        left: 20px;
+    }
+
+    /* הנגשה במובייל */
+    .accessibility-btn {
+        width: 55px;
+        height: 55px;
+        font-size: 24px;
+        left: 15px;
+        top: auto;
+        bottom: 180px;
+        transform: none;
+    }
+
+    .accessibility-btn:hover {
+        transform: scale(1.1);
+    }
+
+    .accessibility-menu {
+        left: 15px;
+        right: 15px;
+        width: auto;
+        top: 50%;
+        transform: translateY(-50%);
+        max-height: 80vh;
+    }
+
+    .accessibility-menu.active {
+        transform: translateY(-50%);
+    }
+}
+
+@media (max-width: 600px) {
+    header h1 {
+        font-size: 28px;
+    }
+
+    .logo {
+        width: 70px;
+    }
+
+    .contact-details {
+        font-size: 14px;
+    }
+
+    nav {
+        gap: 8px;
+    }
+
+    nav a {
+        font-size: 14px;
+        padding: 7px 12px;
+    }
+
+    .side-slider {
+        height: 380px;
+    }
+
+    .slider-track img {
+        height: 380px;
+    }
+
+    .content-box {
+        font-size: 16px;
+        padding: 20px;
+    }
+
+    .content-box h2 {
+        font-size: 26px;
+    }
+
+    .content-box h3 {
+        font-size: 20px;
+    }
+
+    .slider-btn {
+        width: 38px;
+        height: 38px;
+        font-size: 18px;
+    }
+
+    .indicator {
+        width: 9px;
+        height: 9px;
+    }
+
+    .status-badge {
+        font-size: 16px;
+        padding: 8px 16px;
+    }
+
+    .price-item {
+        font-size: 15px;
+    }
+
+    .map-container {
+        height: 300px;
+    }
+
+    .accessibility-btn {
+        width: 50px;
+        height: 50px;
+        font-size: 22px;
+        bottom: 165px;
+    }
+
+    .accessibility-menu {
+        padding: 20px;
+        max-height: 75vh;
+    }
+
+    .accessibility-menu h3 {
+        font-size: 20px;
+    }
+
+    .option-label {
+        font-size: 14px;
+    }
+
+    .option-label i {
+        font-size: 18px;
+    }
+}
