@@ -1110,6 +1110,10 @@ body.letter-spacing * {
         font-size: 16px;
     }
 
+    nav {
+        gap: 10px;
+    }
+
     nav a {
         font-size: 15px;
         padding: 8px 14px;
@@ -1162,6 +1166,23 @@ body.letter-spacing * {
 
     .accessibility-menu.active {
         transform: translateY(-50%);
+    }
+
+    /* צ'אטבוט במובייל */
+    .chatbot-btn {
+        bottom: 260px;
+        left: 20px;
+        width: 60px;
+        height: 60px;
+        font-size: 26px;
+    }
+
+    .chatbot-container {
+        bottom: 20px;
+        right: 20px;
+        left: 20px;
+        width: auto;
+        height: 450px;
     }
 }
 
@@ -1232,11 +1253,28 @@ body.letter-spacing * {
         height: 300px;
     }
 
+    .whatsapp-float {
+        width: 50px;
+        height: 50px;
+        font-size: 26px;
+        bottom: 20px;
+        left: 15px;
+    }
+
+    .back-to-top {
+        width: 45px;
+        height: 45px;
+        font-size: 18px;
+        bottom: 85px;
+        left: 15px;
+    }
+
     .accessibility-btn {
         width: 50px;
         height: 50px;
         font-size: 22px;
         bottom: 165px;
+        left: 15px;
     }
 
     .accessibility-menu {
@@ -1254,5 +1292,49 @@ body.letter-spacing * {
 
     .option-label i {
         font-size: 18px;
+    }
+
+    /* צ'אטבוט מובייל קטן */
+    .chatbot-btn {
+        width: 55px;
+        height: 55px;
+        font-size: 24px;
+        bottom: 240px;
+        left: 15px;
+    }
+
+    .chatbot-container {
+        bottom: 15px;
+        right: 15px;
+        left: 15px;
+        height: 400px;
+        max-height: 70vh;
+    }
+
+    .chatbot-header {
+        padding: 15px;
+    }
+
+    .chatbot-logo {
+        width: 40px;
+        height: 40px;
+    }
+
+    .chatbot-header h3 {
+        font-size: 16px;
+    }
+
+    .chatbot-messages {
+        padding: 15px;
+    }
+
+    .message-content {
+        font-size: 14px;
+        max-width: 80%;
+    }
+
+    .quick-btn {
+        font-size: 12px;
+        padding: 7px 12px;
     }
 }
