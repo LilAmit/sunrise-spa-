@@ -460,6 +460,10 @@ footer {
     background: #000000; /* TikTok */
 }
 
+.social-links a:nth-child(5) {
+    background: #FF0000; /* YouTube */
+}
+
 .social-links a:hover {
     transform: translateY(-5px) scale(1.1);
     box-shadow: 0 8px 20px rgba(0,0,0,0.4);
