@@ -109,6 +109,10 @@ nav a {
     font-weight: 600;
     transition: all 0.3s ease;
     box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 nav a:hover {
