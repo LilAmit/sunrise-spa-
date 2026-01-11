@@ -123,133 +123,260 @@ backToTopBtn.addEventListener('click', () => {
 });
 
 // ========================
-// מערכת הנגשה
+// מערכת נגישות - תקן ישראלי 5568
 // ========================
-const accessibilityBtn = document.getElementById('accessibilityBtn');
-const accessibilityMenu = document.getElementById('accessibilityMenu');
-const closeAccessibility = document.getElementById('closeAccessibility');
-const resetBtn = document.getElementById('resetAccessibility');
-const accessibilityOptions = document.querySelectorAll('.accessibility-option');
-
-// שמירה והחזרת הגדרות הנגשה
-function saveAccessibilitySettings() {
-    const activeFeatures = [];
-    accessibilityOptions.forEach(option => {
-        if (option.classList.contains('active')) {
-            activeFeatures.push(option.dataset.feature);
+const AccessibilityManager = {
+    panel: document.getElementById('accessibilityPanel'),
+    trigger: document.getElementById('accessibilityTrigger'),
+    closeBtn: document.getElementById('closePanel'),
+    resetBtn: document.getElementById('resetAccessibility'),
+    actions: document.querySelectorAll('.accessibility-action'),
+    textSize: 100,
+    
+    init() {
+        this.loadSettings();
+        this.bindEvents();
+        this.initKeyboardNav();
+    },
+    
+    bindEvents() {
+        // פתיחה/סגירה
+        this.trigger.addEventListener('click', () => this.togglePanel());
+        this.closeBtn.addEventListener('click', () => this.closePanel());
+        
+        // סגירה ב-ESC
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && this.panel.classList.contains('active')) {
+                this.closePanel();
+            }
+        });
+        
+        // כפתורי פעולה
+        this.actions.forEach(btn => {
+            btn.addEventListener('click', () => this.handleAction(btn));
+        });
+        
+        // איפוס
+        this.resetBtn.addEventListener('click', () => this.resetAll());
+        
+        // סגירה בלחיצה מחוץ לפאנל
+        document.addEventListener('click', (e) => {
+            if (this.panel.classList.contains('active') && 
+                !this.panel.contains(e.target) && 
+                !this.trigger.contains(e.target)) {
+                this.closePanel();
+            }
+        });
+    },
+    
+    togglePanel() {
+        const isOpen = this.panel.classList.toggle('active');
+        this.trigger.setAttribute('aria-expanded', isOpen);
+        this.announce(isOpen ? 'תפריט נגישות נפתח' : 'תפריט נגישות נסגר');
+        
+        if (isOpen) {
+            this.actions[0]?.focus();
         }
-    });
-    localStorage.setItem('accessibilityFeatures', JSON.stringify(activeFeatures));
-}
-
-function loadAccessibilitySettings() {
-    const saved = localStorage.getItem('accessibilityFeatures');
-    if (saved) {
-        const activeFeatures = JSON.parse(saved);
-        activeFeatures.forEach(feature => {
-            const option = document.querySelector(`[data-feature="${feature}"]`);
-            if (option) {
-                option.classList.add('active');
-                option.setAttribute('aria-pressed', 'true');
-                document.body.classList.add(feature);
+    },
+    
+    closePanel() {
+        this.panel.classList.remove('active');
+        this.trigger.setAttribute('aria-expanded', 'false');
+        this.trigger.focus();
+    },
+    
+    handleAction(btn) {
+        const action = btn.dataset.action;
+        
+        switch(action) {
+            case 'keyboard-nav':
+                this.toggleFeature('keyboard-nav', btn);
+                break;
+            case 'skip-links':
+                this.toggleSkipLinks(btn);
+                break;
+            case 'text-size-increase':
+                this.changeTextSize(10);
+                break;
+            case 'text-size-decrease':
+                this.changeTextSize(-10);
+                break;
+            case 'line-height':
+                this.toggleFeature('line-height', btn);
+                break;
+            case 'letter-spacing':
+                this.toggleFeature('letter-spacing', btn);
+                break;
+            case 'readable-font':
+                this.toggleFeature('readable-font', btn);
+                break;
+            case 'high-contrast':
+                this.toggleFeature('high-contrast', btn);
+                break;
+            case 'dark-mode':
+                this.toggleFeature('dark-mode', btn);
+                break;
+            case 'light-background':
+                this.toggleFeature('light-background', btn);
+                break;
+            case 'grayscale':
+                this.toggleFeature('grayscale', btn);
+                break;
+            case 'highlight-links':
+                this.toggleFeature('highlight-links', btn);
+                break;
+            case 'highlight-headings':
+                this.toggleFeature('highlight-headings', btn);
+                break;
+            case 'focus-highlight':
+                this.toggleFeature('focus-highlight', btn);
+                break;
+            case 'big-cursor':
+                this.toggleFeature('big-cursor', btn);
+                break;
+            case 'reading-guide':
+                this.toggleReadingGuide(btn);
+                break;
+        }
+        
+        this.saveSettings();
+    },
+    
+    toggleFeature(feature, btn) {
+        const isActive = document.body.classList.toggle(`${feature}-active`);
+        btn.setAttribute('aria-pressed', isActive);
+        this.announce(`${btn.textContent.trim()} ${isActive ? 'הופעל' : 'בוטל'}`);
+    },
+    
+    changeTextSize(delta) {
+        this.textSize = Math.max(80, Math.min(150, this.textSize + delta));
+        document.documentElement.style.fontSize = this.textSize + '%';
+        this.announce(`גודל טקסט שונה ל-${this.textSize}%`);
+    },
+    
+    toggleSkipLinks(btn) {
+        const skipLinks = document.getElementById('skipLinks');
+        const isActive = skipLinks.style.display === 'block';
+        
+        if (isActive) {
+            skipLinks.style.display = 'none';
+            btn.setAttribute('aria-pressed', 'false');
+            this.announce('קישורי דילוג בוטלו');
+        } else {
+            skipLinks.style.display = 'block';
+            btn.setAttribute('aria-pressed', 'true');
+            this.announce('קישורי דילוג הופעלו');
+        }
+    },
+    
+    toggleReadingGuide(btn) {
+        const guide = document.getElementById('readingGuide');
+        const isActive = guide.style.display === 'block';
+        
+        if (isActive) {
+            guide.style.display = 'none';
+            btn.setAttribute('aria-pressed', 'false');
+            document.removeEventListener('mousemove', this.updateGuide);
+            this.announce('מדריך קריאה בוטל');
+        } else {
+            guide.style.display = 'block';
+            btn.setAttribute('aria-pressed', 'true');
+            this.updateGuide = (e) => {
+                guide.style.top = e.clientY + 'px';
+            };
+            document.addEventListener('mousemove', this.updateGuide);
+            this.announce('מדריך קריאה הופעל');
+        }
+    },
+    
+    resetAll() {
+        // הסרת כל המחלקות
+        document.body.className = '';
+        document.documentElement.style.fontSize = '';
+        this.textSize = 100;
+        
+        // איפוס כפתורים
+        this.actions.forEach(btn => {
+            btn.setAttribute('aria-pressed', 'false');
+        });
+        
+        // איפוס אלמנטים
+        document.getElementById('skipLinks').style.display = 'none';
+        document.getElementById('readingGuide').style.display = 'none';
+        
+        localStorage.removeItem('accessibilitySettings');
+        this.announce('כל הגדרות הנגישות אופסו');
+        
+        // אנימציה לכפתור איפוס
+        this.resetBtn.innerHTML = '<i class="fa-solid fa-check"></i> אופס בהצלחה!';
+        setTimeout(() => {
+            this.resetBtn.innerHTML = '<i class="fa-solid fa-rotate-left"></i> איפוס כל ההגדרות';
+        }, 2000);
+    },
+    
+    saveSettings() {
+        const settings = {
+            classes: document.body.className,
+            textSize: this.textSize,
+            pressed: Array.from(this.actions).map(btn => ({
+                action: btn.dataset.action,
+                pressed: btn.getAttribute('aria-pressed')
+            }))
+        };
+        localStorage.setItem('accessibilitySettings', JSON.stringify(settings));
+    },
+    
+    loadSettings() {
+        const saved = localStorage.getItem('accessibilitySettings');
+        if (!saved) return;
+        
+        try {
+            const settings = JSON.parse(saved);
+            document.body.className = settings.classes || '';
+            this.textSize = settings.textSize || 100;
+            document.documentElement.style.fontSize = this.textSize + '%';
+            
+            settings.pressed?.forEach(item => {
+                const btn = document.querySelector(`[data-action="${item.action}"]`);
+                if (btn) btn.setAttribute('aria-pressed', item.pressed);
+            });
+        } catch(e) {
+            console.error('Error loading accessibility settings:', e);
+        }
+    },
+    
+    announce(message) {
+        const announcer = document.getElementById('srAnnouncer');
+        announcer.textContent = message;
+        setTimeout(() => announcer.textContent = '', 1000);
+    },
+    
+    initKeyboardNav() {
+        // ניווט במקלדת בתוך הפאנל
+        this.panel.addEventListener('keydown', (e) => {
+            if (e.key === 'Tab') {
+                const focusable = this.panel.querySelectorAll('button:not([disabled])');
+                const first = focusable[0];
+                const last = focusable[focusable.length - 1];
+                
+                if (e.shiftKey && document.activeElement === first) {
+                    e.preventDefault();
+                    last.focus();
+                } else if (!e.shiftKey && document.activeElement === last) {
+                    e.preventDefault();
+                    first.focus();
+                }
             }
         });
     }
+};
+
+// אתחול
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => AccessibilityManager.init());
+} else {
+    AccessibilityManager.init();
 }
-
-// פתיחה/סגירה של תפריט הנגשה
-accessibilityBtn.addEventListener('click', () => {
-    const isOpen = accessibilityMenu.classList.contains('active');
-    accessibilityMenu.classList.toggle('active');
-    accessibilityBtn.setAttribute('aria-expanded', !isOpen);
-    
-    if (!isOpen) {
-        setTimeout(() => {
-            accessibilityOptions[0].focus();
-        }, 100);
-    }
-});
-
-closeAccessibility.addEventListener('click', () => {
-    accessibilityMenu.classList.remove('active');
-    accessibilityBtn.setAttribute('aria-expanded', 'false');
-    accessibilityBtn.focus();
-});
-
-// סגירה בלחיצה מחוץ לתפריט
-document.addEventListener('click', (e) => {
-    if (!accessibilityMenu.contains(e.target) && !accessibilityBtn.contains(e.target)) {
-        accessibilityMenu.classList.remove('active');
-        accessibilityBtn.setAttribute('aria-expanded', 'false');
-    }
-});
-
-// סגירה ב-ESC
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && accessibilityMenu.classList.contains('active')) {
-        accessibilityMenu.classList.remove('active');
-        accessibilityBtn.setAttribute('aria-expanded', 'false');
-        accessibilityBtn.focus();
-    }
-});
-
-// הפעלה/כיבוי של אפשרויות הנגשה
-accessibilityOptions.forEach(option => {
-    const toggleFeature = () => {
-        const feature = option.dataset.feature;
-        const isActive = option.classList.contains('active');
-        
-        // ביטול אפשרויות מנוגדות
-        if (feature === 'large-text' || feature === 'extra-large-text') {
-            document.querySelectorAll('[data-feature="large-text"], [data-feature="extra-large-text"]')
-                .forEach(opt => {
-                    opt.classList.remove('active');
-                    opt.setAttribute('aria-pressed', 'false');
-                    document.body.classList.remove(opt.dataset.feature);
-                });
-        }
-        
-        if (!isActive) {
-            option.classList.add('active');
-            option.setAttribute('aria-pressed', 'true');
-            document.body.classList.add(feature);
-        } else {
-            option.classList.remove('active');
-            option.setAttribute('aria-pressed', 'false');
-            document.body.classList.remove(feature);
-        }
-        
-        saveAccessibilitySettings();
-    };
-
-    // תמיכה בקליק ומקלדת
-    option.addEventListener('click', toggleFeature);
-    option.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            toggleFeature();
-        }
-    });
-});
-
-// איפוס הגדרות
-resetBtn.addEventListener('click', () => {
-    accessibilityOptions.forEach(option => {
-        option.classList.remove('active');
-        option.setAttribute('aria-pressed', 'false');
-        document.body.classList.remove(option.dataset.feature);
-    });
-    localStorage.removeItem('accessibilityFeatures');
-    
-    const originalText = resetBtn.innerHTML;
-    resetBtn.innerHTML = '<i class="fa-solid fa-check"></i> אופס!';
-    setTimeout(() => {
-        resetBtn.innerHTML = originalText;
-    }, 1500);
-});
-
-// טעינת הגדרות בטעינת הדף
-loadAccessibilitySettings();
 
 // ===== צ'אטבוט =====
 const chatbotBtn = document.getElementById('chatbotBtn');
