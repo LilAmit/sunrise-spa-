@@ -13,8 +13,11 @@ html, body {
     background: url('WallpaperGallery.jpg') center/cover no-repeat fixed;
     display: flex;
     flex-direction: column;
-    overflow-x: hidden;
+    overflow-x: clip;
     position: relative;
+    margin: 0;
+    padding: 0;
+    max-width: 100vw;
 }
 
 /* אוברליי כהה קל לקריאות טובה יותר */
@@ -56,13 +59,16 @@ html::before {
 header {
     background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #ffdde1 100%);
     color: white;
-    padding: 25px;
+    padding: 15px 20px;
     text-align: center;
-    position: sticky;
+    position: fixed;
     top: 0;
-    z-index: 10000;
+    left: 0;
+    right: 0;
+    z-index: 100;
     box-shadow: 0 4px 15px rgba(0,0,0,0.2);
     width: 100%;
+    flex-shrink: 0;
 }
 
 header .title-container {
@@ -87,8 +93,16 @@ header .title-container {
 
 header .title-container img {
     height: 70px;
+    width: 70px;
+    border-radius: 15px;
     filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.3));
     animation: pulse 2s ease-in-out infinite;
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+header .title-container img:hover {
+    transform: scale(1.1) rotate(2deg);
 }
 
 @keyframes pulse {
@@ -97,18 +111,23 @@ header .title-container img {
 }
 
 header .title-container h1 {
-    margin: 0;
+    margin: 8px 0 0 0;
     font-family: 'Heebo', sans-serif;
-    font-size: 48px;
+    font-size: 32px;
     font-weight: 700;
     color: #fff;
     text-shadow: 3px 3px 8px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease;
+}
+
+header .title-container h1:hover {
+    transform: scale(1.05);
 }
 
 .contact-details {
-    margin-top: 15px;
-    margin-bottom: 15px;
-    font-size: 18px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    font-size: 14px;
     animation: fadeIn 1s ease 0.3s both;
 }
 
@@ -118,9 +137,9 @@ header .title-container h1 {
 }
 
 .contact-details p {
-    margin: 6px 0;
+    margin: 3px 0;
     display: inline-block;
-    margin: 5px 10px;
+    margin: 3px 8px;
 }
 
 .contact-details i {
@@ -144,10 +163,11 @@ header .title-container h1 {
 }
 
 nav {
-    margin-top: 15px;
+    margin-top: 8px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    gap: 8px;
     gap: 12px;
     animation: fadeIn 1s ease 0.5s both;
 }
@@ -155,13 +175,18 @@ nav {
 nav a {
     color: #333;
     text-decoration: none;
-    padding: 10px 18px;
+    padding: 6px 12px;
     background: rgba(255,255,255,0.95);
-    border-radius: 25px;
-    font-size: 17px;
+    border-radius: 20px;
+    font-size: 14px;
     font-weight: 600;
-    transition: all 0.3s ease;
+    transition: transform 0.3s ease, background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
     box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 32px;
 }
 
 nav a:hover {
@@ -178,6 +203,7 @@ nav a:hover {
     position: relative;
     z-index: 2;
     animation: fadeInUp 1s ease;
+    margin-top: 140px;
 }
 
 @keyframes fadeInUp {
@@ -565,7 +591,7 @@ footer {
     justify-content: center;
     font-size: 35px;
     box-shadow: 0 6px 20px rgba(37,211,102,0.5);
-    z-index: 1000;
+    z-index: 9000;
     transition: all 0.3s ease;
     cursor: pointer;
     text-decoration: none;
@@ -591,7 +617,7 @@ footer {
     justify-content: center;
     font-size: 24px;
     box-shadow: 0 6px 20px rgba(255,117,140,0.5);
-    z-index: 1000;
+    z-index: 9000;
     transition: all 0.3s ease;
     cursor: pointer;
     text-decoration: none;
@@ -762,6 +788,340 @@ body.letter-spacing * {
     letter-spacing: 2px !important;
 }
 
+/* ===== נגישות - תקן ישראלי 5568 ===== */
+
+/* Screen Reader Only - לקוראי מסך */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Skip Links */
+#skipLinks {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100000;
+}
+
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: #000;
+    color: #fff;
+    padding: 8px;
+    text-decoration: none;
+    z-index: 100000;
+}
+
+.skip-link:focus {
+    top: 0;
+}
+
+/* כפתור נגישות ראשי */
+.accessibility-trigger {
+    position: fixed;
+    top: 50%;
+    left: 15px;
+    transform: translateY(-50%);
+    width: 55px;
+    height: 55px;
+    background: linear-gradient(135deg, #2196F3, #1976D2);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(33, 150, 243, 0.4);
+    z-index: 9998;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.accessibility-trigger:hover,
+.accessibility-trigger:focus {
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 6px 20px rgba(33, 150, 243, 0.6);
+    outline: none;
+}
+
+.accessibility-trigger:focus-visible {
+    outline: 3px solid #FFC107;
+    outline-offset: 3px;
+}
+
+/* פאנל נגישות */
+.accessibility-panel {
+    position: fixed;
+    top: 50%;
+    left: 70px;
+    transform: translateY(-50%) scale(0.95);
+    width: 350px;
+    max-height: 90vh;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.accessibility-panel.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(-50%) scale(1);
+}
+
+.accessibility-header {
+    background: linear-gradient(135deg, #2196F3, #1976D2);
+    color: white;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.accessibility-header h2 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.close-panel {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 18px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.close-panel:hover,
+.close-panel:focus {
+    background: rgba(255, 255, 255, 0.3);
+    transform: rotate(90deg);
+}
+
+.close-panel:focus-visible {
+    outline: 2px solid #FFC107;
+}
+
+.accessibility-content {
+    overflow-y: auto;
+    padding: 20px;
+    flex: 1;
+}
+
+.accessibility-content::-webkit-scrollbar {
+    width: 6px;
+}
+
+.accessibility-content::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 3px;
+}
+
+.accessibility-section {
+    margin-bottom: 20px;
+}
+
+.accessibility-section h3 {
+    color: #1976D2;
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0 0 12px 0;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #E3F2FD;
+}
+
+.accessibility-action {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 15px;
+    margin: 8px 0;
+    background: #f5f5f5;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 15px;
+    font-family: 'Heebo', sans-serif;
+    text-align: right;
+    transition: all 0.3s ease;
+    color: #333;
+}
+
+.accessibility-action i {
+    width: 24px;
+    text-align: center;
+    color: #2196F3;
+}
+
+.accessibility-action:hover {
+    background: #E3F2FD;
+    border-color: #2196F3;
+    transform: translateX(-3px);
+}
+
+.accessibility-action:focus-visible {
+    outline: 3px solid #FFC107;
+    outline-offset: 2px;
+}
+
+.accessibility-action[aria-pressed="true"] {
+    background: #2196F3;
+    color: white;
+    border-color: #1976D2;
+}
+
+.accessibility-action[aria-pressed="true"] i {
+    color: white;
+}
+
+.reset-accessibility,
+.accessibility-statement-btn {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    background: linear-gradient(135deg, #FF5722, #F44336);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Heebo', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.accessibility-statement-btn {
+    background: linear-gradient(135deg, #4CAF50, #388E3C);
+}
+
+.reset-accessibility:hover,
+.accessibility-statement-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.reset-accessibility:focus-visible,
+.accessibility-statement-btn:focus-visible {
+    outline: 3px solid #FFC107;
+}
+
+/* Reading Guide */
+#readingGuide {
+    position: fixed;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: rgba(255, 193, 7, 0.8);
+    pointer-events: none;
+    z-index: 99998;
+    box-shadow: 0 0 10px rgba(255, 193, 7, 0.6);
+}
+
+/* מצבי נגישות */
+body.keyboard-nav-active *:focus {
+    outline: 3px solid #FFC107 !important;
+    outline-offset: 2px !important;
+}
+
+body.high-contrast-active {
+    filter: contrast(1.5) !important;
+}
+
+body.dark-mode-active {
+    background: #121212 !important;
+    color: #ffffff !important;
+}
+
+body.dark-mode-active .content-box,
+body.dark-mode-active .chatbot-container {
+    background: #1e1e1e !important;
+    color: #ffffff !important;
+}
+
+body.light-background-active {
+    background: #ffffff !important;
+}
+
+body.light-background-active .content-box {
+    background: #f5f5f5 !important;
+}
+
+body.grayscale-active {
+    filter: grayscale(100%) !important;
+}
+
+body.readable-font-active * {
+    font-family: Arial, sans-serif !important;
+}
+
+body.highlight-links-active a {
+    background: #FFEB3B !important;
+    color: #000 !important;
+    text-decoration: underline !important;
+    padding: 2px 4px !important;
+    font-weight: bold !important;
+}
+
+body.highlight-headings-active h1,
+body.highlight-headings-active h2,
+body.highlight-headings-active h3 {
+    background: #81C784 !important;
+    color: #000 !important;
+    padding: 8px !important;
+    border-radius: 5px !important;
+}
+
+body.focus-highlight-active *:focus {
+    outline: 4px solid #FF9800 !important;
+    outline-offset: 3px !important;
+    box-shadow: 0 0 0 6px rgba(255, 152, 0, 0.3) !important;
+}
+
+body.big-cursor-active,
+body.big-cursor-active * {
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"><path d="M5 5 L5 35 L15 25 L20 35 L25 32 L20 22 L32 22 Z" fill="black" stroke="white" stroke-width="2"/></svg>') 10 10, auto !important;
+}
+
+body.line-height-active * {
+    line-height: 2 !important;
+}
+
+body.letter-spacing-active * {
+    letter-spacing: 0.12em !important;
+}
+
 /* צ'אטבוט */
 .chatbot-btn {
     position: fixed;
@@ -776,7 +1136,7 @@ body.letter-spacing * {
     font-size: 30px;
     cursor: pointer;
     box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
-    z-index: 1000;
+    z-index: 10000;
     transition: all 0.3s ease;
     display: flex;
     align-items: center;
@@ -801,7 +1161,7 @@ body.letter-spacing * {
     background: white;
     border-radius: 20px;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-    z-index: 1001;
+    z-index: 10001;
     display: none;
     flex-direction: column;
     overflow: hidden;
@@ -1147,6 +1507,32 @@ body.letter-spacing * {
         transform: translateY(-50%);
     }
 
+    /* נגישות חדשה במובייל */
+    .accessibility-trigger {
+        width: 55px;
+        height: 55px;
+        font-size: 24px;
+        left: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .accessibility-trigger:hover,
+    .accessibility-trigger:focus {
+        transform: translateY(-50%) scale(1.1);
+    }
+
+    .accessibility-panel {
+        left: 15px;
+        right: 15px;
+        width: auto;
+        max-height: 85vh;
+    }
+
+    .accessibility-panel.active {
+        transform: translateY(-50%);
+    }
+
     /* צ'אטבוט במובייל */
     .chatbot-btn {
         bottom: 260px;
@@ -1244,6 +1630,30 @@ body.letter-spacing * {
 
     .option-label i {
         font-size: 18px;
+    }
+
+    /* נגישות חדשה - מובייל קטן */
+    .accessibility-trigger {
+        width: 50px;
+        height: 50px;
+        font-size: 22px;
+        top: 50%;
+        left: 15px;
+        transform: translateY(-50%);
+    }
+
+    .accessibility-trigger:hover,
+    .accessibility-trigger:focus {
+        transform: translateY(-50%) scale(1.1);
+    }
+
+    .accessibility-panel {
+        max-height: 80vh;
+    }
+
+    .accessibility-action {
+        font-size: 14px;
+        padding: 10px 12px;
     }
 
     /* צ'אטבוט מובייל קטן */
