@@ -1,14 +1,6 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-17698884125"></script>
-<script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'AW-17698884125');
-</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="סאנרייז ספא - ספא מסאז' בפתח תקווה. עיסוי מקצועי בההסתדרות 2 קומה 2. עיסוי תאילנדי, שוודי, רקמות עמוק, עיסוי זוגי ורפלקסולוגיה. צוות מעסים מקצועיים ומוסמכים">
@@ -370,110 +362,152 @@
     <i class="fa-solid fa-arrow-up"></i>
 </button>
 
-<!-- הנגשה -->
-<button class="accessibility-btn" id="accessibilityBtn" aria-label="תפריט הנגשה" title="הנגשה">
+<!-- הצהרת נגישות וכפתור נגישות חדש -->
+<div id="accessibilityStatement" style="position: fixed; top: 0; left: 0; width: 100%; background: #000; color: #fff; padding: 10px; text-align: center; z-index: 99999; display: none;">
+    <p style="margin: 0; font-size: 14px;">
+        אתר זה נבנה תוך התחשבות בנגישות לאנשים עם מוגבלות בהתאם לתקן ישראלי 5568 ברמה AA
+        <button onclick="document.getElementById('accessibilityStatement').style.display='none'" style="margin-right: 15px; background: #fff; color: #000; border: none; padding: 5px 15px; border-radius: 5px; cursor: pointer;">סגור</button>
+    </p>
+</div>
+
+<button class="accessibility-trigger" id="accessibilityTrigger" 
+        aria-label="פתח תפריט נגישות" 
+        title="נגישות - לחץ להצגת אפשרויות נגישות">
     <i class="fa-solid fa-universal-access"></i>
+    <span class="sr-only">נגישות</span>
 </button>
 
-<div class="accessibility-menu" id="accessibilityMenu" role="dialog" aria-label="תפריט הנגשה">
-    <button class="accessibility-close" id="closeAccessibility" aria-label="סגור תפריט הנגשה">
-        <i class="fa-solid fa-times"></i>
-    </button>
-    
-    <h3>הנגשה</h3>
-    
-    <div class="accessibility-option" tabindex="0" role="button" aria-pressed="false" data-feature="high-contrast">
-        <span class="option-label">
-            <i class="fa-solid fa-adjust"></i>
-            ניגודיות גבוהה
-        </span>
-        <div class="option-toggle"></div>
+<div class="accessibility-panel" id="accessibilityPanel" role="dialog" aria-labelledby="accessibilityTitle" aria-modal="true">
+    <div class="accessibility-header">
+        <h2 id="accessibilityTitle">
+            <i class="fa-solid fa-universal-access"></i>
+            הגדרות נגישות
+        </h2>
+        <button class="close-panel" id="closePanel" aria-label="סגור תפריט נגישות">
+            <i class="fa-solid fa-times"></i>
+        </button>
     </div>
     
-    <div class="accessibility-option" tabindex="0" role="button" aria-pressed="false" data-feature="invert-colors">
-        <span class="option-label">
-            <i class="fa-solid fa-palette"></i>
-            היפוך צבעים
-        </span>
-        <div class="option-toggle"></div>
+    <div class="accessibility-content">
+        <!-- ניווט מקלדת -->
+        <div class="accessibility-section">
+            <h3>ניווט</h3>
+            <button class="accessibility-action" data-action="keyboard-nav" aria-pressed="false">
+                <i class="fa-solid fa-keyboard"></i>
+                <span>הדגשת ניווט מקלדת</span>
+            </button>
+            <button class="accessibility-action" data-action="skip-links" aria-pressed="false">
+                <i class="fa-solid fa-forward"></i>
+                <span>קישורי דילוג</span>
+            </button>
+        </div>
+
+        <!-- טקסט וגופנים -->
+        <div class="accessibility-section">
+            <h3>טקסט</h3>
+            <button class="accessibility-action" data-action="text-size-increase">
+                <i class="fa-solid fa-plus"></i>
+                <span>הגדל טקסט</span>
+            </button>
+            <button class="accessibility-action" data-action="text-size-decrease">
+                <i class="fa-solid fa-minus"></i>
+                <span>הקטן טקסט</span>
+            </button>
+            <button class="accessibility-action" data-action="line-height" aria-pressed="false">
+                <i class="fa-solid fa-arrows-up-down"></i>
+                <span>ריווח שורות מוגבר</span>
+            </button>
+            <button class="accessibility-action" data-action="letter-spacing" aria-pressed="false">
+                <i class="fa-solid fa-text-width"></i>
+                <span>ריווח אותיות מוגבר</span>
+            </button>
+            <button class="accessibility-action" data-action="readable-font" aria-pressed="false">
+                <i class="fa-solid fa-font"></i>
+                <span>גופן קריא (Arial)</span>
+            </button>
+        </div>
+
+        <!-- ניגודיות וצבעים -->
+        <div class="accessibility-section">
+            <h3>צבעים וניגודיות</h3>
+            <button class="accessibility-action" data-action="high-contrast" aria-pressed="false">
+                <i class="fa-solid fa-circle-half-stroke"></i>
+                <span>ניגודיות גבוהה</span>
+            </button>
+            <button class="accessibility-action" data-action="dark-mode" aria-pressed="false">
+                <i class="fa-solid fa-moon"></i>
+                <span>מצב כהה</span>
+            </button>
+            <button class="accessibility-action" data-action="light-background" aria-pressed="false">
+                <i class="fa-solid fa-sun"></i>
+                <span>רקע בהיר</span>
+            </button>
+            <button class="accessibility-action" data-action="grayscale" aria-pressed="false">
+                <i class="fa-solid fa-adjust"></i>
+                <span>גווני אפור</span>
+            </button>
+        </div>
+
+        <!-- הדגשות -->
+        <div class="accessibility-section">
+            <h3>הדגשות</h3>
+            <button class="accessibility-action" data-action="highlight-links" aria-pressed="false">
+                <i class="fa-solid fa-link"></i>
+                <span>הדגש קישורים</span>
+            </button>
+            <button class="accessibility-action" data-action="highlight-headings" aria-pressed="false">
+                <i class="fa-solid fa-heading"></i>
+                <span>הדגש כותרות</span>
+            </button>
+            <button class="accessibility-action" data-action="focus-highlight" aria-pressed="false">
+                <i class="fa-solid fa-bullseye"></i>
+                <span>הדגש מיקוד</span>
+            </button>
+        </div>
+
+        <!-- עכבר וסמן -->
+        <div class="accessibility-section">
+            <h3>עכבר וסמן</h3>
+            <button class="accessibility-action" data-action="big-cursor" aria-pressed="false">
+                <i class="fa-solid fa-arrow-pointer"></i>
+                <span>סמן גדול</span>
+            </button>
+            <button class="accessibility-action" data-action="reading-guide" aria-pressed="false">
+                <i class="fa-solid fa-minus"></i>
+                <span>מדריך קריאה</span>
+            </button>
+        </div>
+
+        <!-- איפוס -->
+        <div class="accessibility-section">
+            <button class="reset-accessibility" id="resetAccessibility">
+                <i class="fa-solid fa-rotate-left"></i>
+                איפוס כל ההגדרות
+            </button>
+        </div>
+
+        <!-- הצהרת נגישות -->
+        <div class="accessibility-section">
+            <button class="accessibility-statement-btn" onclick="document.getElementById('accessibilityStatement').style.display='block'">
+                <i class="fa-solid fa-file-lines"></i>
+                הצהרת נגישות
+            </button>
+        </div>
     </div>
-    
-    <div class="accessibility-option" tabindex="0" role="button" aria-pressed="false" data-feature="grayscale">
-        <span class="option-label">
-            <i class="fa-solid fa-circle-half-stroke"></i>
-            גווני אפור
-        </span>
-        <div class="option-toggle"></div>
-    </div>
-    
-    <div class="accessibility-option" tabindex="0" role="button" aria-pressed="false" data-feature="large-text">
-        <span class="option-label">
-            <i class="fa-solid fa-text-height"></i>
-            טקסט גדול
-        </span>
-        <div class="option-toggle"></div>
-    </div>
-    
-    <div class="accessibility-option" tabindex="0" role="button" aria-pressed="false" data-feature="extra-large-text">
-        <span class="option-label">
-            <i class="fa-solid fa-text-height"></i>
-            טקסט גדול במיוחד
-        </span>
-        <div class="option-toggle"></div>
-    </div>
-    
-    <div class="accessibility-option" tabindex="0" role="button" aria-pressed="false" data-feature="readable-font">
-        <span class="option-label">
-            <i class="fa-solid fa-font"></i>
-            גופן קריא
-        </span>
-        <div class="option-toggle"></div>
-    </div>
-    
-    <div class="accessibility-option" tabindex="0" role="button" aria-pressed="false" data-feature="highlight-links">
-        <span class="option-label">
-            <i class="fa-solid fa-link"></i>
-            הדגש קישורים
-        </span>
-        <div class="option-toggle"></div>
-    </div>
-    
-    <div class="accessibility-option" tabindex="0" role="button" aria-pressed="false" data-feature="highlight-headings">
-        <span class="option-label">
-            <i class="fa-solid fa-heading"></i>
-            הדגש כותרות
-        </span>
-        <div class="option-toggle"></div>
-    </div>
-    
-    <div class="accessibility-option" tabindex="0" role="button" aria-pressed="false" data-feature="cursor-large">
-        <span class="option-label">
-            <i class="fa-solid fa-arrow-pointer"></i>
-            סמן גדול
-        </span>
-        <div class="option-toggle"></div>
-    </div>
-    
-    <div class="accessibility-option" tabindex="0" role="button" aria-pressed="false" data-feature="line-height-large">
-        <span class="option-label">
-            <i class="fa-solid fa-arrows-up-down"></i>
-            ריווח שורות גדול
-        </span>
-        <div class="option-toggle"></div>
-    </div>
-    
-    <div class="accessibility-option" tabindex="0" role="button" aria-pressed="false" data-feature="letter-spacing">
-        <span class="option-label">
-            <i class="fa-solid fa-arrows-left-right"></i>
-            ריווח אותיות
-        </span>
-        <div class="option-toggle"></div>
-    </div>
-    
-    <button class="reset-btn" id="resetAccessibility">
-        <i class="fa-solid fa-rotate-left"></i> אפס הגדרות
-    </button>
 </div>
+
+<!-- Skip Links לניווט מקלדת -->
+<div id="skipLinks" style="display: none;">
+    <a href="#main-content" class="skip-link">דלג לתוכן הראשי</a>
+    <a href="#navigation" class="skip-link">דלג לתפריט ניווט</a>
+    <a href="#footer" class="skip-link">דלג לתחתית העמוד</a>
+</div>
+
+<!-- Reading Guide -->
+<div id="readingGuide" style="display: none;"></div>
+
+<!-- עוזר קורא מסך -->
+<div class="sr-only" role="status" aria-live="polite" aria-atomic="true" id="srAnnouncer"></div>
 
 <footer>
     © 2025 סאנרייז ספא – ההסתדרות 2, פתח תקווה
