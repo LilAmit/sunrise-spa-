@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Modal</title>
+    <style>
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 10000;
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 800px;
+            width: 90%;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .read-more-btn {
+            padding: 10px 20px;
+            background: #ff758c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>טסט למודאל</h1>
+
+    <button class="read-more-btn" data-post="thai">
+        קרא עוד - תאילנדי
+    </button>
+
+    <button class="read-more-btn" data-post="swedish">
+        קרא עוד - שוודי
+    </button>
+
+    <!-- Modal -->
+    <div class="modal" id="postModal">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">X</button>
+            <div class="modal-body" id="modalBody">
+                <!-- התוכן ייטען דינמית -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // הגדרת אובייקט הפוסטים
+        const fullPosts = {
+            thai: {
+                title: 'עיסוי תאילנדי - מסורת עתיקה',
+                content: '<p>זהו תוכן העיסוי התאילנדי</p>'
+            },
+            swedish: {
+                title: 'עיסוי שוודי - הרפיה מושלמת',
+                content: '<p>זהו תוכן העיסוי השוודי</p>'
+            }
+        };
+
+        // המתן עד שהדף נטען
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM loaded');
+
+            const modal = document.getElementById('postModal');
+            const modalBody = document.getElementById('modalBody');
+            const modalClose = document.getElementById('modalClose');
+            const readMoreBtns = document.querySelectorAll('.read-more-btn');
+
+            console.log('Buttons found:', readMoreBtns.length);
+
+            // הוספת event listeners לכפתורים
+            readMoreBtns.forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    alert('כפתור נלחץ!');
+                    const postId = btn.dataset.post;
+                    const post = fullPosts[postId];
+
+                    if (post) {
+                        modalBody.innerHTML = '<h2>' + post.title + '</h2>' + post.content;
+                        modal.classList.add('active');
+                    }
+                });
+            });
+
+            // סגירת מודאל
+            modalClose.addEventListener('click', function() {
+                modal.classList.remove('active');
+            });
+
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    modal.classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

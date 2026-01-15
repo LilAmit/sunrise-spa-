@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+    <!-- עמוד ראשי -->
+    <url>
+        <loc>https://www.sunrisespa.co.il/</loc>
+        <lastmod>2025-01-14</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+    </url>
+
+    <!-- גלריה -->
+    <url>
+        <loc>https://www.sunrisespa.co.il/gallery.html</loc>
+        <lastmod>2025-01-14</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- בלוג -->
+    <url>
+        <loc>https://www.sunrisespa.co.il/blog.html</loc>
+        <lastmod>2025-01-14</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <!-- מדיניות פרטיות -->
+    <url>
+        <loc>https://www.sunrisespa.co.il/privacy.html</loc>
+        <lastmod>2025-01-14</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.3</priority>
+    </url>
+
+    <!-- תנאי שימוש -->
+    <url>
+        <loc>https://www.sunrisespa.co.il/terms.html</loc>
+        <lastmod>2025-01-14</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.3</priority>
+    </url>
+
+    <!-- שאלות נפוצות -->
+    <url>
+        <loc>https://www.sunrisespa.co.il/faq.html</loc>
+        <lastmod>2025-01-14</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+
+</urlset>

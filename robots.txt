@@ -1,0 +1,11 @@
+# robots.txt לסאנרייז ספא
+
+User-agent: *
+Allow: /
+
+# קבצים שלא לסרוק
+Disallow: /admin/
+Disallow: /private/
+
+# Sitemap
+Sitemap: https://www.sunrisespa.co.il/sitemap.xml
