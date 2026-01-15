@@ -1418,27 +1418,41 @@ body.letter-spacing-active * {
 
 /* Responsive */
 @media (max-width: 900px) {
+    header {
+        padding: 10px 15px;
+    }
+
     header .title-container img {
-        height: 90px;
-        width: 90px;
+        height: 50px;
+        width: 50px;
     }
 
     header .title-container h1 {
-        font-size: 36px;
-        margin: 8px 0 0 0;
+        font-size: 22px;
+        margin: 5px 0;
     }
 
     .contact-details {
-        font-size: 16px;
+        font-size: 12px;
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+
+    .contact-badge {
+        padding: 4px 8px;
+        font-size: 11px;
+        margin: 2px 4px;
     }
 
     nav {
-        gap: 10px;
+        margin-top: 5px;
+        gap: 5px;
     }
 
     nav a {
-        font-size: 15px;
-        padding: 8px 14px;
+        font-size: 11px;
+        padding: 5px 8px;
+        min-height: 28px;
     }
 
     .gallery-header {
@@ -1578,26 +1592,38 @@ body.letter-spacing-active * {
 }
 
 @media (max-width: 600px) {
-    header .title-container h1 {
-        font-size: 28px;
+    header {
+        padding: 8px 10px;
     }
 
     header .title-container img {
-        height: 70px;
-        width: 70px;
+        height: 45px;
+        width: 45px;
+    }
+
+    header .title-container h1 {
+        font-size: 20px;
+        margin: 4px 0;
     }
 
     .contact-details {
-        font-size: 14px;
+        font-size: 11px;
     }
 
-    nav {
-        gap: 8px;
+    .contact-badge {
+        padding: 3px 6px;
+        font-size: 10px;
     }
 
     nav a {
-        font-size: 14px;
-        padding: 7px 12px;
+        font-size: 10px;
+        padding: 4px 7px;
+        min-height: 26px;
+    }
+
+    nav a i {
+        font-size: 10px;
+        margin-left: 3px;
     }
 
     .gallery-header h2 {
