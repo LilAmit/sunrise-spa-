@@ -3,127 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="שאלות נפוצות על סאנרייז ספא - כל מה שרצית לדעת על העיסויים והטיפולים שלנו">
-    <title>שאלות נפוצות (FAQ) - סאנרייז ספא</title>
+    <meta name="description" content="הצהרת נגישות של סאנרייז ספא - מחויבות לנגישות דיגיטלית לכלל האוכלוסייה">
+    <meta name="robots" content="noindex, follow">
+    <title>הצהרת נגישות - סאנרייז ספא</title>
     <link rel="icon" type="image/png" href="SunriseLogo.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <style>
-        .faq-container {
+        .accessibility-statement-container {
             max-width: 900px;
             margin: 180px auto 50px;
             padding: 40px;
-        }
-        .faq-container h1 {
-            color: #2c3e50;
-            font-size: 36px;
-            margin-bottom: 40px;
-            text-align: center;
             background: rgba(255, 255, 255, 0.95);
-            padding: 30px;
             border-radius: 20px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
-        .faq-item {
-            background: rgba(255, 255, 255, 0.95);
-            margin-bottom: 20px;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-        }
-        .faq-item:hover {
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-            transform: translateY(-3px);
-        }
-        .faq-question {
-            padding: 20px 25px;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 20px;
-            font-weight: 600;
+        .accessibility-statement-container h1 {
             color: #2c3e50;
-            background: linear-gradient(135deg, rgba(255,182,193,0.3), rgba(255,182,193,0.1));
-            transition: background 0.3s ease;
+            font-size: 36px;
+            margin-bottom: 20px;
+            text-align: center;
         }
-        .faq-question:hover {
-            background: linear-gradient(135deg, rgba(255,182,193,0.4), rgba(255,182,193,0.2));
+        .accessibility-statement-container h2 {
+            color: #34495e;
+            font-size: 24px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #ff758c;
+            padding-bottom: 10px;
         }
-        .faq-question i {
-            color: #ff758c;
-            font-size: 22px;
-            transition: transform 0.3s ease;
+        .accessibility-statement-container h3 {
+            color: #34495e;
+            font-size: 20px;
+            margin-top: 20px;
+            margin-bottom: 10px;
         }
-        .faq-question.active i {
-            transform: rotate(180deg);
-        }
-        .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease, padding 0.4s ease;
-            padding: 0 25px;
+        .accessibility-statement-container p,
+        .accessibility-statement-container ul {
             font-size: 18px;
             line-height: 1.8;
-            color: #34495e;
+            color: #2c3e50;
+            margin-bottom: 15px;
         }
-        .faq-answer.active {
-            max-height: 1000px;
-            padding: 20px 25px;
-        }
-        .faq-answer p {
-            margin-bottom: 12px;
-        }
-        .faq-answer ul {
+        .accessibility-statement-container ul {
             padding-right: 25px;
-            margin-top: 10px;
         }
-        .faq-answer li {
-            margin-bottom: 8px;
+        .accessibility-statement-container li {
+            margin-bottom: 10px;
         }
-        .quick-contact {
-            background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
-            color: white;
-            padding: 30px;
-            border-radius: 20px;
+        .last-updated {
             text-align: center;
-            margin-top: 40px;
-            box-shadow: 0 10px 30px rgba(255,117,140,0.3);
+            color: #666;
+            font-style: italic;
+            margin-bottom: 30px;
         }
-        .quick-contact h2 {
-            margin-bottom: 20px;
-            font-size: 28px;
+        .contact-info {
+            background: rgba(255, 182, 193, 0.2);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 30px;
         }
-        .quick-contact a {
-            color: white;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 20px;
-            display: inline-block;
-            margin: 10px 15px;
-            padding: 12px 25px;
-            border-radius: 30px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            cursor: pointer;
-        }
-        .quick-contact a:first-of-type {
-            background: linear-gradient(135deg, #2196F3, #1976D2);
-        }
-        .quick-contact a:first-of-type:hover {
-            background: linear-gradient(135deg, #1976D2, #1565C0);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(33, 150, 243, 0.4);
-        }
-        .quick-contact a:last-of-type {
-            background: linear-gradient(135deg, #25D366, #128C7E);
-        }
-        .quick-contact a:last-of-type:hover {
-            background: linear-gradient(135deg, #128C7E, #075E54);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(255,182,193,0.3), rgba(255,182,193,0.1));
+            padding: 20px;
+            border-radius: 15px;
+            border-right: 4px solid #ff758c;
+            margin: 20px 0;
         }
         /* כפתור חזרה למעלה */
         .back-to-top {
@@ -180,7 +126,7 @@
 <header>
     <div class="logo-container">
         <img src="SunriseLogo.png" class="logo" alt="סאנרייז ספא לוגו">
-        <h1>שאלות נפוצות סאנרייז ספא</h1>
+        <h1>הצהרת נגישות סאנרייז ספא</h1>
     </div>
 
     <div class="contact-details">
@@ -198,209 +144,158 @@
         <a href="index.html" title="עמוד הבית"><i class="fa-solid fa-home"></i> בית</a>
         <a href="gallery.html" title="גלריה"><i class="fa-solid fa-image"></i> גלריה</a>
         <a href="blog.html" title="בלוג"><i class="fa-solid fa-blog"></i> בלוג</a>
-        <a href="faq.html" title="שאלות נפוצות" class="active"><i class="fa-solid fa-circle-question"></i> שאלות נפוצות</a>
+        <a href="faq.html" title="שאלות נפוצות"><i class="fa-solid fa-circle-question"></i> שאלות נפוצות</a>
         <a href="https://wa.me/972586588751" target="_blank" title="שלח הודעה בוואטסאפ"><i class="fa-brands fa-whatsapp"></i> צור קשר</a>
         <a href="https://www.waze.com/live-map/directions/il/center-district/%D7%A4%D7%AA/sunrise-spa-%D7%A1%D7%A4%D7%90-%D7%A2%D7%99%D7%A1%D7%95%D7%99-%D7%A4%D7%AA%D7%97-%D7%AA%D7%A7%D7%95%D7%95%D7%94?navigate=yes&to=place.ChIJSZXBMVY3HRURy-oaXLqTcrg" target="_blank" title="ניווט ב-Waze"><i class="fa-brands fa-waze"></i> Waze</a>
         <a href="https://www.google.com/maps/dir//Sunrise+Spa" target="_blank" title="צפייה במפה"><i class="fa-solid fa-map-location-dot"></i> Maps</a>
     </nav>
 </header>
 
-<div class="faq-container">
-    <h1>שאלות נפוצות (FAQ)</h1>
+<div class="accessibility-statement-container">
+    <h1>הצהרת נגישות</h1>
+    <p class="last-updated">עודכן לאחרונה: ינואר 2026</p>
 
-    <!-- שאלה 1 -->
-    <div class="faq-item">
-        <div class="faq-question">
-            <span>איך מזמינים תור לעיסוי?</span>
-            <i class="fa-solid fa-chevron-down"></i>
-        </div>
-        <div class="faq-answer">
-            <p>ניתן להזמין תור בשלוש דרכים קלות:</p>
-            <ul>
-                <li><strong>WhatsApp:</strong> שלח הודעה ל-<a href="https://wa.me/972586588751" target="_blank">058-658-8751</a></li>
-                <li><strong>טלפון:</strong> התקשר ישירות ל-<a href="tel:0586588751">058-658-8751</a></li>
-                <li><strong>באתר:</strong> לחץ על כפתור ה-WhatsApp הצף באתר</li>
-            </ul>
-            <p>מומלץ להזמין תור מראש כדי להבטיח זמינות במועד המועדף עליך.</p>
-        </div>
+    <div class="highlight-box">
+        <p><strong>סאנרייז ספא</strong> מחויב להנגשת השירותים הדיגיטליים שלו לכלל האוכלוסייה, לרבות אנשים עם מוגבלויות. אנו פועלים להבטיח שהאתר שלנו יהיה נגיש, ידידותי ונוח לשימוש עבור כל המבקרים.</p>
     </div>
 
-    <!-- שאלה 2 -->
-    <div class="faq-item">
-        <div class="faq-question">
-            <span>מהן שעות הפעילות של הספא?</span>
-            <i class="fa-solid fa-chevron-down"></i>
-        </div>
-        <div class="faq-answer">
-            <p><strong>ימים א'-ה':</strong> 10:00 - 22:00</p>
-            <p><strong>יום ו':</strong> 09:00 - 16:00</p>
-            <p><strong>שבת:</strong> סגור</p>
-            <p>בחגים ומועדים ייתכנו שינויים בשעות הפעילות - מומלץ להתקשר ולוודא.</p>
-        </div>
+    <h2>מחויבותנו לנגישות</h2>
+    <p>אנו בסאנרייז ספא רואים חשיבות רבה בהנגשת האתר שלנו ובהפיכתו לנגיש עבור אנשים עם מוגבלויות מסוגים שונים. אנו פועלים באופן שוטף ומתמיד לשיפור רמת הנגישות של האתר, תוך הקפדה על עמידה בתקנים הנדרשים על פי חוק.</p>
+
+    <h2>תקנים ועמידה בדרישות</h2>
+    <p>האתר שלנו נבנה תוך שאיפה לעמוד בהנחיות נגישות תוכן אינטרנט ברמת AA לפי תקן WCAG 2.1 (Web Content Accessibility Guidelines). אנו פועלים ליישום התקן הישראלי ת"י 5568 בהתאם לדרישות החוק הישראלי.</p>
+
+    <h2>אמצעי נגישות באתר</h2>
+    <p>האתר כולל אמצעי נגישות מגוונים המסייעים למבקרים עם מוגבלויות שונות:</p>
+
+    <h3>תפריט נגישות מתקדם</h3>
+    <ul>
+        <li><strong>ניווט במקלדת:</strong> האתר ניתן לניווט מלא באמצעות מקלדת בלבד, ללא צורך בעכבר</li>
+        <li><strong>התאמת גודל גופנים:</strong> אפשרות להגדלה והקטנה של גודל הטקסט באתר</li>
+        <li><strong>ניגודיות גבוהה:</strong> מצב ניגודיות מוגברת לנוחות קריאה משופרת</li>
+        <li><strong>ניגודיות כהה:</strong> מצב רקע כהה לצמצום עייפות עיניים</li>
+        <li><strong>הדגשת קישורים:</strong> הדגשה ברורה של קישורים באתר לזיהוי קל יותר</li>
+        <li><strong>כיוון טקסט:</strong> אפשרות להיפוך כיוון הטקסט (LTR/RTL)</li>
+        <li><strong>הפסקת אנימציות:</strong> ביטול אנימציות עבור משתמשים רגישים לתנועה</li>
+        <li><strong>גופן קריא:</strong> החלפה לגופן קריא במיוחד</li>
+        <li><strong>מצב לקריאה:</strong> הצגת התוכן במצב ממוקד וללא הסחות דעת</li>
+    </ul>
+
+    <h3>נגישות טכנית</h3>
+    <ul>
+        <li><strong>תגיות ARIA:</strong> שימוש בתגיות ARIA לשיפור תמיכה בקוראי מסך</li>
+        <li><strong>טקסטים חלופיים:</strong> כל התמונות באתר כוללות תיאורים טקסטואליים (Alt Text)</li>
+        <li><strong>מבנה סמנטי:</strong> שימוש נכון בכותרות (H1-H6) ומבנה HTML סמנטי</li>
+        <li><strong>ניווט עקבי:</strong> מבנה ניווט אחיד ועקבי בכל דפי האתר</li>
+        <li><strong>אינדיקציה ברורה:</strong> סימון ברור של האלמנט הפעיל (Focus)</li>
+        <li><strong>ניגודיות צבעים:</strong> שמירה על יחסי ניגודיות מינימליים בין טקסט לרקע</li>
+    </ul>
+
+    <h3>תכנים ותוכן נגיש</h3>
+    <ul>
+        <li><strong>שפה ברורה ופשוטה:</strong> שימוש בשפה ברורה ומובנת</li>
+        <li><strong>כותרות מתארות:</strong> כותרות ברורות המתארות את תוכן הדף</li>
+        <li><strong>קישורים תיאוריים:</strong> טקסט קישורים מתאר את היעד באופן ברור</li>
+        <li><strong>הודעות שגיאה מפורטות:</strong> הודעות ברורות עם הנחיות לתיקון</li>
+    </ul>
+
+    <h2>תאימות לטכנולוגיות מסייעות</h2>
+    <p>האתר תוכנן להיות תואם לטכנולוגיות מסייעות שונות, כולל:</p>
+    <ul>
+        <li>קוראי מסך (Screen Readers) כגון NVDA, JAWS, VoiceOver ו-TalkBack</li>
+        <li>תוכנות הגדלת מסך</li>
+        <li>תוכנות זיהוי קולי</li>
+        <li>מקלדות חלופיות וטכנולוגיות קלט מסייעות</li>
+    </ul>
+
+    <h2>דפדפנים נתמכים</h2>
+    <p>האתר נבדק ונמצא תואם לדפדפנים המודרניים הבאים:</p>
+    <ul>
+        <li>Google Chrome (גרסה עדכנית)</li>
+        <li>Mozilla Firefox (גרסה עדכנית)</li>
+        <li>Microsoft Edge (גרסה עדכנית)</li>
+        <li>Safari (גרסה עדכנית)</li>
+    </ul>
+
+    <h2>מגבלות נגישות ידועות</h2>
+    <p>למרות המאמצים הרבים שאנו משקיעים בהנגשת האתר, ייתכנו עדיין מגבלות מסוימות או תכנים שלא הונגשו במלואם. אנו פועלים באופן שוטף לזיהוי ותיקון של בעיות נגישות אלו.</p>
+    <p>אם נתקלתם בבעיית נגישות כלשהי באתר, אנא דווחו לנו על כך ונעשה כל שביכולתנו לטפל בבעיה בהקדם האפשרי.</p>
+
+    <h2>שיפור מתמיד</h2>
+    <p>אנו ממשיכים לשפר ולעדכן את נגישות האתר באופן שוטף. צוות המומחים שלנו עובד על:</p>
+    <ul>
+        <li>בדיקות נגישות תקופתיות ושוטפות</li>
+        <li>תיקון בעיות נגישות שמתגלות</li>
+        <li>הוספת תכונות נגישות חדשות</li>
+        <li>עדכון התאימות לתקנים חדשים</li>
+    </ul>
+
+    <h2>איך להשתמש בתפריט הנגישות?</h2>
+    <p>כדי להפעיל את תפריט הנגישות של האתר:</p>
+    <ol>
+        <li>לחצו על כפתור הנגישות הכחול שנמצא בצד ימין של המסך</li>
+        <li>יפתח תפריט מקיף עם כל אפשרויות הנגישות הזמינות</li>
+        <li>בחרו באפשרויות הרלוונטיות עבורכם</li>
+        <li>ניתן לשלב מספר הגדרות נגישות במקביל</li>
+        <li>השינויים נשמרים אוטומטית עבור הביקור הבא שלכם</li>
+    </ol>
+
+    <h2>צור קשר בנושאי נגישות</h2>
+    <div class="contact-info">
+        <p><strong>אם נתקלתם בבעיית נגישות באתר, או שיש לכם הצעות לשיפור הנגישות, נשמח לשמוע מכם:</strong></p>
+
+        <p><i class="fa-solid fa-building"></i> <strong>שם העסק:</strong> סאנרייז ספא (Sunrise Spa)</p>
+        <p><i class="fa-solid fa-location-dot"></i> <strong>כתובת:</strong> ההסתדרות 2, קומה 2, פתח תקווה</p>
+        <p><i class="fa-solid fa-phone"></i> <strong>טלפון:</strong> <a href="tel:0586588751">058-658-8751</a></p>
+        <p><i class="fa-brands fa-whatsapp"></i> <strong>ווצאפ:</strong> <a href="https://wa.me/972586588751" target="_blank">שלח הודעה</a></p>
+
+        <p style="margin-top: 15px;"><strong>רכז נגישות:</strong> הנהלת סאנרייז ספא</p>
+        <p>אנו מתחייבים לטפל בכל פנייה בנושא נגישות בתוך 5 ימי עסקים ולפעול למציאת פתרון מתאים.</p>
     </div>
 
-    <!-- שאלה 3 -->
-    <div class="faq-item">
-        <div class="faq-question">
-            <span>מה ההבדל בין עיסוי תאילנדי, שוודי ורקמות עמוק?</span>
-            <i class="fa-solid fa-chevron-down"></i>
-        </div>
-        <div class="faq-answer">
-            <p><strong>עיסוי תאילנדי:</strong> עיסוי מסורתי הכולל מתיחות ולחיצות עמוקות. מתאים לשיפור גמישות ושחרור מתחים עמוקים.</p>
-            <p><strong>עיסוי שוודי:</strong> עיסוי קלאסי ומרגיע המשלב ליטופים וליטושים רכים. מתאים להרפיה כללית ושיפור זרימת הדם.</p>
-            <p><strong>עיסוי רקמות עמוק (Deep Tissue):</strong> עיסוי אינטנסיבי המתמקד בשרירים עמוקים. מתאים למי שסובל מכאבים כרוניים או מתח שרירי חזק.</p>
-        </div>
-    </div>
+    <h2>תאריך עדכון אחרון</h2>
+    <p>הצהרת נגישות זו עודכנה לאחרונה ביום <strong>15 בינואר 2026</strong>.</p>
 
-    <!-- שאלה 4 -->
-    <div class="faq-item">
-        <div class="faq-question">
-            <span>כמה זמן לוקח עיסוי?</span>
-            <i class="fa-solid fa-chevron-down"></i>
-        </div>
-        <div class="faq-answer">
-            <p>אנו מציעים טיפולים במשכים שונים:</p>
-            <ul>
-                <li><strong>עיסוי רגליים:</strong> 30, 45 או 60 דקות</li>
-                <li><strong>עיסוי גוף מלא:</strong> 45, 60, 75, 90 או 120 דקות</li>
-                <li><strong>עיסוי זוגי:</strong> 60, 75, 90 או 120 דקות</li>
-            </ul>
-            <p>התשלום והייעוץ הקצר לפני הטיפול אינם נכללים במשך הטיפול.</p>
-        </div>
-    </div>
-
-    <!-- שאלה 5 -->
-    <div class="faq-item">
-        <div class="faq-question">
-            <span>האם יש חניה ליד הספא?</span>
-            <i class="fa-solid fa-chevron-down"></i>
-        </div>
-        <div class="faq-answer">
-            <p>כן! באזור יש אפשרויות חניה:</p>
-            <ul>
-                <li>חניה בחינם ברחוב (כחול לבן)</li>
-                <li>חניון ציבורי קרוב</li>
-                <li>חניה בתשלום בסביבה</li>
-            </ul>
-            <p>מומלץ להגיע 5-10 דקות לפני מועד הטיפול כדי למצוא חניה בנוחות.</p>
-        </div>
-    </div>
-
-    <!-- שאלה 6 -->
-    <div class="faq-item">
-        <div class="faq-question">
-            <span>אילו אמצעי תשלום מקבלים?</span>
-            <i class="fa-solid fa-chevron-down"></i>
-        </div>
-        <div class="faq-answer">
-            <p>אנו מקבלים:</p>
-            <ul>
-                <li>מזומן</li>
-                <li>כרטיסי אשראי (ויזה)</li>
-            </ul>
-        </div>
-    </div>
-
-    <!-- שאלה 7 -->
-    <div class="faq-item">
-        <div class="faq-question">
-            <span>האם יש שירותי עיסוי במקום מגוריי?</span>
-            <i class="fa-solid fa-chevron-down"></i>
-        </div>
-        <div class="faq-answer">
-            <p>כרגע אנו מספקים שירותים אך ורק בסניף שלנו בפתח תקווה.</p>
-            <p>הסיבות לכך:</p>
-            <ul>
-                <li>סביבה מותאמת ומרגיעה במיוחד</li>
-                <li>ציוד מקצועי ואיכותי</li>
-                <li>תנאי היגיינה אופטימליים</li>
-                <li>אווירה מושלמת לרגיעה</li>
-            </ul>
-        </div>
-    </div>
-    
-    <div class="quick-contact">
-        <h2>לא מצאת תשובה? צור קשר!</h2>
-        <p>אנחנו כאן כדי לעזור לך</p>
-        <div>
-            <a href="tel:0586588751"><i class="fa-solid fa-phone"></i> 058-658-8751</a>
-            <a href="https://wa.me/972586588751" target="_blank"><i class="fa-brands fa-whatsapp"></i> ווצאפ</a>
-        </div>
+    <div class="highlight-box" style="margin-top: 30px;">
+        <p style="text-align: center; margin: 0;"><strong>💙 סאנרייז ספא מאמין בשוויון הזדמנויות ובזכותו של כל אדם לגישה מלאה ונוחה למידע ולשירותים המוצעים באתר.</strong></p>
     </div>
 </div>
 
 <!-- כפתור WhatsApp צף -->
-<a href="https://wa.me/972586588751" class="whatsapp-float" target="_blank" aria-label="שלח הודעה בוואטסאפ">
+<a href="https://wa.me/972586588751" class="whatsapp-float" target="_blank" aria-label="צור קשר בוואטסאפ" title="שלח הודעה בוואטסאפ">
     <i class="fa-brands fa-whatsapp"></i>
 </a>
 
-<!-- צ'אטבוט -->
-<button class="chatbot-btn" id="chatbotBtn" aria-label="פתח צ'אט" title="יש לך שאלה? אני כאן לעזור!">
+<!-- כפתור חזרה למעלה -->
+<button class="back-to-top" id="backToTop" aria-label="חזרה לראש הדף" title="חזרה למעלה">
+    <i class="fa-solid fa-arrow-up"></i>
+</button>
+
+<!-- כפתור צ'אטבוט צף -->
+<button class="chatbot-btn" id="chatbotBtn" aria-label="פתח צ'אטבוט" title="שאל אותנו שאלה">
     <i class="fa-solid fa-comments"></i>
 </button>
 
+<!-- חלון הצ'אטבוט -->
 <div class="chatbot-container" id="chatbotContainer">
     <div class="chatbot-header">
-        <div class="chatbot-header-content">
-            <img src="SunriseLogo.png" alt="לוגו" class="chatbot-logo">
-            <div>
-                <h3>סאנרייז ספא</h3>
-                <p class="chatbot-status">
-                    <span class="status-dot"></span>
-                    זמין עכשיו
-                </p>
-            </div>
-        </div>
-        <button class="chatbot-close" id="chatbotClose" aria-label="סגור צ'אט">
+        <h3>💬 צ'אט עם סאנרייז ספא</h3>
+        <button class="chatbot-close" id="chatbotClose" aria-label="סגור צ'אטבוט">
             <i class="fa-solid fa-times"></i>
         </button>
     </div>
-    
     <div class="chatbot-messages" id="chatbotMessages">
-        <div class="bot-message">
-            <div class="message-avatar">
-                <i class="fa-solid fa-spa"></i>
-            </div>
-            <div class="message-content">
-                שלום! 👋 אני עוזר וירטואלי של סאנרייז ספא.<br>
-                איך אוכל לעזור לך היום?
-            </div>
-        </div>
-        
-        <div class="quick-questions">
-            <button class="quick-btn" data-question="hours">🕐 שעות פעילות</button>
-            <button class="quick-btn" data-question="prices">💰 מחירון</button>
-            <button class="quick-btn" data-question="location">📍 איפה אתם?</button>
-            <button class="quick-btn" data-question="services">💆 אילו עיסויים יש?</button>
-            <button class="quick-btn" data-question="booking">📅 איך מזמינים תור?</button>
+        <div class="chatbot-message bot-message">
+            שלום! 👋 אני כאן לעזור לך. במה אוכל לסייע?
         </div>
     </div>
-
-    <div class="chatbot-input-area">
-        <input type="text" id="chatbotInput" placeholder="כתוב את השאלה שלך..." aria-label="שדה שאלה">
+    <div class="chatbot-input-container">
+        <input type="text" id="chatbotInput" placeholder="הקלד את שאלתך כאן..." aria-label="שדה הודעה">
         <button id="chatbotSend" aria-label="שלח הודעה">
             <i class="fa-solid fa-paper-plane"></i>
         </button>
     </div>
 </div>
-
-<!-- כפתור חזרה למעלה -->
-<button class="back-to-top" id="backToTop" aria-label="חזרה למעלה">
-    <i class="fa-solid fa-arrow-up"></i>
-</button>
-
-<!-- Skip Links לניווט מקלדת -->
-<div id="skipLinks" style="display: none;">
-    <a href="#main-content" class="skip-link">דלג לתוכן הראשי</a>
-    <a href="#navigation" class="skip-link">דלג לתפריט ניווט</a>
-    <a href="#footer" class="skip-link">דלג לתחתית העמוד</a>
-</div>
-
-<!-- Reading Guide -->
-<div id="readingGuide" style="display: none;"></div>
-
-<!-- עוזר קורא מסך -->
-<div class="sr-only" role="status" aria-live="polite" aria-atomic="true" id="srAnnouncer"></div>
 
 <!-- כפתור הנגשה -->
 <button class="accessibility-trigger" id="accessibilityBtn" aria-label="פתח תפריט נגישות" title="נגישות">
@@ -571,13 +466,27 @@
     </div>
 </div>
 
+<!-- Skip Links לניווט מקלדת -->
+<div id="skipLinks" style="display: none;">
+    <a href="#main-content" class="skip-link">דלג לתוכן הראשי</a>
+    <a href="#navigation" class="skip-link">דלג לתפריט ניווט</a>
+    <a href="#footer" class="skip-link">דלג לתחתית העמוד</a>
+</div>
+
+<!-- Reading Guide -->
+<div id="readingGuide" style="display: none;"></div>
+
+<!-- עוזר קורא מסך -->
+<div class="sr-only" role="status" aria-live="polite" aria-atomic="true" id="srAnnouncer"></div>
+
 <footer>
     © 2026 סאנרייז ספא – ההסתדרות 2, פתח תקווה
 
     <div style="margin-top: 15px; margin-bottom: 15px;">
         <a href="privacy.html" class="footer-link">מדיניות פרטיות</a> |
         <a href="terms.html" class="footer-link">תנאי שימוש</a> |
-        <a href="faq.html" class="footer-link">שאלות נפוצות</a>
+        <a href="faq.html" class="footer-link">שאלות נפוצות</a> |
+        <a href="accessibility-statement.html" class="footer-link">הצהרת נגישות</a>
     </div>
 
     <div class="social-title">
@@ -603,29 +512,6 @@
     </div>
 </footer>
 
-<script>
-    // אקורדיון לשאלות נפוצות
-    document.querySelectorAll('.faq-question').forEach(question => {
-        question.addEventListener('click', () => {
-            const answer = question.nextElementSibling;
-            const isActive = answer.classList.contains('active');
-
-            // סגור את כל התשובות האחרות
-            document.querySelectorAll('.faq-answer').forEach(item => {
-                item.classList.remove('active');
-            });
-            document.querySelectorAll('.faq-question').forEach(item => {
-                item.classList.remove('active');
-            });
-
-            // פתח את התשובה הנוכחית אם היא לא הייתה פתוחה
-            if (!isActive) {
-                answer.classList.add('active');
-                question.classList.add('active');
-            }
-        });
-    });
-</script>
 <script src="script.js"></script>
 
 </body>
