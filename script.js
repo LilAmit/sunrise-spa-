@@ -615,6 +615,15 @@ const AccessibilityManager = {
     changeTextSize(delta) {
         this.textSize = Math.max(80, Math.min(150, this.textSize + delta));
         document.documentElement.style.fontSize = this.textSize + '%';
+
+        // הסר מחלקות קודמות
+        document.body.classList.remove('text-size-80', 'text-size-90', 'text-size-110', 'text-size-120', 'text-size-130', 'text-size-140', 'text-size-150');
+
+        // הוסף מחלקה חדשה אם לא 100%
+        if (this.textSize !== 100) {
+            document.body.classList.add(`text-size-${this.textSize}`);
+        }
+
         this.announce(`גודל טקסט שונה ל-${this.textSize}%`);
     },
     
