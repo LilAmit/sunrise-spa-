@@ -485,309 +485,6 @@ footer {
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
 
-/* הנגשה - כפתור ראשי */
-.accessibility-btn {
-    position: fixed;
-    top: 50%;
-    left: 20px;
-    transform: translateY(-50%);
-    width: 60px;
-    height: 60px;
-    background: linear-gradient(135deg, #2196F3, #1976D2);
-    color: white;
-    border: none;
-    border-radius: 50%;
-    font-size: 28px;
-    cursor: pointer;
-    box-shadow: 0 6px 20px rgba(33, 150, 243, 0.5);
-    z-index: 9998;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.accessibility-btn:hover {
-    transform: translateY(-50%) scale(1.1);
-    box-shadow: 0 8px 25px rgba(33, 150, 243, 0.7);
-}
-
-.accessibility-btn:focus {
-    outline: 3px solid #FFC107;
-    outline-offset: 3px;
-}
-
-/* תפריט הנגשה */
-.accessibility-menu {
-    position: fixed;
-    top: 50%;
-    left: 90px;
-    transform: translateY(-50%) scale(0.9);
-    background: white;
-    border-radius: 20px;
-    padding: 25px;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
-    z-index: 9999;
-    width: 320px;
-    max-height: 85vh;
-    overflow-y: auto;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease;
-}
-
-.accessibility-menu.active {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(-50%) scale(1);
-}
-
-.accessibility-menu h3 {
-    color: #1976D2;
-    font-size: 24px;
-    margin: 0 0 20px 0;
-    text-align: center;
-    font-weight: 700;
-    border-bottom: 3px solid #2196F3;
-    padding-bottom: 10px;
-}
-
-.accessibility-option {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 15px;
-    margin: 10px 0;
-    background: #f5f5f5;
-    border-radius: 12px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    border: 2px solid transparent;
-}
-
-.accessibility-option:hover {
-    background: #e3f2fd;
-    transform: translateX(-3px);
-    border-color: #2196F3;
-}
-
-.accessibility-option:focus {
-    outline: 3px solid #FFC107;
-    outline-offset: 2px;
-}
-
-/* כפתור WhatsApp צף */
-.whatsapp-float {
-    position: fixed;
-    bottom: 30px;
-    left: 30px;
-    background: #25D366;
-    color: white;
-    width: 65px;
-    height: 65px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 35px;
-    box-shadow: 0 6px 20px rgba(37,211,102,0.5);
-    z-index: 9000;
-    transition: all 0.3s ease;
-    cursor: pointer;
-    text-decoration: none;
-}
-
-.whatsapp-float:hover {
-    transform: scale(1.15);
-    box-shadow: 0 8px 25px rgba(37,211,102,0.7);
-}
-
-/* כפתור חזרה למעלה */
-.back-to-top {
-    position: fixed;
-    bottom: 110px;
-    left: 30px;
-    background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
-    color: white;
-    width: 55px;
-    height: 55px;
-    border-radius: 50%;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
-    box-shadow: 0 6px 20px rgba(255,117,140,0.5);
-    z-index: 9000;
-    transition: all 0.3s ease;
-    cursor: pointer;
-    text-decoration: none;
-    border: none;
-}
-
-.back-to-top.show {
-    display: flex;
-}
-
-.back-to-top:hover {
-    transform: scale(1.15);
-    box-shadow: 0 8px 25px rgba(255,117,140,0.7);
-}
-
-.accessibility-option.active {
-    background: #2196F3;
-    color: white;
-}
-
-.option-label {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    font-size: 16px;
-    font-weight: 500;
-}
-
-.option-label i {
-    font-size: 20px;
-    width: 25px;
-    text-align: center;
-}
-
-.option-toggle {
-    width: 50px;
-    height: 26px;
-    background: #ccc;
-    border-radius: 13px;
-    position: relative;
-    transition: all 0.3s ease;
-}
-
-.option-toggle::after {
-    content: '';
-    position: absolute;
-    width: 22px;
-    height: 22px;
-    background: white;
-    border-radius: 50%;
-    top: 2px;
-    right: 2px;
-    transition: all 0.3s ease;
-}
-
-.accessibility-option.active .option-toggle {
-    background: #4CAF50;
-}
-
-.accessibility-option.active .option-toggle::after {
-    right: 26px;
-}
-
-.accessibility-close {
-    position: absolute;
-    top: 15px;
-    left: 15px;
-    background: none;
-    border: none;
-    font-size: 24px;
-    cursor: pointer;
-    color: #666;
-    width: 35px;
-    height: 35px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    transition: all 0.3s ease;
-}
-
-.accessibility-close:hover {
-    background: #f44336;
-    color: white;
-    transform: rotate(90deg);
-}
-
-.accessibility-close:focus {
-    outline: 3px solid #FFC107;
-}
-
-.reset-btn {
-    width: 100%;
-    padding: 12px;
-    margin-top: 15px;
-    background: linear-gradient(135deg, #ff758c, #ff7eb3);
-    color: white;
-    border: none;
-    border-radius: 10px;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.reset-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(255, 117, 140, 0.4);
-}
-
-.reset-btn:focus {
-    outline: 3px solid #FFC107;
-}
-
-/* מצבי הנגשה */
-body.high-contrast {
-    filter: contrast(1.5);
-}
-
-body.invert-colors {
-    filter: invert(1) hue-rotate(180deg);
-}
-
-body.invert-colors img,
-body.invert-colors .logo {
-    filter: invert(1) hue-rotate(180deg);
-}
-
-body.grayscale {
-    filter: grayscale(100%);
-}
-
-body.large-text * {
-    font-size: 120% !important;
-}
-
-body.extra-large-text * {
-    font-size: 140% !important;
-}
-
-body.readable-font * {
-    font-family: Arial, sans-serif !important;
-}
-
-body.highlight-links a {
-    background-color: yellow !important;
-    color: black !important;
-    text-decoration: underline !important;
-    padding: 2px 4px !important;
-}
-
-body.highlight-headings h1,
-body.highlight-headings h2,
-body.highlight-headings h3 {
-    background-color: #90EE90 !important;
-    padding: 5px !important;
-}
-
-body.cursor-large * {
-    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path d="M2 2 L2 28 L10 20 L14 30 L18 28 L14 18 L24 18 Z" fill="black" stroke="white" stroke-width="2"/></svg>'), auto !important;
-}
-
-body.line-height-large * {
-    line-height: 2 !important;
-}
-
-body.letter-spacing * {
-    letter-spacing: 2px !important;
-}
-
 /* ===== נגישות - תקן ישראלי 5568 ===== */
 
 /* Screen Reader Only - לקוראי מסך */
@@ -804,13 +501,6 @@ body.letter-spacing * {
 }
 
 /* Skip Links */
-#skipLinks {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 100000;
-}
-
 .skip-link {
     position: absolute;
     top: -40px;
@@ -824,6 +514,13 @@ body.letter-spacing * {
 
 .skip-link:focus {
     top: 0;
+}
+
+#skipLinks {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100000;
 }
 
 /* כפתור נגישות ראשי */
@@ -841,11 +538,14 @@ body.letter-spacing * {
     font-size: 24px;
     cursor: pointer;
     box-shadow: 0 4px 15px rgba(33, 150, 243, 0.4);
-    z-index: 9998;
+    z-index: 100001;
     transition: all 0.3s ease;
     display: flex;
     align-items: center;
     justify-content: center;
+    pointer-events: auto;
+    visibility: visible;
+    opacity: 1;
 }
 
 .accessibility-trigger:hover,
@@ -871,7 +571,7 @@ body.letter-spacing * {
     background: white;
     border-radius: 15px;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-    z-index: 9999;
+    z-index: 100000;
     opacity: 0;
     visibility: hidden;
     transition: all 0.3s ease;
@@ -946,6 +646,12 @@ body.letter-spacing * {
 
 .accessibility-section {
     margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.accessibility-section:last-child {
+    border-bottom: none;
 }
 
 .accessibility-section h3 {
@@ -955,9 +661,16 @@ body.letter-spacing * {
     margin: 0 0 12px 0;
     padding-bottom: 8px;
     border-bottom: 2px solid #E3F2FD;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
-.accessibility-action {
+.accessibility-section h3 i {
+    font-size: 16px;
+}
+
+.accessibility-btn {
     width: 100%;
     display: flex;
     align-items: center;
@@ -975,35 +688,123 @@ body.letter-spacing * {
     color: #333;
 }
 
-.accessibility-action i {
+/* כפתורים בזוגות - תפריט נגישות */
+.accessibility-buttons {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.accessibility-buttons .accessibility-btn {
+    width: calc(50% - 5px) !important;
+    flex: 0 0 calc(50% - 5px) !important;
+    max-width: calc(50% - 5px) !important;
+    margin: 0 !important;
+    box-sizing: border-box;
+}
+
+.accessibility-btn i {
     width: 24px;
     text-align: center;
     color: #2196F3;
+    font-size: 18px;
 }
 
-.accessibility-action:hover {
+.accessibility-btn:hover {
     background: #E3F2FD;
     border-color: #2196F3;
     transform: translateX(-3px);
 }
 
-.accessibility-action:focus-visible {
+.accessibility-btn:focus-visible {
     outline: 3px solid #FFC107;
     outline-offset: 2px;
 }
 
-.accessibility-action[aria-pressed="true"] {
-    background: #2196F3;
+.accessibility-btn[aria-pressed="true"] {
+    background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
     color: white;
-    border-color: #1976D2;
+    border-color: #388E3C;
+    box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
 }
 
-.accessibility-action[aria-pressed="true"] i {
+.accessibility-btn[aria-pressed="true"] i {
     color: white;
 }
 
-.reset-accessibility,
-.accessibility-statement-btn {
+.accessibility-btn[aria-pressed="true"]:hover {
+    animation: pulseGreen 2s infinite;
+}
+
+@keyframes pulseGreen {
+    0%, 100% {
+        box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+    }
+    50% {
+        box-shadow: 0 6px 25px rgba(76, 175, 80, 0.6);
+    }
+}
+
+/* כפתורים קטנים */
+.accessibility-btn-small {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    box-shadow: 0 4px 10px rgba(102, 126, 234, 0.3);
+    width: 48%;
+}
+
+.accessibility-btn-small:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(102, 126, 234, 0.5);
+}
+
+.accessibility-btn-small i {
+    font-size: 14px;
+}
+
+.accessibility-btn-small[aria-pressed="true"] {
+    background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+    box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+}
+
+.accessibility-close {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 18px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.accessibility-close:hover,
+.accessibility-close:focus {
+    background: rgba(255, 255, 255, 0.3);
+    transform: rotate(90deg);
+}
+
+.accessibility-close:focus-visible {
+    outline: 2px solid #FFC107;
+}
+
+.accessibility-reset-btn {
     width: 100%;
     padding: 12px;
     margin-top: 10px;
@@ -1022,17 +823,40 @@ body.letter-spacing * {
     gap: 8px;
 }
 
-.accessibility-statement-btn {
-    background: linear-gradient(135deg, #4CAF50, #388E3C);
+.accessibility-reset-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
-.reset-accessibility:hover,
+.accessibility-reset-btn:focus-visible {
+    outline: 3px solid #FFC107;
+}
+
+.accessibility-statement-btn {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    background: linear-gradient(135deg, #4CAF50, #388E3C);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Heebo', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    text-decoration: none;
+}
+
 .accessibility-statement-btn:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
-.reset-accessibility:focus-visible,
 .accessibility-statement-btn:focus-visible {
     outline: 3px solid #FFC107;
 }
@@ -1049,49 +873,198 @@ body.letter-spacing * {
     box-shadow: 0 0 10px rgba(255, 193, 7, 0.6);
 }
 
-/* מצבי נגישות */
+/* מדריך קריאה - Reading Guide */
+.reading-guide {
+    position: fixed;
+    left: 0;
+    right: 0;
+    height: 50px;
+    background: rgba(255, 215, 0, 0.3);
+    border-top: 3px solid #FFD700;
+    border-bottom: 3px solid #FFD700;
+    pointer-events: none;
+    z-index: 9999;
+    display: none;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+}
+
+.reading-guide-active .reading-guide {
+    display: block;
+}
+
+/* Scrollbar styling for accessibility panel */
+.accessibility-panel::-webkit-scrollbar {
+    width: 8px;
+}
+
+.accessibility-panel::-webkit-scrollbar-track {
+    background: rgba(0,0,0,0.05);
+    border-radius: 10px;
+}
+
+.accessibility-panel::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 10px;
+}
+
+.accessibility-panel::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+}
+
+/* ===============================================
+   מצבי נגישות
+   =============================================== */
+
+/* קורא מסך - Screen Reader */
+.screen-reader-active * {
+    cursor: help !important;
+}
+
+.screen-reader-active a:hover,
+.screen-reader-active button:hover,
+.screen-reader-active h1:hover,
+.screen-reader-active h2:hover,
+.screen-reader-active h3:hover,
+.screen-reader-active p:hover {
+    outline: 3px solid #4CAF50;
+    outline-offset: 2px;
+}
+
+/* CSS Variables for accessibility */
+:root {
+    --line-height: 1.5;
+    --letter-spacing: 0px;
+}
+
+/* מרווח שורות - Line Height */
+.line-height-active * {
+    line-height: 2 !important;
+}
+
+/* מרווח אותיות - Letter Spacing */
+.letter-spacing-active * {
+    letter-spacing: 0.12em !important;
+}
+
+/* גופן דיסלקציה - Dyslexia Font */
+.dyslexia-font-active * {
+    font-family: 'Comic Sans MS', 'OpenDyslexic', Arial, sans-serif !important;
+}
+
+/* סמן גדול - Big Cursor */
+.big-cursor-active,
+.big-cursor-active * {
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"><path d="M5 5 L5 35 L15 25 L20 35 L25 32 L20 22 L32 22 Z" fill="black" stroke="white" stroke-width="2"/></svg>') 10 10, auto !important;
+}
+
+/* סמן צבעוני - Colored Cursor */
+.cursor-color-active,
+.cursor-color-active * {
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path d="M2 2 L2 28 L12 20 L16 28 L20 26 L16 18 L26 18 Z" fill="red" stroke="yellow" stroke-width="2"/></svg>'), auto !important;
+}
+
+/* צבעים הפוכים - Inverted Colors */
+.invert-colors-active {
+    filter: invert(1) hue-rotate(180deg);
+}
+
+.invert-colors-active img,
+.invert-colors-active video {
+    filter: invert(1) hue-rotate(180deg);
+}
+
+/* עצירת אנימציות - Stop Animations */
+.stop-animations-active *,
+.stop-animations-active *::before,
+.stop-animations-active *::after {
+    animation-duration: 0s !important;
+    animation-delay: 0s !important;
+    transition-duration: 0s !important;
+    transition-delay: 0s !important;
+}
+
+/* מצב קריאה - Reading Mode */
+.reading-mode-active header,
+.reading-mode-active footer,
+.reading-mode-active .side-slider,
+.reading-mode-active .whatsapp-float,
+.reading-mode-active .back-to-top,
+.reading-mode-active .chatbot-btn,
+.reading-mode-active .accessibility-trigger,
+.reading-mode-active nav {
+    opacity: 0.3 !important;
+    pointer-events: none !important;
+}
+
+.reading-mode-active .page-wrapper,
+.reading-mode-active main,
+.reading-mode-active .gallery-header,
+.reading-mode-active .image-container {
+    background: #FFF9E6 !important;
+    max-width: 800px !important;
+    margin: 200px auto 50px !important;
+    padding: 40px !important;
+    font-size: 18px !important;
+    line-height: 1.8 !important;
+}
+
+/* ניגודיות גבוהה - High Contrast */
+.high-contrast-active {
+    filter: contrast(1.5);
+}
+
+.high-contrast-active,
+.high-contrast-active * {
+    background: #000 !important;
+    color: #FFFF00 !important;
+    border-color: #FFFF00 !important;
+}
+
+.high-contrast-active a {
+    color: #00FFFF !important;
+    text-decoration: underline !important;
+}
+
+.high-contrast-active button,
+.high-contrast-active .accessibility-btn {
+    background: #FFFF00 !important;
+    color: #000 !important;
+    border: 2px solid #FFF !important;
+}
+
+/* מצב כהה - Dark Mode */
+.dark-mode-active {
+    filter: invert(0.9) hue-rotate(180deg);
+}
+
+.dark-mode-active img,
+.dark-mode-active video,
+.dark-mode-active .logo {
+    filter: invert(0.9) hue-rotate(180deg);
+}
+
+/* גופן קריא - Readable Font */
+.readable-font-active * {
+    font-family: Arial, 'Segoe UI', Tahoma, sans-serif !important;
+}
+
+/* הדגשת קישורים - Highlight Links */
+.highlight-links-active a {
+    background: yellow !important;
+    color: #000 !important;
+    text-decoration: underline !important;
+    font-weight: bold !important;
+    padding: 2px 4px !important;
+    border-radius: 3px !important;
+}
+
 body.keyboard-nav-active *:focus {
     outline: 3px solid #FFC107 !important;
     outline-offset: 2px !important;
 }
 
-body.high-contrast-active {
-    filter: contrast(1.5) !important;
-}
-
-body.dark-mode-active {
-    background: #121212 !important;
-    color: #ffffff !important;
-}
-
-body.dark-mode-active .content-box,
-body.dark-mode-active .chatbot-container {
-    background: #1e1e1e !important;
-    color: #ffffff !important;
-}
-
-body.light-background-active {
-    background: #ffffff !important;
-}
-
-body.light-background-active .content-box {
-    background: #f5f5f5 !important;
-}
-
 body.grayscale-active {
     filter: grayscale(100%) !important;
-}
-
-body.readable-font-active * {
-    font-family: Arial, sans-serif !important;
-}
-
-body.highlight-links-active a {
-    background: #FFEB3B !important;
-    color: #000 !important;
-    text-decoration: underline !important;
-    padding: 2px 4px !important;
-    font-weight: bold !important;
 }
 
 body.highlight-headings-active h1,
@@ -1109,18 +1082,63 @@ body.focus-highlight-active *:focus {
     box-shadow: 0 0 0 6px rgba(255, 152, 0, 0.3) !important;
 }
 
-body.big-cursor-active,
-body.big-cursor-active * {
-    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"><path d="M5 5 L5 35 L15 25 L20 35 L25 32 L20 22 L32 22 Z" fill="black" stroke="white" stroke-width="2"/></svg>') 10 10, auto !important;
+/* כפתור WhatsApp צף */
+.whatsapp-float {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    background: #25D366;
+    color: white;
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 35px;
+    box-shadow: 0 6px 20px rgba(37,211,102,0.5);
+    z-index: 9000;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    text-decoration: none;
 }
 
-body.line-height-active * {
-    line-height: 2 !important;
+.whatsapp-float:hover {
+    transform: scale(1.15);
+    box-shadow: 0 8px 25px rgba(37,211,102,0.7);
 }
 
-body.letter-spacing-active * {
-    letter-spacing: 0.12em !important;
+/* כפתור חזרה למעלה */
+.back-to-top {
+    position: fixed;
+    bottom: 110px;
+    left: 30px;
+    background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
+    color: white;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    box-shadow: 0 6px 20px rgba(255,117,140,0.5);
+    z-index: 9000;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    text-decoration: none;
+    border: none;
 }
+
+.back-to-top.show {
+    display: flex;
+}
+
+.back-to-top:hover {
+    transform: scale(1.15);
+    box-shadow: 0 8px 25px rgba(255,117,140,0.7);
+}
+
 
 /* צ'אטבוט */
 .chatbot-btn {
@@ -1374,15 +1392,51 @@ body.letter-spacing-active * {
 }
 
 .chatbot-input-area {
-    display: none;
+    display: flex;
+    padding: 15px;
+    border-top: 1px solid #e0e0e0;
+    gap: 10px;
+    background: white;
 }
 
 #chatbotInput {
-    display: none;
+    flex: 1;
+    padding: 12px 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 25px;
+    font-size: 15px;
+    font-family: 'Heebo', sans-serif;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+#chatbotInput:focus {
+    border-color: #667eea;
 }
 
 #chatbotSend {
-    display: none;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+
+#chatbotSend:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+#chatbotSend:active {
+    transform: scale(0.95);
 }
 
 .typing-indicator {
@@ -1645,13 +1699,6 @@ body.letter-spacing-active * {
         height: 300px;
     }
 
-    .accessibility-btn {
-        width: 50px;
-        height: 50px;
-        font-size: 22px;
-        bottom: 165px;
-    }
-
     .whatsapp-float {
         width: 50px;
         height: 50px;
@@ -1668,24 +1715,7 @@ body.letter-spacing-active * {
         left: 15px;
     }
 
-    .accessibility-menu {
-        padding: 20px;
-        max-height: 75vh;
-    }
-
-    .accessibility-menu h3 {
-        font-size: 20px;
-    }
-
-    .option-label {
-        font-size: 14px;
-    }
-
-    .option-label i {
-        font-size: 18px;
-    }
-
-    /* נגישות חדשה - מובייל קטן */
+    /* נגישות - מובייל קטן */
     .accessibility-trigger {
         width: 50px;
         height: 50px;
