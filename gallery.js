@@ -26,79 +26,106 @@ const galleryItems = document.querySelectorAll('.gallery-item');
 let currentIndex = 0;
 
 // פתיחת Lightbox עבור כל פריט בגלריה
-galleryItems.forEach((item, index) => {
-    item.addEventListener('click', () => {
-        currentIndex = index;
-        openLightbox(item);
+if (galleryItems && galleryItems.length > 0) {
+    galleryItems.forEach((item, index) => {
+        item.addEventListener('click', () => {
+            currentIndex = index;
+            openLightbox(item);
+        });
     });
-});
+}
 
 // פונקציה לפתיחת Lightbox
 function openLightbox(item) {
+    if (!lightbox || !item) return;
+
     const type = item.dataset.type;
     lightbox.style.display = 'flex';
-    
+
     setTimeout(() => {
         lightbox.classList.add('show');
     }, 10);
 
     if (type === 'image') {
-        const imgSrc = item.querySelector('img').src;
-        lightboxImg.src = imgSrc;
-        lightboxImg.style.display = 'block';
-        lightboxVideo.style.display = 'none';
-        lightboxVideo.pause();
+        const img = item.querySelector('img');
+        if (img && lightboxImg) {
+            lightboxImg.src = img.src;
+            lightboxImg.style.display = 'block';
+        }
+        if (lightboxVideo) {
+            lightboxVideo.style.display = 'none';
+            lightboxVideo.pause();
+        }
     } else if (type === 'video') {
-        const videoSrc = item.querySelector('video').src;
-        lightboxVideo.src = videoSrc;
-        lightboxVideo.style.display = 'block';
-        lightboxImg.style.display = 'none';
-        lightboxVideo.play();
+        const video = item.querySelector('video');
+        if (video && lightboxVideo) {
+            lightboxVideo.src = video.src;
+            lightboxVideo.style.display = 'block';
+            lightboxVideo.play();
+        }
+        if (lightboxImg) {
+            lightboxImg.style.display = 'none';
+        }
     }
 
-    lightboxCaption.textContent = item.querySelector('img, video').alt || '';
+    if (lightboxCaption) {
+        const mediaElement = item.querySelector('img, video');
+        lightboxCaption.textContent = mediaElement ? (mediaElement.alt || '') : '';
+    }
 }
 
 // פונקציה לסגירת Lightbox
 function closeLightbox() {
+    if (!lightbox) return;
+
     lightbox.classList.remove('show');
-    lightboxVideo.pause();
-    
+    if (lightboxVideo) {
+        lightboxVideo.pause();
+    }
+
     setTimeout(() => {
         lightbox.style.display = 'none';
-        lightboxImg.src = '';
-        lightboxVideo.src = '';
+        if (lightboxImg) lightboxImg.src = '';
+        if (lightboxVideo) lightboxVideo.src = '';
     }, 400);
 }
 
 // כפתור סגירה
-closeBtn.addEventListener('click', closeLightbox);
+if (closeBtn) {
+    closeBtn.addEventListener('click', closeLightbox);
+}
 
 // סגירה בלחיצה על הרקע
-lightbox.addEventListener('click', (e) => {
-    if (e.target === lightbox) {
-        closeLightbox();
-    }
-});
+if (lightbox) {
+    lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) {
+            closeLightbox();
+        }
+    });
+}
 
 // כפתור תמונה קודמת
-prevBtn.addEventListener('click', () => {
-    currentIndex = (currentIndex - 1 + galleryItems.length) % galleryItems.length;
-    openLightbox(galleryItems[currentIndex]);
-});
+if (prevBtn) {
+    prevBtn.addEventListener('click', () => {
+        currentIndex = (currentIndex - 1 + galleryItems.length) % galleryItems.length;
+        openLightbox(galleryItems[currentIndex]);
+    });
+}
 
 // כפתור תמונה הבאה
-nextBtn.addEventListener('click', () => {
-    currentIndex = (currentIndex + 1) % galleryItems.length;
-    openLightbox(galleryItems[currentIndex]);
-});
+if (nextBtn) {
+    nextBtn.addEventListener('click', () => {
+        currentIndex = (currentIndex + 1) % galleryItems.length;
+        openLightbox(galleryItems[currentIndex]);
+    });
+}
 
 // תמיכה במקלדת
 document.addEventListener('keydown', (e) => {
-    if (lightbox.classList.contains('show')) {
+    if (lightbox && lightbox.classList.contains('show')) {
         if (e.key === 'Escape') closeLightbox();
-        if (e.key === 'ArrowLeft') nextBtn.click();
-        if (e.key === 'ArrowRight') prevBtn.click();
+        if (e.key === 'ArrowLeft' && nextBtn) nextBtn.click();
+        if (e.key === 'ArrowRight' && prevBtn) prevBtn.click();
     }
 });
 
@@ -107,87 +134,378 @@ document.addEventListener('keydown', (e) => {
 // ========================
 const backToTopBtn = document.getElementById('backToTop');
 
-window.addEventListener('scroll', () => {
-    if (window.pageYOffset > 300) {
-        backToTopBtn.classList.add('show');
-    } else {
-        backToTopBtn.classList.remove('show');
-    }
-});
-
-backToTopBtn.addEventListener('click', () => {
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
+if (backToTopBtn) {
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 300) {
+            backToTopBtn.classList.add('show');
+        } else {
+            backToTopBtn.classList.remove('show');
+        }
     });
-});
+
+    backToTopBtn.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+}
 
 // ========================
 // מערכת נגישות - תקן ישראלי 5568
 // ========================
 const AccessibilityManager = {
     panel: document.getElementById('accessibilityPanel'),
-    trigger: document.getElementById('accessibilityTrigger'),
-    closeBtn: document.getElementById('closePanel'),
-    resetBtn: document.getElementById('resetAccessibility'),
+    trigger: document.getElementById('accessibilityTrigger') || document.getElementById('accessibilityBtn'),
+    closeBtn: document.getElementById('closePanel') || document.getElementById('accessibilityClose'),
+    resetBtn: document.getElementById('resetAccessibility') || document.getElementById('resetAccessibilityBtn'),
     actions: document.querySelectorAll('.accessibility-action'),
     textSize: 100,
-    
+    lineHeight: 1.5,
+    letterSpacing: 0,
+    cursorSize: 1,
+    screenReaderActive: false,
+    screenReaderSpeed: 1,
+    readingGuideActive: false,
+
     init() {
         this.loadSettings();
         this.bindEvents();
         this.initKeyboardNav();
+        this.initScreenReader();
+        this.initReadingGuide();
+        this.initAccessibilityButtons();
     },
-    
+
     bindEvents() {
         // פתיחה/סגירה
-        this.trigger.addEventListener('click', () => this.togglePanel());
-        this.closeBtn.addEventListener('click', () => this.closePanel());
-        
+        if (this.trigger) {
+            this.trigger.addEventListener('click', () => this.togglePanel());
+        }
+        if (this.closeBtn) {
+            this.closeBtn.addEventListener('click', () => this.closePanel());
+        }
+
         // סגירה ב-ESC
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && this.panel.classList.contains('active')) {
+            if (e.key === 'Escape' && this.panel && this.panel.classList.contains('active')) {
                 this.closePanel();
             }
         });
-        
+
         // כפתורי פעולה
-        this.actions.forEach(btn => {
-            btn.addEventListener('click', () => this.handleAction(btn));
-        });
-        
+        if (this.actions) {
+            this.actions.forEach(btn => {
+                btn.addEventListener('click', () => this.handleAction(btn));
+            });
+        }
+
         // איפוס
-        this.resetBtn.addEventListener('click', () => this.resetAll());
-        
+        if (this.resetBtn) {
+            this.resetBtn.addEventListener('click', () => this.resetAll());
+        }
+
         // סגירה בלחיצה מחוץ לפאנל
         document.addEventListener('click', (e) => {
-            if (this.panel.classList.contains('active') && 
-                !this.panel.contains(e.target) && 
-                !this.trigger.contains(e.target)) {
+            if (this.panel && this.panel.classList.contains('active') &&
+                !this.panel.contains(e.target) &&
+                this.trigger && !this.trigger.contains(e.target)) {
                 this.closePanel();
             }
         });
     },
-    
+
     togglePanel() {
+        if (!this.panel) return;
         const isOpen = this.panel.classList.toggle('active');
-        this.trigger.setAttribute('aria-expanded', isOpen);
+        if (this.trigger) {
+            this.trigger.setAttribute('aria-expanded', isOpen);
+        }
         this.announce(isOpen ? 'תפריט נגישות נפתח' : 'תפריט נגישות נסגר');
-        
+
         if (isOpen) {
             this.actions[0]?.focus();
         }
     },
-    
+
     closePanel() {
+        if (!this.panel) return;
         this.panel.classList.remove('active');
-        this.trigger.setAttribute('aria-expanded', 'false');
-        this.trigger.focus();
+        if (this.trigger) {
+            this.trigger.setAttribute('aria-expanded', 'false');
+            this.trigger.focus();
+        }
     },
-    
+
+    // ===== קורא מסך (Screen Reader) =====
+    initScreenReader() {
+        if ('speechSynthesis' in window) {
+            this.synth = window.speechSynthesis;
+            this.setupHebrewVoice();
+        }
+    },
+
+    setupHebrewVoice() {
+        // המתן לטעינת הקולות
+        const loadVoices = () => {
+            const voices = this.synth.getVoices();
+            // חיפוש קול עברי
+            this.hebrewVoice = voices.find(voice =>
+                voice.lang.includes('he') ||
+                voice.lang.includes('iw') ||
+                voice.name.includes('Hebrew')
+            );
+            // אם אין קול עברי, השתמש בקול ברירת מחדל
+            if (!this.hebrewVoice && voices.length > 0) {
+                this.hebrewVoice = voices[0];
+            }
+        };
+
+        if (this.synth.getVoices().length > 0) {
+            loadVoices();
+        } else {
+            this.synth.addEventListener('voiceschanged', loadVoices);
+        }
+    },
+
+    toggleScreenReader(btn) {
+        this.screenReaderActive = !this.screenReaderActive;
+        btn.setAttribute('aria-pressed', this.screenReaderActive);
+
+        if (this.screenReaderActive) {
+            this.announce('קורא מסך הופעל. לחץ על כל טקסט כדי לשמוע אותו');
+            this.enableScreenReaderListeners();
+            document.body.classList.add('screen-reader-active');
+        } else {
+            this.announce('קורא מסך בוטל');
+            this.disableScreenReaderListeners();
+            document.body.classList.remove('screen-reader-active');
+            this.stopSpeaking();
+        }
+    },
+
+    enableScreenReaderListeners() {
+        // הוסף מאזינים לכל האלמנטים הטקסטואליים
+        this.screenReaderListener = (e) => {
+            const target = e.target;
+            let textToRead = '';
+
+            if (target.tagName === 'A') {
+                textToRead = 'קישור: ' + target.innerText;
+            } else if (target.tagName === 'BUTTON') {
+                textToRead = 'כפתור: ' + target.innerText;
+            } else if (target.tagName.match(/^H[1-6]$/)) {
+                textToRead = 'כותרת: ' + target.innerText;
+            } else if (target.tagName === 'IMG') {
+                textToRead = 'תמונה: ' + (target.alt || 'ללא תיאור');
+            } else if (target.innerText && target.innerText.trim()) {
+                textToRead = target.innerText.trim();
+            }
+
+            if (textToRead) {
+                this.speak(textToRead);
+            }
+        };
+
+        document.body.addEventListener('click', this.screenReaderListener);
+    },
+
+    disableScreenReaderListeners() {
+        if (this.screenReaderListener) {
+            document.body.removeEventListener('click', this.screenReaderListener);
+        }
+        if (this.screenReaderHoverListener) {
+            document.body.removeEventListener('mouseover', this.screenReaderHoverListener);
+        }
+    },
+
+    speak(text, quiet = false) {
+        if (!this.synth) return;
+
+        // עצור דיבור קודם
+        this.synth.cancel();
+
+        const utterance = new SpeechSynthesisUtterance(text);
+
+        if (this.hebrewVoice) {
+            utterance.voice = this.hebrewVoice;
+        }
+
+        utterance.lang = 'he-IL';
+        utterance.rate = this.screenReaderSpeed;
+        utterance.pitch = 1;
+        utterance.volume = quiet ? 0.5 : 1;
+
+        this.synth.speak(utterance);
+    },
+
+    stopSpeaking() {
+        if (this.synth) {
+            this.synth.cancel();
+        }
+    },
+
+    adjustReaderSpeed(delta) {
+        this.screenReaderSpeed = Math.max(0.5, Math.min(2, this.screenReaderSpeed + delta));
+        this.announce(`מהירות קריאה: ${Math.round(this.screenReaderSpeed * 100)}%`);
+    },
+
+    // ===== מדריך קריאה (Reading Guide) =====
+    initReadingGuide() {
+        // יצירת מדריך הקריאה אם לא קיים
+        if (!document.getElementById('readingGuide')) {
+            const guide = document.createElement('div');
+            guide.id = 'readingGuide';
+            guide.className = 'reading-guide';
+            guide.style.display = 'none';
+            document.body.appendChild(guide);
+        }
+    },
+
+    toggleReadingGuide(btn) {
+        const guide = document.getElementById('readingGuide');
+        this.readingGuideActive = !this.readingGuideActive;
+        btn.setAttribute('aria-pressed', this.readingGuideActive);
+
+        if (this.readingGuideActive) {
+            guide.style.display = 'block';
+            this.updateGuideHandler = (e) => {
+                guide.style.top = e.clientY + 'px';
+            };
+            document.addEventListener('mousemove', this.updateGuideHandler);
+            document.body.classList.add('reading-guide-active');
+            this.announce('מדריך קריאה הופעל');
+        } else {
+            guide.style.display = 'none';
+            if (this.updateGuideHandler) {
+                document.removeEventListener('mousemove', this.updateGuideHandler);
+            }
+            document.body.classList.remove('reading-guide-active');
+            this.announce('מדריך קריאה בוטל');
+        }
+    },
+
+    // ===== התאמת מרווח שורות =====
+    toggleLineHeight(btn) {
+        const isActive = document.body.classList.toggle('line-height-active');
+        btn.setAttribute('aria-pressed', isActive);
+
+        if (isActive) {
+            this.lineHeight = 2;
+            document.body.style.setProperty('--line-height', '2');
+        } else {
+            this.lineHeight = 1.5;
+            document.body.style.setProperty('--line-height', '1.5');
+        }
+
+        this.announce(isActive ? 'מרווח שורות הוגדל' : 'מרווח שורות אופס');
+    },
+
+    // ===== התאמת מרווח אותיות =====
+    toggleLetterSpacing(btn) {
+        const isActive = document.body.classList.toggle('letter-spacing-active');
+        btn.setAttribute('aria-pressed', isActive);
+
+        if (isActive) {
+            this.letterSpacing = 2;
+            document.body.style.setProperty('--letter-spacing', '2px');
+        } else {
+            this.letterSpacing = 0;
+            document.body.style.setProperty('--letter-spacing', '0px');
+        }
+
+        this.announce(isActive ? 'מרווח אותיות הוגדל' : 'מרווח אותיות אופס');
+    },
+
+    // ===== גופן ידידותי לדיסלקציה =====
+    toggleDyslexiaFont(btn) {
+        const isActive = document.body.classList.toggle('dyslexia-font-active');
+        btn.setAttribute('aria-pressed', isActive);
+        this.announce(isActive ? 'גופן דיסלקציה הופעל' : 'גופן דיסלקציה בוטל');
+    },
+
+    // ===== התאמת סמן עכבר =====
+    toggleBigCursor(btn) {
+        const isActive = document.body.classList.toggle('big-cursor-active');
+        btn.setAttribute('aria-pressed', isActive);
+        this.announce(isActive ? 'סמן גדול הופעל' : 'סמן גדול בוטל');
+    },
+
+    toggleCursorColor(btn) {
+        const isActive = document.body.classList.toggle('cursor-color-active');
+        btn.setAttribute('aria-pressed', isActive);
+        this.announce(isActive ? 'צבע סמן שונה' : 'צבע סמן אופס');
+    },
+
+    // ===== ניגודיות הפוכה =====
+    toggleInvertColors(btn) {
+        const isActive = document.body.classList.toggle('invert-colors-active');
+        btn.setAttribute('aria-pressed', isActive);
+        this.announce(isActive ? 'צבעים הפוכים הופעלו' : 'צבעים הפוכים בוטלו');
+    },
+
+    // ===== השבתת אנימציות =====
+    toggleStopAnimations(btn) {
+        const isActive = document.body.classList.toggle('stop-animations-active');
+        btn.setAttribute('aria-pressed', isActive);
+        this.announce(isActive ? 'אנימציות הושבתו' : 'אנימציות הופעלו');
+    },
+
+    // ===== מצב קריאה =====
+    toggleReadingMode(btn) {
+        const isActive = document.body.classList.toggle('reading-mode-active');
+        btn.setAttribute('aria-pressed', isActive);
+        this.announce(isActive ? 'מצב קריאה הופעל' : 'מצב קריאה בוטל');
+    },
+
+    // ===== היפוך כיוון טקסט =====
+    toggleTextDirection(btn) {
+        const currentDir = document.documentElement.getAttribute('dir') || 'rtl';
+        const newDir = currentDir === 'rtl' ? 'ltr' : 'rtl';
+        document.documentElement.setAttribute('dir', newDir);
+        btn.setAttribute('aria-pressed', newDir === 'ltr');
+        this.announce(`כיוון טקסט שונה ל-${newDir === 'rtl' ? 'ימין לשמאל' : 'שמאל לימין'}`);
+    },
+
+    // ===== אתחול כפתורי נגישות =====
+    initAccessibilityButtons() {
+        // הוסף מאזינים לכפתורי הנגישות החדשים
+        const buttons = {
+            'increaseFontBtn': () => this.changeTextSize(10),
+            'decreaseFontBtn': () => this.changeTextSize(-10),
+            'highContrastBtn': (btn) => this.toggleFeature('high-contrast', btn),
+            'darkContrastBtn': (btn) => this.toggleFeature('dark-mode', btn),
+            'highlightLinksBtn': (btn) => this.toggleFeature('highlight-links', btn),
+            'textDirectionBtn': (btn) => this.toggleTextDirection(btn),
+            'stopAnimationsBtn': (btn) => this.toggleStopAnimations(btn),
+            'readableFontBtn': (btn) => this.toggleFeature('readable-font', btn),
+            'readingModeBtn': (btn) => this.toggleReadingMode(btn),
+            'screenReaderBtn': (btn) => this.toggleScreenReader(btn),
+            'readerSpeedUpBtn': () => this.adjustReaderSpeed(0.25),
+            'readerSpeedDownBtn': () => this.adjustReaderSpeed(-0.25),
+            'lineHeightBtn': (btn) => this.toggleLineHeight(btn),
+            'letterSpacingBtn': (btn) => this.toggleLetterSpacing(btn),
+            'dyslexiaFontBtn': (btn) => this.toggleDyslexiaFont(btn),
+            'bigCursorBtn': (btn) => this.toggleBigCursor(btn),
+            'cursorColorBtn': (btn) => this.toggleCursorColor(btn),
+            'invertColorsBtn': (btn) => this.toggleInvertColors(btn),
+            'readingGuideBtn': (btn) => this.toggleReadingGuide(btn)
+        };
+
+        Object.entries(buttons).forEach(([id, handler]) => {
+            const btn = document.getElementById(id);
+            if (btn) {
+                btn.addEventListener('click', () => {
+                    handler(btn);
+                    this.saveSettings();
+                });
+            }
+        });
+    },
+
     handleAction(btn) {
         const action = btn.dataset.action;
-        
+
         switch(action) {
             case 'keyboard-nav':
                 this.toggleFeature('keyboard-nav', btn);
@@ -238,26 +556,26 @@ const AccessibilityManager = {
                 this.toggleReadingGuide(btn);
                 break;
         }
-        
+
         this.saveSettings();
     },
-    
+
     toggleFeature(feature, btn) {
         const isActive = document.body.classList.toggle(`${feature}-active`);
         btn.setAttribute('aria-pressed', isActive);
         this.announce(`${btn.textContent.trim()} ${isActive ? 'הופעל' : 'בוטל'}`);
     },
-    
+
     changeTextSize(delta) {
         this.textSize = Math.max(80, Math.min(150, this.textSize + delta));
         document.documentElement.style.fontSize = this.textSize + '%';
         this.announce(`גודל טקסט שונה ל-${this.textSize}%`);
     },
-    
+
     toggleSkipLinks(btn) {
         const skipLinks = document.getElementById('skipLinks');
         const isActive = skipLinks.style.display === 'block';
-        
+
         if (isActive) {
             skipLinks.style.display = 'none';
             btn.setAttribute('aria-pressed', 'false');
@@ -268,52 +586,63 @@ const AccessibilityManager = {
             this.announce('קישורי דילוג הופעלו');
         }
     },
-    
-    toggleReadingGuide(btn) {
-        const guide = document.getElementById('readingGuide');
-        const isActive = guide.style.display === 'block';
-        
-        if (isActive) {
-            guide.style.display = 'none';
-            btn.setAttribute('aria-pressed', 'false');
-            document.removeEventListener('mousemove', this.updateGuide);
-            this.announce('מדריך קריאה בוטל');
-        } else {
-            guide.style.display = 'block';
-            btn.setAttribute('aria-pressed', 'true');
-            this.updateGuide = (e) => {
-                guide.style.top = e.clientY + 'px';
-            };
-            document.addEventListener('mousemove', this.updateGuide);
-            this.announce('מדריך קריאה הופעל');
-        }
-    },
-    
+
     resetAll() {
+        // עצור קורא מסך אם פעיל
+        if (this.screenReaderActive) {
+            this.stopSpeaking();
+            this.disableScreenReaderListeners();
+            this.screenReaderActive = false;
+        }
+
         // הסרת כל המחלקות
         document.body.className = '';
         document.documentElement.style.fontSize = '';
+        document.documentElement.setAttribute('dir', 'rtl'); // החזרת כיוון לעברית
+
+        // איפוס משתנים
         this.textSize = 100;
-        
-        // איפוס כפתורים
-        this.actions.forEach(btn => {
+        this.lineHeight = 1.5;
+        this.letterSpacing = 0;
+        this.cursorSize = 1;
+        this.screenReaderSpeed = 1;
+        this.readingGuideActive = false;
+
+        // איפוס CSS variables
+        document.body.style.removeProperty('--line-height');
+        document.body.style.removeProperty('--letter-spacing');
+
+        // איפוס כפתורים - כל הכפתורים בתפריט הנגישות
+        const allButtons = document.querySelectorAll('.accessibility-panel button, .accessibility-btn');
+        allButtons.forEach(btn => {
             btn.setAttribute('aria-pressed', 'false');
         });
-        
+
         // איפוס אלמנטים
-        document.getElementById('skipLinks').style.display = 'none';
-        document.getElementById('readingGuide').style.display = 'none';
-        
+        const skipLinks = document.getElementById('skipLinks');
+        const readingGuide = document.getElementById('readingGuide');
+
+        if (skipLinks) skipLinks.style.display = 'none';
+        if (readingGuide) {
+            readingGuide.style.display = 'none';
+            if (this.updateGuideHandler) {
+                document.removeEventListener('mousemove', this.updateGuideHandler);
+            }
+        }
+
         localStorage.removeItem('accessibilitySettings');
         this.announce('כל הגדרות הנגישות אופסו');
-        
+
         // אנימציה לכפתור איפוס
-        this.resetBtn.innerHTML = '<i class="fa-solid fa-check"></i> אופס בהצלחה!';
-        setTimeout(() => {
-            this.resetBtn.innerHTML = '<i class="fa-solid fa-rotate-left"></i> איפוס כל ההגדרות';
-        }, 2000);
+        if (this.resetBtn) {
+            const originalHTML = this.resetBtn.innerHTML;
+            this.resetBtn.innerHTML = '<i class="fa-solid fa-check"></i> אופס בהצלחה!';
+            setTimeout(() => {
+                this.resetBtn.innerHTML = originalHTML;
+            }, 2000);
+        }
     },
-    
+
     saveSettings() {
         const settings = {
             classes: document.body.className,
@@ -325,17 +654,17 @@ const AccessibilityManager = {
         };
         localStorage.setItem('accessibilitySettings', JSON.stringify(settings));
     },
-    
+
     loadSettings() {
         const saved = localStorage.getItem('accessibilitySettings');
         if (!saved) return;
-        
+
         try {
             const settings = JSON.parse(saved);
             document.body.className = settings.classes || '';
             this.textSize = settings.textSize || 100;
             document.documentElement.style.fontSize = this.textSize + '%';
-            
+
             settings.pressed?.forEach(item => {
                 const btn = document.querySelector(`[data-action="${item.action}"]`);
                 if (btn) btn.setAttribute('aria-pressed', item.pressed);
@@ -344,21 +673,24 @@ const AccessibilityManager = {
             console.error('Error loading accessibility settings:', e);
         }
     },
-    
+
     announce(message) {
         const announcer = document.getElementById('srAnnouncer');
-        announcer.textContent = message;
-        setTimeout(() => announcer.textContent = '', 1000);
+        if (announcer) {
+            announcer.textContent = message;
+            setTimeout(() => announcer.textContent = '', 1000);
+        }
     },
-    
+
     initKeyboardNav() {
+        if (!this.panel) return;
         // ניווט במקלדת בתוך הפאנל
         this.panel.addEventListener('keydown', (e) => {
             if (e.key === 'Tab') {
                 const focusable = this.panel.querySelectorAll('button:not([disabled])');
                 const first = focusable[0];
                 const last = focusable[focusable.length - 1];
-                
+
                 if (e.shiftKey && document.activeElement === first) {
                     e.preventDefault();
                     last.focus();
