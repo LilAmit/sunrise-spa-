@@ -544,11 +544,14 @@ footer {
     font-size: 24px;
     cursor: pointer;
     box-shadow: 0 4px 15px rgba(33, 150, 243, 0.4);
-    z-index: 9998;
+    z-index: 100001;
     transition: all 0.3s ease;
     display: flex;
     align-items: center;
     justify-content: center;
+    pointer-events: auto;
+    visibility: visible;
+    opacity: 1;
 }
 
 .accessibility-trigger:hover,
@@ -574,7 +577,7 @@ footer {
     background: white;
     border-radius: 15px;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-    z-index: 9999;
+    z-index: 100000;
     opacity: 0;
     visibility: hidden;
     transition: all 0.3s ease;
@@ -1652,4 +1655,271 @@ body.letter-spacing-active * {
         border-radius: 8px;
         margin: 5px;
     }
+}
+
+/* ===============================================
+   סגנונות נגישות מתקדמים
+   =============================================== */
+
+/* CSS Variables for accessibility */
+:root {
+    --line-height: 1.5;
+    --letter-spacing: 0px;
+}
+
+/* קורא מסך - Screen Reader */
+.screen-reader-active * {
+    cursor: help !important;
+}
+
+.screen-reader-active a:hover,
+.screen-reader-active button:hover,
+.screen-reader-active h1:hover,
+.screen-reader-active h2:hover,
+.screen-reader-active h3:hover,
+.screen-reader-active p:hover {
+    outline: 3px solid #4CAF50;
+    outline-offset: 2px;
+}
+
+/* מרווח שורות - Line Height */
+.line-height-active * {
+    line-height: var(--line-height) !important;
+}
+
+/* מרווח אותיות - Letter Spacing */
+.letter-spacing-active * {
+    letter-spacing: var(--letter-spacing) !important;
+}
+
+/* גופן דיסלקציה - Dyslexia Font */
+.dyslexia-font-active * {
+    font-family: 'Comic Sans MS', 'OpenDyslexic', Arial, sans-serif !important;
+}
+
+/* סמן גדול - Big Cursor */
+.big-cursor-active,
+.big-cursor-active * {
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path d="M2 2 L2 28 L12 20 L16 28 L20 26 L16 18 L26 18 Z" fill="black" stroke="white" stroke-width="2"/></svg>'), auto !important;
+}
+
+/* סמן צבעוני - Colored Cursor */
+.cursor-color-active,
+.cursor-color-active * {
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path d="M2 2 L2 28 L12 20 L16 28 L20 26 L16 18 L26 18 Z" fill="red" stroke="yellow" stroke-width="2"/></svg>'), auto !important;
+}
+
+/* מדריך קריאה - Reading Guide */
+.reading-guide {
+    position: fixed;
+    left: 0;
+    right: 0;
+    height: 50px;
+    background: rgba(255, 215, 0, 0.3);
+    border-top: 3px solid #FFD700;
+    border-bottom: 3px solid #FFD700;
+    pointer-events: none;
+    z-index: 9999;
+    display: none;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+}
+
+.reading-guide-active .reading-guide {
+    display: block;
+}
+
+/* צבעים הפוכים - Inverted Colors */
+.invert-colors-active {
+    filter: invert(1) hue-rotate(180deg);
+}
+
+.invert-colors-active img,
+.invert-colors-active video {
+    filter: invert(1) hue-rotate(180deg);
+}
+
+/* עצירת אנימציות - Stop Animations */
+.stop-animations-active *,
+.stop-animations-active *::before,
+.stop-animations-active *::after {
+    animation-duration: 0s !important;
+    animation-delay: 0s !important;
+    transition-duration: 0s !important;
+    transition-delay: 0s !important;
+}
+
+/* מצב קריאה - Reading Mode */
+.reading-mode-active header,
+.reading-mode-active footer,
+.reading-mode-active .side-slider,
+.reading-mode-active .whatsapp-float,
+.reading-mode-active .back-to-top,
+.reading-mode-active .chatbot-btn,
+.reading-mode-active .accessibility-trigger,
+.reading-mode-active nav {
+    opacity: 0.3 !important;
+    pointer-events: none !important;
+}
+
+.reading-mode-active .page-wrapper,
+.reading-mode-active main,
+.reading-mode-active .accessibility-statement-container {
+    background: #FFF9E6 !important;
+    max-width: 800px !important;
+    margin: 200px auto 50px !important;
+    padding: 40px !important;
+    font-size: 18px !important;
+    line-height: 1.8 !important;
+}
+
+/* ניגודיות גבוהה - High Contrast */
+.high-contrast-active {
+    filter: contrast(1.5);
+}
+
+.high-contrast-active,
+.high-contrast-active * {
+    background: #000 !important;
+    color: #FFFF00 !important;
+    border-color: #FFFF00 !important;
+}
+
+.high-contrast-active a {
+    color: #00FFFF !important;
+    text-decoration: underline !important;
+}
+
+.high-contrast-active button,
+.high-contrast-active .accessibility-btn {
+    background: #FFFF00 !important;
+    color: #000 !important;
+    border: 2px solid #FFF !important;
+}
+
+/* מצב כהה - Dark Mode */
+.dark-mode-active {
+    filter: invert(0.9) hue-rotate(180deg);
+}
+
+.dark-mode-active img,
+.dark-mode-active video,
+.dark-mode-active .logo {
+    filter: invert(0.9) hue-rotate(180deg);
+}
+
+/* גופן קריא - Readable Font */
+.readable-font-active * {
+    font-family: Arial, 'Segoe UI', Tahoma, sans-serif !important;
+}
+
+/* הדגשת קישורים - Highlight Links */
+.highlight-links-active a {
+    background: yellow !important;
+    color: #000 !important;
+    text-decoration: underline !important;
+    font-weight: bold !important;
+    padding: 2px 4px !important;
+    border-radius: 3px !important;
+}
+
+/* כפתורים קטנים */
+.accessibility-btn-small {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    box-shadow: 0 4px 10px rgba(102, 126, 234, 0.3);
+    width: 48%;
+}
+
+.accessibility-btn-small:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(102, 126, 234, 0.5);
+}
+
+.accessibility-btn-small i {
+    font-size: 14px;
+}
+
+/* שיפור תפריט הנגישות */
+.accessibility-panel {
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.accessibility-section h3 {
+    font-size: 14px;
+    color: #667eea;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.accessibility-section h3 i {
+    font-size: 16px;
+}
+
+/* Scrollbar styling for accessibility panel */
+.accessibility-panel::-webkit-scrollbar {
+    width: 8px;
+}
+
+.accessibility-panel::-webkit-scrollbar-track {
+    background: rgba(0,0,0,0.05);
+    border-radius: 10px;
+}
+
+.accessibility-panel::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 10px;
+}
+
+.accessibility-panel::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+}
+
+/* הוספת מרווח בין סעיפים */
+.accessibility-section {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.accessibility-section:last-child {
+    border-bottom: none;
+}
+
+/* שיפור כפתורי נגישות */
+.accessibility-btn[aria-pressed="true"] {
+    background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%) !important;
+    box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4) !important;
+}
+
+.accessibility-btn-small[aria-pressed="true"] {
+    background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%) !important;
+    box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4) !important;
+}
+
+/* אנימציות עדינות */
+@keyframes pulseGreen {
+    0%, 100% {
+        box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+    }
+    50% {
+        box-shadow: 0 6px 25px rgba(76, 175, 80, 0.6);
+    }
+}
+
+.accessibility-btn[aria-pressed="true"]:hover {
+    animation: pulseGreen 2s infinite;
 }
