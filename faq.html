@@ -389,140 +389,6 @@
     <i class="fa-solid fa-arrow-up"></i>
 </button>
 
-<!-- הצהרת נגישות וכפתור נגישות חדש -->
-<div id="accessibilityStatement" style="position: fixed; top: 0; left: 0; width: 100%; background: #000; color: #fff; padding: 10px; text-align: center; z-index: 99999; display: none;">
-    <p style="margin: 0; font-size: 14px;">
-        אתר זה נבנה תוך התחשבות בנגישות לאנשים עם מוגבלות בהתאם לתקן ישראלי 5568 ברמה AA
-        <button onclick="document.getElementById('accessibilityStatement').style.display='none'" style="margin-right: 15px; background: #fff; color: #000; border: none; padding: 5px 15px; border-radius: 5px; cursor: pointer;">סגור</button>
-    </p>
-</div>
-
-<button class="accessibility-trigger" id="accessibilityTrigger" 
-        aria-label="פתח תפריט נגישות" 
-        title="נגישות - לחץ להצגת אפשרויות נגישות">
-    <i class="fa-solid fa-universal-access"></i>
-    <span class="sr-only">נגישות</span>
-</button>
-
-<div class="accessibility-panel" id="accessibilityPanel" role="dialog" aria-labelledby="accessibilityTitle" aria-modal="true">
-    <div class="accessibility-header">
-        <h2 id="accessibilityTitle">
-            <i class="fa-solid fa-universal-access"></i>
-            הגדרות נגישות
-        </h2>
-        <button class="close-panel" id="closePanel" aria-label="סגור תפריט נגישות">
-            <i class="fa-solid fa-times"></i>
-        </button>
-    </div>
-    
-    <div class="accessibility-content">
-        <!-- ניווט מקלדת -->
-        <div class="accessibility-section">
-            <h3>ניווט</h3>
-            <button class="accessibility-action" data-action="keyboard-nav" aria-pressed="false">
-                <i class="fa-solid fa-keyboard"></i>
-                <span>הדגשת ניווט מקלדת</span>
-            </button>
-            <button class="accessibility-action" data-action="skip-links" aria-pressed="false">
-                <i class="fa-solid fa-forward"></i>
-                <span>קישורי דילוג</span>
-            </button>
-        </div>
-
-        <!-- טקסט וגופנים -->
-        <div class="accessibility-section">
-            <h3>טקסט</h3>
-            <button class="accessibility-action" data-action="text-size-increase">
-                <i class="fa-solid fa-plus"></i>
-                <span>הגדל טקסט</span>
-            </button>
-            <button class="accessibility-action" data-action="text-size-decrease">
-                <i class="fa-solid fa-minus"></i>
-                <span>הקטן טקסט</span>
-            </button>
-            <button class="accessibility-action" data-action="line-height" aria-pressed="false">
-                <i class="fa-solid fa-arrows-up-down"></i>
-                <span>ריווח שורות מוגבר</span>
-            </button>
-            <button class="accessibility-action" data-action="letter-spacing" aria-pressed="false">
-                <i class="fa-solid fa-text-width"></i>
-                <span>ריווח אותיות מוגבר</span>
-            </button>
-            <button class="accessibility-action" data-action="readable-font" aria-pressed="false">
-                <i class="fa-solid fa-font"></i>
-                <span>גופן קריא (Arial)</span>
-            </button>
-        </div>
-
-        <!-- ניגודיות וצבעים -->
-        <div class="accessibility-section">
-            <h3>צבעים וניגודיות</h3>
-            <button class="accessibility-action" data-action="high-contrast" aria-pressed="false">
-                <i class="fa-solid fa-circle-half-stroke"></i>
-                <span>ניגודיות גבוהה</span>
-            </button>
-            <button class="accessibility-action" data-action="dark-mode" aria-pressed="false">
-                <i class="fa-solid fa-moon"></i>
-                <span>מצב כהה</span>
-            </button>
-            <button class="accessibility-action" data-action="light-background" aria-pressed="false">
-                <i class="fa-solid fa-sun"></i>
-                <span>רקע בהיר</span>
-            </button>
-            <button class="accessibility-action" data-action="grayscale" aria-pressed="false">
-                <i class="fa-solid fa-adjust"></i>
-                <span>גווני אפור</span>
-            </button>
-        </div>
-
-        <!-- הדגשות -->
-        <div class="accessibility-section">
-            <h3>הדגשות</h3>
-            <button class="accessibility-action" data-action="highlight-links" aria-pressed="false">
-                <i class="fa-solid fa-link"></i>
-                <span>הדגש קישורים</span>
-            </button>
-            <button class="accessibility-action" data-action="highlight-headings" aria-pressed="false">
-                <i class="fa-solid fa-heading"></i>
-                <span>הדגש כותרות</span>
-            </button>
-            <button class="accessibility-action" data-action="focus-highlight" aria-pressed="false">
-                <i class="fa-solid fa-bullseye"></i>
-                <span>הדגש מיקוד</span>
-            </button>
-        </div>
-
-        <!-- עכבר וסמן -->
-        <div class="accessibility-section">
-            <h3>עכבר וסמן</h3>
-            <button class="accessibility-action" data-action="big-cursor" aria-pressed="false">
-                <i class="fa-solid fa-arrow-pointer"></i>
-                <span>סמן גדול</span>
-            </button>
-            <button class="accessibility-action" data-action="reading-guide" aria-pressed="false">
-                <i class="fa-solid fa-minus"></i>
-                <span>מדריך קריאה</span>
-            </button>
-        </div>
-
-        <!-- איפוס -->
-        <div class="accessibility-section">
-            <button class="reset-accessibility" id="resetAccessibility">
-                <i class="fa-solid fa-rotate-left"></i>
-                איפוס כל ההגדרות
-            </button>
-        </div>
-
-        <!-- הצהרת נגישות -->
-        <div class="accessibility-section">
-            <button class="accessibility-statement-btn" onclick="document.getElementById('accessibilityStatement').style.display='block'">
-                <i class="fa-solid fa-file-lines"></i>
-                הצהרת נגישות
-            </button>
-        </div>
-    </div>
-</div>
-
 <!-- Skip Links לניווט מקלדת -->
 <div id="skipLinks" style="display: none;">
     <a href="#main-content" class="skip-link">דלג לתוכן הראשי</a>
@@ -536,12 +402,173 @@
 <!-- עוזר קורא מסך -->
 <div class="sr-only" role="status" aria-live="polite" aria-atomic="true" id="srAnnouncer"></div>
 
-<!-- הנגשה -->
-<button class="accessibility-btn" id="accessibilityBtn" aria-label="תפריט הנגישות הישן" title="הנגשה" style="display: none;">
+<!-- כפתור הנגשה -->
+<button class="accessibility-trigger" id="accessibilityBtn" aria-label="פתח תפריט נגישות" title="נגישות">
     <i class="fa-solid fa-universal-access"></i>
 </button>
 
-<div class="accessibility-menu" id="accessibilityMenu" role="dialog" aria-label="תפריט הנגשה" style="display: none;">
+<!-- תפריט הנגישות -->
+<div class="accessibility-panel" id="accessibilityPanel">
+    <div class="accessibility-header">
+        <h2>הנגשה</h2>
+        <button class="accessibility-close" id="accessibilityClose" aria-label="סגור תפריט נגישות">
+            <i class="fa-solid fa-times"></i>
+        </button>
+    </div>
+
+    <div class="accessibility-content">
+        <!-- קורא מסך -->
+        <div class="accessibility-section">
+            <h3><i class="fa-solid fa-volume-high"></i> קורא מסך</h3>
+            <button class="accessibility-btn" id="screenReaderBtn" title="קורא מסך - הקלק על טקסט כדי לשמוע אותו" aria-pressed="false">
+                <i class="fa-solid fa-headphones"></i>
+                הפעל קורא מסך
+            </button>
+            <div class="accessibility-buttons" style="margin-top: 10px;">
+                <button class="accessibility-btn-small" id="readerSpeedDownBtn" title="האט קריאה">
+                    <i class="fa-solid fa-backward"></i> האט
+                </button>
+                <button class="accessibility-btn-small" id="readerSpeedUpBtn" title="האץ קריאה">
+                    <i class="fa-solid fa-forward"></i> האץ
+                </button>
+            </div>
+        </div>
+
+        <!-- הגדלת גופן -->
+        <div class="accessibility-section">
+            <h3><i class="fa-solid fa-text-height"></i> גודל טקסט</h3>
+            <div class="accessibility-buttons">
+                <button class="accessibility-btn" id="increaseFontBtn" title="הגדל גופן" aria-pressed="false">
+                    <i class="fa-solid fa-plus"></i>
+                    הגדל טקסט
+                </button>
+                <button class="accessibility-btn" id="decreaseFontBtn" title="הקטן גופן" aria-pressed="false">
+                    <i class="fa-solid fa-minus"></i>
+                    הקטן טקסט
+                </button>
+            </div>
+        </div>
+
+        <!-- מרווחים -->
+        <div class="accessibility-section">
+            <h3><i class="fa-solid fa-arrows-left-right"></i> מרווחים</h3>
+            <div class="accessibility-buttons">
+                <button class="accessibility-btn" id="lineHeightBtn" title="הגדל מרווח בין שורות" aria-pressed="false">
+                    <i class="fa-solid fa-align-justify"></i>
+                    מרווח שורות
+                </button>
+                <button class="accessibility-btn" id="letterSpacingBtn" title="הגדל מרווח בין אותיות" aria-pressed="false">
+                    <i class="fa-solid fa-text-width"></i>
+                    מרווח אותיות
+                </button>
+            </div>
+        </div>
+
+        <!-- גופנים -->
+        <div class="accessibility-section">
+            <h3><i class="fa-solid fa-font"></i> סוג גופן</h3>
+            <div class="accessibility-buttons">
+                <button class="accessibility-btn" id="readableFontBtn" title="גופן קריא" aria-pressed="false">
+                    <i class="fa-solid fa-font"></i>
+                    גופן קריא
+                </button>
+                <button class="accessibility-btn" id="dyslexiaFontBtn" title="גופן לדיסלקציה" aria-pressed="false">
+                    <i class="fa-solid fa-book-open-reader"></i>
+                    גופן דיסלקציה
+                </button>
+            </div>
+        </div>
+
+        <!-- ניגודיות וצבעים -->
+        <div class="accessibility-section">
+            <h3><i class="fa-solid fa-palette"></i> צבעים וניגודיות</h3>
+            <div class="accessibility-buttons">
+                <button class="accessibility-btn" id="highContrastBtn" title="ניגודיות גבוהה" aria-pressed="false">
+                    <i class="fa-solid fa-adjust"></i>
+                    ניגודיות גבוהה
+                </button>
+                <button class="accessibility-btn" id="darkContrastBtn" title="מצב כהה" aria-pressed="false">
+                    <i class="fa-solid fa-moon"></i>
+                    מצב כהה
+                </button>
+            </div>
+            <button class="accessibility-btn" id="invertColorsBtn" title="הפוך צבעים" aria-pressed="false" style="margin-top: 8px;">
+                <i class="fa-solid fa-circle-half-stroke"></i>
+                הפוך צבעים
+            </button>
+        </div>
+
+        <!-- סמן עכבר -->
+        <div class="accessibility-section">
+            <h3><i class="fa-solid fa-computer-mouse"></i> סמן עכבר</h3>
+            <div class="accessibility-buttons">
+                <button class="accessibility-btn" id="bigCursorBtn" title="סמן גדול" aria-pressed="false">
+                    <i class="fa-solid fa-arrow-pointer"></i>
+                    סמן גדול
+                </button>
+                <button class="accessibility-btn" id="cursorColorBtn" title="סמן צבעוני" aria-pressed="false">
+                    <i class="fa-solid fa-droplet"></i>
+                    סמן צבעוני
+                </button>
+            </div>
+        </div>
+
+        <!-- כלי עזר לקריאה -->
+        <div class="accessibility-section">
+            <h3><i class="fa-solid fa-book-open"></i> כלי עזר לקריאה</h3>
+            <button class="accessibility-btn" id="readingGuideBtn" title="סרגל קריאה - עוקב אחרי העכבר" aria-pressed="false">
+                <i class="fa-solid fa-grip-lines"></i>
+                סרגל קריאה
+            </button>
+            <button class="accessibility-btn" id="readingModeBtn" title="מצב קריאה ממוקד" aria-pressed="false" style="margin-top: 8px;">
+                <i class="fa-solid fa-book-open"></i>
+                מצב קריאה
+            </button>
+        </div>
+
+        <!-- הדגשות -->
+        <div class="accessibility-section">
+            <h3><i class="fa-solid fa-highlighter"></i> הדגשות</h3>
+            <button class="accessibility-btn" id="highlightLinksBtn" title="הדגש קישורים" aria-pressed="false">
+                <i class="fa-solid fa-link"></i>
+                הדגש קישורים
+            </button>
+        </div>
+
+        <!-- כיוון וניווט -->
+        <div class="accessibility-section">
+            <h3><i class="fa-solid fa-compass"></i> ניווט וכיוון</h3>
+            <button class="accessibility-btn" id="textDirectionBtn" title="שנה כיוון טקסט" aria-pressed="false">
+                <i class="fa-solid fa-exchange-alt"></i>
+                היפוך כיוון (LTR/RTL)
+            </button>
+        </div>
+
+        <!-- אנימציות -->
+        <div class="accessibility-section">
+            <h3><i class="fa-solid fa-film"></i> אנימציות</h3>
+            <button class="accessibility-btn" id="stopAnimationsBtn" title="הפסק אנימציות" aria-pressed="false">
+                <i class="fa-solid fa-ban"></i>
+                עצור אנימציות
+            </button>
+        </div>
+
+        <!-- הצהרת נגישות -->
+        <div class="accessibility-section">
+            <a href="accessibility-statement.html" class="accessibility-statement-btn">
+                <i class="fa-solid fa-file-lines"></i>
+                הצהרת נגישות
+            </a>
+        </div>
+
+        <!-- איפוס -->
+        <div class="accessibility-section">
+            <button class="accessibility-reset-btn" id="resetAccessibilityBtn" title="אפס הגדרות">
+                <i class="fa-solid fa-undo"></i>
+                אפס הכל
+            </button>
+        </div>
+    </div>
 </div>
 
 <footer>
