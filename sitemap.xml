@@ -3,7 +3,7 @@
 
     <!-- עמוד ראשי -->
     <url>
-        <loc>https://www.sunrisespa.co.il/</loc>
+        <loc>https://www.sunrisespa.biz/</loc>
         <lastmod>2025-01-14</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
@@ -11,7 +11,7 @@
 
     <!-- גלריה -->
     <url>
-        <loc>https://www.sunrisespa.co.il/gallery.html</loc>
+        <loc>https://www.sunrisespa.biz/gallery.html</loc>
         <lastmod>2025-01-14</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
@@ -19,7 +19,7 @@
 
     <!-- בלוג -->
     <url>
-        <loc>https://www.sunrisespa.co.il/blog.html</loc>
+        <loc>https://www.sunrisespa.biz/blog.html</loc>
         <lastmod>2025-01-14</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.7</priority>
@@ -27,7 +27,7 @@
 
     <!-- מדיניות פרטיות -->
     <url>
-        <loc>https://www.sunrisespa.co.il/privacy.html</loc>
+        <loc>https://www.sunrisespa.biz/privacy.html</loc>
         <lastmod>2025-01-14</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.3</priority>
@@ -35,7 +35,7 @@
 
     <!-- תנאי שימוש -->
     <url>
-        <loc>https://www.sunrisespa.co.il/terms.html</loc>
+        <loc>https://www.sunrisespa.biz/terms.html</loc>
         <lastmod>2025-01-14</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.3</priority>
@@ -43,7 +43,7 @@
 
     <!-- שאלות נפוצות -->
     <url>
-        <loc>https://www.sunrisespa.co.il/faq.html</loc>
+        <loc>https://www.sunrisespa.biz/faq.html</loc>
         <lastmod>2025-01-14</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.6</priority>
