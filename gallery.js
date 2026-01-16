@@ -569,6 +569,15 @@ const AccessibilityManager = {
     changeTextSize(delta) {
         this.textSize = Math.max(80, Math.min(150, this.textSize + delta));
         document.documentElement.style.fontSize = this.textSize + '%';
+
+        // הסר מחלקות קודמות
+        document.body.classList.remove('text-size-80', 'text-size-90', 'text-size-110', 'text-size-120', 'text-size-130', 'text-size-140', 'text-size-150');
+
+        // הוסף מחלקה חדשה אם לא 100%
+        if (this.textSize !== 100) {
+            document.body.classList.add(`text-size-${this.textSize}`);
+        }
+
         this.announce(`גודל טקסט שונה ל-${this.textSize}%`);
     },
 
@@ -750,7 +759,7 @@ const responses = {
     services: {
         text: `אנחנו מציעים:<br><br>
         ✨ <strong>עיסוי תאילנדי</strong> - עיסוי מסורתי עם מתיחות<br>
-        ✨ <strong>עיסוי שוודי</strong> - עיסוי מרגיע ונעים<br>
+        ✨ <strong>עיסוי שוודי</strong> - עיסוי מרגיע <br>
         ✨ <strong>עיסוי רקמות עמוק</strong> - לשחרור מתחים<br>
         ✨ <strong>עיסוי רגליים</strong> - רפלקסולוגיה<br>
         ✨ <strong>עיסוי זוגי</strong> - חוויה משותפת<br><br>
