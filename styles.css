@@ -1333,7 +1333,7 @@ body.letter-spacing-active * {
         height: 55px;
         font-size: 24px;
         left: 15px;
-        top: 50%;
+        top: 40%;
         transform: translateY(-50%);
     }
 
@@ -1347,6 +1347,7 @@ body.letter-spacing-active * {
         right: 15px;
         width: auto;
         max-height: 85vh;
+        top: 45%;
     }
 
     .accessibility-panel.active {
@@ -1459,7 +1460,7 @@ body.letter-spacing-active * {
         width: 50px;
         height: 50px;
         font-size: 22px;
-        top: 50%;
+        top: 40%;
         left: 15px;
         transform: translateY(-50%);
     }
@@ -1470,17 +1471,22 @@ body.letter-spacing-active * {
     }
 
     .accessibility-panel {
-        padding: 20px;
+        padding: 15px;
         max-height: 75vh;
+        top: 45%;
     }
 
     .accessibility-header h2 {
-        font-size: 20px;
+        font-size: 18px;
     }
 
-    .accessibility-action {
-        font-size: 14px;
+    .accessibility-btn {
+        font-size: 13px;
         padding: 10px 12px;
+    }
+
+    .accessibility-section h3 {
+        font-size: 13px;
     }
 
     .accessibility-action i {
@@ -1812,6 +1818,29 @@ body.letter-spacing-active * {
     font-family: Arial, 'Segoe UI', Tahoma, sans-serif !important;
 }
 
+/* שינוי גודל טקסט - Text Size */
+.text-size-80 * {
+    font-size: 80% !important;
+}
+.text-size-90 * {
+    font-size: 90% !important;
+}
+.text-size-110 * {
+    font-size: 110% !important;
+}
+.text-size-120 * {
+    font-size: 120% !important;
+}
+.text-size-130 * {
+    font-size: 130% !important;
+}
+.text-size-140 * {
+    font-size: 140% !important;
+}
+.text-size-150 * {
+    font-size: 150% !important;
+}
+
 /* הדגשת קישורים - Highlight Links */
 .highlight-links-active a {
     background: yellow !important;
@@ -1839,6 +1868,7 @@ body.letter-spacing-active * {
     text-align: right;
     transition: all 0.3s ease;
     color: #333;
+    white-space: nowrap;
 }
 
 .accessibility-btn i {
