@@ -355,7 +355,6 @@ const fullPosts = {
                 <li><strong>אנשים תחת מתח ולחץ</strong> - להרפיה נפשית וגופנית</li>
                 <li><strong>מי שסובל מכאבי ראש</strong> - להקלה וטיפול מונע</li>
                 <li><strong>אנשים עם עור רגיש</strong> - העיסוי עדין ומותאם אישית</li>
-                <li><strong>מי שרוצה להתפנק</strong> - חוויה מענגת ומרגיעה</li>
             </ul>
 
             <h3><i class="fa-solid fa-lightbulb"></i> טיפים לחוויה אופטימלית</h3>
