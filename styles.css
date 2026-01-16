@@ -1822,6 +1822,59 @@ body.letter-spacing-active * {
     border-radius: 3px !important;
 }
 
+/* כפתורי נגישות */
+.accessibility-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 15px;
+    margin: 8px 0;
+    background: #f5f5f5;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 15px;
+    font-family: 'Heebo', sans-serif;
+    text-align: right;
+    transition: all 0.3s ease;
+    color: #333;
+}
+
+.accessibility-btn i {
+    width: 24px;
+    text-align: center;
+    color: #2196F3;
+    font-size: 18px;
+}
+
+.accessibility-btn:hover {
+    background: #E3F2FD;
+    border-color: #2196F3;
+    transform: translateX(-3px);
+}
+
+.accessibility-btn:focus-visible {
+    outline: 3px solid #FFC107;
+    outline-offset: 2px;
+}
+
+/* כפתורים בזוגות - תפריט נגישות */
+.accessibility-buttons {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.accessibility-buttons .accessibility-btn {
+    width: calc(50% - 5px);
+    flex: 0 0 calc(50% - 5px);
+    max-width: calc(50% - 5px);
+    margin: 0;
+    box-sizing: border-box;
+}
+
 /* כפתורים קטנים */
 .accessibility-btn-small {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
