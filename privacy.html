@@ -105,6 +105,26 @@
                 left: 15px;
             }
         }
+
+        /* מצב כהה - Dark Mode */
+        .dark-mode-active .privacy-container {
+            background: #252542 !important;
+        }
+        .dark-mode-active .privacy-container h1,
+        .dark-mode-active .privacy-container h2 {
+            color: #ffffff !important;
+        }
+        .dark-mode-active .privacy-container p,
+        .dark-mode-active .privacy-container li,
+        .dark-mode-active .privacy-container ul {
+            color: #e0e0e0 !important;
+        }
+        .dark-mode-active .last-updated {
+            color: #b0b0b0 !important;
+        }
+        .dark-mode-active .contact-info {
+            background: rgba(255, 117, 140, 0.15) !important;
+        }
     </style>
 </head>
 <body>
@@ -384,13 +404,13 @@
         <div class="accessibility-section">
             <h3><i class="fa-solid fa-palette"></i> צבעים וניגודיות</h3>
             <div class="accessibility-buttons">
-                <button class="accessibility-btn" id="highContrastBtn" title="ניגודיות גבוהה" aria-pressed="false">
-                    <i class="fa-solid fa-adjust"></i>
-                    ניגודיות גבוהה
-                </button>
                 <button class="accessibility-btn" id="darkContrastBtn" title="מצב כהה" aria-pressed="false">
                     <i class="fa-solid fa-moon"></i>
                     מצב כהה
+                </button>
+                <button class="accessibility-btn" id="highContrastYellowBtn" title="ניגודיות גבוהה" aria-pressed="false">
+                    <i class="fa-solid fa-eye"></i>
+                    ניגודיות גבוהה
                 </button>
             </div>
             <button class="accessibility-btn" id="invertColorsBtn" title="הפוך צבעים" aria-pressed="false" style="margin-top: 8px;">
@@ -421,10 +441,6 @@
                 <i class="fa-solid fa-grip-lines"></i>
                 סרגל קריאה
             </button>
-            <button class="accessibility-btn" id="readingModeBtn" title="מצב קריאה ממוקד" aria-pressed="false" style="margin-top: 8px;">
-                <i class="fa-solid fa-book-open"></i>
-                מצב קריאה
-            </button>
         </div>
 
         <!-- הדגשות -->
@@ -433,6 +449,24 @@
             <button class="accessibility-btn" id="highlightLinksBtn" title="הדגש קישורים" aria-pressed="false">
                 <i class="fa-solid fa-link"></i>
                 הדגש קישורים
+            </button>
+        </div>
+
+        <!-- הסתרת מדיה -->
+        <div class="accessibility-section">
+            <h3><i class="fa-solid fa-image"></i> תמונות וסרטונים</h3>
+            <button class="accessibility-btn" id="hideMediaBtn" title="הסתר תמונות וסרטונים" aria-pressed="false">
+                <i class="fa-solid fa-eye-slash"></i>
+                הסתר תמונות
+            </button>
+        </div>
+
+        <!-- ניווט מקלדת -->
+        <div class="accessibility-section">
+            <h3><i class="fa-solid fa-keyboard"></i> ניווט מקלדת</h3>
+            <button class="accessibility-btn" id="keyboardNavBtn" title="הפעל ניווט מקלדת מלא" aria-pressed="false">
+                <i class="fa-solid fa-keyboard"></i>
+                ניווט מקלדת מלא
             </button>
         </div>
 
