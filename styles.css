@@ -765,15 +765,28 @@ body.high-contrast-active {
     filter: contrast(1.5) !important;
 }
 
+/* סגנונות מצב כהה בסיסיים - הסגנונות המפורטים נמצאים בהמשך הקובץ */
 body.dark-mode-active {
-    background: #121212 !important;
-    color: #ffffff !important;
+    background: #1a1a2e !important;
+    color: #eaeaea !important;
 }
 
-body.dark-mode-active .content-box,
-body.dark-mode-active .chatbot-container {
-    background: #1e1e1e !important;
-    color: #ffffff !important;
+/* כלל קריטי - וידוא שכל הטקסטים נראים במצב כהה */
+body.dark-mode-active *:not(img):not(video):not(iframe):not(svg):not(i.fa-solid):not(i.fa-brands):not(i.fa-regular) {
+    color: inherit;
+}
+
+body.dark-mode-active [style*="color: #2c3e50"],
+body.dark-mode-active [style*="color:#2c3e50"],
+body.dark-mode-active [style*="color: #34495e"],
+body.dark-mode-active [style*="color:#34495e"],
+body.dark-mode-active [style*="color: #333"],
+body.dark-mode-active [style*="color:#333"],
+body.dark-mode-active [style*="color: black"],
+body.dark-mode-active [style*="color:black"],
+body.dark-mode-active [style*="color: #000"],
+body.dark-mode-active [style*="color:#000"] {
+    color: #eaeaea !important;
 }
 
 body.light-background-active {
@@ -1735,7 +1748,22 @@ body.letter-spacing-active * {
 }
 
 /* צבעים הפוכים - Inverted Colors */
-.invert-colors-active {
+/* החלת filter רק על התוכן, לא על פאנל הנגישות */
+.invert-colors-active header,
+.invert-colors-active main,
+.invert-colors-active footer,
+.invert-colors-active .chatbot-container,
+.invert-colors-active .chatbot-btn,
+.invert-colors-active .whatsapp-float,
+.invert-colors-active .back-to-top,
+.invert-colors-active .side-slider,
+.invert-colors-active #lightbox,
+.invert-colors-active .content-box,
+.invert-colors-active .service-card,
+.invert-colors-active .treatment-card,
+.invert-colors-active .price-card,
+.invert-colors-active .faq-item,
+.invert-colors-active .blog-card {
     filter: invert(1) hue-rotate(180deg);
 }
 
@@ -1779,12 +1807,27 @@ body.letter-spacing-active * {
 }
 
 /* ניגודיות גבוהה - High Contrast */
-.high-contrast-active {
+/* החלת filter רק על התוכן, לא על פאנל הנגישות */
+.high-contrast-active header,
+.high-contrast-active main,
+.high-contrast-active footer,
+.high-contrast-active .chatbot-container,
+.high-contrast-active .chatbot-btn,
+.high-contrast-active .whatsapp-float,
+.high-contrast-active .back-to-top,
+.high-contrast-active .side-slider,
+.high-contrast-active #lightbox,
+.high-contrast-active .content-box,
+.high-contrast-active .service-card,
+.high-contrast-active .treatment-card,
+.high-contrast-active .price-card,
+.high-contrast-active .faq-item,
+.high-contrast-active .blog-card {
     filter: contrast(1.5);
 }
 
 .high-contrast-active,
-.high-contrast-active * {
+.high-contrast-active *:not(.accessibility-panel):not(.accessibility-panel *):not(.accessibility-trigger) {
     background: #000 !important;
     color: #FFFF00 !important;
     border-color: #FFFF00 !important;
@@ -1795,22 +1838,519 @@ body.letter-spacing-active * {
     text-decoration: underline !important;
 }
 
-.high-contrast-active button,
-.high-contrast-active .accessibility-btn {
+.high-contrast-active button:not(.accessibility-panel button):not(.accessibility-panel *):not(.close-panel),
+.high-contrast-active .accessibility-btn:not(.accessibility-panel .accessibility-btn) {
     background: #FFFF00 !important;
     color: #000 !important;
     border: 2px solid #FFF !important;
 }
 
-/* מצב כהה - Dark Mode */
-.dark-mode-active {
-    filter: invert(0.9) hue-rotate(180deg);
+/* שמירת מיקום וסגנון פאנל נגישות בכל המצבים */
+.high-contrast-active .accessibility-panel,
+.invert-colors-active .accessibility-panel {
+    position: fixed !important;
+    top: 50% !important;
+    left: 70px !important;
+    transform: translateY(-50%) scale(0.95) !important;
+    filter: none !important;
+    background: white !important;
+    z-index: 100000 !important;
 }
 
+.dark-mode-active .accessibility-panel {
+    position: fixed !important;
+    top: 50% !important;
+    left: 70px !important;
+    transform: translateY(-50%) scale(0.95) !important;
+    filter: none !important;
+    z-index: 100000 !important;
+}
+
+.high-contrast-active .accessibility-panel.active,
+.invert-colors-active .accessibility-panel.active {
+    transform: translateY(-50%) scale(1) !important;
+    filter: none !important;
+    background: white !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+.dark-mode-active .accessibility-panel.active {
+    transform: translateY(-50%) scale(1) !important;
+    filter: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* שמירת סגנון תוכן פאנל נגישות במצב ניגודיות גבוהה והפוך צבעים */
+.high-contrast-active .accessibility-panel *,
+.invert-colors-active .accessibility-panel * {
+    background: inherit !important;
+    color: inherit !important;
+    filter: none !important;
+}
+
+.high-contrast-active .accessibility-header,
+.invert-colors-active .accessibility-header {
+    background: linear-gradient(135deg, #2196F3, #1976D2) !important;
+    color: white !important;
+}
+
+.high-contrast-active .accessibility-content,
+.invert-colors-active .accessibility-content {
+    background: white !important;
+    color: #333 !important;
+}
+
+.high-contrast-active .accessibility-section h3,
+.invert-colors-active .accessibility-section h3 {
+    color: #1976D2 !important;
+}
+
+.high-contrast-active .accessibility-panel .accessibility-btn,
+.invert-colors-active .accessibility-panel .accessibility-btn {
+    background: #f5f5f5 !important;
+    color: #333 !important;
+    border-color: transparent !important;
+}
+
+.high-contrast-active .accessibility-panel .accessibility-btn[aria-pressed="true"],
+.invert-colors-active .accessibility-panel .accessibility-btn[aria-pressed="true"] {
+    background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%) !important;
+    color: white !important;
+}
+
+.high-contrast-active .accessibility-panel .accessibility-btn i,
+.invert-colors-active .accessibility-panel .accessibility-btn i {
+    color: #2196F3 !important;
+}
+
+.high-contrast-active .accessibility-panel .accessibility-btn[aria-pressed="true"] i,
+.invert-colors-active .accessibility-panel .accessibility-btn[aria-pressed="true"] i {
+    color: white !important;
+}
+
+/* שמירת מיקום כפתור נגישות בכל המצבים */
+.high-contrast-active .accessibility-trigger,
+.dark-mode-active .accessibility-trigger,
+.invert-colors-active .accessibility-trigger {
+    position: fixed !important;
+    top: 50% !important;
+    left: 15px !important;
+    transform: translateY(-50%) !important;
+    filter: none !important;
+    background: linear-gradient(135deg, #2196F3, #1976D2) !important;
+    color: white !important;
+    z-index: 100000 !important;
+}
+
+.high-contrast-active .accessibility-trigger:hover,
+.high-contrast-active .accessibility-trigger:focus,
+.dark-mode-active .accessibility-trigger:hover,
+.dark-mode-active .accessibility-trigger:focus,
+.invert-colors-active .accessibility-trigger:hover,
+.invert-colors-active .accessibility-trigger:focus {
+    transform: translateY(-50%) scale(1.1) !important;
+}
+
+/* מובייל - שמירת מיקום פאנל נגישות */
+@media (max-width: 768px) {
+    .high-contrast-active .accessibility-panel,
+    .invert-colors-active .accessibility-panel,
+    .dark-mode-active .accessibility-panel {
+        left: 15px !important;
+        right: 15px !important;
+        width: auto !important;
+        top: 45% !important;
+    }
+
+    .high-contrast-active .accessibility-panel.active,
+    .invert-colors-active .accessibility-panel.active,
+    .dark-mode-active .accessibility-panel.active {
+        left: 15px !important;
+        right: 15px !important;
+        width: auto !important;
+        top: 45% !important;
+        transform: translateY(-50%) scale(1) !important;
+    }
+
+    .high-contrast-active .accessibility-trigger,
+    .dark-mode-active .accessibility-trigger,
+    .invert-colors-active .accessibility-trigger {
+        top: 40% !important;
+    }
+}
+
+/* מצב כהה - Dark Mode */
+.dark-mode-active {
+    background-color: #1a1a2e !important;
+    color: #eaeaea !important;
+}
+
+.dark-mode-active body,
+.dark-mode-active .page-wrapper,
+.dark-mode-active .blog-wrapper,
+.dark-mode-active .faq-container,
+.dark-mode-active .accessibility-statement-container {
+    background-color: #1a1a2e !important;
+    color: #eaeaea !important;
+}
+
+.dark-mode-active header {
+    background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 50%, #0f0f1a 100%) !important;
+    color: #ffffff !important;
+}
+
+.dark-mode-active nav a {
+    background: rgba(255, 255, 255, 0.1) !important;
+    color: #ffffff !important;
+}
+
+.dark-mode-active nav a:hover,
+.dark-mode-active nav a.active {
+    background: linear-gradient(135deg, #ff758c, #ff7eb3) !important;
+    color: #ffffff !important;
+}
+
+.dark-mode-active .content-box,
+.dark-mode-active .service-card,
+.dark-mode-active .treatment-card,
+.dark-mode-active .price-card,
+.dark-mode-active .faq-item,
+.dark-mode-active .blog-card,
+.dark-mode-active article {
+    background: #252542 !important;
+    color: #eaeaea !important;
+    border-color: #3a3a5c !important;
+}
+
+.dark-mode-active h1,
+.dark-mode-active h2,
+.dark-mode-active h3,
+.dark-mode-active h4 {
+    color: #ffffff !important;
+}
+
+.dark-mode-active p,
+.dark-mode-active li,
+.dark-mode-active span,
+.dark-mode-active td,
+.dark-mode-active th {
+    color: #e0e0e0 !important;
+}
+
+.dark-mode-active a {
+    color: #ff9eb5 !important;
+}
+
+.dark-mode-active a:hover {
+    color: #ffb8ca !important;
+}
+
+.dark-mode-active footer {
+    background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 100%) !important;
+    color: #ffffff !important;
+}
+
+.dark-mode-active .faq-question {
+    background: #2d2d4a !important;
+    color: #ffffff !important;
+}
+
+.dark-mode-active .faq-question:hover {
+    background: #3a3a5c !important;
+}
+
+.dark-mode-active .faq-answer {
+    background: #1e1e35 !important;
+    color: #e0e0e0 !important;
+}
+
+.dark-mode-active .chatbot-container {
+    background: #252542 !important;
+}
+
+.dark-mode-active .chatbot-header {
+    background: linear-gradient(135deg, #ff758c, #ff7eb3) !important;
+}
+
+.dark-mode-active .chatbot-messages {
+    background: #1a1a2e !important;
+}
+
+.dark-mode-active .bot-message .message-content {
+    background: #2d2d4a !important;
+    color: #eaeaea !important;
+}
+
+.dark-mode-active .user-message .message-content {
+    background: linear-gradient(135deg, #ff758c, #ff7eb3) !important;
+    color: #ffffff !important;
+}
+
+.dark-mode-active .quick-btn {
+    background: #3a3a5c !important;
+    color: #ffffff !important;
+    border-color: #4a4a6c !important;
+}
+
+.dark-mode-active .quick-btn:hover {
+    background: #4a4a6c !important;
+}
+
+.dark-mode-active input,
+.dark-mode-active textarea,
+.dark-mode-active select {
+    background: #2d2d4a !important;
+    color: #eaeaea !important;
+    border-color: #3a3a5c !important;
+}
+
+.dark-mode-active .accessibility-panel {
+    background: #252542 !important;
+    color: #eaeaea !important;
+}
+
+.dark-mode-active .accessibility-btn {
+    background: #3a3a5c !important;
+    color: #ffffff !important;
+}
+
+.dark-mode-active .accessibility-btn:hover {
+    background: #4a4a6c !important;
+}
+
+.dark-mode-active .highlight-box {
+    background: rgba(255, 117, 140, 0.15) !important;
+    border-color: #ff758c !important;
+}
+
+.dark-mode-active .contact-info {
+    background: rgba(255, 117, 140, 0.1) !important;
+}
+
+.dark-mode-active table {
+    background: #252542 !important;
+}
+
+.dark-mode-active th {
+    background: linear-gradient(135deg, #3a3a5c, #4a4a6c) !important;
+}
+
+.dark-mode-active tr:nth-child(even) {
+    background: #2d2d4a !important;
+}
+
+.dark-mode-active tr:nth-child(odd) {
+    background: #252542 !important;
+}
+
+.dark-mode-active kbd {
+    background: #3a3a5c !important;
+    color: #ffffff !important;
+    border-color: #4a4a6c !important;
+}
+
+/* כלל כללי - כל אלמנט עם רקע לבן יקבל רקע כהה */
+.dark-mode-active * {
+    background-color: inherit;
+}
+
+.dark-mode-active div,
+.dark-mode-active section,
+.dark-mode-active main,
+.dark-mode-active aside,
+.dark-mode-active .container,
+.dark-mode-active .wrapper,
+.dark-mode-active .box,
+.dark-mode-active .card,
+.dark-mode-active .panel,
+.dark-mode-active .modal,
+.dark-mode-active .popup,
+.dark-mode-active .dropdown,
+.dark-mode-active .menu,
+.dark-mode-active .slider,
+.dark-mode-active .slide,
+.dark-mode-active .hero,
+.dark-mode-active .banner,
+.dark-mode-active .section,
+.dark-mode-active .block,
+.dark-mode-active .item,
+.dark-mode-active .entry,
+.dark-mode-active .post,
+.dark-mode-active .comment,
+.dark-mode-active .form-group,
+.dark-mode-active .field,
+.dark-mode-active .alert,
+.dark-mode-active .notice,
+.dark-mode-active .message,
+.dark-mode-active .notification,
+.dark-mode-active .tooltip,
+.dark-mode-active .badge,
+.dark-mode-active .tag,
+.dark-mode-active .label,
+.dark-mode-active .chip,
+.dark-mode-active .avatar,
+.dark-mode-active .icon-box,
+.dark-mode-active .feature,
+.dark-mode-active .benefit,
+.dark-mode-active .testimonial,
+.dark-mode-active .review,
+.dark-mode-active .quote,
+.dark-mode-active .blockquote,
+.dark-mode-active .callout,
+.dark-mode-active .info-box,
+.dark-mode-active .stat,
+.dark-mode-active .counter,
+.dark-mode-active .progress,
+.dark-mode-active .timeline,
+.dark-mode-active .step,
+.dark-mode-active .tab,
+.dark-mode-active .accordion,
+.dark-mode-active .collapse,
+.dark-mode-active .expand {
+    background-color: #252542 !important;
+    color: #eaeaea !important;
+}
+
+/* אלמנטים ספציפיים של האתר */
+.dark-mode-active .intro-text,
+.dark-mode-active .services-section,
+.dark-mode-active .treatments-section,
+.dark-mode-active .prices-section,
+.dark-mode-active .contact-section,
+.dark-mode-active .about-section,
+.dark-mode-active .gallery-section,
+.dark-mode-active .blog-section,
+.dark-mode-active .faq-section,
+.dark-mode-active .cta-section,
+.dark-mode-active .newsletter,
+.dark-mode-active .subscription,
+.dark-mode-active .social-section {
+    background-color: #1a1a2e !important;
+    color: #eaeaea !important;
+}
+
+/* קופסאות תוכן עם רקע לבן */
+.dark-mode-active [style*="background: white"],
+.dark-mode-active [style*="background: #fff"],
+.dark-mode-active [style*="background: #ffffff"],
+.dark-mode-active [style*="background-color: white"],
+.dark-mode-active [style*="background-color: #fff"],
+.dark-mode-active [style*="background-color: #ffffff"],
+.dark-mode-active [style*="background: rgb(255, 255, 255)"],
+.dark-mode-active [style*="background-color: rgb(255, 255, 255)"] {
+    background-color: #252542 !important;
+    color: #eaeaea !important;
+}
+
+/* רקעים בהירים נוספים */
+.dark-mode-active [style*="background: #f"],
+.dark-mode-active [style*="background-color: #f"] {
+    background-color: #2d2d4a !important;
+    color: #eaeaea !important;
+}
+
+/* וידוא שכל הטקסטים קריאים */
+.dark-mode-active strong,
+.dark-mode-active b,
+.dark-mode-active em,
+.dark-mode-active i:not(.fa-solid):not(.fa-brands):not(.fa-regular),
+.dark-mode-active u,
+.dark-mode-active mark,
+.dark-mode-active small,
+.dark-mode-active big,
+.dark-mode-active sub,
+.dark-mode-active sup,
+.dark-mode-active code,
+.dark-mode-active pre,
+.dark-mode-active blockquote,
+.dark-mode-active cite,
+.dark-mode-active q,
+.dark-mode-active abbr,
+.dark-mode-active address,
+.dark-mode-active time,
+.dark-mode-active label,
+.dark-mode-active legend,
+.dark-mode-active figcaption,
+.dark-mode-active caption,
+.dark-mode-active summary,
+.dark-mode-active details {
+    color: #eaeaea !important;
+}
+
+/* אלמנטים ספציפיים נוספים */
+.dark-mode-active .contact-badge {
+    background-color: #252542 !important;
+    color: #eaeaea !important;
+}
+
+.dark-mode-active .side-slider {
+    background: #252542 !important;
+    border-color: #3a3a5c !important;
+}
+
+.dark-mode-active .slider-container {
+    background: #252542 !important;
+}
+
+.dark-mode-active .slider-btn {
+    background: rgba(255, 117, 140, 0.8) !important;
+    color: #ffffff !important;
+}
+
+.dark-mode-active .slider-indicators span {
+    background: rgba(255, 255, 255, 0.5) !important;
+}
+
+.dark-mode-active .slider-indicators span.active {
+    background: #ff758c !important;
+}
+
+.dark-mode-active .price-item {
+    background: #2d2d4a !important;
+    border-color: #3a3a5c !important;
+}
+
+.dark-mode-active .price-item:hover {
+    background: #3a3a5c !important;
+}
+
+.dark-mode-active .price-time,
+.dark-mode-active .price-amount {
+    color: #eaeaea !important;
+}
+
+.dark-mode-active .map-container {
+    background: #252542 !important;
+    border-color: #3a3a5c !important;
+}
+
+.dark-mode-active .whatsapp-float {
+    background: #25d366 !important;
+    color: #ffffff !important;
+}
+
+.dark-mode-active .back-to-top {
+    background: linear-gradient(135deg, #ff758c, #ff7eb3) !important;
+    color: #ffffff !important;
+}
+
+.dark-mode-active #statusIndicator {
+    color: #eaeaea !important;
+}
+
+/* רכיבים עם רקע לבן מוגדר inline */
+.dark-mode-active [style*="color: #666"],
+.dark-mode-active [style*="color:#666"] {
+    color: #b0b0b0 !important;
+}
+
+/* תמונות נשארות רגילות במצב כהה */
 .dark-mode-active img,
 .dark-mode-active video,
 .dark-mode-active .logo {
-    filter: invert(0.9) hue-rotate(180deg);
+    filter: none !important;
 }
 
 /* גופן קריא - Readable Font */
@@ -1849,6 +2389,46 @@ body.letter-spacing-active * {
     font-weight: bold !important;
     padding: 2px 4px !important;
     border-radius: 3px !important;
+}
+
+/* הסתרת תמונות וסרטונים - Hide Media */
+.hide-media-active img,
+.hide-media-active video,
+.hide-media-active iframe,
+.hide-media-active svg,
+.hide-media-active picture,
+.hide-media-active .gallery-item,
+.hide-media-active .slider-track {
+    display: none !important;
+}
+
+/* הסתרת תמונת רקע */
+body.hide-media-active {
+    background-image: none !important;
+    background-color: #000 !important;
+}
+
+.hide-media-active .gallery-item::before {
+    content: '[תמונה הוסתרה]';
+    display: block;
+    padding: 20px;
+    background: #f0f0f0;
+    border: 2px dashed #999;
+    text-align: center;
+    color: #666;
+}
+
+/* ניווט מקלדת מלא - Keyboard Navigation */
+/* רק הדגשת פוקוס - בלי שינויים במיקום או בעיצוב */
+.keyboard-nav-active *:focus {
+    outline: 3px solid #FF5722 !important;
+    outline-offset: 3px !important;
+    box-shadow: 0 0 10px rgba(255, 87, 34, 0.5) !important;
+}
+
+/* הסתרת כפתורי דילוג */
+.keyboard-nav-active #skipLinks {
+    display: none !important;
 }
 
 /* כפתורי נגישות */
@@ -2005,4 +2585,350 @@ body.letter-spacing-active * {
 
 .accessibility-btn[aria-pressed="true"]:hover {
     animation: pulseGreen 2s infinite;
+}
+
+/* ===============================================
+   ניגודיות גבוהה צהוב-שחור (High Contrast Yellow-Black)
+   =============================================== */
+
+/* מצב ניגודיות גבוהה צהוב-שחור */
+body.high-contrast-yellow-active {
+    background: #000000 !important;
+    background-image: none !important;
+    color: #FFFF00 !important;
+}
+
+body.high-contrast-yellow-active * {
+    background-color: #000000 !important;
+    color: #FFFF00 !important;
+    border-color: #FFFF00 !important;
+}
+
+/* כותרות */
+body.high-contrast-yellow-active h1,
+body.high-contrast-yellow-active h2,
+body.high-contrast-yellow-active h3,
+body.high-contrast-yellow-active h4,
+body.high-contrast-yellow-active h5,
+body.high-contrast-yellow-active h6 {
+    color: #FFFF00 !important;
+    text-shadow: none !important;
+}
+
+/* קישורים */
+body.high-contrast-yellow-active a {
+    color: #00FFFF !important;
+    text-decoration: underline !important;
+}
+
+body.high-contrast-yellow-active a:hover,
+body.high-contrast-yellow-active a:focus {
+    color: #FFFFFF !important;
+    background-color: #333333 !important;
+}
+
+/* כפתורים */
+body.high-contrast-yellow-active button:not(.accessibility-panel button),
+body.high-contrast-yellow-active .btn,
+body.high-contrast-yellow-active nav a,
+body.high-contrast-yellow-active .quick-btn {
+    background: #FFFF00 !important;
+    color: #000000 !important;
+    border: 2px solid #FFFF00 !important;
+}
+
+body.high-contrast-yellow-active button:not(.accessibility-panel button):hover,
+body.high-contrast-yellow-active .btn:hover,
+body.high-contrast-yellow-active nav a:hover,
+body.high-contrast-yellow-active .quick-btn:hover {
+    background: #000000 !important;
+    color: #FFFF00 !important;
+    border: 2px solid #FFFF00 !important;
+}
+
+/* Header */
+body.high-contrast-yellow-active header {
+    background: #000000 !important;
+    border-bottom: 3px solid #FFFF00 !important;
+}
+
+/* Footer */
+body.high-contrast-yellow-active footer {
+    background: #000000 !important;
+    border-top: 3px solid #FFFF00 !important;
+}
+
+/* Content boxes */
+body.high-contrast-yellow-active .content-box,
+body.high-contrast-yellow-active .service-card,
+body.high-contrast-yellow-active .treatment-card,
+body.high-contrast-yellow-active .price-card,
+body.high-contrast-yellow-active .faq-item,
+body.high-contrast-yellow-active .blog-card,
+body.high-contrast-yellow-active article {
+    background: #000000 !important;
+    border: 2px solid #FFFF00 !important;
+}
+
+/* Price items */
+body.high-contrast-yellow-active .price-item {
+    background: #000000 !important;
+    border: 1px solid #FFFF00 !important;
+}
+
+body.high-contrast-yellow-active .price-item:hover {
+    background: #222222 !important;
+}
+
+body.high-contrast-yellow-active .price-time,
+body.high-contrast-yellow-active .price-amount {
+    color: #FFFF00 !important;
+}
+
+/* FAQ */
+body.high-contrast-yellow-active .faq-question {
+    background: #000000 !important;
+    color: #FFFF00 !important;
+    border: 2px solid #FFFF00 !important;
+}
+
+body.high-contrast-yellow-active .faq-question:hover {
+    background: #222222 !important;
+}
+
+body.high-contrast-yellow-active .faq-answer {
+    background: #111111 !important;
+    color: #FFFF00 !important;
+    border: 1px solid #FFFF00 !important;
+}
+
+/* Contact badge */
+body.high-contrast-yellow-active .contact-badge {
+    background: #000000 !important;
+    color: #FFFF00 !important;
+    border: 2px solid #FFFF00 !important;
+}
+
+/* Status badges */
+body.high-contrast-yellow-active .status-badge {
+    background: #000000 !important;
+    color: #FFFF00 !important;
+    border: 2px solid #FFFF00 !important;
+}
+
+body.high-contrast-yellow-active .status-open,
+body.high-contrast-yellow-active .status-closed {
+    background: #000000 !important;
+    color: #FFFF00 !important;
+}
+
+/* Slider */
+body.high-contrast-yellow-active .side-slider {
+    background: #000000 !important;
+    border: 3px solid #FFFF00 !important;
+}
+
+body.high-contrast-yellow-active .slider-btn {
+    background: #FFFF00 !important;
+    color: #000000 !important;
+}
+
+body.high-contrast-yellow-active .indicator {
+    background: #333333 !important;
+    border: 2px solid #FFFF00 !important;
+}
+
+body.high-contrast-yellow-active .indicator.active {
+    background: #FFFF00 !important;
+}
+
+/* Chatbot */
+body.high-contrast-yellow-active .chatbot-container {
+    background: #000000 !important;
+    border: 3px solid #FFFF00 !important;
+}
+
+body.high-contrast-yellow-active .chatbot-header {
+    background: #FFFF00 !important;
+    color: #000000 !important;
+}
+
+body.high-contrast-yellow-active .chatbot-header h3,
+body.high-contrast-yellow-active .chatbot-header p,
+body.high-contrast-yellow-active .chatbot-status {
+    color: #000000 !important;
+}
+
+body.high-contrast-yellow-active .chatbot-messages {
+    background: #000000 !important;
+}
+
+body.high-contrast-yellow-active .bot-message .message-content {
+    background: #222222 !important;
+    color: #FFFF00 !important;
+    border: 1px solid #FFFF00 !important;
+}
+
+body.high-contrast-yellow-active .user-message .message-content {
+    background: #FFFF00 !important;
+    color: #000000 !important;
+}
+
+body.high-contrast-yellow-active .chatbot-input-area {
+    background: #000000 !important;
+    border-top: 2px solid #FFFF00 !important;
+}
+
+body.high-contrast-yellow-active #chatbotInput {
+    background: #000000 !important;
+    color: #FFFF00 !important;
+    border: 2px solid #FFFF00 !important;
+}
+
+body.high-contrast-yellow-active #chatbotSend {
+    background: #FFFF00 !important;
+    color: #000000 !important;
+}
+
+body.high-contrast-yellow-active .chatbot-btn {
+    background: #FFFF00 !important;
+    color: #000000 !important;
+}
+
+/* WhatsApp button */
+body.high-contrast-yellow-active .whatsapp-float {
+    background: #FFFF00 !important;
+    color: #000000 !important;
+    border: 2px solid #FFFF00 !important;
+}
+
+/* Back to top */
+body.high-contrast-yellow-active .back-to-top {
+    background: #FFFF00 !important;
+    color: #000000 !important;
+}
+
+/* Social links */
+body.high-contrast-yellow-active .social-links a {
+    background: #FFFF00 !important;
+    color: #000000 !important;
+}
+
+/* Map container */
+body.high-contrast-yellow-active .map-container {
+    border: 3px solid #FFFF00 !important;
+}
+
+/* Gallery */
+body.high-contrast-yellow-active .gallery-item {
+    border: 2px solid #FFFF00 !important;
+}
+
+/* Inputs */
+body.high-contrast-yellow-active input,
+body.high-contrast-yellow-active textarea,
+body.high-contrast-yellow-active select {
+    background: #000000 !important;
+    color: #FFFF00 !important;
+    border: 2px solid #FFFF00 !important;
+}
+
+body.high-contrast-yellow-active input::placeholder,
+body.high-contrast-yellow-active textarea::placeholder {
+    color: #999900 !important;
+}
+
+/* Tables */
+body.high-contrast-yellow-active table {
+    border: 2px solid #FFFF00 !important;
+}
+
+body.high-contrast-yellow-active th,
+body.high-contrast-yellow-active td {
+    border: 1px solid #FFFF00 !important;
+}
+
+body.high-contrast-yellow-active th {
+    background: #333300 !important;
+}
+
+body.high-contrast-yellow-active tr:nth-child(even) {
+    background: #111111 !important;
+}
+
+/* Images - keep them visible but with border */
+body.high-contrast-yellow-active img {
+    border: 2px solid #FFFF00 !important;
+}
+
+body.high-contrast-yellow-active .logo {
+    border: none !important;
+    filter: brightness(1.2) contrast(1.2) !important;
+}
+
+/* שמירת פאנל הנגישות בצבעים רגילים */
+body.high-contrast-yellow-active .accessibility-panel,
+body.high-contrast-yellow-active .accessibility-panel * {
+    background-color: inherit !important;
+    color: inherit !important;
+    border-color: inherit !important;
+}
+
+body.high-contrast-yellow-active .accessibility-panel {
+    background: white !important;
+    border: none !important;
+}
+
+body.high-contrast-yellow-active .accessibility-header {
+    background: linear-gradient(135deg, #2196F3, #1976D2) !important;
+    color: white !important;
+}
+
+body.high-contrast-yellow-active .accessibility-content {
+    background: white !important;
+    color: #333 !important;
+}
+
+body.high-contrast-yellow-active .accessibility-section h3 {
+    color: #1976D2 !important;
+}
+
+body.high-contrast-yellow-active .accessibility-panel .accessibility-btn {
+    background: #f5f5f5 !important;
+    color: #333 !important;
+    border-color: transparent !important;
+}
+
+body.high-contrast-yellow-active .accessibility-panel .accessibility-btn:hover {
+    background: #E3F2FD !important;
+    border-color: #2196F3 !important;
+}
+
+body.high-contrast-yellow-active .accessibility-panel .accessibility-btn[aria-pressed="true"] {
+    background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%) !important;
+    color: white !important;
+}
+
+body.high-contrast-yellow-active .accessibility-panel .accessibility-btn i {
+    color: #2196F3 !important;
+}
+
+body.high-contrast-yellow-active .accessibility-panel .accessibility-btn[aria-pressed="true"] i {
+    color: white !important;
+}
+
+/* שמירת כפתור הנגישות */
+body.high-contrast-yellow-active .accessibility-trigger {
+    background: linear-gradient(135deg, #2196F3, #1976D2) !important;
+    color: white !important;
+    filter: none !important;
+}
+
+/* מובייל - שמירת מיקום פאנל נגישות */
+@media (max-width: 768px) {
+    body.high-contrast-yellow-active .accessibility-panel {
+        left: 15px !important;
+        right: 15px !important;
+        width: auto !important;
+    }
 }
