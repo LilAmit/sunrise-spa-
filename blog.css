@@ -662,3 +662,264 @@ nav a:hover {
         margin: 5px;
     }
 }
+
+/* ===== מצב כהה לדף הבלוג ===== */
+.dark-mode-active .blog-wrapper {
+    background-color: #1a1a2e !important;
+}
+
+.dark-mode-active .blog-subtitle {
+    background: #252542 !important;
+    color: #eaeaea !important;
+}
+
+.dark-mode-active .blog-post {
+    background: #252542 !important;
+    border-color: #3a3a5c !important;
+}
+
+.dark-mode-active .post-title {
+    color: #ffffff !important;
+}
+
+.dark-mode-active .post-meta {
+    color: #b0b0b0 !important;
+}
+
+.dark-mode-active .post-meta span {
+    color: #b0b0b0 !important;
+}
+
+.dark-mode-active .post-excerpt {
+    color: #e0e0e0 !important;
+}
+
+.dark-mode-active .post-content {
+    background: #252542 !important;
+    color: #eaeaea !important;
+}
+
+/* Modal במצב כהה */
+.dark-mode-active .modal {
+    background: rgba(10, 10, 20, 0.95) !important;
+}
+
+.dark-mode-active .modal-content {
+    background: #252542 !important;
+    color: #eaeaea !important;
+}
+
+.dark-mode-active .modal-body {
+    background: #252542 !important;
+}
+
+.dark-mode-active .modal-body h2 {
+    color: #ffffff !important;
+}
+
+.dark-mode-active .modal-body h3 {
+    color: #ffffff !important;
+}
+
+.dark-mode-active .modal-body p {
+    color: #e0e0e0 !important;
+}
+
+.dark-mode-active .modal-body ul li {
+    color: #e0e0e0 !important;
+}
+
+.dark-mode-active .modal-body .post-meta {
+    border-bottom-color: #3a3a5c !important;
+}
+
+.dark-mode-active .benefit-card {
+    background: linear-gradient(135deg, #2d2d4a 0%, #3a3a5c 100%) !important;
+    border-color: rgba(255, 117, 140, 0.3) !important;
+}
+
+.dark-mode-active .benefit-card h4 {
+    color: #ffffff !important;
+}
+
+.dark-mode-active .benefit-card p {
+    color: #e0e0e0 !important;
+}
+
+/* ניווט במצב כהה */
+.dark-mode-active nav a {
+    background: rgba(255, 255, 255, 0.1) !important;
+    color: #ffffff !important;
+}
+
+.dark-mode-active nav a:hover,
+.dark-mode-active nav a.active {
+    background: linear-gradient(135deg, #ff758c, #ff7eb3) !important;
+    color: #ffffff !important;
+}
+
+/* כלל לכל אלמנט עם רקע rgba לבן */
+.dark-mode-active [style*="rgba(255, 255, 255"],
+.dark-mode-active [style*="rgba(255,255,255"] {
+    background-color: #252542 !important;
+    color: #eaeaea !important;
+}
+
+/* וידוא שכל הטקסטים נראים */
+.dark-mode-active [style*="color: #2c3e50"],
+.dark-mode-active [style*="color:#2c3e50"],
+.dark-mode-active [style*="color: #34495e"],
+.dark-mode-active [style*="color:#34495e"],
+.dark-mode-active [style*="color: #333"],
+.dark-mode-active [style*="color:#333"] {
+    color: #eaeaea !important;
+}
+
+/* כרטיסי קריאה נוספים */
+.dark-mode-active .read-more-btn {
+    background: linear-gradient(135deg, #ff758c, #ff7eb3) !important;
+    color: #ffffff !important;
+}
+
+.dark-mode-active .post-category {
+    background: linear-gradient(135deg, #ff758c, #ff7eb3) !important;
+    color: #ffffff !important;
+}
+
+/* ===== שמירת מיקום פאנל נגישות במצבי נגישות ===== */
+
+/* שמירת מיקום וסגנון פאנל נגישות בכל המצבים */
+.high-contrast-active .accessibility-panel,
+.invert-colors-active .accessibility-panel {
+    position: fixed !important;
+    top: 50% !important;
+    left: 70px !important;
+    transform: translateY(-50%) scale(0.95) !important;
+    filter: none !important;
+    background: white !important;
+    z-index: 100000 !important;
+}
+
+.dark-mode-active .accessibility-panel {
+    position: fixed !important;
+    top: 50% !important;
+    left: 70px !important;
+    transform: translateY(-50%) scale(0.95) !important;
+    filter: none !important;
+    z-index: 100000 !important;
+}
+
+.high-contrast-active .accessibility-panel.active,
+.invert-colors-active .accessibility-panel.active {
+    transform: translateY(-50%) scale(1) !important;
+    filter: none !important;
+    background: white !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+.dark-mode-active .accessibility-panel.active {
+    transform: translateY(-50%) scale(1) !important;
+    filter: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* שמירת סגנון תוכן פאנל נגישות במצב ניגודיות גבוהה והפוך צבעים */
+.high-contrast-active .accessibility-panel *,
+.invert-colors-active .accessibility-panel * {
+    background: inherit !important;
+    color: inherit !important;
+    filter: none !important;
+}
+
+.high-contrast-active .accessibility-header,
+.invert-colors-active .accessibility-header {
+    background: linear-gradient(135deg, #2196F3, #1976D2) !important;
+    color: white !important;
+}
+
+.high-contrast-active .accessibility-content,
+.invert-colors-active .accessibility-content {
+    background: white !important;
+    color: #333 !important;
+}
+
+.high-contrast-active .accessibility-section h3,
+.invert-colors-active .accessibility-section h3 {
+    color: #1976D2 !important;
+}
+
+.high-contrast-active .accessibility-panel .accessibility-btn,
+.invert-colors-active .accessibility-panel .accessibility-btn {
+    background: #f5f5f5 !important;
+    color: #333 !important;
+    border-color: transparent !important;
+}
+
+.high-contrast-active .accessibility-panel .accessibility-btn[aria-pressed="true"],
+.invert-colors-active .accessibility-panel .accessibility-btn[aria-pressed="true"] {
+    background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%) !important;
+    color: white !important;
+}
+
+.high-contrast-active .accessibility-panel .accessibility-btn i,
+.invert-colors-active .accessibility-panel .accessibility-btn i {
+    color: #2196F3 !important;
+}
+
+.high-contrast-active .accessibility-panel .accessibility-btn[aria-pressed="true"] i,
+.invert-colors-active .accessibility-panel .accessibility-btn[aria-pressed="true"] i {
+    color: white !important;
+}
+
+/* שמירת מיקום כפתור נגישות בכל המצבים */
+.high-contrast-active .accessibility-trigger,
+.dark-mode-active .accessibility-trigger,
+.invert-colors-active .accessibility-trigger {
+    position: fixed !important;
+    top: 50% !important;
+    left: 15px !important;
+    transform: translateY(-50%) !important;
+    filter: none !important;
+    background: linear-gradient(135deg, #2196F3, #1976D2) !important;
+    color: white !important;
+    z-index: 100000 !important;
+}
+
+.high-contrast-active .accessibility-trigger:hover,
+.high-contrast-active .accessibility-trigger:focus,
+.dark-mode-active .accessibility-trigger:hover,
+.dark-mode-active .accessibility-trigger:focus,
+.invert-colors-active .accessibility-trigger:hover,
+.invert-colors-active .accessibility-trigger:focus {
+    transform: translateY(-50%) scale(1.1) !important;
+}
+
+/* מובייל - שמירת מיקום פאנל נגישות */
+@media (max-width: 768px) {
+    .high-contrast-active .accessibility-panel,
+    .invert-colors-active .accessibility-panel,
+    .dark-mode-active .accessibility-panel {
+        left: 15px !important;
+        right: 15px !important;
+        width: auto !important;
+        top: 45% !important;
+    }
+
+    .high-contrast-active .accessibility-panel.active,
+    .invert-colors-active .accessibility-panel.active,
+    .dark-mode-active .accessibility-panel.active {
+        left: 15px !important;
+        right: 15px !important;
+        width: auto !important;
+        top: 45% !important;
+        transform: translateY(-50%) scale(1) !important;
+    }
+
+    .high-contrast-active .accessibility-trigger,
+    .dark-mode-active .accessibility-trigger,
+    .invert-colors-active .accessibility-trigger {
+        top: 40% !important;
+    }
+}
