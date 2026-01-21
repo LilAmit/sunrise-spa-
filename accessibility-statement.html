@@ -119,6 +119,51 @@
                 left: 15px;
             }
         }
+
+        /* מצב כהה - Dark Mode */
+        .dark-mode-active .accessibility-statement-container {
+            background: #252542 !important;
+        }
+        .dark-mode-active .accessibility-statement-container h1,
+        .dark-mode-active .accessibility-statement-container h2,
+        .dark-mode-active .accessibility-statement-container h3 {
+            color: #ffffff !important;
+        }
+        .dark-mode-active .accessibility-statement-container p,
+        .dark-mode-active .accessibility-statement-container li,
+        .dark-mode-active .accessibility-statement-container ul {
+            color: #e0e0e0 !important;
+        }
+        .dark-mode-active .last-updated {
+            color: #b0b0b0 !important;
+        }
+        .dark-mode-active .contact-info {
+            background: rgba(255, 117, 140, 0.15) !important;
+        }
+        .dark-mode-active .highlight-box {
+            background: linear-gradient(135deg, rgba(255,117,140,0.2), rgba(255,117,140,0.1)) !important;
+        }
+        .dark-mode-active table {
+            background: #2d2d4a !important;
+        }
+        .dark-mode-active th {
+            background: linear-gradient(135deg, #3a3a5c, #4a4a6c) !important;
+            color: #ffffff !important;
+        }
+        .dark-mode-active td {
+            color: #e0e0e0 !important;
+        }
+        .dark-mode-active tr:nth-child(even) {
+            background: #252542 !important;
+        }
+        .dark-mode-active tr:nth-child(odd) {
+            background: #2d2d4a !important;
+        }
+        .dark-mode-active kbd {
+            background: #3a3a5c !important;
+            color: #ffffff !important;
+            border-color: #4a4a6c !important;
+        }
     </style>
 </head>
 <body>
@@ -172,8 +217,7 @@
     <ul>
         <li><strong>ניווט במקלדת:</strong> האתר ניתן לניווט מלא באמצעות מקלדת בלבד, ללא צורך בעכבר</li>
         <li><strong>התאמת גודל גופנים:</strong> אפשרות להגדלה והקטנה של גודל הטקסט באתר</li>
-        <li><strong>ניגודיות גבוהה:</strong> מצב ניגודיות מוגברת לנוחות קריאה משופרת</li>
-        <li><strong>ניגודיות כהה:</strong> מצב רקע כהה לצמצום עייפות עיניים</li>
+        <li><strong>מצב כהה:</strong> מצב רקע כהה לצמצום עייפות עיניים</li>
         <li><strong>הדגשת קישורים:</strong> הדגשה ברורה של קישורים באתר לזיהוי קל יותר</li>
         <li><strong>כיוון טקסט:</strong> אפשרות להיפוך כיוון הטקסט (LTR/RTL)</li>
         <li><strong>הפסקת אנימציות:</strong> ביטול אנימציות עבור משתמשים רגישים לתנועה</li>
@@ -240,6 +284,133 @@
         <li>השינויים נשמרים אוטומטית עבור הביקור הבא שלכם</li>
     </ol>
 
+    <h2 id="keyboard-shortcuts"><i class="fa-solid fa-keyboard"></i> קיצורי מקלדת ומדריך ניווט</h2>
+    <p>האתר שלנו תומך בניווט מקלדת מלא עבור משתמשים שמעדיפים או זקוקים לניווט ללא עכבר. ניתן להשתמש בקיצורי המקלדת הבאים בכל הדפים באתר.</p>
+
+    <h3>קיצורי מקלדת לניווט מהיר באתר:</h3>
+    <div class="keyboard-guide">
+        <table style="width: 100%; border-collapse: collapse; margin: 15px 0;">
+            <thead>
+                <tr style="background: linear-gradient(135deg, #4CAF50, #45a049); color: white;">
+                    <th style="padding: 12px; text-align: right; border: 1px solid #ddd;">קיצור</th>
+                    <th style="padding: 12px; text-align: right; border: 1px solid #ddd;">פעולה</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr style="background: #e8f5e9;">
+                    <td style="padding: 10px; border: 1px solid #ddd;"><kbd style="background: #eee; padding: 3px 8px; border-radius: 4px; font-family: monospace;">Alt</kbd> + <kbd style="background: #eee; padding: 3px 8px; border-radius: 4px; font-family: monospace;">1</kbd></td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">מעבר לעמוד הבית</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px; border: 1px solid #ddd;"><kbd style="background: #eee; padding: 3px 8px; border-radius: 4px; font-family: monospace;">Alt</kbd> + <kbd style="background: #eee; padding: 3px 8px; border-radius: 4px; font-family: monospace;">2</kbd></td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">מעבר לגלריה</td>
+                </tr>
+                <tr style="background: #e8f5e9;">
+                    <td style="padding: 10px; border: 1px solid #ddd;"><kbd style="background: #eee; padding: 3px 8px; border-radius: 4px; font-family: monospace;">Alt</kbd> + <kbd style="background: #eee; padding: 3px 8px; border-radius: 4px; font-family: monospace;">3</kbd></td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">מעבר לבלוג</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px; border: 1px solid #ddd;"><kbd style="background: #eee; padding: 3px 8px; border-radius: 4px; font-family: monospace;">Alt</kbd> + <kbd style="background: #eee; padding: 3px 8px; border-radius: 4px; font-family: monospace;">4</kbd></td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">מעבר לשאלות נפוצות</td>
+                </tr>
+                <tr style="background: #e8f5e9;">
+                    <td style="padding: 10px; border: 1px solid #ddd;"><kbd style="background: #eee; padding: 3px 8px; border-radius: 4px; font-family: monospace;">Alt</kbd> + <kbd style="background: #eee; padding: 3px 8px; border-radius: 4px; font-family: monospace;">5</kbd></td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">מעבר להצהרת נגישות (דף זה)</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px; border: 1px solid #ddd;"><kbd style="background: #eee; padding: 3px 8px; border-radius: 4px; font-family: monospace;">Alt</kbd> + <kbd style="background: #eee; padding: 3px 8px; border-radius: 4px; font-family: monospace;">W</kbd></td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">פתיחת וואטסאפ ליצירת קשר</td>
+                </tr>
+                <tr style="background: #e8f5e9;">
+                    <td style="padding: 10px; border: 1px solid #ddd;"><kbd style="background: #eee; padding: 3px 8px; border-radius: 4px; font-family: monospace;">Alt</kbd> + <kbd style="background: #eee; padding: 3px 8px; border-radius: 4px; font-family: monospace;">A</kbd></td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">פתיחת תפריט הנגישות</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px; border: 1px solid #ddd;"><kbd style="background: #eee; padding: 3px 8px; border-radius: 4px; font-family: monospace;">Alt</kbd> + <kbd style="background: #eee; padding: 3px 8px; border-radius: 4px; font-family: monospace;">C</kbd></td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">פתיחת הצ'אטבוט</td>
+                </tr>
+                <tr style="background: #e8f5e9;">
+                    <td style="padding: 10px; border: 1px solid #ddd;"><kbd style="background: #eee; padding: 3px 8px; border-radius: 4px; font-family: monospace;">Alt</kbd> + <kbd style="background: #eee; padding: 3px 8px; border-radius: 4px; font-family: monospace;">T</kbd></td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">גלילה לראש העמוד</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px; border: 1px solid #ddd;"><kbd style="background: #eee; padding: 3px 8px; border-radius: 4px; font-family: monospace;">Alt</kbd> + <kbd style="background: #eee; padding: 3px 8px; border-radius: 4px; font-family: monospace;">B</kbd></td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">גלילה לתחתית העמוד</td>
+                </tr>
+                <tr style="background: #e8f5e9;">
+                    <td style="padding: 10px; border: 1px solid #ddd;"><kbd style="background: #eee; padding: 3px 8px; border-radius: 4px; font-family: monospace;">Esc</kbd></td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">סגירת תפריטים וחלונות פתוחים</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px; border: 1px solid #ddd;"><kbd style="background: #eee; padding: 3px 8px; border-radius: 4px; font-family: monospace;">?</kbd></td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">הצגת דף קיצורי המקלדת (דף זה)</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h3>מקשי ניווט כלליים:</h3>
+    <div class="keyboard-guide">
+        <table style="width: 100%; border-collapse: collapse; margin: 15px 0;">
+            <thead>
+                <tr style="background: linear-gradient(135deg, #667eea, #764ba2); color: white;">
+                    <th style="padding: 12px; text-align: right; border: 1px solid #ddd;">מקש</th>
+                    <th style="padding: 12px; text-align: right; border: 1px solid #ddd;">פעולה</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr style="background: #f9f9f9;">
+                    <td style="padding: 10px; border: 1px solid #ddd;"><kbd style="background: #eee; padding: 3px 8px; border-radius: 4px; font-family: monospace;">Tab</kbd></td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">מעבר לאלמנט הבא (קישור, כפתור, שדה טופס)</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px; border: 1px solid #ddd;"><kbd style="background: #eee; padding: 3px 8px; border-radius: 4px; font-family: monospace;">Shift</kbd> + <kbd style="background: #eee; padding: 3px 8px; border-radius: 4px; font-family: monospace;">Tab</kbd></td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">מעבר לאלמנט הקודם</td>
+                </tr>
+                <tr style="background: #f9f9f9;">
+                    <td style="padding: 10px; border: 1px solid #ddd;"><kbd style="background: #eee; padding: 3px 8px; border-radius: 4px; font-family: monospace;">&#8592;</kbd> חץ שמאלה</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">מעבר לאלמנט הבא (במצב ניווט מקלדת)</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px; border: 1px solid #ddd;"><kbd style="background: #eee; padding: 3px 8px; border-radius: 4px; font-family: monospace;">&#8594;</kbd> חץ ימינה</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">מעבר לאלמנט הקודם (במצב ניווט מקלדת)</td>
+                </tr>
+                <tr style="background: #f9f9f9;">
+                    <td style="padding: 10px; border: 1px solid #ddd;"><kbd style="background: #eee; padding: 3px 8px; border-radius: 4px; font-family: monospace;">&#8593;</kbd> חץ למעלה / <kbd style="background: #eee; padding: 3px 8px; border-radius: 4px; font-family: monospace;">&#8595;</kbd> חץ למטה</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">גלילה בדף למעלה/למטה</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px; border: 1px solid #ddd;"><kbd style="background: #eee; padding: 3px 8px; border-radius: 4px; font-family: monospace;">Enter</kbd> / <kbd style="background: #eee; padding: 3px 8px; border-radius: 4px; font-family: monospace;">רווח</kbd></td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">הפעלת הכפתור או הקישור הנוכחי</td>
+                </tr>
+                <tr style="background: #f9f9f9;">
+                    <td style="padding: 10px; border: 1px solid #ddd;"><kbd style="background: #eee; padding: 3px 8px; border-radius: 4px; font-family: monospace;">Home</kbd></td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">מעבר לאלמנט הראשון בדף</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px; border: 1px solid #ddd;"><kbd style="background: #eee; padding: 3px 8px; border-radius: 4px; font-family: monospace;">End</kbd></td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">מעבר לאלמנט האחרון בדף</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h3>קיצורים מיוחדים בדפים ספציפיים:</h3>
+    <div class="highlight-box">
+        <p><strong>בדף הגלריה:</strong></p>
+        <ul style="margin: 10px 0;">
+            <li><kbd style="background: #eee; padding: 3px 8px; border-radius: 4px; font-family: monospace;">Enter</kbd> או <kbd style="background: #eee; padding: 3px 8px; border-radius: 4px; font-family: monospace;">רווח</kbd> - פתיחת תמונה בתצוגה מוגדלת</li>
+            <li><kbd style="background: #eee; padding: 3px 8px; border-radius: 4px; font-family: monospace;">&#8592;</kbd> / <kbd style="background: #eee; padding: 3px 8px; border-radius: 4px; font-family: monospace;">&#8594;</kbd> - מעבר בין תמונות בתצוגה המוגדלת</li>
+            <li><kbd style="background: #eee; padding: 3px 8px; border-radius: 4px; font-family: monospace;">Esc</kbd> - סגירת תצוגת התמונה</li>
+        </ul>
+        <p><strong>בדף שאלות נפוצות:</strong></p>
+        <ul style="margin: 10px 0;">
+            <li><kbd style="background: #eee; padding: 3px 8px; border-radius: 4px; font-family: monospace;">Enter</kbd> או <kbd style="background: #eee; padding: 3px 8px; border-radius: 4px; font-family: monospace;">רווח</kbd> - פתיחה/סגירה של שאלה לצפייה בתשובה</li>
+        </ul>
+    </div>
+
+    <p><strong>טיפ:</strong> כאשר ניווט המקלדת פעיל, האלמנט הנוכחי יודגש בקו כתום בולט כדי לעזור לכם לדעת היכן אתם נמצאים בדף.</p>
+
     <h2>צור קשר בנושאי נגישות</h2>
     <div class="contact-info">
         <p><strong>אם נתקלתם בבעיית נגישות באתר, או שיש לכם הצעות לשיפור הנגישות, נשמח לשמוע מכם:</strong></p>
@@ -279,18 +450,34 @@
 <!-- חלון הצ'אטבוט -->
 <div class="chatbot-container" id="chatbotContainer">
     <div class="chatbot-header">
-        <h3>💬 צ'אט עם סאנרייז ספא</h3>
+        <img src="SunriseLogo.png" alt="סאנרייז ספא" class="chatbot-logo">
+        <h3>סאנרייז ספא</h3>
         <button class="chatbot-close" id="chatbotClose" aria-label="סגור צ'אטבוט">
             <i class="fa-solid fa-times"></i>
         </button>
     </div>
     <div class="chatbot-messages" id="chatbotMessages">
-        <div class="chatbot-message bot-message">
-            שלום! 👋 אני כאן לעזור לך. במה אוכל לסייע?
+        <div class="bot-message">
+            <div class="message-avatar">
+                <i class="fa-solid fa-spa"></i>
+            </div>
+            <div class="message-content">
+                שלום! 👋 אני עוזר וירטואלי של סאנרייז ספא.<br>
+                איך אוכל לעזור לך היום?
+            </div>
+        </div>
+
+        <div class="quick-questions">
+            <button class="quick-btn" data-question="hours">🕐 שעות פעילות</button>
+            <button class="quick-btn" data-question="prices">💰 מחירון</button>
+            <button class="quick-btn" data-question="location">📍 איפה אתם?</button>
+            <button class="quick-btn" data-question="services">💆 אילו עיסויים יש?</button>
+            <button class="quick-btn" data-question="booking">📅 איך מזמינים תור?</button>
         </div>
     </div>
-    <div class="chatbot-input-container">
-        <input type="text" id="chatbotInput" placeholder="הקלד את שאלתך כאן..." aria-label="שדה הודעה">
+
+    <div class="chatbot-input-area">
+        <input type="text" id="chatbotInput" placeholder="כתוב את השאלה שלך..." aria-label="שדה שאלה">
         <button id="chatbotSend" aria-label="שלח הודעה">
             <i class="fa-solid fa-paper-plane"></i>
         </button>
@@ -378,13 +565,13 @@
         <div class="accessibility-section">
             <h3><i class="fa-solid fa-palette"></i> צבעים וניגודיות</h3>
             <div class="accessibility-buttons">
-                <button class="accessibility-btn" id="highContrastBtn" title="ניגודיות גבוהה" aria-pressed="false">
-                    <i class="fa-solid fa-adjust"></i>
-                    ניגודיות גבוהה
-                </button>
                 <button class="accessibility-btn" id="darkContrastBtn" title="מצב כהה" aria-pressed="false">
                     <i class="fa-solid fa-moon"></i>
                     מצב כהה
+                </button>
+                <button class="accessibility-btn" id="highContrastYellowBtn" title="ניגודיות גבוהה" aria-pressed="false">
+                    <i class="fa-solid fa-eye"></i>
+                    ניגודיות גבוהה
                 </button>
             </div>
             <button class="accessibility-btn" id="invertColorsBtn" title="הפוך צבעים" aria-pressed="false" style="margin-top: 8px;">
@@ -415,10 +602,6 @@
                 <i class="fa-solid fa-grip-lines"></i>
                 סרגל קריאה
             </button>
-            <button class="accessibility-btn" id="readingModeBtn" title="מצב קריאה ממוקד" aria-pressed="false" style="margin-top: 8px;">
-                <i class="fa-solid fa-book-open"></i>
-                מצב קריאה
-            </button>
         </div>
 
         <!-- הדגשות -->
@@ -427,6 +610,24 @@
             <button class="accessibility-btn" id="highlightLinksBtn" title="הדגש קישורים" aria-pressed="false">
                 <i class="fa-solid fa-link"></i>
                 הדגש קישורים
+            </button>
+        </div>
+
+        <!-- הסתרת מדיה -->
+        <div class="accessibility-section">
+            <h3><i class="fa-solid fa-image"></i> תמונות וסרטונים</h3>
+            <button class="accessibility-btn" id="hideMediaBtn" title="הסתר תמונות וסרטונים" aria-pressed="false">
+                <i class="fa-solid fa-eye-slash"></i>
+                הסתר תמונות
+            </button>
+        </div>
+
+        <!-- ניווט מקלדת -->
+        <div class="accessibility-section">
+            <h3><i class="fa-solid fa-keyboard"></i> ניווט מקלדת</h3>
+            <button class="accessibility-btn" id="keyboardNavBtn" title="הפעל ניווט מקלדת מלא" aria-pressed="false">
+                <i class="fa-solid fa-keyboard"></i>
+                ניווט מקלדת מלא
             </button>
         </div>
 
