@@ -965,7 +965,16 @@ footer {
 }
 
 /* צבעים הפוכים - Inverted Colors */
-.invert-colors-active {
+/* החלת filter רק על התוכן, לא על פאנל הנגישות */
+.invert-colors-active header,
+.invert-colors-active .gallery-header,
+.invert-colors-active .image-container,
+.invert-colors-active footer,
+.invert-colors-active .chatbot-container,
+.invert-colors-active .chatbot-btn,
+.invert-colors-active .whatsapp-float,
+.invert-colors-active .back-to-top,
+.invert-colors-active #lightbox {
     filter: invert(1) hue-rotate(180deg);
 }
 
@@ -1010,12 +1019,21 @@ footer {
 }
 
 /* ניגודיות גבוהה - High Contrast */
-.high-contrast-active {
+/* החלת filter רק על התוכן, לא על פאנל הנגישות */
+.high-contrast-active header,
+.high-contrast-active .gallery-header,
+.high-contrast-active .image-container,
+.high-contrast-active footer,
+.high-contrast-active .chatbot-container,
+.high-contrast-active .chatbot-btn,
+.high-contrast-active .whatsapp-float,
+.high-contrast-active .back-to-top,
+.high-contrast-active #lightbox {
     filter: contrast(1.5);
 }
 
 .high-contrast-active,
-.high-contrast-active * {
+.high-contrast-active *:not(.accessibility-panel):not(.accessibility-panel *):not(.accessibility-trigger) {
     background: #000 !important;
     color: #FFFF00 !important;
     border-color: #FFFF00 !important;
@@ -1033,15 +1051,455 @@ footer {
     border: 2px solid #FFF !important;
 }
 
-/* מצב כהה - Dark Mode */
-.dark-mode-active {
-    filter: invert(0.9) hue-rotate(180deg);
+/* שמירת מיקום וסגנון פאנל נגישות בכל המצבים */
+.high-contrast-active .accessibility-panel,
+.invert-colors-active .accessibility-panel {
+    position: fixed !important;
+    top: 50% !important;
+    left: 70px !important;
+    transform: translateY(-50%) !important;
+    filter: none !important;
+    background: white !important;
+    z-index: 100000 !important;
 }
 
+.dark-mode-active .accessibility-panel {
+    position: fixed !important;
+    top: 50% !important;
+    left: 70px !important;
+    transform: translateY(-50%) scale(0.95) !important;
+    filter: none !important;
+    z-index: 100000 !important;
+}
+
+.high-contrast-active .accessibility-panel.active,
+.invert-colors-active .accessibility-panel.active {
+    transform: translateY(-50%) !important;
+    filter: none !important;
+    background: white !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+.dark-mode-active .accessibility-panel.active {
+    transform: translateY(-50%) scale(1) !important;
+    filter: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* שמירת סגנון תוכן פאנל נגישות במצב ניגודיות גבוהה והפוך צבעים */
+.high-contrast-active .accessibility-panel *,
+.invert-colors-active .accessibility-panel * {
+    background: inherit !important;
+    color: inherit !important;
+    filter: none !important;
+}
+
+.high-contrast-active .accessibility-header,
+.invert-colors-active .accessibility-header {
+    background: linear-gradient(135deg, #2196F3, #1976D2) !important;
+    color: white !important;
+}
+
+.high-contrast-active .accessibility-content,
+.invert-colors-active .accessibility-content {
+    background: white !important;
+    color: #333 !important;
+}
+
+.high-contrast-active .accessibility-section h3,
+.invert-colors-active .accessibility-section h3 {
+    color: #1976D2 !important;
+}
+
+.high-contrast-active .accessibility-panel .accessibility-btn,
+.invert-colors-active .accessibility-panel .accessibility-btn {
+    background: #f5f5f5 !important;
+    color: #333 !important;
+    border-color: transparent !important;
+}
+
+.high-contrast-active .accessibility-panel .accessibility-btn[aria-pressed="true"],
+.invert-colors-active .accessibility-panel .accessibility-btn[aria-pressed="true"] {
+    background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%) !important;
+    color: white !important;
+}
+
+.high-contrast-active .accessibility-panel .accessibility-btn i,
+.invert-colors-active .accessibility-panel .accessibility-btn i {
+    color: #2196F3 !important;
+}
+
+.high-contrast-active .accessibility-panel .accessibility-btn[aria-pressed="true"] i,
+.invert-colors-active .accessibility-panel .accessibility-btn[aria-pressed="true"] i {
+    color: white !important;
+}
+
+/* שמירת מיקום כפתור נגישות בכל המצבים */
+.high-contrast-active .accessibility-trigger,
+.dark-mode-active .accessibility-trigger,
+.invert-colors-active .accessibility-trigger {
+    position: fixed !important;
+    top: 50% !important;
+    left: 15px !important;
+    transform: translateY(-50%) !important;
+    filter: none !important;
+    background: linear-gradient(135deg, #2196F3, #1976D2) !important;
+    color: white !important;
+    z-index: 100000 !important;
+}
+
+.high-contrast-active .accessibility-trigger:hover,
+.high-contrast-active .accessibility-trigger:focus,
+.dark-mode-active .accessibility-trigger:hover,
+.dark-mode-active .accessibility-trigger:focus,
+.invert-colors-active .accessibility-trigger:hover,
+.invert-colors-active .accessibility-trigger:focus {
+    transform: translateY(-50%) scale(1.1) !important;
+}
+
+/* מובייל - שמירת מיקום פאנל נגישות */
+@media (max-width: 768px) {
+    .high-contrast-active .accessibility-panel,
+    .invert-colors-active .accessibility-panel,
+    .dark-mode-active .accessibility-panel {
+        left: 15px !important;
+        right: 15px !important;
+        width: auto !important;
+        top: 45% !important;
+    }
+
+    .high-contrast-active .accessibility-panel.active,
+    .invert-colors-active .accessibility-panel.active,
+    .dark-mode-active .accessibility-panel.active {
+        left: 15px !important;
+        right: 15px !important;
+        width: auto !important;
+        top: 45% !important;
+        transform: translateY(-50%) scale(1) !important;
+    }
+
+    .high-contrast-active .accessibility-trigger,
+    .dark-mode-active .accessibility-trigger,
+    .invert-colors-active .accessibility-trigger {
+        top: 40% !important;
+    }
+}
+
+/* מצב כהה - Dark Mode */
+.dark-mode-active,
+.dark-mode-active body {
+    background: #1a1a2e !important;
+    background-image: none !important;
+    color: #eaeaea !important;
+}
+
+/* הסתרת האוברליי במצב כהה */
+.dark-mode-active html::before {
+    display: none !important;
+}
+
+.dark-mode-active header {
+    background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 50%, #0f0f1a 100%) !important;
+    color: #ffffff !important;
+}
+
+.dark-mode-active nav a {
+    background: rgba(255, 255, 255, 0.1) !important;
+    color: #ffffff !important;
+}
+
+.dark-mode-active nav a:hover,
+.dark-mode-active nav a.active {
+    background: linear-gradient(135deg, #ff758c, #ff7eb3) !important;
+    color: #ffffff !important;
+}
+
+.dark-mode-active .gallery-header,
+.dark-mode-active .image-container {
+    background: transparent !important;
+}
+
+.dark-mode-active .gallery-item {
+    background: #252542 !important;
+    border-color: #3a3a5c !important;
+}
+
+.dark-mode-active h1,
+.dark-mode-active h2,
+.dark-mode-active h3,
+.dark-mode-active h4 {
+    color: #ffffff !important;
+}
+
+.dark-mode-active p,
+.dark-mode-active span {
+    color: #e0e0e0 !important;
+}
+
+.dark-mode-active a {
+    color: #ff9eb5 !important;
+}
+
+.dark-mode-active footer {
+    background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 100%) !important;
+    color: #ffffff !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+.dark-mode-active .contact-badge {
+    background-color: #252542 !important;
+    color: #eaeaea !important;
+}
+
+.dark-mode-active .contact-badge strong {
+    color: #ffffff !important;
+}
+
+.dark-mode-active .social-title {
+    color: #ffffff !important;
+}
+
+.dark-mode-active .social-links a {
+    color: #ffffff !important;
+}
+
+.dark-mode-active .footer-link {
+    color: #ff9eb5 !important;
+}
+
+.dark-mode-active .footer-link:hover {
+    color: #ffffff !important;
+}
+
+.dark-mode-active .lightbox {
+    background: rgba(10, 10, 20, 0.95) !important;
+}
+
+.dark-mode-active .chatbot-container {
+    background: #252542 !important;
+}
+
+.dark-mode-active .chatbot-messages {
+    background: #1a1a2e !important;
+}
+
+.dark-mode-active .bot-message .message-content {
+    background: #2d2d4a !important;
+    color: #eaeaea !important;
+}
+
+.dark-mode-active .accessibility-panel {
+    background: #252542 !important;
+    color: #eaeaea !important;
+}
+
+.dark-mode-active .accessibility-btn {
+    background: #3a3a5c !important;
+    color: #ffffff !important;
+}
+
+/* כלל כללי - כל אלמנט יקבל רקע כהה (למעט footer) */
+.dark-mode-active .container,
+.dark-mode-active .wrapper,
+.dark-mode-active .box,
+.dark-mode-active .card,
+.dark-mode-active .panel {
+    background-color: #252542 !important;
+    color: #eaeaea !important;
+}
+
+/* וידוא שה-footer וכל מה שבתוכו נשאר תקין */
+.dark-mode-active footer,
+.dark-mode-active footer div,
+.dark-mode-active footer .social-links,
+.dark-mode-active footer .social-links a {
+    background-color: transparent !important;
+}
+
+.dark-mode-active footer {
+    background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 100%) !important;
+}
+
+/* קופסאות תוכן עם רקע לבן */
+.dark-mode-active [style*="background: white"],
+.dark-mode-active [style*="background: #fff"],
+.dark-mode-active [style*="background: #ffffff"],
+.dark-mode-active [style*="background-color: white"],
+.dark-mode-active [style*="background-color: #fff"],
+.dark-mode-active [style*="background-color: #ffffff"] {
+    background-color: #252542 !important;
+    color: #eaeaea !important;
+}
+
+/* וידוא שכל הטקסטים קריאים */
+.dark-mode-active strong,
+.dark-mode-active b,
+.dark-mode-active em,
+.dark-mode-active i:not(.fa-solid):not(.fa-brands):not(.fa-regular),
+.dark-mode-active label,
+.dark-mode-active figcaption,
+.dark-mode-active caption {
+    color: #eaeaea !important;
+}
+
+/* אלמנטים ספציפיים של הגלריה */
+.dark-mode-active .gallery-header {
+    background: transparent !important;
+}
+
+.dark-mode-active .gallery-header h2 {
+    color: #ffffff !important;
+}
+
+.dark-mode-active .gallery-header p {
+    color: #e0e0e0 !important;
+    background: rgba(37, 37, 66, 0.95) !important;
+}
+
+.dark-mode-active .gallery-title {
+    color: #ffffff !important;
+}
+
+.dark-mode-active .gallery-subtitle {
+    color: #e0e0e0 !important;
+}
+
+.dark-mode-active .gallery-text,
+.dark-mode-active .image-caption {
+    color: #e0e0e0 !important;
+}
+
+/* Lightbox controls */
+.dark-mode-active #lightbox-controls {
+    background: rgba(30, 30, 50, 0.9) !important;
+}
+
+.dark-mode-active #lightbox-controls button {
+    background: #3a3a5c !important;
+    color: #ffffff !important;
+}
+
+.dark-mode-active #lightbox-controls button:hover {
+    background: linear-gradient(135deg, #ff758c, #ff7eb3) !important;
+}
+
+.dark-mode-active #lightbox-caption {
+    color: #ffffff !important;
+    background: rgba(30, 30, 50, 0.8) !important;
+}
+
+/* Video indicator */
+.dark-mode-active .video-indicator {
+    background: rgba(30, 30, 50, 0.8) !important;
+    color: #ffffff !important;
+}
+
+/* Quick buttons in chatbot */
+.dark-mode-active .quick-btn {
+    background: #3a3a5c !important;
+    color: #ffffff !important;
+    border-color: #4a4a6c !important;
+}
+
+.dark-mode-active .quick-btn:hover {
+    background: #4a4a6c !important;
+}
+
+/* Chatbot input */
+.dark-mode-active .chatbot-input-area {
+    background: #2d2d4a !important;
+}
+
+.dark-mode-active #chatbotInput {
+    background: #1a1a2e !important;
+    color: #eaeaea !important;
+    border-color: #3a3a5c !important;
+}
+
+.dark-mode-active #chatbotSend {
+    background: linear-gradient(135deg, #ff758c, #ff7eb3) !important;
+    color: #ffffff !important;
+}
+
+/* User message */
+.dark-mode-active .user-message .message-content {
+    background: linear-gradient(135deg, #ff758c, #ff7eb3) !important;
+    color: #ffffff !important;
+}
+
+/* Accessibility sections and buttons */
+.dark-mode-active .accessibility-section {
+    background: transparent !important;
+}
+
+.dark-mode-active .accessibility-section h3 {
+    color: #ffffff !important;
+}
+
+.dark-mode-active .accessibility-header {
+    background: linear-gradient(135deg, #ff758c, #ff7eb3) !important;
+}
+
+.dark-mode-active .accessibility-content {
+    background: #252542 !important;
+}
+
+.dark-mode-active .accessibility-statement-btn {
+    background: #3a3a5c !important;
+    color: #ffffff !important;
+}
+
+.dark-mode-active .accessibility-reset-btn {
+    background: #dc3545 !important;
+    color: #ffffff !important;
+}
+
+/* Stars background */
+.dark-mode-active .stars {
+    background: transparent !important;
+}
+
+/* Image container - transparent */
+.dark-mode-active .image-container {
+    background: transparent !important;
+}
+
+/* Title container in header */
+.dark-mode-active .title-container {
+    background: transparent !important;
+}
+
+/* Contact details */
+.dark-mode-active .contact-details {
+    background: transparent !important;
+}
+
+/* כלל לכל אלמנט עם רקע rgba לבן */
+.dark-mode-active [style*="rgba(255, 255, 255"],
+.dark-mode-active [style*="rgba(255,255,255"] {
+    background-color: #252542 !important;
+    color: #eaeaea !important;
+}
+
+/* וידוא שכל הטקסטים נראים */
+.dark-mode-active [style*="color: #2c3e50"],
+.dark-mode-active [style*="color:#2c3e50"],
+.dark-mode-active [style*="color: #34495e"],
+.dark-mode-active [style*="color:#34495e"],
+.dark-mode-active [style*="color: #333"],
+.dark-mode-active [style*="color:#333"] {
+    color: #eaeaea !important;
+}
+
+/* תמונות נשארות רגילות במצב כהה */
 .dark-mode-active img,
 .dark-mode-active video,
 .dark-mode-active .logo {
-    filter: invert(0.9) hue-rotate(180deg);
+    filter: none !important;
 }
 
 /* גופן קריא - Readable Font */
@@ -1082,9 +1540,44 @@ footer {
     border-radius: 3px !important;
 }
 
-body.keyboard-nav-active *:focus {
-    outline: 3px solid #FFC107 !important;
-    outline-offset: 2px !important;
+/* הסתרת תמונות וסרטונים - Hide Media */
+.hide-media-active img,
+.hide-media-active video,
+.hide-media-active iframe,
+.hide-media-active svg,
+.hide-media-active picture,
+.hide-media-active .gallery-item,
+.hide-media-active .slider-track {
+    display: none !important;
+}
+
+/* הסתרת תמונת רקע */
+body.hide-media-active {
+    background-image: none !important;
+    background-color: #000 !important;
+}
+
+.hide-media-active .gallery-item::before {
+    content: '[תמונה הוסתרה]';
+    display: block;
+    padding: 20px;
+    background: #f0f0f0;
+    border: 2px dashed #999;
+    text-align: center;
+    color: #666;
+}
+
+/* ניווט מקלדת מלא - Keyboard Navigation */
+/* רק הדגשת פוקוס - בלי שינויים במיקום או בעיצוב */
+.keyboard-nav-active *:focus {
+    outline: 3px solid #FF5722 !important;
+    outline-offset: 3px !important;
+    box-shadow: 0 0 10px rgba(255, 87, 34, 0.5) !important;
+}
+
+/* הסתרת כפתורי דילוג */
+.keyboard-nav-active #skipLinks {
+    display: none !important;
 }
 
 body.grayscale-active {
