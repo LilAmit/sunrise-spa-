@@ -28,9 +28,24 @@ let currentIndex = 0;
 // פתיחת Lightbox עבור כל פריט בגלריה
 if (galleryItems && galleryItems.length > 0) {
     galleryItems.forEach((item, index) => {
+        // הוספת tabindex לתמיכה בניווט מקלדת
+        item.setAttribute('tabindex', '0');
+        item.setAttribute('role', 'button');
+        item.setAttribute('aria-label', `פתח תמונה ${index + 1}`);
+
+        // לחיצה בעכבר
         item.addEventListener('click', () => {
             currentIndex = index;
             openLightbox(item);
+        });
+
+        // לחיצה במקלדת (Enter או Space)
+        item.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                currentIndex = index;
+                openLightbox(item);
+            }
         });
     });
 }
@@ -87,6 +102,10 @@ function closeLightbox() {
         lightbox.style.display = 'none';
         if (lightboxImg) lightboxImg.src = '';
         if (lightboxVideo) lightboxVideo.src = '';
+        // החזר פוקוס לתמונה שנפתחה
+        if (galleryItems[currentIndex]) {
+            galleryItems[currentIndex].focus();
+        }
     }, 400);
 }
 
@@ -120,12 +139,13 @@ if (nextBtn) {
     });
 }
 
-// תמיכה במקלדת
+// תמיכה במקלדת - מותאם ל-RTL
 document.addEventListener('keydown', (e) => {
     if (lightbox && lightbox.classList.contains('show')) {
         if (e.key === 'Escape') closeLightbox();
-        if (e.key === 'ArrowLeft' && nextBtn) nextBtn.click();
+        // ב-RTL: חץ ימינה = תמונה קודמת, חץ שמאלה = תמונה הבאה
         if (e.key === 'ArrowRight' && prevBtn) prevBtn.click();
+        if (e.key === 'ArrowLeft' && nextBtn) nextBtn.click();
     }
 });
 
@@ -186,10 +206,15 @@ const AccessibilityManager = {
             this.closeBtn.addEventListener('click', () => this.closePanel());
         }
 
-        // סגירה ב-ESC
+        // סגירה ב-ESC ואיפוס ב-Alt+R
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && this.panel && this.panel.classList.contains('active')) {
                 this.closePanel();
+            }
+            // Alt+R לאיפוס כל הגדרות הנגישות
+            if (e.altKey && (e.key === 'r' || e.key === 'R' || e.key === 'ר')) {
+                e.preventDefault();
+                this.resetAll();
             }
         });
 
@@ -444,6 +469,143 @@ const AccessibilityManager = {
         this.announce(isActive ? 'צבעים הפוכים הופעלו' : 'צבעים הפוכים בוטלו');
     },
 
+    // ===== הסתרת תמונות וסרטונים =====
+    toggleHideMedia(btn) {
+        const isActive = document.body.classList.toggle('hide-media-active');
+        btn.setAttribute('aria-pressed', isActive);
+        this.announce(isActive ? 'תמונות וסרטונים הוסתרו' : 'תמונות וסרטונים מוצגות');
+    },
+
+    // ===== ניווט מקלדת מלא =====
+    toggleKeyboardNav(btn) {
+        const isActive = document.body.classList.toggle('keyboard-nav-active');
+        btn.setAttribute('aria-pressed', isActive);
+
+        if (isActive) {
+            this.enableFullKeyboardNav();
+            this.announce('ניווט מקלדת מלא הופעל. השתמש בחיצי מקלדת, Tab, Home ו-End לניווט');
+        } else {
+            this.disableFullKeyboardNav();
+            this.announce('ניווט מקלדת מלא בוטל');
+        }
+    },
+
+    enableFullKeyboardNav() {
+        // הוסף tabindex לכל האלמנטים האינטראקטיביים
+        const interactiveElements = document.querySelectorAll(
+            'a, button, input, select, textarea, [role="button"], .gallery-item, .content-box, .service-card'
+        );
+
+        interactiveElements.forEach((el) => {
+            if (!el.hasAttribute('tabindex')) {
+                el.setAttribute('tabindex', '0');
+                el.setAttribute('data-keyboard-nav-added', 'true');
+            }
+        });
+
+        // הוסף מאזין לניווט בחיצים - מותאם ל-RTL
+        this.keyboardNavHandler = (e) => {
+            if (!document.body.classList.contains('keyboard-nav-active')) return;
+
+            const focusableElements = this.getVisibleFocusableElements();
+            const currentIndex = focusableElements.indexOf(document.activeElement);
+
+            // בדיקה האם האתר הוא RTL (עברית)
+            const isRTL = document.documentElement.dir === 'rtl' ||
+                          document.documentElement.lang === 'he' ||
+                          getComputedStyle(document.body).direction === 'rtl';
+
+            switch (e.key) {
+                case 'ArrowDown':
+                    // חץ למטה - גלילה למטה (התנהגות רגילה של הדפדפן)
+                    break;
+                case 'ArrowUp':
+                    // חץ למעלה - גלילה למעלה (התנהגות רגילה של הדפדפן)
+                    break;
+                case 'ArrowRight':
+                    e.preventDefault();
+                    // ב-RTL: חץ ימינה = אלמנט קודם, ב-LTR: חץ ימינה = אלמנט הבא
+                    if (isRTL) {
+                        this.focusPrevElement(focusableElements, currentIndex);
+                    } else {
+                        this.focusNextElement(focusableElements, currentIndex);
+                    }
+                    break;
+                case 'ArrowLeft':
+                    e.preventDefault();
+                    // ב-RTL: חץ שמאלה = אלמנט הבא, ב-LTR: חץ שמאלה = אלמנט קודם
+                    if (isRTL) {
+                        this.focusNextElement(focusableElements, currentIndex);
+                    } else {
+                        this.focusPrevElement(focusableElements, currentIndex);
+                    }
+                    break;
+                case 'Home':
+                    e.preventDefault();
+                    this.focusFirstElement(focusableElements);
+                    break;
+                case 'End':
+                    e.preventDefault();
+                    this.focusLastElement(focusableElements);
+                    break;
+            }
+        };
+
+        document.addEventListener('keydown', this.keyboardNavHandler);
+    },
+
+    disableFullKeyboardNav() {
+        // הסר tabindex מאלמנטים שהוספנו להם
+        const addedElements = document.querySelectorAll('[data-keyboard-nav-added="true"]');
+        addedElements.forEach(el => {
+            el.removeAttribute('tabindex');
+            el.removeAttribute('data-keyboard-nav-added');
+        });
+
+        // הסר מאזין
+        if (this.keyboardNavHandler) {
+            document.removeEventListener('keydown', this.keyboardNavHandler);
+        }
+    },
+
+    // פונקציה לקבלת אלמנטים גלויים בלבד
+    getVisibleFocusableElements() {
+        const allFocusable = document.querySelectorAll(
+            'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+        );
+        // סנן רק אלמנטים שנראים על המסך
+        return Array.from(allFocusable).filter(el => {
+            return el.offsetParent !== null &&
+                   !el.closest('[style*="display: none"]') &&
+                   !el.closest('[style*="visibility: hidden"]') &&
+                   !el.closest('.hidden');
+        });
+    },
+
+    focusNextElement(elements, currentIndex) {
+        if (!elements) elements = this.getVisibleFocusableElements();
+        if (currentIndex === undefined) currentIndex = elements.indexOf(document.activeElement);
+        const nextIndex = currentIndex < elements.length - 1 ? currentIndex + 1 : 0;
+        elements[nextIndex]?.focus();
+    },
+
+    focusPrevElement(elements, currentIndex) {
+        if (!elements) elements = this.getVisibleFocusableElements();
+        if (currentIndex === undefined) currentIndex = elements.indexOf(document.activeElement);
+        const prevIndex = currentIndex > 0 ? currentIndex - 1 : elements.length - 1;
+        elements[prevIndex]?.focus();
+    },
+
+    focusFirstElement(elements) {
+        if (!elements) elements = this.getVisibleFocusableElements();
+        elements[0]?.focus();
+    },
+
+    focusLastElement(elements) {
+        if (!elements) elements = this.getVisibleFocusableElements();
+        elements[elements.length - 1]?.focus();
+    },
+
     // ===== השבתת אנימציות =====
     toggleStopAnimations(btn) {
         const isActive = document.body.classList.toggle('stop-animations-active');
@@ -475,6 +637,7 @@ const AccessibilityManager = {
             'decreaseFontBtn': () => this.changeTextSize(-10),
             'highContrastBtn': (btn) => this.toggleFeature('high-contrast', btn),
             'darkContrastBtn': (btn) => this.toggleFeature('dark-mode', btn),
+            'highContrastYellowBtn': (btn) => this.toggleFeature('high-contrast-yellow', btn),
             'highlightLinksBtn': (btn) => this.toggleFeature('highlight-links', btn),
             'textDirectionBtn': (btn) => this.toggleTextDirection(btn),
             'stopAnimationsBtn': (btn) => this.toggleStopAnimations(btn),
@@ -489,7 +652,9 @@ const AccessibilityManager = {
             'bigCursorBtn': (btn) => this.toggleBigCursor(btn),
             'cursorColorBtn': (btn) => this.toggleCursorColor(btn),
             'invertColorsBtn': (btn) => this.toggleInvertColors(btn),
-            'readingGuideBtn': (btn) => this.toggleReadingGuide(btn)
+            'readingGuideBtn': (btn) => this.toggleReadingGuide(btn),
+            'hideMediaBtn': (btn) => this.toggleHideMedia(btn),
+            'keyboardNavBtn': (btn) => this.toggleKeyboardNav(btn)
         };
 
         Object.entries(buttons).forEach(([id, handler]) => {
@@ -561,9 +726,18 @@ const AccessibilityManager = {
     },
 
     toggleFeature(feature, btn) {
+        // שמירת מיקום הגלילה לפני השינוי
+        const scrollY = window.scrollY;
+        const scrollX = window.scrollX;
+
         const isActive = document.body.classList.toggle(`${feature}-active`);
         btn.setAttribute('aria-pressed', isActive);
         this.announce(`${btn.textContent.trim()} ${isActive ? 'הופעל' : 'בוטל'}`);
+
+        // החזרת מיקום הגלילה אחרי השינוי
+        requestAnimationFrame(() => {
+            window.scrollTo(scrollX, scrollY);
+        });
     },
 
     changeTextSize(delta) {
@@ -579,6 +753,7 @@ const AccessibilityManager = {
         }
 
         this.announce(`גודל טקסט שונה ל-${this.textSize}%`);
+        this.saveSettings();
     },
 
     toggleSkipLinks(btn) {
@@ -653,9 +828,29 @@ const AccessibilityManager = {
     },
 
     saveSettings() {
+        // שמירת כל מצבי הכפתורים החדשים
+        const buttonStates = {};
+        const buttonIds = [
+            'screenReaderBtn', 'increaseFontBtn', 'decreaseFontBtn', 'highContrastBtn',
+            'darkContrastBtn', 'highContrastYellowBtn', 'highlightLinksBtn', 'textDirectionBtn', 'stopAnimationsBtn',
+            'readableFontBtn', 'readingModeBtn', 'lineHeightBtn', 'letterSpacingBtn',
+            'dyslexiaFontBtn', 'bigCursorBtn', 'cursorColorBtn', 'invertColorsBtn', 'readingGuideBtn',
+            'hideMediaBtn', 'keyboardNavBtn'
+        ];
+
+        buttonIds.forEach(id => {
+            const btn = document.getElementById(id);
+            if (btn) {
+                buttonStates[id] = btn.getAttribute('aria-pressed') === 'true';
+            }
+        });
+
         const settings = {
             classes: document.body.className,
             textSize: this.textSize,
+            screenReaderActive: this.screenReaderActive,
+            screenReaderSpeed: this.screenReaderSpeed,
+            buttonStates: buttonStates,
             pressed: Array.from(this.actions).map(btn => ({
                 action: btn.dataset.action,
                 pressed: btn.getAttribute('aria-pressed')
@@ -673,6 +868,78 @@ const AccessibilityManager = {
             document.body.className = settings.classes || '';
             this.textSize = settings.textSize || 100;
             document.documentElement.style.fontSize = this.textSize + '%';
+
+            // טעינת מצבי כפתורים חדשים
+            if (settings.buttonStates) {
+                Object.entries(settings.buttonStates).forEach(([id, isActive]) => {
+                    const btn = document.getElementById(id);
+                    if (btn && isActive) {
+                        btn.setAttribute('aria-pressed', 'true');
+
+                        // הפעלת קורא מסך אם היה פעיל
+                        if (id === 'screenReaderBtn' && isActive) {
+                            this.screenReaderActive = true;
+                            this.enableScreenReaderListeners();
+                            document.body.classList.add('screen-reader-active');
+                        }
+
+                        // הפעלת מדריך קריאה אם היה פעיל
+                        if (id === 'readingGuideBtn' && isActive) {
+                            const guide = document.getElementById('readingGuide');
+                            if (guide) {
+                                guide.style.display = 'block';
+                                this.updateGuideHandler = (e) => {
+                                    guide.style.top = e.clientY + 'px';
+                                };
+                                document.addEventListener('mousemove', this.updateGuideHandler);
+                            }
+                        }
+
+                        // הפעלת ניווט מקלדת מלא אם היה פעיל
+                        if (id === 'keyboardNavBtn' && isActive) {
+                            this.enableFullKeyboardNav();
+                        }
+                    }
+                });
+            }
+
+            // סנכרון מצב כפתורים לפי קלאסים של body (לתאימות אחורה)
+            const classToButton = {
+                'high-contrast-yellow-active': 'highContrastYellowBtn',
+                'dark-mode-active': 'darkContrastBtn',
+                'high-contrast-active': 'highContrastBtn',
+                'highlight-links-active': 'highlightLinksBtn',
+                'readable-font-active': 'readableFontBtn',
+                'invert-colors-active': 'invertColorsBtn',
+                'line-height-active': 'lineHeightBtn',
+                'letter-spacing-active': 'letterSpacingBtn',
+                'dyslexia-font-active': 'dyslexiaFontBtn',
+                'big-cursor-active': 'bigCursorBtn',
+                'stop-animations-active': 'stopAnimationsBtn',
+                'hide-media-active': 'hideMediaBtn',
+                'keyboard-nav-active': 'keyboardNavBtn',
+                'reading-mode-active': 'readingModeBtn',
+                'cursor-color-active': 'cursorColorBtn'
+            };
+
+            Object.entries(classToButton).forEach(([className, btnId]) => {
+                if (document.body.classList.contains(className)) {
+                    const btn = document.getElementById(btnId);
+                    if (btn) {
+                        btn.setAttribute('aria-pressed', 'true');
+                    }
+                }
+            });
+
+            // הפעלה מחדש של פונקציות שדורשות אתחול מיוחד
+            if (document.body.classList.contains('keyboard-nav-active')) {
+                this.enableFullKeyboardNav();
+            }
+
+            // טעינת מהירות קורא מסך
+            if (settings.screenReaderSpeed) {
+                this.screenReaderSpeed = settings.screenReaderSpeed;
+            }
 
             settings.pressed?.forEach(item => {
                 const btn = document.querySelector(`[data-action="${item.action}"]`);
