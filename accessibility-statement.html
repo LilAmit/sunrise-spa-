@@ -1,719 +1,1557 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="he" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="הצהרת נגישות של סאנרייז ספא - מחויבות לנגישות דיגיטלית לכלל האוכלוסייה">
-    <meta name="robots" content="noindex, follow">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="הצהרת נגישות של סאנרייז ספא - מחויבות לנגישות דיגיטלית לכלל האוכלוסייה"
+    />
+    <meta name="robots" content="noindex, follow" />
     <title>הצהרת נגישות - סאנרייז ספא</title>
-    <link rel="icon" type="image/png" href="SunriseLogo.png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="SunriseLogo.png" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
     <style>
-        .accessibility-statement-container {
-            max-width: 900px;
-            margin: 180px auto 50px;
-            padding: 40px;
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-        .accessibility-statement-container h1 {
-            color: #2c3e50;
-            font-size: 36px;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-        .accessibility-statement-container h2 {
-            color: #34495e;
-            font-size: 24px;
-            margin-top: 30px;
-            margin-bottom: 15px;
-            border-bottom: 2px solid #ff758c;
-            padding-bottom: 10px;
-        }
-        .accessibility-statement-container h3 {
-            color: #34495e;
-            font-size: 20px;
-            margin-top: 20px;
-            margin-bottom: 10px;
-        }
-        .accessibility-statement-container p,
-        .accessibility-statement-container ul {
-            font-size: 18px;
-            line-height: 1.8;
-            color: #2c3e50;
-            margin-bottom: 15px;
-        }
-        .accessibility-statement-container ul {
-            padding-right: 25px;
-        }
-        .accessibility-statement-container li {
-            margin-bottom: 10px;
-        }
-        .last-updated {
-            text-align: center;
-            color: #666;
-            font-style: italic;
-            margin-bottom: 30px;
-        }
-        .contact-info {
-            background: rgba(255, 182, 193, 0.2);
-            padding: 20px;
-            border-radius: 10px;
-            margin-top: 30px;
-        }
-        .highlight-box {
-            background: linear-gradient(135deg, rgba(255,182,193,0.3), rgba(255,182,193,0.1));
-            padding: 20px;
-            border-radius: 15px;
-            border-right: 4px solid #ff758c;
-            margin: 20px 0;
-        }
-        /* כפתור חזרה למעלה */
+      .accessibility-statement-container {
+        max-width: 900px;
+        margin: 180px auto 50px;
+        padding: 40px;
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      }
+      .accessibility-statement-container h1 {
+        color: #2c3e50;
+        font-size: 36px;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+      .accessibility-statement-container h2 {
+        color: #34495e;
+        font-size: 24px;
+        margin-top: 30px;
+        margin-bottom: 15px;
+        border-bottom: 2px solid #ff758c;
+        padding-bottom: 10px;
+      }
+      .accessibility-statement-container h3 {
+        color: #34495e;
+        font-size: 20px;
+        margin-top: 20px;
+        margin-bottom: 10px;
+      }
+      .accessibility-statement-container p,
+      .accessibility-statement-container ul {
+        font-size: 18px;
+        line-height: 1.8;
+        color: #2c3e50;
+        margin-bottom: 15px;
+      }
+      .accessibility-statement-container ul {
+        padding-right: 25px;
+      }
+      .accessibility-statement-container li {
+        margin-bottom: 10px;
+      }
+      .last-updated {
+        text-align: center;
+        color: #666;
+        font-style: italic;
+        margin-bottom: 30px;
+      }
+      .contact-info {
+        background: rgba(255, 182, 193, 0.2);
+        padding: 20px;
+        border-radius: 10px;
+        margin-top: 30px;
+      }
+      .highlight-box {
+        background: linear-gradient(
+          135deg,
+          rgba(255, 182, 193, 0.3),
+          rgba(255, 182, 193, 0.1)
+        );
+        padding: 20px;
+        border-radius: 15px;
+        border-right: 4px solid #ff758c;
+        margin: 20px 0;
+      }
+      /* כפתור חזרה למעלה */
+      .back-to-top {
+        position: fixed;
+        bottom: 110px;
+        left: 30px;
+        background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
+        color: white;
+        width: 55px;
+        height: 55px;
+        border-radius: 50%;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        box-shadow: 0 6px 20px rgba(255, 117, 140, 0.5);
+        z-index: 9000;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        border: none;
+      }
+      .back-to-top.show {
+        display: flex;
+      }
+      .back-to-top:hover {
+        transform: scale(1.15);
+        box-shadow: 0 8px 25px rgba(255, 117, 140, 0.7);
+      }
+
+      /* התאמת מיקום כפתור למובייל */
+      @media (max-width: 900px) {
         .back-to-top {
-            position: fixed;
-            bottom: 110px;
-            left: 30px;
-            background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
-            color: white;
-            width: 55px;
-            height: 55px;
-            border-radius: 50%;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            box-shadow: 0 6px 20px rgba(255,117,140,0.5);
-            z-index: 9000;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            border: none;
+          width: 48px;
+          height: 48px;
+          font-size: 20px;
+          bottom: 90px;
+          left: 20px;
         }
-        .back-to-top.show {
-            display: flex;
-        }
-        .back-to-top:hover {
-            transform: scale(1.15);
-            box-shadow: 0 8px 25px rgba(255,117,140,0.7);
-        }
+      }
 
-        /* התאמת מיקום כפתור למובייל */
-        @media (max-width: 900px) {
-            .back-to-top {
-                width: 48px;
-                height: 48px;
-                font-size: 20px;
-                bottom: 90px;
-                left: 20px;
-            }
+      @media (max-width: 600px) {
+        .back-to-top {
+          width: 45px;
+          height: 45px;
+          font-size: 18px;
+          bottom: 85px;
+          left: 15px;
         }
+      }
 
-        @media (max-width: 600px) {
-            .back-to-top {
-                width: 45px;
-                height: 45px;
-                font-size: 18px;
-                bottom: 85px;
-                left: 15px;
-            }
-        }
-
-        /* מצב כהה - Dark Mode */
-        .dark-mode-active .accessibility-statement-container {
-            background: #252542 !important;
-        }
-        .dark-mode-active .accessibility-statement-container h1,
-        .dark-mode-active .accessibility-statement-container h2,
-        .dark-mode-active .accessibility-statement-container h3 {
-            color: #ffffff !important;
-        }
-        .dark-mode-active .accessibility-statement-container p,
-        .dark-mode-active .accessibility-statement-container li,
-        .dark-mode-active .accessibility-statement-container ul {
-            color: #e0e0e0 !important;
-        }
-        .dark-mode-active .last-updated {
-            color: #b0b0b0 !important;
-        }
-        .dark-mode-active .contact-info {
-            background: rgba(255, 117, 140, 0.15) !important;
-        }
-        .dark-mode-active .highlight-box {
-            background: linear-gradient(135deg, rgba(255,117,140,0.2), rgba(255,117,140,0.1)) !important;
-        }
-        .dark-mode-active table {
-            background: #2d2d4a !important;
-        }
-        .dark-mode-active th {
-            background: linear-gradient(135deg, #3a3a5c, #4a4a6c) !important;
-            color: #ffffff !important;
-        }
-        .dark-mode-active td {
-            color: #e0e0e0 !important;
-        }
-        .dark-mode-active tr:nth-child(even) {
-            background: #252542 !important;
-        }
-        .dark-mode-active tr:nth-child(odd) {
-            background: #2d2d4a !important;
-        }
-        .dark-mode-active kbd {
-            background: #3a3a5c !important;
-            color: #ffffff !important;
-            border-color: #4a4a6c !important;
-        }
+      /* מצב כהה - Dark Mode */
+      .dark-mode-active .accessibility-statement-container {
+        background: #252542 !important;
+      }
+      .dark-mode-active .accessibility-statement-container h1,
+      .dark-mode-active .accessibility-statement-container h2,
+      .dark-mode-active .accessibility-statement-container h3 {
+        color: #ffffff !important;
+      }
+      .dark-mode-active .accessibility-statement-container p,
+      .dark-mode-active .accessibility-statement-container li,
+      .dark-mode-active .accessibility-statement-container ul {
+        color: #e0e0e0 !important;
+      }
+      .dark-mode-active .last-updated {
+        color: #b0b0b0 !important;
+      }
+      .dark-mode-active .contact-info {
+        background: rgba(255, 117, 140, 0.15) !important;
+      }
+      .dark-mode-active .highlight-box {
+        background: linear-gradient(
+          135deg,
+          rgba(255, 117, 140, 0.2),
+          rgba(255, 117, 140, 0.1)
+        ) !important;
+      }
+      .dark-mode-active table {
+        background: #2d2d4a !important;
+      }
+      .dark-mode-active th {
+        background: linear-gradient(135deg, #3a3a5c, #4a4a6c) !important;
+        color: #ffffff !important;
+      }
+      .dark-mode-active td {
+        color: #e0e0e0 !important;
+      }
+      .dark-mode-active tr:nth-child(even) {
+        background: #252542 !important;
+      }
+      .dark-mode-active tr:nth-child(odd) {
+        background: #2d2d4a !important;
+      }
+      .dark-mode-active kbd {
+        background: #3a3a5c !important;
+        color: #ffffff !important;
+        border-color: #4a4a6c !important;
+      }
     </style>
-</head>
-<body>
-
-<header>
-    <div class="logo-container">
-        <img src="SunriseLogo.png" class="logo" alt="סאנרייז ספא לוגו">
+  </head>
+  <body>
+    <header>
+      <div class="logo-container">
+        <img src="SunriseLogo.png" class="logo" alt="סאנרייז ספא לוגו" />
         <h1>הצהרת נגישות סאנרייז ספא</h1>
-    </div>
+      </div>
 
-    <div class="contact-details">
+      <div class="contact-details">
         <p class="contact-badge">
-            <i class="fa-solid fa-location-dot"></i>
-            <strong>כתובת:</strong> ההסתדרות 2, קומה 2, פתח תקווה
+          <i class="fa-solid fa-location-dot"></i>
+          <strong>כתובת:</strong> ההסתדרות 2, קומה 2, פתח תקווה
         </p>
         <p class="contact-badge">
-            <i class="fa-solid fa-phone"></i>
-            <strong>טלפון:</strong> <a href="tel:0586588751" style="color: inherit; text-decoration: none;">058-658-8751</a>
+          <i class="fa-solid fa-phone"></i>
+          <strong>טלפון:</strong>
+          <a href="tel:0586588751" style="color: inherit; text-decoration: none"
+            >058-658-8751</a
+          >
         </p>
-    </div>
+      </div>
 
-    <nav>
-        <a href="index.html" title="עמוד הבית"><i class="fa-solid fa-home"></i> בית</a>
-        <a href="gallery.html" title="גלריה"><i class="fa-solid fa-image"></i> גלריה</a>
-        <a href="blog.html" title="בלוג"><i class="fa-solid fa-blog"></i> בלוג</a>
-        <a href="faq.html" title="שאלות נפוצות"><i class="fa-solid fa-circle-question"></i> שאלות נפוצות</a>
-        <a href="https://wa.me/972586588751" target="_blank" title="שלח הודעה בוואטסאפ"><i class="fa-brands fa-whatsapp"></i> צור קשר</a>
-        <a href="https://www.waze.com/live-map/directions/il/center-district/%D7%A4%D7%AA/sunrise-spa-%D7%A1%D7%A4%D7%90-%D7%A2%D7%99%D7%A1%D7%95%D7%99-%D7%A4%D7%AA%D7%97-%D7%AA%D7%A7%D7%95%D7%95%D7%94?navigate=yes&to=place.ChIJSZXBMVY3HRURy-oaXLqTcrg" target="_blank" title="ניווט ב-Waze"><i class="fa-brands fa-waze"></i> Waze</a>
-        <a href="https://www.google.com/maps/dir//Sunrise+Spa" target="_blank" title="צפייה במפה"><i class="fa-solid fa-map-location-dot"></i> Maps</a>
-    </nav>
-</header>
+      <nav>
+        <a href="index.html" title="עמוד הבית"
+          ><i class="fa-solid fa-home"></i> בית</a
+        >
+        <a href="gallery.html" title="גלריה"
+          ><i class="fa-solid fa-image"></i> גלריה</a
+        >
+        <a href="blog.html" title="בלוג"
+          ><i class="fa-solid fa-blog"></i> בלוג</a
+        >
+        <a href="faq.html" title="שאלות נפוצות"
+          ><i class="fa-solid fa-circle-question"></i> שאלות נפוצות</a
+        >
+        <a
+          href="https://wa.me/972586588751"
+          target="_blank"
+          title="שלח הודעה בוואטסאפ"
+          ><i class="fa-brands fa-whatsapp"></i> צור קשר</a
+        >
+        <a
+          href="https://www.waze.com/live-map/directions/il/center-district/%D7%A4%D7%AA/sunrise-spa-%D7%A1%D7%A4%D7%90-%D7%A2%D7%99%D7%A1%D7%95%D7%99-%D7%A4%D7%AA%D7%97-%D7%AA%D7%A7%D7%95%D7%95%D7%94?navigate=yes&to=place.ChIJSZXBMVY3HRURy-oaXLqTcrg"
+          target="_blank"
+          title="ניווט ב-Waze"
+          ><i class="fa-brands fa-waze"></i> Waze</a
+        >
+        <a
+          href="https://www.google.com/maps/dir//Sunrise+Spa"
+          target="_blank"
+          title="צפייה במפה"
+          ><i class="fa-solid fa-map-location-dot"></i> Maps</a
+        >
+      </nav>
+    </header>
 
-<div class="accessibility-statement-container">
-    <h1>הצהרת נגישות</h1>
-    <p class="last-updated">עודכן לאחרונה: ינואר 2026</p>
+    <div class="accessibility-statement-container">
+      <h1>הצהרת נגישות</h1>
+      <p class="last-updated">עודכן לאחרונה: ינואר 2026</p>
 
-    <div class="highlight-box">
-        <p><strong>סאנרייז ספא</strong> מחויב להנגשת השירותים הדיגיטליים שלו לכלל האוכלוסייה, לרבות אנשים עם מוגבלויות. אנו פועלים להבטיח שהאתר שלנו יהיה נגיש, ידידותי ונוח לשימוש עבור כל המבקרים.</p>
-    </div>
+      <div class="highlight-box">
+        <p>
+          <strong>סאנרייז ספא</strong> מחויב להנגשת השירותים הדיגיטליים שלו לכלל
+          האוכלוסייה, לרבות אנשים עם מוגבלויות. אנו פועלים להבטיח שהאתר שלנו
+          יהיה נגיש, ידידותי ונוח לשימוש עבור כל המבקרים.
+        </p>
+      </div>
 
-    <h2>מחויבותנו לנגישות</h2>
-    <p>אנו בסאנרייז ספא רואים חשיבות רבה בהנגשת האתר שלנו ובהפיכתו לנגיש עבור אנשים עם מוגבלויות מסוגים שונים. אנו פועלים באופן שוטף ומתמיד לשיפור רמת הנגישות של האתר, תוך הקפדה על עמידה בתקנים הנדרשים על פי חוק.</p>
+      <h2>מחויבותנו לנגישות</h2>
+      <p>
+        אנו בסאנרייז ספא רואים חשיבות רבה בהנגשת האתר שלנו ובהפיכתו לנגיש עבור
+        אנשים עם מוגבלויות מסוגים שונים. אנו פועלים באופן שוטף ומתמיד לשיפור רמת
+        הנגישות של האתר, תוך הקפדה על עמידה בתקנים הנדרשים על פי חוק.
+      </p>
 
-    <h2>תקנים ועמידה בדרישות</h2>
-    <p>האתר שלנו נבנה תוך שאיפה לעמוד בהנחיות נגישות תוכן אינטרנט ברמת AA לפי תקן WCAG 2.1 (Web Content Accessibility Guidelines). אנו פועלים ליישום התקן הישראלי ת"י 5568 בהתאם לדרישות החוק הישראלי.</p>
+      <h2>תקנים ועמידה בדרישות</h2>
+      <p>
+        האתר שלנו נבנה תוך שאיפה לעמוד בהנחיות נגישות תוכן אינטרנט ברמת AA לפי
+        תקן WCAG 2.1 (Web Content Accessibility Guidelines). אנו פועלים ליישום
+        התקן הישראלי ת"י 5568 בהתאם לדרישות החוק הישראלי.
+      </p>
 
-    <h2>אמצעי נגישות באתר</h2>
-    <p>האתר כולל אמצעי נגישות מגוונים המסייעים למבקרים עם מוגבלויות שונות:</p>
+      <h2>אמצעי נגישות באתר</h2>
+      <p>האתר כולל אמצעי נגישות מגוונים המסייעים למבקרים עם מוגבלויות שונות:</p>
 
-    <h3>תפריט נגישות מתקדם</h3>
-    <ul>
-        <li><strong>ניווט במקלדת:</strong> האתר ניתן לניווט מלא באמצעות מקלדת בלבד, ללא צורך בעכבר</li>
-        <li><strong>התאמת גודל גופנים:</strong> אפשרות להגדלה והקטנה של גודל הטקסט באתר</li>
+      <h3>תפריט נגישות מתקדם</h3>
+      <ul>
+        <li>
+          <strong>ניווט במקלדת:</strong> האתר ניתן לניווט מלא באמצעות מקלדת
+          בלבד, ללא צורך בעכבר
+        </li>
+        <li>
+          <strong>התאמת גודל גופנים:</strong> אפשרות להגדלה והקטנה של גודל הטקסט
+          באתר
+        </li>
         <li><strong>מצב כהה:</strong> מצב רקע כהה לצמצום עייפות עיניים</li>
-        <li><strong>הדגשת קישורים:</strong> הדגשה ברורה של קישורים באתר לזיהוי קל יותר</li>
-        <li><strong>כיוון טקסט:</strong> אפשרות להיפוך כיוון הטקסט (LTR/RTL)</li>
-        <li><strong>הפסקת אנימציות:</strong> ביטול אנימציות עבור משתמשים רגישים לתנועה</li>
+        <li>
+          <strong>הדגשת קישורים:</strong> הדגשה ברורה של קישורים באתר לזיהוי קל
+          יותר
+        </li>
+        <li>
+          <strong>כיוון טקסט:</strong> אפשרות להיפוך כיוון הטקסט (LTR/RTL)
+        </li>
+        <li>
+          <strong>הפסקת אנימציות:</strong> ביטול אנימציות עבור משתמשים רגישים
+          לתנועה
+        </li>
         <li><strong>גופן קריא:</strong> החלפה לגופן קריא במיוחד</li>
-        <li><strong>מצב לקריאה:</strong> הצגת התוכן במצב ממוקד וללא הסחות דעת</li>
-    </ul>
+        <li>
+          <strong>מצב לקריאה:</strong> הצגת התוכן במצב ממוקד וללא הסחות דעת
+        </li>
+      </ul>
 
-    <h3>נגישות טכנית</h3>
-    <ul>
-        <li><strong>תגיות ARIA:</strong> שימוש בתגיות ARIA לשיפור תמיכה בקוראי מסך</li>
-        <li><strong>טקסטים חלופיים:</strong> כל התמונות באתר כוללות תיאורים טקסטואליים (Alt Text)</li>
-        <li><strong>מבנה סמנטי:</strong> שימוש נכון בכותרות (H1-H6) ומבנה HTML סמנטי</li>
+      <h3>נגישות טכנית</h3>
+      <ul>
+        <li>
+          <strong>תגיות ARIA:</strong> שימוש בתגיות ARIA לשיפור תמיכה בקוראי מסך
+        </li>
+        <li>
+          <strong>טקסטים חלופיים:</strong> כל התמונות באתר כוללות תיאורים
+          טקסטואליים (Alt Text)
+        </li>
+        <li>
+          <strong>מבנה סמנטי:</strong> שימוש נכון בכותרות (H1-H6) ומבנה HTML
+          סמנטי
+        </li>
         <li><strong>ניווט עקבי:</strong> מבנה ניווט אחיד ועקבי בכל דפי האתר</li>
-        <li><strong>אינדיקציה ברורה:</strong> סימון ברור של האלמנט הפעיל (Focus)</li>
-        <li><strong>ניגודיות צבעים:</strong> שמירה על יחסי ניגודיות מינימליים בין טקסט לרקע</li>
-    </ul>
+        <li>
+          <strong>אינדיקציה ברורה:</strong> סימון ברור של האלמנט הפעיל (Focus)
+        </li>
+        <li>
+          <strong>ניגודיות צבעים:</strong> שמירה על יחסי ניגודיות מינימליים בין
+          טקסט לרקע
+        </li>
+      </ul>
 
-    <h3>תכנים ותוכן נגיש</h3>
-    <ul>
+      <h3>תכנים ותוכן נגיש</h3>
+      <ul>
         <li><strong>שפה ברורה ופשוטה:</strong> שימוש בשפה ברורה ומובנת</li>
-        <li><strong>כותרות מתארות:</strong> כותרות ברורות המתארות את תוכן הדף</li>
-        <li><strong>קישורים תיאוריים:</strong> טקסט קישורים מתאר את היעד באופן ברור</li>
-        <li><strong>הודעות שגיאה מפורטות:</strong> הודעות ברורות עם הנחיות לתיקון</li>
-    </ul>
+        <li>
+          <strong>כותרות מתארות:</strong> כותרות ברורות המתארות את תוכן הדף
+        </li>
+        <li>
+          <strong>קישורים תיאוריים:</strong> טקסט קישורים מתאר את היעד באופן
+          ברור
+        </li>
+        <li>
+          <strong>הודעות שגיאה מפורטות:</strong> הודעות ברורות עם הנחיות לתיקון
+        </li>
+      </ul>
 
-    <h2>תאימות לטכנולוגיות מסייעות</h2>
-    <p>האתר תוכנן להיות תואם לטכנולוגיות מסייעות שונות, כולל:</p>
-    <ul>
-        <li>קוראי מסך (Screen Readers) כגון NVDA, JAWS, VoiceOver ו-TalkBack</li>
+      <h2>תאימות לטכנולוגיות מסייעות</h2>
+      <p>האתר תוכנן להיות תואם לטכנולוגיות מסייעות שונות, כולל:</p>
+      <ul>
+        <li>
+          קוראי מסך (Screen Readers) כגון NVDA, JAWS, VoiceOver ו-TalkBack
+        </li>
         <li>תוכנות הגדלת מסך</li>
         <li>תוכנות זיהוי קולי</li>
         <li>מקלדות חלופיות וטכנולוגיות קלט מסייעות</li>
-    </ul>
+      </ul>
 
-    <h2>דפדפנים נתמכים</h2>
-    <p>האתר נבדק ונמצא תואם לדפדפנים המודרניים הבאים:</p>
-    <ul>
+      <h2>דפדפנים נתמכים</h2>
+      <p>האתר נבדק ונמצא תואם לדפדפנים המודרניים הבאים:</p>
+      <ul>
         <li>Google Chrome (גרסה עדכנית)</li>
         <li>Mozilla Firefox (גרסה עדכנית)</li>
         <li>Microsoft Edge (גרסה עדכנית)</li>
         <li>Safari (גרסה עדכנית)</li>
-    </ul>
+      </ul>
 
-    <h2>מגבלות נגישות ידועות</h2>
-    <p>למרות המאמצים הרבים שאנו משקיעים בהנגשת האתר, ייתכנו עדיין מגבלות מסוימות או תכנים שלא הונגשו במלואם. אנו פועלים באופן שוטף לזיהוי ותיקון של בעיות נגישות אלו.</p>
-    <p>אם נתקלתם בבעיית נגישות כלשהי באתר, אנא דווחו לנו על כך ונעשה כל שביכולתנו לטפל בבעיה בהקדם האפשרי.</p>
+      <h2>מגבלות נגישות ידועות</h2>
+      <p>
+        למרות המאמצים הרבים שאנו משקיעים בהנגשת האתר, ייתכנו עדיין מגבלות
+        מסוימות או תכנים שלא הונגשו במלואם. אנו פועלים באופן שוטף לזיהוי ותיקון
+        של בעיות נגישות אלו.
+      </p>
+      <p>
+        אם נתקלתם בבעיית נגישות כלשהי באתר, אנא דווחו לנו על כך ונעשה כל
+        שביכולתנו לטפל בבעיה בהקדם האפשרי.
+      </p>
 
-    <h2>שיפור מתמיד</h2>
-    <p>אנו ממשיכים לשפר ולעדכן את נגישות האתר באופן שוטף. צוות המומחים שלנו עובד על:</p>
-    <ul>
+      <h2>שיפור מתמיד</h2>
+      <p>
+        אנו ממשיכים לשפר ולעדכן את נגישות האתר באופן שוטף. צוות המומחים שלנו
+        עובד על:
+      </p>
+      <ul>
         <li>בדיקות נגישות תקופתיות ושוטפות</li>
         <li>תיקון בעיות נגישות שמתגלות</li>
         <li>הוספת תכונות נגישות חדשות</li>
         <li>עדכון התאימות לתקנים חדשים</li>
-    </ul>
+      </ul>
 
-    <h2>איך להשתמש בתפריט הנגישות?</h2>
-    <p>כדי להפעיל את תפריט הנגישות של האתר:</p>
-    <ol>
+      <h2>איך להשתמש בתפריט הנגישות?</h2>
+      <p>כדי להפעיל את תפריט הנגישות של האתר:</p>
+      <ol>
         <li>לחצו על כפתור הנגישות הכחול שנמצא בצד ימין של המסך</li>
         <li>יפתח תפריט מקיף עם כל אפשרויות הנגישות הזמינות</li>
         <li>בחרו באפשרויות הרלוונטיות עבורכם</li>
         <li>ניתן לשלב מספר הגדרות נגישות במקביל</li>
         <li>השינויים נשמרים אוטומטית עבור הביקור הבא שלכם</li>
-    </ol>
+      </ol>
 
-    <h2 id="keyboard-shortcuts"><i class="fa-solid fa-keyboard"></i> קיצורי מקלדת ומדריך ניווט</h2>
-    <p>האתר שלנו תומך בניווט מקלדת מלא עבור משתמשים שמעדיפים או זקוקים לניווט ללא עכבר. ניתן להשתמש בקיצורי המקלדת הבאים בכל הדפים באתר.</p>
+      <h2 id="keyboard-shortcuts">
+        <i class="fa-solid fa-keyboard"></i> קיצורי מקלדת ומדריך ניווט
+      </h2>
+      <p>
+        האתר שלנו תומך בניווט מקלדת מלא עבור משתמשים שמעדיפים או זקוקים לניווט
+        ללא עכבר. ניתן להשתמש בקיצורי המקלדת הבאים בכל הדפים באתר.
+      </p>
 
-    <h3>קיצורי מקלדת לניווט מהיר באתר:</h3>
-    <div class="keyboard-guide">
-        <table style="width: 100%; border-collapse: collapse; margin: 15px 0;">
-            <thead>
-                <tr style="background: linear-gradient(135deg, #4CAF50, #45a049); color: white;">
-                    <th style="padding: 12px; text-align: right; border: 1px solid #ddd;">קיצור</th>
-                    <th style="padding: 12px; text-align: right; border: 1px solid #ddd;">פעולה</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr style="background: #e8f5e9;">
-                    <td style="padding: 10px; border: 1px solid #ddd;"><kbd style="background: #eee; padding: 3px 8px; border-radius: 4px; font-family: monospace;">Alt</kbd> + <kbd style="background: #eee; padding: 3px 8px; border-radius: 4px; font-family: monospace;">1</kbd></td>
-                    <td style="padding: 10px; border: 1px solid #ddd;">מעבר לעמוד הבית</td>
-                </tr>
-                <tr>
-                    <td style="padding: 10px; border: 1px solid #ddd;"><kbd style="background: #eee; padding: 3px 8px; border-radius: 4px; font-family: monospace;">Alt</kbd> + <kbd style="background: #eee; padding: 3px 8px; border-radius: 4px; font-family: monospace;">2</kbd></td>
-                    <td style="padding: 10px; border: 1px solid #ddd;">מעבר לגלריה</td>
-                </tr>
-                <tr style="background: #e8f5e9;">
-                    <td style="padding: 10px; border: 1px solid #ddd;"><kbd style="background: #eee; padding: 3px 8px; border-radius: 4px; font-family: monospace;">Alt</kbd> + <kbd style="background: #eee; padding: 3px 8px; border-radius: 4px; font-family: monospace;">3</kbd></td>
-                    <td style="padding: 10px; border: 1px solid #ddd;">מעבר לבלוג</td>
-                </tr>
-                <tr>
-                    <td style="padding: 10px; border: 1px solid #ddd;"><kbd style="background: #eee; padding: 3px 8px; border-radius: 4px; font-family: monospace;">Alt</kbd> + <kbd style="background: #eee; padding: 3px 8px; border-radius: 4px; font-family: monospace;">4</kbd></td>
-                    <td style="padding: 10px; border: 1px solid #ddd;">מעבר לשאלות נפוצות</td>
-                </tr>
-                <tr style="background: #e8f5e9;">
-                    <td style="padding: 10px; border: 1px solid #ddd;"><kbd style="background: #eee; padding: 3px 8px; border-radius: 4px; font-family: monospace;">Alt</kbd> + <kbd style="background: #eee; padding: 3px 8px; border-radius: 4px; font-family: monospace;">5</kbd></td>
-                    <td style="padding: 10px; border: 1px solid #ddd;">מעבר להצהרת נגישות (דף זה)</td>
-                </tr>
-                <tr>
-                    <td style="padding: 10px; border: 1px solid #ddd;"><kbd style="background: #eee; padding: 3px 8px; border-radius: 4px; font-family: monospace;">Alt</kbd> + <kbd style="background: #eee; padding: 3px 8px; border-radius: 4px; font-family: monospace;">W</kbd></td>
-                    <td style="padding: 10px; border: 1px solid #ddd;">פתיחת וואטסאפ ליצירת קשר</td>
-                </tr>
-                <tr style="background: #e8f5e9;">
-                    <td style="padding: 10px; border: 1px solid #ddd;"><kbd style="background: #eee; padding: 3px 8px; border-radius: 4px; font-family: monospace;">Alt</kbd> + <kbd style="background: #eee; padding: 3px 8px; border-radius: 4px; font-family: monospace;">A</kbd></td>
-                    <td style="padding: 10px; border: 1px solid #ddd;">פתיחת תפריט הנגישות</td>
-                </tr>
-                <tr>
-                    <td style="padding: 10px; border: 1px solid #ddd;"><kbd style="background: #eee; padding: 3px 8px; border-radius: 4px; font-family: monospace;">Alt</kbd> + <kbd style="background: #eee; padding: 3px 8px; border-radius: 4px; font-family: monospace;">C</kbd></td>
-                    <td style="padding: 10px; border: 1px solid #ddd;">פתיחת הצ'אטבוט</td>
-                </tr>
-                <tr style="background: #e8f5e9;">
-                    <td style="padding: 10px; border: 1px solid #ddd;"><kbd style="background: #eee; padding: 3px 8px; border-radius: 4px; font-family: monospace;">Alt</kbd> + <kbd style="background: #eee; padding: 3px 8px; border-radius: 4px; font-family: monospace;">T</kbd></td>
-                    <td style="padding: 10px; border: 1px solid #ddd;">גלילה לראש העמוד</td>
-                </tr>
-                <tr>
-                    <td style="padding: 10px; border: 1px solid #ddd;"><kbd style="background: #eee; padding: 3px 8px; border-radius: 4px; font-family: monospace;">Alt</kbd> + <kbd style="background: #eee; padding: 3px 8px; border-radius: 4px; font-family: monospace;">B</kbd></td>
-                    <td style="padding: 10px; border: 1px solid #ddd;">גלילה לתחתית העמוד</td>
-                </tr>
-                <tr style="background: #e8f5e9;">
-                    <td style="padding: 10px; border: 1px solid #ddd;"><kbd style="background: #eee; padding: 3px 8px; border-radius: 4px; font-family: monospace;">Esc</kbd></td>
-                    <td style="padding: 10px; border: 1px solid #ddd;">סגירת תפריטים וחלונות פתוחים</td>
-                </tr>
-                <tr>
-                    <td style="padding: 10px; border: 1px solid #ddd;"><kbd style="background: #eee; padding: 3px 8px; border-radius: 4px; font-family: monospace;">?</kbd></td>
-                    <td style="padding: 10px; border: 1px solid #ddd;">הצגת דף קיצורי המקלדת (דף זה)</td>
-                </tr>
-            </tbody>
+      <h3>קיצורי מקלדת לניווט מהיר באתר:</h3>
+      <div class="keyboard-guide">
+        <table style="width: 100%; border-collapse: collapse; margin: 15px 0">
+          <thead>
+            <tr
+              style="
+                background: linear-gradient(135deg, #4caf50, #45a049);
+                color: white;
+              "
+            >
+              <th
+                style="padding: 12px; text-align: right; border: 1px solid #ddd"
+              >
+                קיצור
+              </th>
+              <th
+                style="padding: 12px; text-align: right; border: 1px solid #ddd"
+              >
+                פעולה
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="background: #e8f5e9">
+              <td style="padding: 10px; border: 1px solid #ddd">
+                <kbd
+                  style="
+                    background: #eee;
+                    padding: 3px 8px;
+                    border-radius: 4px;
+                    font-family: monospace;
+                  "
+                  >Alt</kbd
+                >
+                +
+                <kbd
+                  style="
+                    background: #eee;
+                    padding: 3px 8px;
+                    border-radius: 4px;
+                    font-family: monospace;
+                  "
+                  >1</kbd
+                >
+              </td>
+              <td style="padding: 10px; border: 1px solid #ddd">
+                מעבר לעמוד הבית
+              </td>
+            </tr>
+            <tr>
+              <td style="padding: 10px; border: 1px solid #ddd">
+                <kbd
+                  style="
+                    background: #eee;
+                    padding: 3px 8px;
+                    border-radius: 4px;
+                    font-family: monospace;
+                  "
+                  >Alt</kbd
+                >
+                +
+                <kbd
+                  style="
+                    background: #eee;
+                    padding: 3px 8px;
+                    border-radius: 4px;
+                    font-family: monospace;
+                  "
+                  >2</kbd
+                >
+              </td>
+              <td style="padding: 10px; border: 1px solid #ddd">מעבר לגלריה</td>
+            </tr>
+            <tr style="background: #e8f5e9">
+              <td style="padding: 10px; border: 1px solid #ddd">
+                <kbd
+                  style="
+                    background: #eee;
+                    padding: 3px 8px;
+                    border-radius: 4px;
+                    font-family: monospace;
+                  "
+                  >Alt</kbd
+                >
+                +
+                <kbd
+                  style="
+                    background: #eee;
+                    padding: 3px 8px;
+                    border-radius: 4px;
+                    font-family: monospace;
+                  "
+                  >3</kbd
+                >
+              </td>
+              <td style="padding: 10px; border: 1px solid #ddd">מעבר לבלוג</td>
+            </tr>
+            <tr>
+              <td style="padding: 10px; border: 1px solid #ddd">
+                <kbd
+                  style="
+                    background: #eee;
+                    padding: 3px 8px;
+                    border-radius: 4px;
+                    font-family: monospace;
+                  "
+                  >Alt</kbd
+                >
+                +
+                <kbd
+                  style="
+                    background: #eee;
+                    padding: 3px 8px;
+                    border-radius: 4px;
+                    font-family: monospace;
+                  "
+                  >4</kbd
+                >
+              </td>
+              <td style="padding: 10px; border: 1px solid #ddd">
+                מעבר לשאלות נפוצות
+              </td>
+            </tr>
+            <tr style="background: #e8f5e9">
+              <td style="padding: 10px; border: 1px solid #ddd">
+                <kbd
+                  style="
+                    background: #eee;
+                    padding: 3px 8px;
+                    border-radius: 4px;
+                    font-family: monospace;
+                  "
+                  >Alt</kbd
+                >
+                +
+                <kbd
+                  style="
+                    background: #eee;
+                    padding: 3px 8px;
+                    border-radius: 4px;
+                    font-family: monospace;
+                  "
+                  >5</kbd
+                >
+              </td>
+              <td style="padding: 10px; border: 1px solid #ddd">
+                מעבר למדיניות פרטיות
+              </td>
+            </tr>
+            <tr>
+              <td style="padding: 10px; border: 1px solid #ddd">
+                <kbd
+                  style="
+                    background: #eee;
+                    padding: 3px 8px;
+                    border-radius: 4px;
+                    font-family: monospace;
+                  "
+                  >Alt</kbd
+                >
+                +
+                <kbd
+                  style="
+                    background: #eee;
+                    padding: 3px 8px;
+                    border-radius: 4px;
+                    font-family: monospace;
+                  "
+                  >6</kbd
+                >
+              </td>
+              <td style="padding: 10px; border: 1px solid #ddd">
+                מעבר לתנאי שימוש
+              </td>
+            </tr>
+            <tr style="background: #e8f5e9">
+              <td style="padding: 10px; border: 1px solid #ddd">
+                <kbd
+                  style="
+                    background: #eee;
+                    padding: 3px 8px;
+                    border-radius: 4px;
+                    font-family: monospace;
+                  "
+                  >Alt</kbd
+                >
+                +
+                <kbd
+                  style="
+                    background: #eee;
+                    padding: 3px 8px;
+                    border-radius: 4px;
+                    font-family: monospace;
+                  "
+                  >7</kbd
+                >
+              </td>
+              <td style="padding: 10px; border: 1px solid #ddd">
+                מעבר להצהרת נגישות (דף זה)
+              </td>
+            </tr>
+            <tr>
+              <td style="padding: 10px; border: 1px solid #ddd">
+                <kbd
+                  style="
+                    background: #eee;
+                    padding: 3px 8px;
+                    border-radius: 4px;
+                    font-family: monospace;
+                  "
+                  >Alt</kbd
+                >
+                +
+                <kbd
+                  style="
+                    background: #eee;
+                    padding: 3px 8px;
+                    border-radius: 4px;
+                    font-family: monospace;
+                  "
+                  >W</kbd
+                >
+              </td>
+              <td style="padding: 10px; border: 1px solid #ddd">
+                פתיחת וואטסאפ ליצירת קשר
+              </td>
+            </tr>
+            <tr style="background: #e8f5e9">
+              <td style="padding: 10px; border: 1px solid #ddd">
+                <kbd
+                  style="
+                    background: #eee;
+                    padding: 3px 8px;
+                    border-radius: 4px;
+                    font-family: monospace;
+                  "
+                  >Alt</kbd
+                >
+                +
+                <kbd
+                  style="
+                    background: #eee;
+                    padding: 3px 8px;
+                    border-radius: 4px;
+                    font-family: monospace;
+                  "
+                  >A</kbd
+                >
+              </td>
+              <td style="padding: 10px; border: 1px solid #ddd">
+                פתיחת תפריט הנגישות
+              </td>
+            </tr>
+            <tr>
+              <td style="padding: 10px; border: 1px solid #ddd">
+                <kbd
+                  style="
+                    background: #eee;
+                    padding: 3px 8px;
+                    border-radius: 4px;
+                    font-family: monospace;
+                  "
+                  >Alt</kbd
+                >
+                +
+                <kbd
+                  style="
+                    background: #eee;
+                    padding: 3px 8px;
+                    border-radius: 4px;
+                    font-family: monospace;
+                  "
+                  >C</kbd
+                >
+              </td>
+              <td style="padding: 10px; border: 1px solid #ddd">
+                פתיחת הצ'אטבוט
+              </td>
+            </tr>
+            <tr style="background: #e8f5e9">
+              <td style="padding: 10px; border: 1px solid #ddd">
+                <kbd
+                  style="
+                    background: #eee;
+                    padding: 3px 8px;
+                    border-radius: 4px;
+                    font-family: monospace;
+                  "
+                  >Alt</kbd
+                >
+                +
+                <kbd
+                  style="
+                    background: #eee;
+                    padding: 3px 8px;
+                    border-radius: 4px;
+                    font-family: monospace;
+                  "
+                  >T</kbd
+                >
+              </td>
+              <td style="padding: 10px; border: 1px solid #ddd">
+                גלילה לראש העמוד
+              </td>
+            </tr>
+            <tr>
+              <td style="padding: 10px; border: 1px solid #ddd">
+                <kbd
+                  style="
+                    background: #eee;
+                    padding: 3px 8px;
+                    border-radius: 4px;
+                    font-family: monospace;
+                  "
+                  >Alt</kbd
+                >
+                +
+                <kbd
+                  style="
+                    background: #eee;
+                    padding: 3px 8px;
+                    border-radius: 4px;
+                    font-family: monospace;
+                  "
+                  >B</kbd
+                >
+              </td>
+              <td style="padding: 10px; border: 1px solid #ddd">
+                גלילה לתחתית העמוד
+              </td>
+            </tr>
+            <tr style="background: #e8f5e9">
+              <td style="padding: 10px; border: 1px solid #ddd">
+                <kbd
+                  style="
+                    background: #eee;
+                    padding: 3px 8px;
+                    border-radius: 4px;
+                    font-family: monospace;
+                  "
+                  >Esc</kbd
+                >
+              </td>
+              <td style="padding: 10px; border: 1px solid #ddd">
+                סגירת תפריטים וחלונות פתוחים
+              </td>
+            </tr>
+            <tr>
+              <td style="padding: 10px; border: 1px solid #ddd">
+                <kbd
+                  style="
+                    background: #eee;
+                    padding: 3px 8px;
+                    border-radius: 4px;
+                    font-family: monospace;
+                  "
+                  >?</kbd
+                >
+              </td>
+              <td style="padding: 10px; border: 1px solid #ddd">
+                הצגת דף קיצורי המקלדת (דף זה)
+              </td>
+            </tr>
+          </tbody>
         </table>
-    </div>
+      </div>
 
-    <h3>מקשי ניווט כלליים:</h3>
-    <div class="keyboard-guide">
-        <table style="width: 100%; border-collapse: collapse; margin: 15px 0;">
-            <thead>
-                <tr style="background: linear-gradient(135deg, #667eea, #764ba2); color: white;">
-                    <th style="padding: 12px; text-align: right; border: 1px solid #ddd;">מקש</th>
-                    <th style="padding: 12px; text-align: right; border: 1px solid #ddd;">פעולה</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr style="background: #f9f9f9;">
-                    <td style="padding: 10px; border: 1px solid #ddd;"><kbd style="background: #eee; padding: 3px 8px; border-radius: 4px; font-family: monospace;">Tab</kbd></td>
-                    <td style="padding: 10px; border: 1px solid #ddd;">מעבר לאלמנט הבא (קישור, כפתור, שדה טופס)</td>
-                </tr>
-                <tr>
-                    <td style="padding: 10px; border: 1px solid #ddd;"><kbd style="background: #eee; padding: 3px 8px; border-radius: 4px; font-family: monospace;">Shift</kbd> + <kbd style="background: #eee; padding: 3px 8px; border-radius: 4px; font-family: monospace;">Tab</kbd></td>
-                    <td style="padding: 10px; border: 1px solid #ddd;">מעבר לאלמנט הקודם</td>
-                </tr>
-                <tr style="background: #f9f9f9;">
-                    <td style="padding: 10px; border: 1px solid #ddd;"><kbd style="background: #eee; padding: 3px 8px; border-radius: 4px; font-family: monospace;">&#8592;</kbd> חץ שמאלה</td>
-                    <td style="padding: 10px; border: 1px solid #ddd;">מעבר לאלמנט הבא (במצב ניווט מקלדת)</td>
-                </tr>
-                <tr>
-                    <td style="padding: 10px; border: 1px solid #ddd;"><kbd style="background: #eee; padding: 3px 8px; border-radius: 4px; font-family: monospace;">&#8594;</kbd> חץ ימינה</td>
-                    <td style="padding: 10px; border: 1px solid #ddd;">מעבר לאלמנט הקודם (במצב ניווט מקלדת)</td>
-                </tr>
-                <tr style="background: #f9f9f9;">
-                    <td style="padding: 10px; border: 1px solid #ddd;"><kbd style="background: #eee; padding: 3px 8px; border-radius: 4px; font-family: monospace;">&#8593;</kbd> חץ למעלה / <kbd style="background: #eee; padding: 3px 8px; border-radius: 4px; font-family: monospace;">&#8595;</kbd> חץ למטה</td>
-                    <td style="padding: 10px; border: 1px solid #ddd;">גלילה בדף למעלה/למטה</td>
-                </tr>
-                <tr>
-                    <td style="padding: 10px; border: 1px solid #ddd;"><kbd style="background: #eee; padding: 3px 8px; border-radius: 4px; font-family: monospace;">Enter</kbd> / <kbd style="background: #eee; padding: 3px 8px; border-radius: 4px; font-family: monospace;">רווח</kbd></td>
-                    <td style="padding: 10px; border: 1px solid #ddd;">הפעלת הכפתור או הקישור הנוכחי</td>
-                </tr>
-                <tr style="background: #f9f9f9;">
-                    <td style="padding: 10px; border: 1px solid #ddd;"><kbd style="background: #eee; padding: 3px 8px; border-radius: 4px; font-family: monospace;">Home</kbd></td>
-                    <td style="padding: 10px; border: 1px solid #ddd;">מעבר לאלמנט הראשון בדף</td>
-                </tr>
-                <tr>
-                    <td style="padding: 10px; border: 1px solid #ddd;"><kbd style="background: #eee; padding: 3px 8px; border-radius: 4px; font-family: monospace;">End</kbd></td>
-                    <td style="padding: 10px; border: 1px solid #ddd;">מעבר לאלמנט האחרון בדף</td>
-                </tr>
-            </tbody>
+      <h3>מקשי ניווט כלליים:</h3>
+      <div class="keyboard-guide">
+        <table style="width: 100%; border-collapse: collapse; margin: 15px 0">
+          <thead>
+            <tr
+              style="
+                background: linear-gradient(135deg, #667eea, #764ba2);
+                color: white;
+              "
+            >
+              <th
+                style="padding: 12px; text-align: right; border: 1px solid #ddd"
+              >
+                מקש
+              </th>
+              <th
+                style="padding: 12px; text-align: right; border: 1px solid #ddd"
+              >
+                פעולה
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="background: #f9f9f9">
+              <td style="padding: 10px; border: 1px solid #ddd">
+                <kbd
+                  style="
+                    background: #eee;
+                    padding: 3px 8px;
+                    border-radius: 4px;
+                    font-family: monospace;
+                  "
+                  >Tab</kbd
+                >
+              </td>
+              <td style="padding: 10px; border: 1px solid #ddd">
+                מעבר לאלמנט הבא (קישור, כפתור, שדה טופס)
+              </td>
+            </tr>
+            <tr>
+              <td style="padding: 10px; border: 1px solid #ddd">
+                <kbd
+                  style="
+                    background: #eee;
+                    padding: 3px 8px;
+                    border-radius: 4px;
+                    font-family: monospace;
+                  "
+                  >Shift</kbd
+                >
+                +
+                <kbd
+                  style="
+                    background: #eee;
+                    padding: 3px 8px;
+                    border-radius: 4px;
+                    font-family: monospace;
+                  "
+                  >Tab</kbd
+                >
+              </td>
+              <td style="padding: 10px; border: 1px solid #ddd">
+                מעבר לאלמנט הקודם
+              </td>
+            </tr>
+            <tr style="background: #f9f9f9">
+              <td style="padding: 10px; border: 1px solid #ddd">
+                <kbd
+                  style="
+                    background: #eee;
+                    padding: 3px 8px;
+                    border-radius: 4px;
+                    font-family: monospace;
+                  "
+                  >&#8592;</kbd
+                >
+                חץ שמאלה
+              </td>
+              <td style="padding: 10px; border: 1px solid #ddd">
+                מעבר לאלמנט הבא (במצב ניווט מקלדת)
+              </td>
+            </tr>
+            <tr>
+              <td style="padding: 10px; border: 1px solid #ddd">
+                <kbd
+                  style="
+                    background: #eee;
+                    padding: 3px 8px;
+                    border-radius: 4px;
+                    font-family: monospace;
+                  "
+                  >&#8594;</kbd
+                >
+                חץ ימינה
+              </td>
+              <td style="padding: 10px; border: 1px solid #ddd">
+                מעבר לאלמנט הקודם (במצב ניווט מקלדת)
+              </td>
+            </tr>
+            <tr style="background: #f9f9f9">
+              <td style="padding: 10px; border: 1px solid #ddd">
+                <kbd
+                  style="
+                    background: #eee;
+                    padding: 3px 8px;
+                    border-radius: 4px;
+                    font-family: monospace;
+                  "
+                  >&#8593;</kbd
+                >
+                חץ למעלה /
+                <kbd
+                  style="
+                    background: #eee;
+                    padding: 3px 8px;
+                    border-radius: 4px;
+                    font-family: monospace;
+                  "
+                  >&#8595;</kbd
+                >
+                חץ למטה
+              </td>
+              <td style="padding: 10px; border: 1px solid #ddd">
+                גלילה בדף למעלה/למטה
+              </td>
+            </tr>
+            <tr>
+              <td style="padding: 10px; border: 1px solid #ddd">
+                <kbd
+                  style="
+                    background: #eee;
+                    padding: 3px 8px;
+                    border-radius: 4px;
+                    font-family: monospace;
+                  "
+                  >Enter</kbd
+                >
+                /
+                <kbd
+                  style="
+                    background: #eee;
+                    padding: 3px 8px;
+                    border-radius: 4px;
+                    font-family: monospace;
+                  "
+                  >רווח</kbd
+                >
+              </td>
+              <td style="padding: 10px; border: 1px solid #ddd">
+                הפעלת הכפתור או הקישור הנוכחי
+              </td>
+            </tr>
+            <tr style="background: #f9f9f9">
+              <td style="padding: 10px; border: 1px solid #ddd">
+                <kbd
+                  style="
+                    background: #eee;
+                    padding: 3px 8px;
+                    border-radius: 4px;
+                    font-family: monospace;
+                  "
+                  >Home</kbd
+                >
+              </td>
+              <td style="padding: 10px; border: 1px solid #ddd">
+                מעבר לאלמנט הראשון בדף
+              </td>
+            </tr>
+            <tr>
+              <td style="padding: 10px; border: 1px solid #ddd">
+                <kbd
+                  style="
+                    background: #eee;
+                    padding: 3px 8px;
+                    border-radius: 4px;
+                    font-family: monospace;
+                  "
+                  >End</kbd
+                >
+              </td>
+              <td style="padding: 10px; border: 1px solid #ddd">
+                מעבר לאלמנט האחרון בדף
+              </td>
+            </tr>
+          </tbody>
         </table>
-    </div>
+      </div>
 
-    <h3>קיצורים מיוחדים בדפים ספציפיים:</h3>
-    <div class="highlight-box">
+      <h3>קיצורים מיוחדים בדפים ספציפיים:</h3>
+      <div class="highlight-box">
         <p><strong>בדף הגלריה:</strong></p>
-        <ul style="margin: 10px 0;">
-            <li><kbd style="background: #eee; padding: 3px 8px; border-radius: 4px; font-family: monospace;">Enter</kbd> או <kbd style="background: #eee; padding: 3px 8px; border-radius: 4px; font-family: monospace;">רווח</kbd> - פתיחת תמונה בתצוגה מוגדלת</li>
-            <li><kbd style="background: #eee; padding: 3px 8px; border-radius: 4px; font-family: monospace;">&#8592;</kbd> / <kbd style="background: #eee; padding: 3px 8px; border-radius: 4px; font-family: monospace;">&#8594;</kbd> - מעבר בין תמונות בתצוגה המוגדלת</li>
-            <li><kbd style="background: #eee; padding: 3px 8px; border-radius: 4px; font-family: monospace;">Esc</kbd> - סגירת תצוגת התמונה</li>
+        <ul style="margin: 10px 0">
+          <li>
+            <kbd
+              style="
+                background: #eee;
+                padding: 3px 8px;
+                border-radius: 4px;
+                font-family: monospace;
+              "
+              >Enter</kbd
+            >
+            או
+            <kbd
+              style="
+                background: #eee;
+                padding: 3px 8px;
+                border-radius: 4px;
+                font-family: monospace;
+              "
+              >רווח</kbd
+            >
+            - פתיחת תמונה בתצוגה מוגדלת
+          </li>
+          <li>
+            <kbd
+              style="
+                background: #eee;
+                padding: 3px 8px;
+                border-radius: 4px;
+                font-family: monospace;
+              "
+              >&#8592;</kbd
+            >
+            /
+            <kbd
+              style="
+                background: #eee;
+                padding: 3px 8px;
+                border-radius: 4px;
+                font-family: monospace;
+              "
+              >&#8594;</kbd
+            >
+            - מעבר בין תמונות בתצוגה המוגדלת
+          </li>
+          <li>
+            <kbd
+              style="
+                background: #eee;
+                padding: 3px 8px;
+                border-radius: 4px;
+                font-family: monospace;
+              "
+              >Esc</kbd
+            >
+            - סגירת תצוגת התמונה
+          </li>
         </ul>
         <p><strong>בדף שאלות נפוצות:</strong></p>
-        <ul style="margin: 10px 0;">
-            <li><kbd style="background: #eee; padding: 3px 8px; border-radius: 4px; font-family: monospace;">Enter</kbd> או <kbd style="background: #eee; padding: 3px 8px; border-radius: 4px; font-family: monospace;">רווח</kbd> - פתיחה/סגירה של שאלה לצפייה בתשובה</li>
+        <ul style="margin: 10px 0">
+          <li>
+            <kbd
+              style="
+                background: #eee;
+                padding: 3px 8px;
+                border-radius: 4px;
+                font-family: monospace;
+              "
+              >Enter</kbd
+            >
+            או
+            <kbd
+              style="
+                background: #eee;
+                padding: 3px 8px;
+                border-radius: 4px;
+                font-family: monospace;
+              "
+              >רווח</kbd
+            >
+            - פתיחה/סגירה של שאלה לצפייה בתשובה
+          </li>
         </ul>
+      </div>
+
+      <p>
+        <strong>טיפ:</strong> כאשר ניווט המקלדת פעיל, האלמנט הנוכחי יודגש בקו
+        כתום בולט כדי לעזור לכם לדעת היכן אתם נמצאים בדף.
+      </p>
+
+      <h2>צור קשר בנושאי נגישות</h2>
+      <div class="contact-info">
+        <p>
+          <strong
+            >אם נתקלתם בבעיית נגישות באתר, או שיש לכם הצעות לשיפור הנגישות, נשמח
+            לשמוע מכם:</strong
+          >
+        </p>
+
+        <p>
+          <i class="fa-solid fa-building"></i> <strong>שם העסק:</strong> סאנרייז
+          ספא (Sunrise Spa)
+        </p>
+        <p>
+          <i class="fa-solid fa-location-dot"></i>
+          <strong>כתובת:</strong> ההסתדרות 2, קומה 2, פתח תקווה
+        </p>
+        <p>
+          <i class="fa-solid fa-phone"></i> <strong>טלפון:</strong>
+          <a href="tel:0586588751">058-658-8751</a>
+        </p>
+        <p>
+          <i class="fa-brands fa-whatsapp"></i> <strong>ווצאפ:</strong>
+          <a href="https://wa.me/972586588751" target="_blank">שלח הודעה</a>
+        </p>
+
+        <p style="margin-top: 15px">
+          <strong>רכז נגישות:</strong> הנהלת סאנרייז ספא
+        </p>
+        <p>
+          אנו מתחייבים לטפל בכל פנייה בנושא נגישות בתוך 5 ימי עסקים ולפעול
+          למציאת פתרון מתאים.
+        </p>
+      </div>
+
+      <h2>תאריך עדכון אחרון</h2>
+      <p>
+        הצהרת נגישות זו עודכנה לאחרונה ביום <strong>15 בינואר 2026</strong>.
+      </p>
+
+      <div class="highlight-box" style="margin-top: 30px">
+        <p style="text-align: center; margin: 0">
+          <strong
+            >💙 סאנרייז ספא מאמין בשוויון הזדמנויות ובזכותו של כל אדם לגישה מלאה
+            ונוחה למידע ולשירותים המוצעים באתר.</strong
+          >
+        </p>
+      </div>
     </div>
 
-    <p><strong>טיפ:</strong> כאשר ניווט המקלדת פעיל, האלמנט הנוכחי יודגש בקו כתום בולט כדי לעזור לכם לדעת היכן אתם נמצאים בדף.</p>
+    <!-- כפתור WhatsApp צף -->
+    <a
+      href="https://wa.me/972586588751"
+      class="whatsapp-float"
+      target="_blank"
+      aria-label="צור קשר בוואטסאפ"
+      title="שלח הודעה בוואטסאפ"
+    >
+      <i class="fa-brands fa-whatsapp"></i>
+    </a>
 
-    <h2>צור קשר בנושאי נגישות</h2>
-    <div class="contact-info">
-        <p><strong>אם נתקלתם בבעיית נגישות באתר, או שיש לכם הצעות לשיפור הנגישות, נשמח לשמוע מכם:</strong></p>
+    <!-- כפתור חזרה למעלה -->
+    <button
+      class="back-to-top"
+      id="backToTop"
+      aria-label="חזרה לראש הדף"
+      title="חזרה למעלה"
+    >
+      <i class="fa-solid fa-arrow-up"></i>
+    </button>
 
-        <p><i class="fa-solid fa-building"></i> <strong>שם העסק:</strong> סאנרייז ספא (Sunrise Spa)</p>
-        <p><i class="fa-solid fa-location-dot"></i> <strong>כתובת:</strong> ההסתדרות 2, קומה 2, פתח תקווה</p>
-        <p><i class="fa-solid fa-phone"></i> <strong>טלפון:</strong> <a href="tel:0586588751">058-658-8751</a></p>
-        <p><i class="fa-brands fa-whatsapp"></i> <strong>ווצאפ:</strong> <a href="https://wa.me/972586588751" target="_blank">שלח הודעה</a></p>
+    <!-- כפתור צ'אטבוט צף -->
+    <button
+      class="chatbot-btn"
+      id="chatbotBtn"
+      aria-label="פתח צ'אטבוט"
+      title="שאל אותנו שאלה"
+    >
+      <i class="fa-solid fa-comments"></i>
+    </button>
 
-        <p style="margin-top: 15px;"><strong>רכז נגישות:</strong> הנהלת סאנרייז ספא</p>
-        <p>אנו מתחייבים לטפל בכל פנייה בנושא נגישות בתוך 5 ימי עסקים ולפעול למציאת פתרון מתאים.</p>
-    </div>
-
-    <h2>תאריך עדכון אחרון</h2>
-    <p>הצהרת נגישות זו עודכנה לאחרונה ביום <strong>15 בינואר 2026</strong>.</p>
-
-    <div class="highlight-box" style="margin-top: 30px;">
-        <p style="text-align: center; margin: 0;"><strong>💙 סאנרייז ספא מאמין בשוויון הזדמנויות ובזכותו של כל אדם לגישה מלאה ונוחה למידע ולשירותים המוצעים באתר.</strong></p>
-    </div>
-</div>
-
-<!-- כפתור WhatsApp צף -->
-<a href="https://wa.me/972586588751" class="whatsapp-float" target="_blank" aria-label="צור קשר בוואטסאפ" title="שלח הודעה בוואטסאפ">
-    <i class="fa-brands fa-whatsapp"></i>
-</a>
-
-<!-- כפתור חזרה למעלה -->
-<button class="back-to-top" id="backToTop" aria-label="חזרה לראש הדף" title="חזרה למעלה">
-    <i class="fa-solid fa-arrow-up"></i>
-</button>
-
-<!-- כפתור צ'אטבוט צף -->
-<button class="chatbot-btn" id="chatbotBtn" aria-label="פתח צ'אטבוט" title="שאל אותנו שאלה">
-    <i class="fa-solid fa-comments"></i>
-</button>
-
-<!-- חלון הצ'אטבוט -->
-<div class="chatbot-container" id="chatbotContainer">
-    <div class="chatbot-header">
-        <img src="SunriseLogo.png" alt="סאנרייז ספא" class="chatbot-logo">
+    <!-- חלון הצ'אטבוט -->
+    <div class="chatbot-container" id="chatbotContainer">
+      <div class="chatbot-header">
+        <img src="SunriseLogo.png" alt="סאנרייז ספא" class="chatbot-logo" />
         <h3>סאנרייז ספא</h3>
-        <button class="chatbot-close" id="chatbotClose" aria-label="סגור צ'אטבוט">
-            <i class="fa-solid fa-times"></i>
+        <button
+          class="chatbot-close"
+          id="chatbotClose"
+          aria-label="סגור צ'אטבוט"
+        >
+          <i class="fa-solid fa-times"></i>
         </button>
-    </div>
-    <div class="chatbot-messages" id="chatbotMessages">
+      </div>
+      <div class="chatbot-messages" id="chatbotMessages">
         <div class="bot-message">
-            <div class="message-avatar">
-                <i class="fa-solid fa-spa"></i>
-            </div>
-            <div class="message-content">
-                שלום! 👋 אני עוזר וירטואלי של סאנרייז ספא.<br>
-                איך אוכל לעזור לך היום?
-            </div>
+          <div class="message-avatar">
+            <i class="fa-solid fa-spa"></i>
+          </div>
+          <div class="message-content">
+            שלום! 👋 אני עוזר וירטואלי של סאנרייז ספא.<br />
+            איך אוכל לעזור לך היום?
+          </div>
         </div>
 
         <div class="quick-questions">
-            <button class="quick-btn" data-question="hours">🕐 שעות פעילות</button>
-            <button class="quick-btn" data-question="prices">💰 מחירון</button>
-            <button class="quick-btn" data-question="location">📍 איפה אתם?</button>
-            <button class="quick-btn" data-question="services">💆 אילו עיסויים יש?</button>
-            <button class="quick-btn" data-question="booking">📅 איך מזמינים תור?</button>
+          <button class="quick-btn" data-question="hours">
+            🕐 שעות פעילות
+          </button>
+          <button class="quick-btn" data-question="prices">💰 מחירון</button>
+          <button class="quick-btn" data-question="location">
+            📍 איפה אתם?
+          </button>
+          <button class="quick-btn" data-question="services">
+            💆 אילו עיסויים יש?
+          </button>
+          <button class="quick-btn" data-question="booking">
+            📅 איך מזמינים תור?
+          </button>
         </div>
-    </div>
+      </div>
 
-    <div class="chatbot-input-area">
-        <input type="text" id="chatbotInput" placeholder="כתוב את השאלה שלך..." aria-label="שדה שאלה">
+      <div class="chatbot-input-area">
+        <input
+          type="text"
+          id="chatbotInput"
+          placeholder="כתוב את השאלה שלך..."
+          aria-label="שדה שאלה"
+        />
         <button id="chatbotSend" aria-label="שלח הודעה">
-            <i class="fa-solid fa-paper-plane"></i>
+          <i class="fa-solid fa-paper-plane"></i>
         </button>
+      </div>
     </div>
-</div>
 
-<!-- כפתור הנגשה -->
-<button class="accessibility-trigger" id="accessibilityBtn" aria-label="פתח תפריט נגישות" title="נגישות">
-    <i class="fa-solid fa-universal-access"></i>
-</button>
+    <!-- כפתור הנגשה -->
+    <button
+      class="accessibility-trigger"
+      id="accessibilityBtn"
+      aria-label="פתח תפריט נגישות"
+      title="נגישות"
+    >
+      <i class="fa-solid fa-universal-access"></i>
+    </button>
 
-<!-- תפריט הנגישות -->
-<div class="accessibility-panel" id="accessibilityPanel">
-    <div class="accessibility-header">
+    <!-- תפריט הנגישות -->
+    <div class="accessibility-panel" id="accessibilityPanel">
+      <div class="accessibility-header">
         <h2>הנגשה</h2>
-        <button class="accessibility-close" id="accessibilityClose" aria-label="סגור תפריט נגישות">
-            <i class="fa-solid fa-times"></i>
+        <button
+          class="accessibility-close"
+          id="accessibilityClose"
+          aria-label="סגור תפריט נגישות"
+        >
+          <i class="fa-solid fa-times"></i>
         </button>
-    </div>
+      </div>
 
-    <div class="accessibility-content">
+      <div class="accessibility-content">
         <!-- קורא מסך -->
         <div class="accessibility-section">
-            <h3><i class="fa-solid fa-volume-high"></i> קורא מסך</h3>
-            <button class="accessibility-btn" id="screenReaderBtn" title="קורא מסך - הקלק על טקסט כדי לשמוע אותו" aria-pressed="false">
-                <i class="fa-solid fa-headphones"></i>
-                הפעל קורא מסך
+          <h3><i class="fa-solid fa-volume-high"></i> קורא מסך</h3>
+          <button
+            class="accessibility-btn"
+            id="screenReaderBtn"
+            title="קורא מסך - הקלק על טקסט כדי לשמוע אותו"
+            aria-pressed="false"
+          >
+            <i class="fa-solid fa-headphones"></i>
+            הפעל קורא מסך
+          </button>
+          <div class="accessibility-buttons" style="margin-top: 10px">
+            <button
+              class="accessibility-btn-small"
+              id="readerSpeedDownBtn"
+              title="האט קריאה"
+            >
+              <i class="fa-solid fa-backward"></i> האט
             </button>
-            <div class="accessibility-buttons" style="margin-top: 10px;">
-                <button class="accessibility-btn-small" id="readerSpeedDownBtn" title="האט קריאה">
-                    <i class="fa-solid fa-backward"></i> האט
-                </button>
-                <button class="accessibility-btn-small" id="readerSpeedUpBtn" title="האץ קריאה">
-                    <i class="fa-solid fa-forward"></i> האץ
-                </button>
-            </div>
+            <button
+              class="accessibility-btn-small"
+              id="readerSpeedUpBtn"
+              title="האץ קריאה"
+            >
+              <i class="fa-solid fa-forward"></i> האץ
+            </button>
+          </div>
         </div>
 
         <!-- הגדלת גופן -->
         <div class="accessibility-section">
-            <h3><i class="fa-solid fa-text-height"></i> גודל טקסט</h3>
-            <div class="accessibility-buttons">
-                <button class="accessibility-btn" id="increaseFontBtn" title="הגדל גופן" aria-pressed="false">
-                    <i class="fa-solid fa-plus"></i>
-                    הגדל טקסט
-                </button>
-                <button class="accessibility-btn" id="decreaseFontBtn" title="הקטן גופן" aria-pressed="false">
-                    <i class="fa-solid fa-minus"></i>
-                    הקטן טקסט
-                </button>
-            </div>
+          <h3><i class="fa-solid fa-text-height"></i> גודל טקסט</h3>
+          <div class="accessibility-buttons">
+            <button
+              class="accessibility-btn"
+              id="increaseFontBtn"
+              title="הגדל גופן"
+              aria-pressed="false"
+            >
+              <i class="fa-solid fa-plus"></i>
+              הגדל טקסט
+            </button>
+            <button
+              class="accessibility-btn"
+              id="decreaseFontBtn"
+              title="הקטן גופן"
+              aria-pressed="false"
+            >
+              <i class="fa-solid fa-minus"></i>
+              הקטן טקסט
+            </button>
+          </div>
         </div>
 
         <!-- מרווחים -->
         <div class="accessibility-section">
-            <h3><i class="fa-solid fa-arrows-left-right"></i> מרווחים</h3>
-            <div class="accessibility-buttons">
-                <button class="accessibility-btn" id="lineHeightBtn" title="הגדל מרווח בין שורות" aria-pressed="false">
-                    <i class="fa-solid fa-align-justify"></i>
-                    מרווח שורות
-                </button>
-                <button class="accessibility-btn" id="letterSpacingBtn" title="הגדל מרווח בין אותיות" aria-pressed="false">
-                    <i class="fa-solid fa-text-width"></i>
-                    מרווח אותיות
-                </button>
-            </div>
+          <h3><i class="fa-solid fa-arrows-left-right"></i> מרווחים</h3>
+          <div class="accessibility-buttons">
+            <button
+              class="accessibility-btn"
+              id="lineHeightBtn"
+              title="הגדל מרווח בין שורות"
+              aria-pressed="false"
+            >
+              <i class="fa-solid fa-align-justify"></i>
+              מרווח שורות
+            </button>
+            <button
+              class="accessibility-btn"
+              id="letterSpacingBtn"
+              title="הגדל מרווח בין אותיות"
+              aria-pressed="false"
+            >
+              <i class="fa-solid fa-text-width"></i>
+              מרווח אותיות
+            </button>
+          </div>
         </div>
 
         <!-- גופנים -->
         <div class="accessibility-section">
-            <h3><i class="fa-solid fa-font"></i> סוג גופן</h3>
-            <div class="accessibility-buttons">
-                <button class="accessibility-btn" id="readableFontBtn" title="גופן קריא" aria-pressed="false">
-                    <i class="fa-solid fa-font"></i>
-                    גופן קריא
-                </button>
-                <button class="accessibility-btn" id="dyslexiaFontBtn" title="גופן לדיסלקציה" aria-pressed="false">
-                    <i class="fa-solid fa-book-open-reader"></i>
-                    גופן דיסלקציה
-                </button>
-            </div>
+          <h3><i class="fa-solid fa-font"></i> סוג גופן</h3>
+          <div class="accessibility-buttons">
+            <button
+              class="accessibility-btn"
+              id="readableFontBtn"
+              title="גופן קריא"
+              aria-pressed="false"
+            >
+              <i class="fa-solid fa-font"></i>
+              גופן קריא
+            </button>
+            <button
+              class="accessibility-btn"
+              id="dyslexiaFontBtn"
+              title="גופן לדיסלקציה"
+              aria-pressed="false"
+            >
+              <i class="fa-solid fa-book-open-reader"></i>
+              גופן דיסלקציה
+            </button>
+          </div>
         </div>
 
         <!-- ניגודיות וצבעים -->
         <div class="accessibility-section">
-            <h3><i class="fa-solid fa-palette"></i> צבעים וניגודיות</h3>
-            <div class="accessibility-buttons">
-                <button class="accessibility-btn" id="darkContrastBtn" title="מצב כהה" aria-pressed="false">
-                    <i class="fa-solid fa-moon"></i>
-                    מצב כהה
-                </button>
-                <button class="accessibility-btn" id="highContrastYellowBtn" title="ניגודיות גבוהה" aria-pressed="false">
-                    <i class="fa-solid fa-eye"></i>
-                    ניגודיות גבוהה
-                </button>
-            </div>
-            <button class="accessibility-btn" id="invertColorsBtn" title="הפוך צבעים" aria-pressed="false" style="margin-top: 8px;">
-                <i class="fa-solid fa-circle-half-stroke"></i>
-                הפוך צבעים
+          <h3><i class="fa-solid fa-palette"></i> צבעים וניגודיות</h3>
+          <div class="accessibility-buttons">
+            <button
+              class="accessibility-btn"
+              id="darkContrastBtn"
+              title="מצב כהה"
+              aria-pressed="false"
+            >
+              <i class="fa-solid fa-moon"></i>
+              מצב כהה
             </button>
+            <button
+              class="accessibility-btn"
+              id="highContrastYellowBtn"
+              title="ניגודיות גבוהה"
+              aria-pressed="false"
+            >
+              <i class="fa-solid fa-eye"></i>
+              ניגודיות גבוהה
+            </button>
+          </div>
+          <button
+            class="accessibility-btn"
+            id="invertColorsBtn"
+            title="הפוך צבעים"
+            aria-pressed="false"
+            style="margin-top: 8px"
+          >
+            <i class="fa-solid fa-circle-half-stroke"></i>
+            הפוך צבעים
+          </button>
         </div>
 
         <!-- סמן עכבר -->
         <div class="accessibility-section">
-            <h3><i class="fa-solid fa-computer-mouse"></i> סמן עכבר</h3>
-            <div class="accessibility-buttons">
-                <button class="accessibility-btn" id="bigCursorBtn" title="סמן גדול" aria-pressed="false">
-                    <i class="fa-solid fa-arrow-pointer"></i>
-                    סמן גדול
-                </button>
-                <button class="accessibility-btn" id="cursorColorBtn" title="סמן צבעוני" aria-pressed="false">
-                    <i class="fa-solid fa-droplet"></i>
-                    סמן צבעוני
-                </button>
-            </div>
+          <h3><i class="fa-solid fa-computer-mouse"></i> סמן עכבר</h3>
+          <div class="accessibility-buttons">
+            <button
+              class="accessibility-btn"
+              id="bigCursorBtn"
+              title="סמן גדול"
+              aria-pressed="false"
+            >
+              <i class="fa-solid fa-arrow-pointer"></i>
+              סמן גדול
+            </button>
+            <button
+              class="accessibility-btn"
+              id="cursorColorBtn"
+              title="סמן צבעוני"
+              aria-pressed="false"
+            >
+              <i class="fa-solid fa-droplet"></i>
+              סמן צבעוני
+            </button>
+          </div>
         </div>
 
         <!-- כלי עזר לקריאה -->
         <div class="accessibility-section">
-            <h3><i class="fa-solid fa-book-open"></i> כלי עזר לקריאה</h3>
-            <button class="accessibility-btn" id="readingGuideBtn" title="סרגל קריאה - עוקב אחרי העכבר" aria-pressed="false">
-                <i class="fa-solid fa-grip-lines"></i>
-                סרגל קריאה
-            </button>
+          <h3><i class="fa-solid fa-book-open"></i> כלי עזר לקריאה</h3>
+          <button
+            class="accessibility-btn"
+            id="readingGuideBtn"
+            title="סרגל קריאה - עוקב אחרי העכבר"
+            aria-pressed="false"
+          >
+            <i class="fa-solid fa-grip-lines"></i>
+            סרגל קריאה
+          </button>
         </div>
 
         <!-- הדגשות -->
         <div class="accessibility-section">
-            <h3><i class="fa-solid fa-highlighter"></i> הדגשות</h3>
-            <button class="accessibility-btn" id="highlightLinksBtn" title="הדגש קישורים" aria-pressed="false">
-                <i class="fa-solid fa-link"></i>
-                הדגש קישורים
-            </button>
+          <h3><i class="fa-solid fa-highlighter"></i> הדגשות</h3>
+          <button
+            class="accessibility-btn"
+            id="highlightLinksBtn"
+            title="הדגש קישורים"
+            aria-pressed="false"
+          >
+            <i class="fa-solid fa-link"></i>
+            הדגש קישורים
+          </button>
         </div>
 
         <!-- הסתרת מדיה -->
         <div class="accessibility-section">
-            <h3><i class="fa-solid fa-image"></i> תמונות וסרטונים</h3>
-            <button class="accessibility-btn" id="hideMediaBtn" title="הסתר תמונות וסרטונים" aria-pressed="false">
-                <i class="fa-solid fa-eye-slash"></i>
-                הסתר תמונות
-            </button>
+          <h3><i class="fa-solid fa-image"></i> תמונות וסרטונים</h3>
+          <button
+            class="accessibility-btn"
+            id="hideMediaBtn"
+            title="הסתר תמונות וסרטונים"
+            aria-pressed="false"
+          >
+            <i class="fa-solid fa-eye-slash"></i>
+            הסתר תמונות
+          </button>
         </div>
 
         <!-- ניווט מקלדת -->
         <div class="accessibility-section">
-            <h3><i class="fa-solid fa-keyboard"></i> ניווט מקלדת</h3>
-            <button class="accessibility-btn" id="keyboardNavBtn" title="הפעל ניווט מקלדת מלא" aria-pressed="false">
-                <i class="fa-solid fa-keyboard"></i>
-                ניווט מקלדת מלא
-            </button>
+          <h3><i class="fa-solid fa-keyboard"></i> ניווט מקלדת</h3>
+          <button
+            class="accessibility-btn"
+            id="keyboardNavBtn"
+            title="הפעל ניווט מקלדת מלא"
+            aria-pressed="false"
+          >
+            <i class="fa-solid fa-keyboard"></i>
+            ניווט מקלדת מלא
+          </button>
         </div>
 
         <!-- כיוון וניווט -->
         <div class="accessibility-section">
-            <h3><i class="fa-solid fa-compass"></i> ניווט וכיוון</h3>
-            <button class="accessibility-btn" id="textDirectionBtn" title="שנה כיוון טקסט" aria-pressed="false">
-                <i class="fa-solid fa-exchange-alt"></i>
-                היפוך כיוון (LTR/RTL)
-            </button>
+          <h3><i class="fa-solid fa-compass"></i> ניווט וכיוון</h3>
+          <button
+            class="accessibility-btn"
+            id="textDirectionBtn"
+            title="שנה כיוון טקסט"
+            aria-pressed="false"
+          >
+            <i class="fa-solid fa-exchange-alt"></i>
+            היפוך כיוון (LTR/RTL)
+          </button>
         </div>
 
         <!-- אנימציות -->
         <div class="accessibility-section">
-            <h3><i class="fa-solid fa-film"></i> אנימציות</h3>
-            <button class="accessibility-btn" id="stopAnimationsBtn" title="הפסק אנימציות" aria-pressed="false">
-                <i class="fa-solid fa-ban"></i>
-                עצור אנימציות
-            </button>
+          <h3><i class="fa-solid fa-film"></i> אנימציות</h3>
+          <button
+            class="accessibility-btn"
+            id="stopAnimationsBtn"
+            title="הפסק אנימציות"
+            aria-pressed="false"
+          >
+            <i class="fa-solid fa-ban"></i>
+            עצור אנימציות
+          </button>
         </div>
 
         <!-- הצהרת נגישות -->
         <div class="accessibility-section">
-            <a href="accessibility-statement.html" class="accessibility-statement-btn">
-                <i class="fa-solid fa-file-lines"></i>
-                הצהרת נגישות
-            </a>
+          <a
+            href="accessibility-statement.html"
+            class="accessibility-statement-btn"
+          >
+            <i class="fa-solid fa-file-lines"></i>
+            הצהרת נגישות
+          </a>
         </div>
 
         <!-- איפוס -->
         <div class="accessibility-section">
-            <button class="accessibility-reset-btn" id="resetAccessibilityBtn" title="אפס הגדרות">
-                <i class="fa-solid fa-undo"></i>
-                אפס הכל
-            </button>
+          <button
+            class="accessibility-reset-btn"
+            id="resetAccessibilityBtn"
+            title="אפס הגדרות"
+          >
+            <i class="fa-solid fa-undo"></i>
+            אפס הכל
+          </button>
         </div>
+      </div>
     </div>
-</div>
 
-<!-- Skip Links לניווט מקלדת -->
-<div id="skipLinks" style="display: none;">
-    <a href="#main-content" class="skip-link">דלג לתוכן הראשי</a>
-    <a href="#navigation" class="skip-link">דלג לתפריט ניווט</a>
-    <a href="#footer" class="skip-link">דלג לתחתית העמוד</a>
-</div>
+    <!-- Skip Links לניווט מקלדת -->
+    <div id="skipLinks" style="display: none">
+      <a href="#main-content" class="skip-link">דלג לתוכן הראשי</a>
+      <a href="#navigation" class="skip-link">דלג לתפריט ניווט</a>
+      <a href="#footer" class="skip-link">דלג לתחתית העמוד</a>
+    </div>
 
-<!-- Reading Guide -->
-<div id="readingGuide" style="display: none;"></div>
+    <!-- Reading Guide -->
+    <div id="readingGuide" style="display: none"></div>
 
-<!-- עוזר קורא מסך -->
-<div class="sr-only" role="status" aria-live="polite" aria-atomic="true" id="srAnnouncer"></div>
+    <!-- עוזר קורא מסך -->
+    <div
+      class="sr-only"
+      role="status"
+      aria-live="polite"
+      aria-atomic="true"
+      id="srAnnouncer"
+    ></div>
 
-<footer>
-    © 2026 סאנרייז ספא – ההסתדרות 2, פתח תקווה
+    <footer>
+      © 2026 סאנרייז ספא – ההסתדרות 2, פתח תקווה
 
-    <div style="margin-top: 15px; margin-bottom: 15px;">
+      <div style="margin-top: 15px; margin-bottom: 15px">
         <a href="privacy.html" class="footer-link">מדיניות פרטיות</a> |
         <a href="terms.html" class="footer-link">תנאי שימוש</a> |
         <a href="faq.html" class="footer-link">שאלות נפוצות</a> |
-        <a href="accessibility-statement.html" class="footer-link">הצהרת נגישות</a>
-    </div>
+        <a href="accessibility-statement.html" class="footer-link"
+          >הצהרת נגישות</a
+        >
+      </div>
 
-    <div class="social-title">
-        קישורים לרשתות החברתיות שלנו:
-    </div>
+      <div class="social-title">קישורים לרשתות החברתיות שלנו:</div>
 
-    <div class="social-links">
-        <a href="https://www.facebook.com/snryyzsp/" target="_blank" aria-label="עמוד הפייסבוק שלנו" title="Facebook">
-            <i class="fa-brands fa-facebook-f"></i>
+      <div class="social-links">
+        <a
+          href="https://www.facebook.com/snryyzsp/"
+          target="_blank"
+          aria-label="עמוד הפייסבוק שלנו"
+          title="Facebook"
+        >
+          <i class="fa-brands fa-facebook-f"></i>
         </a>
-        <a href="https://www.instagram.com/sunrise._.spa/" target="_blank" aria-label="עמוד האינסטגרם שלנו" title="Instagram">
-            <i class="fa-brands fa-instagram"></i>
+        <a
+          href="https://www.instagram.com/sunrise._.spa/"
+          target="_blank"
+          aria-label="עמוד האינסטגרם שלנו"
+          title="Instagram"
+        >
+          <i class="fa-brands fa-instagram"></i>
         </a>
-        <a href="https://wa.me/972586588751" target="_blank" aria-label="שלח הודעה בוואטסאפ" title="WhatsApp">
-            <i class="fa-brands fa-whatsapp"></i>
+        <a
+          href="https://wa.me/972586588751"
+          target="_blank"
+          aria-label="שלח הודעה בוואטסאפ"
+          title="WhatsApp"
+        >
+          <i class="fa-brands fa-whatsapp"></i>
         </a>
-        <a href="https://www.tiktok.com/@sunrise.spa7" target="_blank" aria-label="עמוד הטיקטוק שלנו" title="TikTok">
-            <i class="fa-brands fa-tiktok"></i>
+        <a
+          href="https://www.tiktok.com/@sunrise.spa7"
+          target="_blank"
+          aria-label="עמוד הטיקטוק שלנו"
+          title="TikTok"
+        >
+          <i class="fa-brands fa-tiktok"></i>
         </a>
-        <a href="https://www.youtube.com/@SunriseSpa-z8u" target="_blank" aria-label="ערוץ היוטיוב שלנו" title="YouTube">
-            <i class="fa-brands fa-youtube"></i>
+        <a
+          href="https://www.youtube.com/@SunriseSpa-z8u"
+          target="_blank"
+          aria-label="ערוץ היוטיוב שלנו"
+          title="YouTube"
+        >
+          <i class="fa-brands fa-youtube"></i>
         </a>
-    </div>
-</footer>
+      </div>
+    </footer>
 
-<script src="script.js"></script>
-
-</body>
+    <script src="script.js"></script>
+  </body>
 </html>
