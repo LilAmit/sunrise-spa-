@@ -1227,3 +1227,79 @@ quickBtns.forEach((btn) => {
     handleQuickQuestion(question);
   });
 });
+
+// ===== קיצורי מקלדת גלובליים =====
+document.addEventListener("keydown", (e) => {
+  // בדיקה שלא נמצאים בשדה טקסט
+  const activeElement = document.activeElement;
+  const isInInput =
+    activeElement.tagName === "INPUT" ||
+    activeElement.tagName === "TEXTAREA" ||
+    activeElement.isContentEditable;
+
+  if (isInInput) return;
+
+  // Alt + מספר לניווט מהיר
+  if (e.altKey) {
+    switch (e.key) {
+      case "1": // Alt+1 - עמוד הבית
+        e.preventDefault();
+        window.location.href = "index.html";
+        break;
+      case "2": // Alt+2 - גלריה
+        e.preventDefault();
+        window.location.href = "gallery.html";
+        break;
+      case "3": // Alt+3 - בלוג
+        e.preventDefault();
+        window.location.href = "blog.html";
+        break;
+      case "4": // Alt+4 - שאלות נפוצות
+        e.preventDefault();
+        window.location.href = "faq.html";
+        break;
+      case "5": // Alt+5 - מדיניות פרטיות
+        e.preventDefault();
+        window.location.href = "privacy.html";
+        break;
+      case "6": // Alt+6 - תנאי שימוש
+        e.preventDefault();
+        window.location.href = "terms.html";
+        break;
+      case "7": // Alt+7 - הצהרת נגישות
+        e.preventDefault();
+        window.location.href = "accessibility-statement.html";
+        break;
+      case "w": // Alt+W - וואטסאפ
+      case "W":
+        e.preventDefault();
+        window.open("https://wa.me/972586588751", "_blank");
+        break;
+      case "a": // Alt+A - תפריט נגישות
+      case "A":
+        e.preventDefault();
+        const accessibilityBtn = document.getElementById("accessibilityBtn");
+        if (accessibilityBtn) accessibilityBtn.click();
+        break;
+      case "c": // Alt+C - צ'אטבוט
+      case "C":
+        e.preventDefault();
+        const chatBtn = document.getElementById("chatbotBtn");
+        if (chatBtn) chatBtn.click();
+        break;
+      case "t": // Alt+T - חזרה לראש העמוד
+      case "T":
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        break;
+      case "b": // Alt+B - לתחתית העמוד
+      case "B":
+        e.preventDefault();
+        window.scrollTo({
+          top: document.body.scrollHeight,
+          behavior: "smooth",
+        });
+        break;
+    }
+  }
+});
