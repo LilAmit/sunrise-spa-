@@ -2476,3 +2476,27 @@ body.focus-highlight-active *:focus {
     margin: 5px;
   }
 }
+
+/* תיקון קפיצת חלון נגישות בגלריה */
+body.high-contrast-active, 
+body.grayscale-active {
+    filter: none !important; /* מסיר את הפילטר מה-body שגורם לקפיצה */
+}
+
+/* החלת הניגודיות רק על התוכן ולא על המעטפת הכללית */
+body.high-contrast-active .gallery-header,
+body.high-contrast-active .image-container,
+body.high-contrast-active footer {
+    filter: contrast(150%) brightness(1.1) !important;
+}
+
+body.grayscale-active .gallery-header,
+body.grayscale-active .image-container,
+body.grayscale-active footer {
+    filter: grayscale(100%) !important;
+}
+
+/* וידוא שחלון הנגישות נשאר יציב */
+#accessibilityPanel, .accessibility-trigger {
+    position: fixed !important;
+}
