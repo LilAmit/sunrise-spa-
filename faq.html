@@ -1,706 +1,956 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="he" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="שאלות נפוצות על סאנרייז ספא - כל מה שרצית לדעת על העיסויים והטיפולים שלנו">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="שאלות נפוצות על סאנרייז ספא - כל מה שרצית לדעת על העיסויים והטיפולים שלנו"
+    />
     <title>שאלות נפוצות (FAQ) - סאנרייז ספא</title>
-    <link rel="icon" type="image/png" href="SunriseLogo.png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="SunriseLogo.png" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
     <style>
-        .faq-container {
-            max-width: 900px;
-            margin: 180px auto 50px;
-            padding: 40px;
-        }
-        .faq-container h1 {
-            color: #2c3e50;
-            font-size: 36px;
-            margin-bottom: 40px;
-            text-align: center;
-            background: rgba(255, 255, 255, 0.95);
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-        .faq-item {
-            background: rgba(255, 255, 255, 0.95);
-            margin-bottom: 20px;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-        }
-        .faq-item:hover {
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-            transform: translateY(-3px);
-        }
-        .faq-question {
-            padding: 20px 25px;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 20px;
-            font-weight: 600;
-            color: #2c3e50;
-            background: linear-gradient(135deg, rgba(255,182,193,0.3), rgba(255,182,193,0.1));
-            transition: background 0.3s ease;
-        }
-        .faq-question:hover {
-            background: linear-gradient(135deg, rgba(255,182,193,0.4), rgba(255,182,193,0.2));
-        }
-        .faq-question i {
-            color: #ff758c;
-            font-size: 22px;
-            transition: transform 0.3s ease;
-        }
-        .faq-question.active i {
-            transform: rotate(180deg);
-        }
-        .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease, padding 0.4s ease;
-            padding: 0 25px;
-            font-size: 18px;
-            line-height: 1.8;
-            color: #34495e;
-        }
-        .faq-answer.active {
-            max-height: 1000px;
-            padding: 20px 25px;
-        }
-        .faq-answer p {
-            margin-bottom: 12px;
-        }
-        .faq-answer ul {
-            padding-right: 25px;
-            margin-top: 10px;
-        }
-        .faq-answer li {
-            margin-bottom: 8px;
-        }
-        .quick-contact {
-            background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
-            color: white;
-            padding: 30px;
-            border-radius: 20px;
-            text-align: center;
-            margin-top: 40px;
-            box-shadow: 0 10px 30px rgba(255,117,140,0.3);
-        }
-        .quick-contact h2 {
-            margin-bottom: 20px;
-            font-size: 28px;
-        }
-        .quick-contact a {
-            color: white;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 20px;
-            display: inline-block;
-            margin: 10px 15px;
-            padding: 12px 25px;
-            border-radius: 30px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            cursor: pointer;
-        }
-        .quick-contact a:first-of-type {
-            background: linear-gradient(135deg, #2196F3, #1976D2);
-        }
-        .quick-contact a:first-of-type:hover {
-            background: linear-gradient(135deg, #1976D2, #1565C0);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(33, 150, 243, 0.4);
-        }
-        .quick-contact a:last-of-type {
-            background: linear-gradient(135deg, #25D366, #128C7E);
-        }
-        .quick-contact a:last-of-type:hover {
-            background: linear-gradient(135deg, #128C7E, #075E54);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
-        }
-        /* כפתור חזרה למעלה */
+      .faq-container {
+        max-width: 900px;
+        margin: 180px auto 50px;
+        padding: 40px;
+      }
+      .faq-container h1 {
+        color: #2c3e50;
+        font-size: 36px;
+        margin-bottom: 40px;
+        text-align: center;
+        background: rgba(255, 255, 255, 0.95);
+        padding: 30px;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      }
+      .faq-item {
+        background: rgba(255, 255, 255, 0.95);
+        margin-bottom: 20px;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+      }
+      .faq-item:hover {
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        transform: translateY(-3px);
+      }
+      .faq-question {
+        padding: 20px 25px;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 20px;
+        font-weight: 600;
+        color: #2c3e50;
+        background: linear-gradient(
+          135deg,
+          rgba(255, 182, 193, 0.3),
+          rgba(255, 182, 193, 0.1)
+        );
+        transition: background 0.3s ease;
+      }
+      .faq-question:hover {
+        background: linear-gradient(
+          135deg,
+          rgba(255, 182, 193, 0.4),
+          rgba(255, 182, 193, 0.2)
+        );
+      }
+      .faq-question i {
+        color: #ff758c;
+        font-size: 22px;
+        transition: transform 0.3s ease;
+      }
+      .faq-question.active i {
+        transform: rotate(180deg);
+      }
+      .faq-answer {
+        max-height: 0;
+        overflow: hidden;
+        transition:
+          max-height 0.4s ease,
+          padding 0.4s ease;
+        padding: 0 25px;
+        font-size: 18px;
+        line-height: 1.8;
+        color: #34495e;
+      }
+      .faq-answer.active {
+        max-height: 1000px;
+        padding: 20px 25px;
+      }
+      .faq-answer p {
+        margin-bottom: 12px;
+      }
+      .faq-answer ul {
+        padding-right: 25px;
+        margin-top: 10px;
+      }
+      .faq-answer li {
+        margin-bottom: 8px;
+      }
+      .quick-contact {
+        background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
+        color: white;
+        padding: 30px;
+        border-radius: 20px;
+        text-align: center;
+        margin-top: 40px;
+        box-shadow: 0 10px 30px rgba(255, 117, 140, 0.3);
+      }
+      .quick-contact h2 {
+        margin-bottom: 20px;
+        font-size: 28px;
+      }
+      .quick-contact a {
+        color: white;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 20px;
+        display: inline-block;
+        margin: 10px 15px;
+        padding: 12px 25px;
+        border-radius: 30px;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+      }
+      .quick-contact a:first-of-type {
+        background: linear-gradient(135deg, #2196f3, #1976d2);
+      }
+      .quick-contact a:first-of-type:hover {
+        background: linear-gradient(135deg, #1976d2, #1565c0);
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(33, 150, 243, 0.4);
+      }
+      .quick-contact a:last-of-type {
+        background: linear-gradient(135deg, #25d366, #128c7e);
+      }
+      .quick-contact a:last-of-type:hover {
+        background: linear-gradient(135deg, #128c7e, #075e54);
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+      }
+      /* כפתור חזרה למעלה */
+      .back-to-top {
+        position: fixed;
+        bottom: 110px;
+        left: 30px;
+        background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
+        color: white;
+        width: 55px;
+        height: 55px;
+        border-radius: 50%;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        box-shadow: 0 6px 20px rgba(255, 117, 140, 0.5);
+        z-index: 9000;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        border: none;
+      }
+      .back-to-top.show {
+        display: flex;
+      }
+      .back-to-top:hover {
+        transform: scale(1.15);
+        box-shadow: 0 8px 25px rgba(255, 117, 140, 0.7);
+      }
+
+      /* התאמת מיקום כפתור למובייל */
+      @media (max-width: 900px) {
         .back-to-top {
-            position: fixed;
-            bottom: 110px;
-            left: 30px;
-            background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
-            color: white;
-            width: 55px;
-            height: 55px;
-            border-radius: 50%;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            box-shadow: 0 6px 20px rgba(255,117,140,0.5);
-            z-index: 9000;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            border: none;
+          width: 48px;
+          height: 48px;
+          font-size: 20px;
+          bottom: 90px;
+          left: 20px;
         }
-        .back-to-top.show {
-            display: flex;
-        }
-        .back-to-top:hover {
-            transform: scale(1.15);
-            box-shadow: 0 8px 25px rgba(255,117,140,0.7);
-        }
+      }
 
-        /* התאמת מיקום כפתור למובייל */
-        @media (max-width: 900px) {
-            .back-to-top {
-                width: 48px;
-                height: 48px;
-                font-size: 20px;
-                bottom: 90px;
-                left: 20px;
-            }
+      @media (max-width: 600px) {
+        .back-to-top {
+          width: 45px;
+          height: 45px;
+          font-size: 18px;
+          bottom: 85px;
+          left: 15px;
         }
+      }
 
-        @media (max-width: 600px) {
-            .back-to-top {
-                width: 45px;
-                height: 45px;
-                font-size: 18px;
-                bottom: 85px;
-                left: 15px;
-            }
-        }
-
-        /* מצב כהה - Dark Mode */
-        .dark-mode-active .faq-container {
-            background-color: transparent !important;
-        }
-        .dark-mode-active .faq-container h1 {
-            background: #252542 !important;
-            color: #ffffff !important;
-        }
-        .dark-mode-active .faq-item {
-            background: #252542 !important;
-        }
-        .dark-mode-active .faq-question {
-            background: linear-gradient(135deg, rgba(255,117,140,0.2), rgba(255,117,140,0.1)) !important;
-            color: #ffffff !important;
-        }
-        .dark-mode-active .faq-question:hover {
-            background: linear-gradient(135deg, rgba(255,117,140,0.3), rgba(255,117,140,0.2)) !important;
-        }
-        .dark-mode-active .faq-question span {
-            color: #ffffff !important;
-        }
-        .dark-mode-active .faq-answer {
-            background: #1e1e35 !important;
-            color: #e0e0e0 !important;
-        }
-        .dark-mode-active .faq-answer p,
-        .dark-mode-active .faq-answer li {
-            color: #e0e0e0 !important;
-        }
-        .dark-mode-active .quick-contact {
-            background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%) !important;
-        }
+      /* מצב כהה - Dark Mode */
+      .dark-mode-active .faq-container {
+        background-color: transparent !important;
+      }
+      .dark-mode-active .faq-container h1 {
+        background: #252542 !important;
+        color: #ffffff !important;
+      }
+      .dark-mode-active .faq-item {
+        background: #252542 !important;
+      }
+      .dark-mode-active .faq-question {
+        background: linear-gradient(
+          135deg,
+          rgba(255, 117, 140, 0.2),
+          rgba(255, 117, 140, 0.1)
+        ) !important;
+        color: #ffffff !important;
+      }
+      .dark-mode-active .faq-question:hover {
+        background: linear-gradient(
+          135deg,
+          rgba(255, 117, 140, 0.3),
+          rgba(255, 117, 140, 0.2)
+        ) !important;
+      }
+      .dark-mode-active .faq-question span {
+        color: #ffffff !important;
+      }
+      .dark-mode-active .faq-answer {
+        background: #1e1e35 !important;
+        color: #e0e0e0 !important;
+      }
+      .dark-mode-active .faq-answer p,
+      .dark-mode-active .faq-answer li {
+        color: #e0e0e0 !important;
+      }
+      .dark-mode-active .quick-contact {
+        background: linear-gradient(
+          135deg,
+          #ff758c 0%,
+          #ff7eb3 100%
+        ) !important;
+      }
     </style>
-</head>
-<body>
-
-<header>
-    <div class="logo-container">
-        <img src="SunriseLogo.png" class="logo" alt="סאנרייז ספא לוגו">
+  </head>
+  <body>
+    <header>
+      <div class="logo-container">
+        <img src="SunriseLogo.png" class="logo" alt="סאנרייז ספא לוגו" />
         <h1>שאלות נפוצות סאנרייז ספא</h1>
-    </div>
+      </div>
 
-    <div class="contact-details">
+      <div class="contact-details">
         <p class="contact-badge">
-            <i class="fa-solid fa-location-dot"></i>
-            <strong>כתובת:</strong> ההסתדרות 2, קומה 2, פתח תקווה
+          <i class="fa-solid fa-location-dot"></i>
+          <strong>כתובת:</strong> ההסתדרות 2, קומה 2, פתח תקווה
         </p>
         <p class="contact-badge">
-            <i class="fa-solid fa-phone"></i>
-            <strong>טלפון:</strong> <a href="tel:0586588751" style="color: inherit; text-decoration: none;">058-658-8751</a>
+          <i class="fa-solid fa-phone"></i>
+          <strong>טלפון:</strong>
+          <a href="tel:0586588751" style="color: inherit; text-decoration: none"
+            >058-658-8751</a
+          >
         </p>
-    </div>
+      </div>
 
-    <nav>
-        <a href="index.html" title="עמוד הבית"><i class="fa-solid fa-home"></i> בית</a>
-        <a href="gallery.html" title="גלריה"><i class="fa-solid fa-image"></i> גלריה</a>
-        <a href="blog.html" title="בלוג"><i class="fa-solid fa-blog"></i> בלוג</a>
-        <a href="faq.html" title="שאלות נפוצות" class="active"><i class="fa-solid fa-circle-question"></i> שאלות נפוצות</a>
-        <a href="https://wa.me/972586588751" target="_blank" title="שלח הודעה בוואטסאפ"><i class="fa-brands fa-whatsapp"></i> צור קשר</a>
-        <a href="https://www.waze.com/live-map/directions/il/center-district/%D7%A4%D7%AA/sunrise-spa-%D7%A1%D7%A4%D7%90-%D7%A2%D7%99%D7%A1%D7%95%D7%99-%D7%A4%D7%AA%D7%97-%D7%AA%D7%A7%D7%95%D7%95%D7%94?navigate=yes&to=place.ChIJSZXBMVY3HRURy-oaXLqTcrg" target="_blank" title="ניווט ב-Waze"><i class="fa-brands fa-waze"></i> Waze</a>
-        <a href="https://www.google.com/maps/dir//Sunrise+Spa" target="_blank" title="צפייה במפה"><i class="fa-solid fa-map-location-dot"></i> Maps</a>
-    </nav>
-</header>
+      <nav>
+        <a href="index.html" title="עמוד הבית"
+          ><i class="fa-solid fa-home"></i> בית</a
+        >
+        <a href="gallery.html" title="גלריה"
+          ><i class="fa-solid fa-image"></i> גלריה</a
+        >
+        <a href="blog.html" title="בלוג"
+          ><i class="fa-solid fa-blog"></i> בלוג</a
+        >
+        <a href="faq.html" title="שאלות נפוצות" class="active"
+          ><i class="fa-solid fa-circle-question"></i> שאלות נפוצות</a
+        >
+        <a
+          href="https://wa.me/972586588751"
+          target="_blank"
+          title="שלח הודעה בוואטסאפ"
+          ><i class="fa-brands fa-whatsapp"></i> צור קשר</a
+        >
+        <a
+          href="https://www.waze.com/live-map/directions/il/center-district/%D7%A4%D7%AA/sunrise-spa-%D7%A1%D7%A4%D7%90-%D7%A2%D7%99%D7%A1%D7%95%D7%99-%D7%A4%D7%AA%D7%97-%D7%AA%D7%A7%D7%95%D7%95%D7%94?navigate=yes&to=place.ChIJSZXBMVY3HRURy-oaXLqTcrg"
+          target="_blank"
+          title="ניווט ב-Waze"
+          ><i class="fa-brands fa-waze"></i> Waze</a
+        >
+        <a
+          href="https://www.google.com/maps/dir//Sunrise+Spa"
+          target="_blank"
+          title="צפייה במפה"
+          ><i class="fa-solid fa-map-location-dot"></i> Maps</a
+        >
+      </nav>
+    </header>
 
-<div class="faq-container">
-    <h1>שאלות נפוצות (FAQ)</h1>
+    <div class="faq-container">
+      <h1>שאלות נפוצות (FAQ)</h1>
 
-    <!-- שאלה 1 -->
-    <div class="faq-item">
+      <!-- שאלה 1 -->
+      <div class="faq-item">
         <div class="faq-question">
-            <span>איך מזמינים תור לעיסוי?</span>
-            <i class="fa-solid fa-chevron-down"></i>
+          <span>איך מזמינים תור לעיסוי?</span>
+          <i class="fa-solid fa-chevron-down"></i>
         </div>
         <div class="faq-answer">
-            <p>ניתן להזמין תור בשלוש דרכים קלות:</p>
-            <ul>
-                <li><strong>ווצאפ:</strong> שלח הודעה ל-<a href="https://wa.me/972586588751" target="_blank">058-658-8751</a></li>
-                <li><strong>טלפון:</strong> התקשר ישירות ל-<a href="tel:0586588751">058-658-8751</a></li>
-                <li><strong>באתר:</strong> לחץ על כפתור הווצאפ הצף באתר</li>
-            </ul>
-            <p>מומלץ להזמין תור מראש כדי להבטיח זמינות במועד המועדף עליך.</p>
+          <p>ניתן להזמין תור בשלוש דרכים קלות:</p>
+          <ul>
+            <li>
+              <strong>ווצאפ:</strong> שלח הודעה ל-<a
+                href="https://wa.me/972586588751"
+                target="_blank"
+                >058-658-8751</a
+              >
+            </li>
+            <li>
+              <strong>טלפון:</strong> התקשר ישירות ל-<a href="tel:0586588751"
+                >058-658-8751</a
+              >
+            </li>
+            <li><strong>באתר:</strong> לחץ על כפתור הווצאפ הצף באתר</li>
+          </ul>
+          <p>מומלץ להזמין תור מראש כדי להבטיח זמינות במועד המועדף עליך.</p>
         </div>
-    </div>
+      </div>
 
-    <!-- שאלה 2 -->
-    <div class="faq-item">
+      <!-- שאלה 2 -->
+      <div class="faq-item">
         <div class="faq-question">
-            <span>מהן שעות הפעילות של הספא?</span>
-            <i class="fa-solid fa-chevron-down"></i>
+          <span>מהן שעות הפעילות של הספא?</span>
+          <i class="fa-solid fa-chevron-down"></i>
         </div>
         <div class="faq-answer">
-            <p><strong>ימים א'-ה':</strong> 10:00 - 22:00</p>
-            <p><strong>יום ו':</strong> 09:00 - 16:00</p>
-            <p><strong>שבת:</strong> סגור</p>
-            <p>בחגים ומועדים ייתכנו שינויים בשעות הפעילות - מומלץ להתקשר ולוודא.</p>
+          <p><strong>ימים א'-ה':</strong> 10:00 - 22:00</p>
+          <p><strong>יום ו':</strong> 09:00 - 16:00</p>
+          <p><strong>שבת:</strong> סגור</p>
+          <p>
+            בחגים ומועדים ייתכנו שינויים בשעות הפעילות - מומלץ להתקשר ולוודא.
+          </p>
         </div>
-    </div>
+      </div>
 
-    <!-- שאלה 3 -->
-    <div class="faq-item">
+      <!-- שאלה 3 -->
+      <div class="faq-item">
         <div class="faq-question">
-            <span>מה ההבדל בין עיסוי תאילנדי, שוודי ורקמות עמוק?</span>
-            <i class="fa-solid fa-chevron-down"></i>
+          <span>מה ההבדל בין עיסוי תאילנדי, שוודי ורקמות עמוק?</span>
+          <i class="fa-solid fa-chevron-down"></i>
         </div>
         <div class="faq-answer">
-            <p><strong>עיסוי תאילנדי:</strong> עיסוי מסורתי הכולל מתיחות ולחיצות עמוקות. מתאים לשיפור גמישות ושחרור מתחים עמוקים.</p>
-            <p><strong>עיסוי שוודי:</strong> עיסוי קלאסי ומרגיע המשלב ליטופים וליטושים רכים. מתאים להרפיה כללית ושיפור זרימת הדם.</p>
-            <p><strong>עיסוי רקמות עמוק (Deep Tissue):</strong> עיסוי אינטנסיבי המתמקד בשרירים עמוקים. מתאים למי שסובל מכאבים כרוניים או מתח שרירי חזק.</p>
+          <p>
+            <strong>עיסוי תאילנדי:</strong> עיסוי מסורתי הכולל מתיחות ולחיצות
+            עמוקות. מתאים לשיפור גמישות ושחרור מתחים עמוקים.
+          </p>
+          <p>
+            <strong>עיסוי שוודי:</strong> עיסוי קלאסי ומרגיע המשלב ליטופים
+            וליטושים רכים. מתאים להרפיה כללית ושיפור זרימת הדם.
+          </p>
+          <p>
+            <strong>עיסוי רקמות עמוק (Deep Tissue):</strong> עיסוי אינטנסיבי
+            המתמקד בשרירים עמוקים. מתאים למי שסובל מכאבים כרוניים או מתח שרירי
+            חזק.
+          </p>
         </div>
-    </div>
+      </div>
 
-    <!-- שאלה 4 -->
-    <div class="faq-item">
+      <!-- שאלה 4 -->
+      <div class="faq-item">
         <div class="faq-question">
-            <span>כמה זמן לוקח עיסוי?</span>
-            <i class="fa-solid fa-chevron-down"></i>
+          <span>כמה זמן לוקח עיסוי?</span>
+          <i class="fa-solid fa-chevron-down"></i>
         </div>
         <div class="faq-answer">
-            <p>אנו מציעים טיפולים במשכים שונים:</p>
-            <ul>
-                <li><strong>עיסוי רגליים:</strong> 30, 45 או 60 דקות</li>
-                <li><strong>עיסוי גוף מלא:</strong> 45, 60, 75, 90 או 120 דקות</li>
-                <li><strong>עיסוי זוגי:</strong> 60, 75, 90 או 120 דקות</li>
-            </ul>
-            <p>התשלום והייעוץ הקצר לפני הטיפול אינם נכללים במשך הטיפול.</p>
+          <p>אנו מציעים טיפולים במשכים שונים:</p>
+          <ul>
+            <li><strong>עיסוי רגליים:</strong> 30, 45 או 60 דקות</li>
+            <li><strong>עיסוי גוף מלא:</strong> 45, 60, 75, 90 או 120 דקות</li>
+            <li><strong>עיסוי זוגי:</strong> 60, 75, 90 או 120 דקות</li>
+          </ul>
+          <p>התשלום והייעוץ הקצר לפני הטיפול אינם נכללים במשך הטיפול.</p>
         </div>
-    </div>
+      </div>
 
-    <!-- שאלה 5 -->
-    <div class="faq-item">
+      <!-- שאלה 5 -->
+      <div class="faq-item">
         <div class="faq-question">
-            <span>האם יש חניה ליד הספא?</span>
-            <i class="fa-solid fa-chevron-down"></i>
+          <span>האם יש חניה ליד הספא?</span>
+          <i class="fa-solid fa-chevron-down"></i>
         </div>
         <div class="faq-answer">
-            <p>כן! באזור יש אפשרויות חניה:</p>
-            <ul>
-                <li>חניה בחינם ברחוב (כחול לבן)</li>
-                <li>חניון ציבורי קרוב</li>
-                <li>חניה בתשלום בסביבה</li>
-            </ul>
-            <p>מומלץ להגיע 5-10 דקות לפני מועד הטיפול כדי למצוא חניה בנוחות.</p>
+          <p>כן! באזור יש אפשרויות חניה:</p>
+          <ul>
+            <li>חניה בחינם ברחוב (כחול לבן)</li>
+            <li>חניון ציבורי קרוב</li>
+            <li>חניה בתשלום בסביבה</li>
+          </ul>
+          <p>מומלץ להגיע 5-10 דקות לפני מועד הטיפול כדי למצוא חניה בנוחות.</p>
         </div>
-    </div>
+      </div>
 
-    <!-- שאלה 6 -->
-    <div class="faq-item">
+      <!-- שאלה 6 -->
+      <div class="faq-item">
         <div class="faq-question">
-            <span>אילו אמצעי תשלום מקבלים?</span>
-            <i class="fa-solid fa-chevron-down"></i>
+          <span>אילו אמצעי תשלום מקבלים?</span>
+          <i class="fa-solid fa-chevron-down"></i>
         </div>
         <div class="faq-answer">
-            <p>אנו מקבלים:</p>
-            <ul>
-                <li>מזומן</li>
-                <li>כרטיסי אשראי (ויזה)</li>
-            </ul>
+          <p>אנו מקבלים:</p>
+          <ul>
+            <li>מזומן</li>
+            <li>כרטיסי אשראי (ויזה)</li>
+          </ul>
         </div>
-    </div>
+      </div>
 
-    <!-- שאלה 7 -->
-    <div class="faq-item">
+      <!-- שאלה 7 -->
+      <div class="faq-item">
         <div class="faq-question">
-            <span>האם יש שירותי עיסוי במקום מגוריי?</span>
-            <i class="fa-solid fa-chevron-down"></i>
+          <span>האם יש שירותי עיסוי במקום מגוריי?</span>
+          <i class="fa-solid fa-chevron-down"></i>
         </div>
         <div class="faq-answer">
-            <p>כרגע אנו מספקים שירותים אך ורק בסניף שלנו בפתח תקווה.</p>
-            <p>הסיבות לכך:</p>
-            <ul>
-                <li>סביבה מותאמת ומרגיעה במיוחד</li>
-                <li>ציוד מקצועי ואיכותי</li>
-                <li>תנאי היגיינה אופטימליים</li>
-                <li>אווירה מושלמת לרגיעה</li>
-            </ul>
+          <p>כרגע אנו מספקים שירותים אך ורק בסניף שלנו בפתח תקווה.</p>
+          <p>הסיבות לכך:</p>
+          <ul>
+            <li>סביבה מותאמת ומרגיעה במיוחד</li>
+            <li>ציוד מקצועי ואיכותי</li>
+            <li>תנאי היגיינה אופטימליים</li>
+            <li>אווירה מושלמת לרגיעה</li>
+          </ul>
         </div>
-    </div>
-    
-    <div class="quick-contact">
+      </div>
+
+      <div class="quick-contact">
         <h2>לא מצאת תשובה? צור קשר!</h2>
         <p>אנחנו כאן כדי לעזור לך</p>
         <div>
-            <a href="tel:0586588751"><i class="fa-solid fa-phone"></i> 058-658-8751</a>
-            <a href="https://wa.me/972586588751" target="_blank"><i class="fa-brands fa-whatsapp"></i> ווצאפ</a>
+          <a href="tel:0586588751"
+            ><i class="fa-solid fa-phone"></i> 058-658-8751</a
+          >
+          <a href="https://wa.me/972586588751" target="_blank"
+            ><i class="fa-brands fa-whatsapp"></i> ווצאפ</a
+          >
         </div>
+      </div>
     </div>
-</div>
 
-<!-- כפתור WhatsApp צף -->
-<a href="https://wa.me/972586588751" class="whatsapp-float" target="_blank" aria-label="שלח הודעה בוואטסאפ">
-    <i class="fa-brands fa-whatsapp"></i>
-</a>
+    <!-- כפתור WhatsApp צף -->
+    <a
+      href="https://wa.me/972586588751"
+      class="whatsapp-float"
+      target="_blank"
+      aria-label="שלח הודעה בוואטסאפ"
+    >
+      <i class="fa-brands fa-whatsapp"></i>
+    </a>
 
-<!-- צ'אטבוט -->
-<button class="chatbot-btn" id="chatbotBtn" aria-label="פתח צ'אט" title="יש לך שאלה? אני כאן לעזור!">
-    <i class="fa-solid fa-comments"></i>
-</button>
+    <!-- צ'אטבוט -->
+    <button
+      class="chatbot-btn"
+      id="chatbotBtn"
+      aria-label="פתח צ'אט"
+      title="יש לך שאלה? אני כאן לעזור!"
+    >
+      <i class="fa-solid fa-comments"></i>
+    </button>
 
-<div class="chatbot-container" id="chatbotContainer">
-    <div class="chatbot-header">
+    <div class="chatbot-container" id="chatbotContainer">
+      <div class="chatbot-header">
         <div class="chatbot-header-content">
-            <img src="SunriseLogo.png" alt="לוגו" class="chatbot-logo">
-            <div>
-                <h3>סאנרייז ספא</h3>
-                <p class="chatbot-status">
-                    <span class="status-dot"></span>
-                    זמין עכשיו
-                </p>
-            </div>
+          <img src="SunriseLogo.png" alt="לוגו" class="chatbot-logo" />
+          <div>
+            <h3>סאנרייז ספא</h3>
+            <p class="chatbot-status">
+              <span class="status-dot"></span>
+              זמין עכשיו
+            </p>
+          </div>
         </div>
         <button class="chatbot-close" id="chatbotClose" aria-label="סגור צ'אט">
-            <i class="fa-solid fa-times"></i>
+          <i class="fa-solid fa-times"></i>
         </button>
-    </div>
-    
-    <div class="chatbot-messages" id="chatbotMessages">
+      </div>
+
+      <div class="chatbot-messages" id="chatbotMessages">
         <div class="bot-message">
-            <div class="message-avatar">
-                <i class="fa-solid fa-spa"></i>
-            </div>
-            <div class="message-content">
-                שלום! 👋 אני עוזר וירטואלי של סאנרייז ספא.<br>
-                איך אוכל לעזור לך היום?
-            </div>
+          <div class="message-avatar">
+            <i class="fa-solid fa-spa"></i>
+          </div>
+          <div class="message-content">
+            שלום! 👋 אני עוזר וירטואלי של סאנרייז ספא.<br />
+            איך אוכל לעזור לך היום?
+          </div>
         </div>
-        
+
         <div class="quick-questions">
-            <button class="quick-btn" data-question="hours">🕐 שעות פעילות</button>
-            <button class="quick-btn" data-question="prices">💰 מחירון</button>
-            <button class="quick-btn" data-question="location">📍 איפה אתם?</button>
-            <button class="quick-btn" data-question="services">💆 אילו עיסויים יש?</button>
-            <button class="quick-btn" data-question="booking">📅 איך מזמינים תור?</button>
+          <button class="quick-btn" data-question="hours">
+            🕐 שעות פעילות
+          </button>
+          <button class="quick-btn" data-question="prices">💰 מחירון</button>
+          <button class="quick-btn" data-question="location">
+            📍 איפה אתם?
+          </button>
+          <button class="quick-btn" data-question="services">
+            💆 אילו עיסויים יש?
+          </button>
+          <button class="quick-btn" data-question="booking">
+            📅 איך מזמינים תור?
+          </button>
         </div>
-    </div>
+      </div>
 
-    <div class="chatbot-input-area">
-        <input type="text" id="chatbotInput" placeholder="כתוב את השאלה שלך..." aria-label="שדה שאלה">
+      <div class="chatbot-input-area">
+        <input
+          type="text"
+          id="chatbotInput"
+          placeholder="כתוב את השאלה שלך..."
+          aria-label="שדה שאלה"
+        />
         <button id="chatbotSend" aria-label="שלח הודעה">
-            <i class="fa-solid fa-paper-plane"></i>
+          <i class="fa-solid fa-paper-plane"></i>
         </button>
+      </div>
     </div>
-</div>
 
-<!-- כפתור חזרה למעלה -->
-<button class="back-to-top" id="backToTop" aria-label="חזרה למעלה">
-    <i class="fa-solid fa-arrow-up"></i>
-</button>
+    <!-- כפתור חזרה למעלה -->
+    <button class="back-to-top" id="backToTop" aria-label="חזרה למעלה">
+      <i class="fa-solid fa-arrow-up"></i>
+    </button>
 
-<!-- Skip Links לניווט מקלדת -->
-<div id="skipLinks" style="display: none;">
-    <a href="#main-content" class="skip-link">דלג לתוכן הראשי</a>
-    <a href="#navigation" class="skip-link">דלג לתפריט ניווט</a>
-    <a href="#footer" class="skip-link">דלג לתחתית העמוד</a>
-</div>
+    <!-- Skip Links לניווט מקלדת -->
+    <div id="skipLinks" style="display: none">
+      <a href="#main-content" class="skip-link">דלג לתוכן הראשי</a>
+      <a href="#navigation" class="skip-link">דלג לתפריט ניווט</a>
+      <a href="#footer" class="skip-link">דלג לתחתית העמוד</a>
+    </div>
 
-<!-- Reading Guide -->
-<div id="readingGuide" style="display: none;"></div>
+    <!-- Reading Guide -->
+    <div id="readingGuide" style="display: none"></div>
 
-<!-- עוזר קורא מסך -->
-<div class="sr-only" role="status" aria-live="polite" aria-atomic="true" id="srAnnouncer"></div>
+    <!-- עוזר קורא מסך -->
+    <div
+      class="sr-only"
+      role="status"
+      aria-live="polite"
+      aria-atomic="true"
+      id="srAnnouncer"
+    ></div>
 
-<!-- כפתור הנגשה -->
-<button class="accessibility-trigger" id="accessibilityBtn" aria-label="פתח תפריט נגישות" title="נגישות">
-    <i class="fa-solid fa-universal-access"></i>
-</button>
+    <!-- כפתור הנגשה -->
+    <button
+      class="accessibility-trigger"
+      id="accessibilityBtn"
+      aria-label="פתח תפריט נגישות"
+      title="נגישות"
+    >
+      <i class="fa-solid fa-universal-access"></i>
+    </button>
 
-<!-- תפריט הנגישות -->
-<div class="accessibility-panel" id="accessibilityPanel">
-    <div class="accessibility-header">
+    <!-- תפריט הנגישות -->
+    <div class="accessibility-panel" id="accessibilityPanel">
+      <div class="accessibility-header">
         <h2>הנגשה</h2>
-        <button class="accessibility-close" id="accessibilityClose" aria-label="סגור תפריט נגישות">
-            <i class="fa-solid fa-times"></i>
+        <button
+          class="accessibility-close"
+          id="accessibilityClose"
+          aria-label="סגור תפריט נגישות"
+        >
+          <i class="fa-solid fa-times"></i>
         </button>
-    </div>
+      </div>
 
-    <div class="accessibility-content">
+      <div class="accessibility-content">
         <!-- קורא מסך -->
         <div class="accessibility-section">
-            <h3><i class="fa-solid fa-volume-high"></i> קורא מסך</h3>
-            <button class="accessibility-btn" id="screenReaderBtn" title="קורא מסך - הקלק על טקסט כדי לשמוע אותו" aria-pressed="false">
-                <i class="fa-solid fa-headphones"></i>
-                הפעל קורא מסך
+          <h3><i class="fa-solid fa-volume-high"></i> קורא מסך</h3>
+          <button
+            class="accessibility-btn"
+            id="screenReaderBtn"
+            title="קורא מסך - הקלק על טקסט כדי לשמוע אותו"
+            aria-pressed="false"
+          >
+            <i class="fa-solid fa-headphones"></i>
+            הפעל קורא מסך
+          </button>
+          <div class="accessibility-buttons" style="margin-top: 10px">
+            <button
+              class="accessibility-btn-small"
+              id="readerSpeedDownBtn"
+              title="האט קריאה"
+            >
+              <i class="fa-solid fa-backward"></i> האט
             </button>
-            <div class="accessibility-buttons" style="margin-top: 10px;">
-                <button class="accessibility-btn-small" id="readerSpeedDownBtn" title="האט קריאה">
-                    <i class="fa-solid fa-backward"></i> האט
-                </button>
-                <button class="accessibility-btn-small" id="readerSpeedUpBtn" title="האץ קריאה">
-                    <i class="fa-solid fa-forward"></i> האץ
-                </button>
-            </div>
+            <button
+              class="accessibility-btn-small"
+              id="readerSpeedUpBtn"
+              title="האץ קריאה"
+            >
+              <i class="fa-solid fa-forward"></i> האץ
+            </button>
+          </div>
         </div>
 
         <!-- הגדלת גופן -->
         <div class="accessibility-section">
-            <h3><i class="fa-solid fa-text-height"></i> גודל טקסט</h3>
-            <div class="accessibility-buttons">
-                <button class="accessibility-btn" id="increaseFontBtn" title="הגדל גופן" aria-pressed="false">
-                    <i class="fa-solid fa-plus"></i>
-                    הגדל טקסט
-                </button>
-                <button class="accessibility-btn" id="decreaseFontBtn" title="הקטן גופן" aria-pressed="false">
-                    <i class="fa-solid fa-minus"></i>
-                    הקטן טקסט
-                </button>
-            </div>
+          <h3><i class="fa-solid fa-text-height"></i> גודל טקסט</h3>
+          <div class="accessibility-buttons">
+            <button
+              class="accessibility-btn"
+              id="increaseFontBtn"
+              title="הגדל גופן"
+              aria-pressed="false"
+            >
+              <i class="fa-solid fa-plus"></i>
+              הגדל טקסט
+            </button>
+            <button
+              class="accessibility-btn"
+              id="decreaseFontBtn"
+              title="הקטן גופן"
+              aria-pressed="false"
+            >
+              <i class="fa-solid fa-minus"></i>
+              הקטן טקסט
+            </button>
+          </div>
         </div>
 
         <!-- מרווחים -->
         <div class="accessibility-section">
-            <h3><i class="fa-solid fa-arrows-left-right"></i> מרווחים</h3>
-            <div class="accessibility-buttons">
-                <button class="accessibility-btn" id="lineHeightBtn" title="הגדל מרווח בין שורות" aria-pressed="false">
-                    <i class="fa-solid fa-align-justify"></i>
-                    מרווח שורות
-                </button>
-                <button class="accessibility-btn" id="letterSpacingBtn" title="הגדל מרווח בין אותיות" aria-pressed="false">
-                    <i class="fa-solid fa-text-width"></i>
-                    מרווח אותיות
-                </button>
-            </div>
+          <h3><i class="fa-solid fa-arrows-left-right"></i> מרווחים</h3>
+          <div class="accessibility-buttons">
+            <button
+              class="accessibility-btn"
+              id="lineHeightBtn"
+              title="הגדל מרווח בין שורות"
+              aria-pressed="false"
+            >
+              <i class="fa-solid fa-align-justify"></i>
+              מרווח שורות
+            </button>
+            <button
+              class="accessibility-btn"
+              id="letterSpacingBtn"
+              title="הגדל מרווח בין אותיות"
+              aria-pressed="false"
+            >
+              <i class="fa-solid fa-text-width"></i>
+              מרווח אותיות
+            </button>
+          </div>
         </div>
 
         <!-- גופנים -->
         <div class="accessibility-section">
-            <h3><i class="fa-solid fa-font"></i> סוג גופן</h3>
-            <div class="accessibility-buttons">
-                <button class="accessibility-btn" id="readableFontBtn" title="גופן קריא" aria-pressed="false">
-                    <i class="fa-solid fa-font"></i>
-                    גופן קריא
-                </button>
-                <button class="accessibility-btn" id="dyslexiaFontBtn" title="גופן לדיסלקציה" aria-pressed="false">
-                    <i class="fa-solid fa-book-open-reader"></i>
-                    גופן דיסלקציה
-                </button>
-            </div>
+          <h3><i class="fa-solid fa-font"></i> סוג גופן</h3>
+          <div class="accessibility-buttons">
+            <button
+              class="accessibility-btn"
+              id="readableFontBtn"
+              title="גופן קריא"
+              aria-pressed="false"
+            >
+              <i class="fa-solid fa-font"></i>
+              גופן קריא
+            </button>
+            <button
+              class="accessibility-btn"
+              id="dyslexiaFontBtn"
+              title="גופן לדיסלקציה"
+              aria-pressed="false"
+            >
+              <i class="fa-solid fa-book-open-reader"></i>
+              גופן דיסלקציה
+            </button>
+          </div>
         </div>
 
         <!-- ניגודיות וצבעים -->
         <div class="accessibility-section">
-            <h3><i class="fa-solid fa-palette"></i> צבעים וניגודיות</h3>
-            <div class="accessibility-buttons">
-                <button class="accessibility-btn" id="darkContrastBtn" title="מצב כהה" aria-pressed="false">
-                    <i class="fa-solid fa-moon"></i>
-                    מצב כהה
-                </button>
-                <button class="accessibility-btn" id="highContrastYellowBtn" title="ניגודיות גבוהה" aria-pressed="false">
-                    <i class="fa-solid fa-eye"></i>
-                    ניגודיות גבוהה
-                </button>
-            </div>
-            <button class="accessibility-btn" id="invertColorsBtn" title="הפוך צבעים" aria-pressed="false" style="margin-top: 8px;">
-                <i class="fa-solid fa-circle-half-stroke"></i>
-                הפוך צבעים
+          <h3><i class="fa-solid fa-palette"></i> צבעים וניגודיות</h3>
+          <div class="accessibility-buttons">
+            <button
+              class="accessibility-btn"
+              id="darkContrastBtn"
+              title="מצב כהה"
+              aria-pressed="false"
+            >
+              <i class="fa-solid fa-moon"></i>
+              מצב כהה
             </button>
+            <button
+              class="accessibility-btn"
+              id="highContrastYellowBtn"
+              title="ניגודיות גבוהה"
+              aria-pressed="false"
+            >
+              <i class="fa-solid fa-eye"></i>
+              ניגודיות גבוהה
+            </button>
+          </div>
+          <button
+            class="accessibility-btn"
+            id="invertColorsBtn"
+            title="הפוך צבעים"
+            aria-pressed="false"
+            style="margin-top: 8px"
+          >
+            <i class="fa-solid fa-circle-half-stroke"></i>
+            הפוך צבעים
+          </button>
         </div>
 
         <!-- סמן עכבר -->
         <div class="accessibility-section">
-            <h3><i class="fa-solid fa-computer-mouse"></i> סמן עכבר</h3>
-            <div class="accessibility-buttons">
-                <button class="accessibility-btn" id="bigCursorBtn" title="סמן גדול" aria-pressed="false">
-                    <i class="fa-solid fa-arrow-pointer"></i>
-                    סמן גדול
-                </button>
-                <button class="accessibility-btn" id="cursorColorBtn" title="סמן צבעוני" aria-pressed="false">
-                    <i class="fa-solid fa-droplet"></i>
-                    סמן צבעוני
-                </button>
-            </div>
+          <h3><i class="fa-solid fa-computer-mouse"></i> סמן עכבר</h3>
+          <div class="accessibility-buttons">
+            <button
+              class="accessibility-btn"
+              id="bigCursorBtn"
+              title="סמן גדול"
+              aria-pressed="false"
+            >
+              <i class="fa-solid fa-arrow-pointer"></i>
+              סמן גדול
+            </button>
+            <button
+              class="accessibility-btn"
+              id="cursorColorBtn"
+              title="סמן צבעוני"
+              aria-pressed="false"
+            >
+              <i class="fa-solid fa-droplet"></i>
+              סמן צבעוני
+            </button>
+          </div>
         </div>
 
         <!-- כלי עזר לקריאה -->
         <div class="accessibility-section">
-            <h3><i class="fa-solid fa-book-open"></i> כלי עזר לקריאה</h3>
-            <button class="accessibility-btn" id="readingGuideBtn" title="סרגל קריאה - עוקב אחרי העכבר" aria-pressed="false">
-                <i class="fa-solid fa-grip-lines"></i>
-                סרגל קריאה
-            </button>
+          <h3><i class="fa-solid fa-book-open"></i> כלי עזר לקריאה</h3>
+          <button
+            class="accessibility-btn"
+            id="readingGuideBtn"
+            title="סרגל קריאה - עוקב אחרי העכבר"
+            aria-pressed="false"
+          >
+            <i class="fa-solid fa-grip-lines"></i>
+            סרגל קריאה
+          </button>
         </div>
 
         <!-- הדגשות -->
         <div class="accessibility-section">
-            <h3><i class="fa-solid fa-highlighter"></i> הדגשות</h3>
-            <button class="accessibility-btn" id="highlightLinksBtn" title="הדגש קישורים" aria-pressed="false">
-                <i class="fa-solid fa-link"></i>
-                הדגש קישורים
-            </button>
+          <h3><i class="fa-solid fa-highlighter"></i> הדגשות</h3>
+          <button
+            class="accessibility-btn"
+            id="highlightLinksBtn"
+            title="הדגש קישורים"
+            aria-pressed="false"
+          >
+            <i class="fa-solid fa-link"></i>
+            הדגש קישורים
+          </button>
         </div>
 
         <!-- הסתרת מדיה -->
         <div class="accessibility-section">
-            <h3><i class="fa-solid fa-image"></i> תמונות וסרטונים</h3>
-            <button class="accessibility-btn" id="hideMediaBtn" title="הסתר תמונות וסרטונים" aria-pressed="false">
-                <i class="fa-solid fa-eye-slash"></i>
-                הסתר תמונות
-            </button>
+          <h3><i class="fa-solid fa-image"></i> תמונות וסרטונים</h3>
+          <button
+            class="accessibility-btn"
+            id="hideMediaBtn"
+            title="הסתר תמונות וסרטונים"
+            aria-pressed="false"
+          >
+            <i class="fa-solid fa-eye-slash"></i>
+            הסתר תמונות
+          </button>
         </div>
 
         <!-- ניווט מקלדת -->
         <div class="accessibility-section">
-            <h3><i class="fa-solid fa-keyboard"></i> ניווט מקלדת</h3>
-            <button class="accessibility-btn" id="keyboardNavBtn" title="הפעל ניווט מקלדת מלא" aria-pressed="false">
-                <i class="fa-solid fa-keyboard"></i>
-                ניווט מקלדת מלא
-            </button>
+          <h3><i class="fa-solid fa-keyboard"></i> ניווט מקלדת</h3>
+          <button
+            class="accessibility-btn"
+            id="keyboardNavBtn"
+            title="הפעל ניווט מקלדת מלא"
+            aria-pressed="false"
+          >
+            <i class="fa-solid fa-keyboard"></i>
+            ניווט מקלדת מלא
+          </button>
         </div>
 
         <!-- כיוון וניווט -->
         <div class="accessibility-section">
-            <h3><i class="fa-solid fa-compass"></i> ניווט וכיוון</h3>
-            <button class="accessibility-btn" id="textDirectionBtn" title="שנה כיוון טקסט" aria-pressed="false">
-                <i class="fa-solid fa-exchange-alt"></i>
-                היפוך כיוון (LTR/RTL)
-            </button>
+          <h3><i class="fa-solid fa-compass"></i> ניווט וכיוון</h3>
+          <button
+            class="accessibility-btn"
+            id="textDirectionBtn"
+            title="שנה כיוון טקסט"
+            aria-pressed="false"
+          >
+            <i class="fa-solid fa-exchange-alt"></i>
+            היפוך כיוון (LTR/RTL)
+          </button>
         </div>
 
         <!-- אנימציות -->
         <div class="accessibility-section">
-            <h3><i class="fa-solid fa-film"></i> אנימציות</h3>
-            <button class="accessibility-btn" id="stopAnimationsBtn" title="הפסק אנימציות" aria-pressed="false">
-                <i class="fa-solid fa-ban"></i>
-                עצור אנימציות
-            </button>
+          <h3><i class="fa-solid fa-film"></i> אנימציות</h3>
+          <button
+            class="accessibility-btn"
+            id="stopAnimationsBtn"
+            title="הפסק אנימציות"
+            aria-pressed="false"
+          >
+            <i class="fa-solid fa-ban"></i>
+            עצור אנימציות
+          </button>
         </div>
 
         <!-- הצהרת נגישות -->
         <div class="accessibility-section">
-            <a href="accessibility-statement.html" class="accessibility-statement-btn">
-                <i class="fa-solid fa-file-lines"></i>
-                הצהרת נגישות
-            </a>
+          <a
+            href="accessibility-statement.html"
+            class="accessibility-statement-btn"
+          >
+            <i class="fa-solid fa-file-lines"></i>
+            הצהרת נגישות
+          </a>
         </div>
 
         <!-- איפוס -->
         <div class="accessibility-section">
-            <button class="accessibility-reset-btn" id="resetAccessibilityBtn" title="אפס הגדרות">
-                <i class="fa-solid fa-undo"></i>
-                אפס הכל
-            </button>
+          <button
+            class="accessibility-reset-btn"
+            id="resetAccessibilityBtn"
+            title="אפס הגדרות"
+          >
+            <i class="fa-solid fa-undo"></i>
+            אפס הכל
+          </button>
         </div>
+      </div>
     </div>
-</div>
 
-<footer>
-    © 2026 סאנרייז ספא – ההסתדרות 2, פתח תקווה
+    <footer>
+      © 2026 סאנרייז ספא – ההסתדרות 2, פתח תקווה
 
-    <div style="margin-top: 15px; margin-bottom: 15px;">
+      <div style="margin-top: 15px; margin-bottom: 15px">
         <a href="privacy.html" class="footer-link">מדיניות פרטיות</a> |
         <a href="terms.html" class="footer-link">תנאי שימוש</a> |
         <a href="faq.html" class="footer-link">שאלות נפוצות</a> |
-        <a href="accessibility-statement.html" class="footer-link">הצהרת נגישות</a>
-    </div>
+        <a href="accessibility-statement.html" class="footer-link"
+          >הצהרת נגישות</a
+        >
+      </div>
 
-    <div class="social-title">
-        קישורים לרשתות החברתיות שלנו:
-    </div>
+      <div class="social-title">קישורים לרשתות החברתיות שלנו:</div>
 
-    <div class="social-links">
-        <a href="https://www.facebook.com/snryyzsp/" target="_blank" aria-label="עמוד הפייסבוק שלנו" title="Facebook">
-            <i class="fa-brands fa-facebook-f"></i>
+      <div class="social-links">
+        <a
+          href="https://www.facebook.com/snryyzsp/"
+          target="_blank"
+          aria-label="עמוד הפייסבוק שלנו"
+          title="Facebook"
+        >
+          <i class="fa-brands fa-facebook-f"></i>
         </a>
-        <a href="https://www.instagram.com/sunrise._.spa/" target="_blank" aria-label="עמוד האינסטגרם שלנו" title="Instagram">
-            <i class="fa-brands fa-instagram"></i>
+        <a
+          href="https://www.instagram.com/sunrise._.spa/"
+          target="_blank"
+          aria-label="עמוד האינסטגרם שלנו"
+          title="Instagram"
+        >
+          <i class="fa-brands fa-instagram"></i>
         </a>
-        <a href="https://wa.me/972586588751" target="_blank" aria-label="שלח הודעה בוואטסאפ" title="WhatsApp">
-            <i class="fa-brands fa-whatsapp"></i>
+        <a
+          href="https://wa.me/972586588751"
+          target="_blank"
+          aria-label="שלח הודעה בוואטסאפ"
+          title="WhatsApp"
+        >
+          <i class="fa-brands fa-whatsapp"></i>
         </a>
-        <a href="https://www.tiktok.com/@sunrise.spa7" target="_blank" aria-label="עמוד הטיקטוק שלנו" title="TikTok">
-            <i class="fa-brands fa-tiktok"></i>
+        <a
+          href="https://www.tiktok.com/@sunrise.spa7"
+          target="_blank"
+          aria-label="עמוד הטיקטוק שלנו"
+          title="TikTok"
+        >
+          <i class="fa-brands fa-tiktok"></i>
         </a>
-        <a href="https://www.youtube.com/@SunriseSpa-z8u" target="_blank" aria-label="ערוץ היוטיוב שלנו" title="YouTube">
-            <i class="fa-brands fa-youtube"></i>
+        <a
+          href="https://www.youtube.com/@SunriseSpa-z8u"
+          target="_blank"
+          aria-label="ערוץ היוטיוב שלנו"
+          title="YouTube"
+        >
+          <i class="fa-brands fa-youtube"></i>
         </a>
-    </div>
-</footer>
+      </div>
+    </footer>
 
-<script>
-    // אקורדיון לשאלות נפוצות עם תמיכה מלאה במקלדת
-    document.querySelectorAll('.faq-question').forEach((question, index) => {
+    <script>
+      // אקורדיון לשאלות נפוצות עם תמיכה מלאה במקלדת
+      document.querySelectorAll(".faq-question").forEach((question, index) => {
         // הוספת תמיכה בנגישות
-        question.setAttribute('tabindex', '0');
-        question.setAttribute('role', 'button');
-        question.setAttribute('aria-expanded', 'false');
-        question.setAttribute('aria-controls', `faq-answer-${index}`);
+        question.setAttribute("tabindex", "0");
+        question.setAttribute("role", "button");
+        question.setAttribute("aria-expanded", "false");
+        question.setAttribute("aria-controls", `faq-answer-${index}`);
 
         const answer = question.nextElementSibling;
-        answer.setAttribute('id', `faq-answer-${index}`);
-        answer.setAttribute('role', 'region');
-        answer.setAttribute('aria-hidden', 'true');
+        answer.setAttribute("id", `faq-answer-${index}`);
+        answer.setAttribute("role", "region");
+        answer.setAttribute("aria-hidden", "true");
 
         // פונקציה לפתיחה/סגירה
         function toggleQuestion() {
-            const isActive = answer.classList.contains('active');
+          const isActive = answer.classList.contains("active");
 
-            // סגור את כל התשובות האחרות
-            document.querySelectorAll('.faq-answer').forEach(item => {
-                item.classList.remove('active');
-                item.setAttribute('aria-hidden', 'true');
-            });
-            document.querySelectorAll('.faq-question').forEach(item => {
-                item.classList.remove('active');
-                item.setAttribute('aria-expanded', 'false');
-            });
+          // סגור את כל התשובות האחרות
+          document.querySelectorAll(".faq-answer").forEach((item) => {
+            item.classList.remove("active");
+            item.setAttribute("aria-hidden", "true");
+          });
+          document.querySelectorAll(".faq-question").forEach((item) => {
+            item.classList.remove("active");
+            item.setAttribute("aria-expanded", "false");
+          });
 
-            // פתח את התשובה הנוכחית אם היא לא הייתה פתוחה
-            if (!isActive) {
-                answer.classList.add('active');
-                answer.setAttribute('aria-hidden', 'false');
-                question.classList.add('active');
-                question.setAttribute('aria-expanded', 'true');
-            }
+          // פתח את התשובה הנוכחית אם היא לא הייתה פתוחה
+          if (!isActive) {
+            answer.classList.add("active");
+            answer.setAttribute("aria-hidden", "false");
+            question.classList.add("active");
+            question.setAttribute("aria-expanded", "true");
+          }
         }
 
         // לחיצה בעכבר
-        question.addEventListener('click', toggleQuestion);
+        question.addEventListener("click", toggleQuestion);
 
         // לחיצה במקלדת (Enter או Space)
-        question.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                toggleQuestion();
-            }
+        question.addEventListener("keydown", (e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            toggleQuestion();
+          }
         });
-    });
-</script>
-<script src="script.js"></script>
-
-</body>
+      });
+    </script>
+    <script src="script.js"></script>
+  </body>
 </html>
