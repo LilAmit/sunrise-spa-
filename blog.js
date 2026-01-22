@@ -1,60 +1,62 @@
 // ===== צ'אטבוט =====
 // הערה: AccessibilityManager מוגדר ב-script.js
-document.addEventListener('DOMContentLoaded', () => {
-    console.log('=== DOM Content Loaded ===');
-    console.log('Blog.js is running!');
+document.addEventListener("DOMContentLoaded", () => {
+  console.log("=== DOM Content Loaded ===");
+  console.log("Blog.js is running!");
 
-    // ===== אפקט Fade-in =====
-    const blogFaders = document.querySelectorAll('.blog-wrapper .fade-in');
-    const blogObserver = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                blogObserver.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.1 });
-    blogFaders.forEach(f => blogObserver.observe(f));
+  // ===== אפקט Fade-in =====
+  const blogFaders = document.querySelectorAll(".blog-wrapper .fade-in");
+  const blogObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          blogObserver.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.1 },
+  );
+  blogFaders.forEach((f) => blogObserver.observe(f));
 
-    // כפתור חזרה למעלה
-    const backToTopBtn = document.getElementById('backToTop');
-    if (backToTopBtn) {
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) {
-                backToTopBtn.classList.add('show');
-            } else {
-                backToTopBtn.classList.remove('show');
-            }
-        });
-        backToTopBtn.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-    }
+  // כפתור חזרה למעלה
+  const backToTopBtn = document.getElementById("backToTop");
+  if (backToTopBtn) {
+    window.addEventListener("scroll", () => {
+      if (window.pageYOffset > 300) {
+        backToTopBtn.classList.add("show");
+      } else {
+        backToTopBtn.classList.remove("show");
+      }
+    });
+    backToTopBtn.addEventListener("click", () => {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    });
+  }
 
-    // ===== צ'אטבוט =====
-    const chatbotBtn = document.getElementById('chatbotBtn');
-    const chatbotContainer = document.getElementById('chatbotContainer');
-    const chatbotClose = document.getElementById('chatbotClose');
-    const chatbotMessages = document.getElementById('chatbotMessages');
-    const quickBtns = document.querySelectorAll('.quick-btn');
+  // ===== צ'אטבוט =====
+  const chatbotBtn = document.getElementById("chatbotBtn");
+  const chatbotContainer = document.getElementById("chatbotContainer");
+  const chatbotClose = document.getElementById("chatbotClose");
+  const chatbotMessages = document.getElementById("chatbotMessages");
+  const quickBtns = document.querySelectorAll(".quick-btn");
 
-    if (!chatbotBtn || !chatbotContainer) {
-        console.log('Chatbot elements not found');
-    } else {
-
-// מאגר תשובות
-const responses = {
-    hours: {
+  if (!chatbotBtn || !chatbotContainer) {
+    console.log("Chatbot elements not found");
+  } else {
+    // מאגר תשובות
+    const responses = {
+      hours: {
         text: `שעות הפעילות שלנו:<br><br>
         📅 <strong>ראשון - חמישי:</strong> 10:00 - 22:00<br>
         📅 <strong>שישי:</strong> 09:00 - 16:00<br>
         📅 <strong>שבת:</strong> סגור<br><br>
-        מומלץ לתאם תור מראש!`
-    },
-    prices: {
+        מומלץ לתאם תור מראש!`,
+      },
+      prices: {
         text: `המחירים שלנו:<br><br>
         <strong>💆 עיסוי גוף:</strong><br>
         • 45 דקות - ₪220<br>
@@ -65,76 +67,79 @@ const responses = {
         • 90 דקות - ₪700<br><br>
         <strong>🦶 עיסוי רגליים:</strong><br>
         • 30 דקות - ₪150<br>
-        • 60 דקות - ₪240`
-    },
-    location: {
+        • 60 דקות - ₪240`,
+      },
+      location: {
         text: `אנחנו נמצאים ב:<br><br>
         📍 <strong>ההסתדרות 2, קומה 2</strong><br>
         🏙️ <strong>פתח תקווה</strong><br><br>
         ניתן להגיע אלינו בקלות באמצעות:<br><br>
         🚗 <a href="https://www.waze.com/live-map/directions/il/center-district/%D7%A4%D7%AA/sunrise-spa-%D7%A1%D7%A4%D7%90-%D7%A2%D7%99%D7%A1%D7%95%D7%99-%D7%A4%D7%AA%D7%97-%D7%AA%D7%A7%D7%95%D7%95%D7%94?navigate=yes&to=place.ChIJSZXBMVY3HRURy-oaXLqTcrg" target="_blank" style="color: #1565C0; font-weight: bold; text-decoration: underline;">ניווט בוויז</a><br><br>
-        🗺️ <a href="https://www.google.com/maps/dir//Sunrise+Spa" target="_blank" style="color: #1565C0; font-weight: bold; text-decoration: underline;">ניווט בגוגל מפות</a>`
-    },
-    services: {
+        🗺️ <a href="https://www.google.com/maps/dir//Sunrise+Spa" target="_blank" style="color: #1565C0; font-weight: bold; text-decoration: underline;">ניווט בגוגל מפות</a>`,
+      },
+      services: {
         text: `אנחנו מציעים:<br><br>
         ✨ <strong>עיסוי תאילנדי</strong> - עיסוי מסורתי עם מתיחות<br>
         ✨ <strong>עיסוי שוודי</strong> - עיסוי מרגיע ונעים<br>
         ✨ <strong>עיסוי רקמות עמוק</strong> - לשחרור מתחים<br>
         ✨ <strong>עיסוי רגליים</strong> - רפלקסולוגיה<br>
         ✨ <strong>עיסוי זוגי</strong> - חוויה משותפת<br><br>
-        כל העיסויים מבוצעים על ידי מעסים מקצועיים ומוסמכים.`
-    },
-    booking: {
+        כל העיסויים מבוצעים על ידי מעסים מקצועיים ומוסמכים.`,
+      },
+      booking: {
         text: `📞 <strong>להזמנת תור:</strong><br><br>
         ניתן להזמין תור בקלות באחת מהדרכים הבאות:<br><br>
         💬 <a href="https://wa.me/972586588751" target="_blank" style="color: #128C7E; font-weight: bold; text-decoration: underline;">שליחת הודעה בוואטסאפ</a><br>
         📱 <strong>058-658-8751</strong><br><br>
         📞 <a href="tel:0586588751" style="color: #667eea; font-weight: bold; text-decoration: underline;">התקשרות ישירה - 058-658-8751</a><br><br>
-        💡 מומלץ להזמין מראש!`
-    }
-};
+        💡 מומלץ להזמין מראש!`,
+      },
+    };
 
-// פתיחה/סגירה של הצ'אט
-chatbotBtn.addEventListener('click', () => {
-    chatbotContainer.classList.add('active');
-});
+    // פתיחה/סגירה של הצ'אט
+    chatbotBtn.addEventListener("click", () => {
+      chatbotContainer.classList.add("active");
+    });
 
-chatbotClose.addEventListener('click', () => {
-    chatbotContainer.classList.remove('active');
-});
+    chatbotClose.addEventListener("click", () => {
+      chatbotContainer.classList.remove("active");
+    });
 
     // סגירה בלחיצה על ESC
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && chatbotContainer.classList.contains('active')) {
-            chatbotContainer.classList.remove('active');
-        }
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && chatbotContainer.classList.contains("active")) {
+        chatbotContainer.classList.remove("active");
+      }
     });
 
     // הוספת הודעה לצ'אט
     function addMessage(text, sender) {
-    const messageDiv = document.createElement('div');
-    messageDiv.className = sender === 'user' ? 'user-message' : 'bot-message';
-    
-    const avatar = document.createElement('div');
-    avatar.className = 'message-avatar';
-    avatar.innerHTML = sender === 'user' ? '<i class="fa-solid fa-user"></i>' : '<i class="fa-solid fa-spa"></i>';
-    
-    const content = document.createElement('div');
-    content.className = 'message-content';
-    content.innerHTML = text;
-    
-    messageDiv.appendChild(avatar);
-    messageDiv.appendChild(content);
-    
-        chatbotMessages.appendChild(messageDiv);
-        chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+      const messageDiv = document.createElement("div");
+      messageDiv.className = sender === "user" ? "user-message" : "bot-message";
+
+      const avatar = document.createElement("div");
+      avatar.className = "message-avatar";
+      avatar.innerHTML =
+        sender === "user"
+          ? '<i class="fa-solid fa-user"></i>'
+          : '<i class="fa-solid fa-spa"></i>';
+
+      const content = document.createElement("div");
+      content.className = "message-content";
+      content.innerHTML = text;
+
+      messageDiv.appendChild(avatar);
+      messageDiv.appendChild(content);
+
+      chatbotMessages.appendChild(messageDiv);
+      chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
     }
 
     // הצגת אינדיקטור הקלדה
     function showTypingIndicator() {
-    const typingDiv = document.createElement('div');
-    typingDiv.className = 'bot-message typing-message';
-    typingDiv.innerHTML = `
+      const typingDiv = document.createElement("div");
+      typingDiv.className = "bot-message typing-message";
+      typingDiv.innerHTML = `
         <div class="message-avatar">
             <i class="fa-solid fa-spa"></i>
         </div>
@@ -144,84 +149,84 @@ chatbotClose.addEventListener('click', () => {
             <div class="typing-dot"></div>
         </div>
     `;
-        chatbotMessages.appendChild(typingDiv);
-        chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+      chatbotMessages.appendChild(typingDiv);
+      chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
     }
 
     // הסרת אינדיקטור הקלדה
     function hideTypingIndicator() {
-        const typingMsg = chatbotMessages.querySelector('.typing-message');
-        if (typingMsg) {
-            typingMsg.remove();
-        }
+      const typingMsg = chatbotMessages.querySelector(".typing-message");
+      if (typingMsg) {
+        typingMsg.remove();
+      }
     }
 
     // הוספת כל הכפתורים הראשיים
     function addAllQuestions() {
-        const quickDiv = document.createElement('div');
-        quickDiv.className = 'quick-questions';
-        quickDiv.style.marginTop = '10px';
+      const quickDiv = document.createElement("div");
+      quickDiv.className = "quick-questions";
+      quickDiv.style.marginTop = "10px";
 
-        const allQuestions = [
-            { id: 'hours', label: '🕐 שעות פעילות' },
-            { id: 'prices', label: '💰 מחירון' },
-            { id: 'location', label: '📍 איפה אתם נמצאים?' },
-            { id: 'services', label: '💆 אילו עיסויים יש?' },
-            { id: 'booking', label: '📅 איך מזמינים תור?' }
-        ];
+      const allQuestions = [
+        { id: "hours", label: "🕐 שעות פעילות" },
+        { id: "prices", label: "💰 מחירון" },
+        { id: "location", label: "📍 איפה אתם נמצאים?" },
+        { id: "services", label: "💆 אילו עיסויים יש?" },
+        { id: "booking", label: "📅 איך מזמינים תור?" },
+      ];
 
-        allQuestions.forEach(q => {
-            const btn = document.createElement('button');
-            btn.className = 'quick-btn';
-            btn.textContent = q.label;
-            btn.onclick = () => handleQuickQuestion(q.id);
-            quickDiv.appendChild(btn);
-        });
+      allQuestions.forEach((q) => {
+        const btn = document.createElement("button");
+        btn.className = "quick-btn";
+        btn.textContent = q.label;
+        btn.onclick = () => handleQuickQuestion(q.id);
+        quickDiv.appendChild(btn);
+      });
 
-        chatbotMessages.appendChild(quickDiv);
-        chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+      chatbotMessages.appendChild(quickDiv);
+      chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
     }
 
     // טיפול בשאלה מהירה
     function handleQuickQuestion(question) {
-        const labels = {
-            hours: 'שעות פעילות',
-            prices: 'מחירון',
-            location: 'איפה אתם נמצאים?',
-            services: 'אילו עיסויים יש?',
-            booking: 'איך מזמינים תור?'
-        };
+      const labels = {
+        hours: "שעות פעילות",
+        prices: "מחירון",
+        location: "איפה אתם נמצאים?",
+        services: "אילו עיסויים יש?",
+        booking: "איך מזמינים תור?",
+      };
 
-        addMessage(labels[question], 'user');
-        showTypingIndicator();
+      addMessage(labels[question], "user");
+      showTypingIndicator();
 
-        setTimeout(() => {
-            hideTypingIndicator();
-            const response = responses[question];
-            addMessage(response.text, 'bot');
+      setTimeout(() => {
+        hideTypingIndicator();
+        const response = responses[question];
+        addMessage(response.text, "bot");
 
-            // תמיד להציג את כל השאלות אחרי התשובה
-            addAllQuestions();
-        }, 1000);
+        // תמיד להציג את כל השאלות אחרי התשובה
+        addAllQuestions();
+      }, 1000);
     }
 
     // כפתורים מהירים ראשוניים
-        quickBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                const question = btn.dataset.question;
-                handleQuickQuestion(question);
-            });
-        });
-    } // סיום else של הצ'אטבוט
+    quickBtns.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const question = btn.dataset.question;
+        handleQuickQuestion(question);
+      });
+    });
+  } // סיום else של הצ'אטבוט
 
-// ===== תוכן מלא של הפוסטים (לשימוש המודאל) =====
-// חשוב: מוגדר מחוץ לכל block כדי שיהיה נגיש מכל מקום
-const fullPosts = {
+  // ===== תוכן מלא של הפוסטים (לשימוש המודאל) =====
+  // חשוב: מוגדר מחוץ לכל block כדי שיהיה נגיש מכל מקום
+  const fullPosts = {
     thai: {
-        title: 'עיסוי תאילנדי - מסורת עתיקה של ריפוי והרמוניה',
-        category: 'עיסוי תאילנדי',
-        date: '10 ינואר 2025',
-        content: `
+      title: "עיסוי תאילנדי - מסורת עתיקה של ריפוי והרמוניה",
+      category: "עיסוי תאילנדי",
+      date: "10 ינואר 2025",
+      content: `
             <h3><i class="fa-solid fa-spa"></i> מה זה עיסוי תאילנדי?</h3>
             <p>
                 עיסוי תאילנדי, המכונה גם "יוגה עצלנית", הוא אחד מסוגי העיסוי המסורתיים והעתיקים ביותר בעולם. 
@@ -292,14 +297,14 @@ const fullPosts = {
                     הזמן עיסוי תאילנדי עכשיו
                 </a>
             </div>
-        `
+        `,
     },
 
     swedish: {
-        title: 'עיסוי שוודי - המסע המרגיע והמשחרר ביותר',
-        category: 'עיסוי שוודי',
-        date: '8 ינואר 2025',
-        content: `
+      title: "עיסוי שוודי - המסע המרגיע והמשחרר ביותר",
+      category: "עיסוי שוודי",
+      date: "8 ינואר 2025",
+      content: `
             <h3><i class="fa-solid fa-spa"></i> מה זה עיסוי שוודי?</h3>
             <p>
                 עיסוי שוודי הוא אחד מסוגי העיסוי הפופולריים והידועים ביותר במערב. הוא פותח במאה ה-19 על ידי 
@@ -377,14 +382,14 @@ const fullPosts = {
                     הזמן עיסוי שוודי עכשיו
                 </a>
             </div>
-        `
+        `,
     },
 
     deep: {
-        title: 'עיסוי רקמות עמוק - טיפול מקצועי לאנשים עם כאבים',
-        category: 'רקמות עמוק',
-        date: '5 ינואר 2025',
-        content: `
+      title: "עיסוי רקמות עמוק - טיפול מקצועי לאנשים עם כאבים",
+      category: "רקמות עמוק",
+      date: "5 ינואר 2025",
+      content: `
             <h3><i class="fa-solid fa-spa"></i> מה זה עיסוי רקמות עמוק?</h3>
             <p>
                 עיסוי רקמות עמוק (Deep Tissue Massage) הוא טכניקת עיסוי מיוחדת המתמקדת בשכבות העמוקות ביותר 
@@ -468,14 +473,14 @@ const fullPosts = {
                     הזמן עיסוי רקמות עמוק עכשיו
                 </a>
             </div>
-        `
+        `,
     },
 
     reflexology: {
-        title: 'רפלקסולוגיה - ריפוי הגוף דרך כפות הרגליים',
-        category: 'רפלקסולוגיה',
-        date: '3 ינואר 2025',
-        content: `
+      title: "רפלקסולוגיה - ריפוי הגוף דרך כפות הרגליים",
+      category: "רפלקסולוגיה",
+      date: "3 ינואר 2025",
+      content: `
             <h3><i class="fa-solid fa-spa"></i> מה זו רפלקסולוגיה?</h3>
             <p>
                 רפלקסולוגיה היא שיטת טיפול עתיקה המבוססת על העיקרון שישנן נקודות רפלקס בכפות הרגליים, הידיים 
@@ -573,97 +578,106 @@ const fullPosts = {
                     הזמן טיפול רפלקסולוגיה עכשיו
                 </a>
             </div>
-        `
-    }
-};
+        `,
+    },
+  };
 
-    // ===== פונקציונליות המודאל =====
-    console.log('=== Modal Initialization Started ===');
+  // ===== פונקציונליות המודאל =====
+  console.log("=== Modal Initialization Started ===");
 
-    // קבלת כל האלמנטים הדרושים
-    const modal = document.getElementById('postModal');
-    const modalBody = document.getElementById('modalBody');
-    const modalClose = document.getElementById('modalClose');
-    const readMoreBtns = document.querySelectorAll('.read-more-btn');
+  // קבלת כל האלמנטים הדרושים
+  const modal = document.getElementById("postModal");
+  const modalBody = document.getElementById("modalBody");
+  const modalClose = document.getElementById("modalClose");
+  const readMoreBtns = document.querySelectorAll(".read-more-btn");
 
-    // בדיקות ראשוניות
-    console.log('Modal:', modal ? 'Found' : 'NOT FOUND');
-    console.log('Modal Body:', modalBody ? 'Found' : 'NOT FOUND');
-    console.log('Modal Close:', modalClose ? 'Found' : 'NOT FOUND');
-    console.log('Buttons:', readMoreBtns.length);
-    console.log('fullPosts:', typeof fullPosts, fullPosts ? 'Defined' : 'UNDEFINED');
+  // בדיקות ראשוניות
+  console.log("Modal:", modal ? "Found" : "NOT FOUND");
+  console.log("Modal Body:", modalBody ? "Found" : "NOT FOUND");
+  console.log("Modal Close:", modalClose ? "Found" : "NOT FOUND");
+  console.log("Buttons:", readMoreBtns.length);
+  console.log(
+    "fullPosts:",
+    typeof fullPosts,
+    fullPosts ? "Defined" : "UNDEFINED",
+  );
 
-    // אם חסרים אלמנטים - עצור
-    if (!modal || !modalBody || !modalClose) {
-        console.error('CRITICAL: Modal elements missing!');
+  // אם חסרים אלמנטים - עצור
+  if (!modal || !modalBody || !modalClose) {
+    console.error("CRITICAL: Modal elements missing!");
+    return;
+  }
+
+  if (readMoreBtns.length === 0) {
+    console.error("CRITICAL: No buttons found!");
+    return;
+  }
+
+  // פונקציה לסגירת מודאל
+  function closeModal() {
+    modal.classList.remove("active");
+    document.body.style.overflow = "";
+    console.log("Modal closed");
+  }
+
+  // הוספת מאזינים לכפתורי "קרא עוד"
+  readMoreBtns.forEach(function (btn, index) {
+    const postId = btn.getAttribute("data-post");
+    console.log("Button " + index + ' has data-post="' + postId + '"');
+
+    btn.addEventListener("click", function (e) {
+      e.preventDefault();
+      console.log(">>> CLICK on button " + index + ", postId=" + postId);
+
+      const post = fullPosts[postId];
+
+      if (!post) {
+        console.error("Post not found for ID: " + postId);
+        alert("שגיאה: לא נמצא תוכן לפוסט זה");
         return;
+      }
+
+      console.log("Post found: " + post.title);
+
+      // מילוי התוכן במודאל
+      modalBody.innerHTML =
+        "<h2>" +
+        post.title +
+        "</h2>" +
+        '<div class="post-meta">' +
+        '<span><i class="fa-regular fa-calendar"></i> ' +
+        post.date +
+        "</span>" +
+        "</div>" +
+        post.content;
+
+      // פתיחת המודאל
+      modal.classList.add("active");
+      document.body.style.overflow = "hidden";
+
+      console.log("Modal opened successfully!");
+    });
+  });
+
+  // סגירת מודאל בלחיצה על X
+  modalClose.addEventListener("click", function (e) {
+    e.preventDefault();
+    closeModal();
+  });
+
+  // סגירת מודאל בלחיצה על הרקע
+  modal.addEventListener("click", function (e) {
+    if (e.target === modal) {
+      closeModal();
     }
+  });
 
-    if (readMoreBtns.length === 0) {
-        console.error('CRITICAL: No buttons found!');
-        return;
+  // סגירת מודאל ב-ESC
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && modal.classList.contains("active")) {
+      closeModal();
     }
+  });
 
-    // פונקציה לסגירת מודאל
-    function closeModal() {
-        modal.classList.remove('active');
-        document.body.style.overflow = '';
-        console.log('Modal closed');
-    }
-
-    // הוספת מאזינים לכפתורי "קרא עוד"
-    readMoreBtns.forEach(function(btn, index) {
-        const postId = btn.getAttribute('data-post');
-        console.log('Button ' + index + ' has data-post="' + postId + '"');
-
-        btn.addEventListener('click', function(e) {
-            e.preventDefault();
-            console.log('>>> CLICK on button ' + index + ', postId=' + postId);
-
-            const post = fullPosts[postId];
-
-            if (!post) {
-                console.error('Post not found for ID: ' + postId);
-                alert('שגיאה: לא נמצא תוכן לפוסט זה');
-                return;
-            }
-
-            console.log('Post found: ' + post.title);
-
-            // מילוי התוכן במודאל
-            modalBody.innerHTML = '<h2>' + post.title + '</h2>' +
-                '<div class="post-meta">' +
-                '<span><i class="fa-regular fa-calendar"></i> ' + post.date + '</span>' +
-                '</div>' +
-                post.content;
-
-            // פתיחת המודאל
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-
-            console.log('Modal opened successfully!');
-        });
-    });
-
-    // סגירת מודאל בלחיצה על X
-    modalClose.addEventListener('click', function(e) {
-        e.preventDefault();
-        closeModal();
-    });
-
-    // סגירת מודאל בלחיצה על הרקע
-    modal.addEventListener('click', function(e) {
-        if (e.target === modal) {
-            closeModal();
-        }
-    });
-
-    // סגירת מודאל ב-ESC
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && modal.classList.contains('active')) {
-            closeModal();
-        }
-    });
-
-    console.log('=== All initialization complete ===');
+  console.log("=== All initialization complete ===");
 }); // סיום DOMContentLoaded הראשי
