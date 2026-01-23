@@ -731,6 +731,7 @@ footer {
 }
 
 .reset-accessibility,
+.accessibility-reset-btn,
 .accessibility-statement-btn {
   width: 100%;
   padding: 12px;
@@ -755,12 +756,14 @@ footer {
 }
 
 .reset-accessibility:hover,
+.accessibility-reset-btn:hover,
 .accessibility-statement-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .reset-accessibility:focus-visible,
+.accessibility-reset-btn:focus-visible,
 .accessibility-statement-btn:focus-visible {
   outline: 3px solid #ffc107;
 }
