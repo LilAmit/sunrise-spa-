@@ -2500,3 +2500,277 @@ body.grayscale-active footer {
 #accessibilityPanel, .accessibility-trigger {
     position: fixed !important;
 }
+
+/* ===============================================
+   ניגודיות גבוהה צהוב-שחור (High Contrast Yellow-Black)
+   =============================================== */
+
+/* מצב ניגודיות גבוהה צהוב-שחור */
+body.high-contrast-yellow-active {
+  background: #000000 !important;
+  background-image: none !important;
+  color: #ffff00 !important;
+}
+
+body.high-contrast-yellow-active * {
+  background-color: #000000 !important;
+  color: #ffff00 !important;
+  border-color: #ffff00 !important;
+}
+
+/* כותרות */
+body.high-contrast-yellow-active h1,
+body.high-contrast-yellow-active h2,
+body.high-contrast-yellow-active h3,
+body.high-contrast-yellow-active h4,
+body.high-contrast-yellow-active h5,
+body.high-contrast-yellow-active h6 {
+  color: #ffff00 !important;
+  text-shadow: none !important;
+}
+
+/* קישורים */
+body.high-contrast-yellow-active a {
+  color: #00ffff !important;
+  text-decoration: underline !important;
+}
+
+body.high-contrast-yellow-active a:hover,
+body.high-contrast-yellow-active a:focus {
+  color: #ffffff !important;
+  background-color: #333333 !important;
+}
+
+/* כפתורים */
+body.high-contrast-yellow-active button:not(.accessibility-panel button),
+body.high-contrast-yellow-active .btn,
+body.high-contrast-yellow-active nav a,
+body.high-contrast-yellow-active .quick-btn {
+  background: #ffff00 !important;
+  color: #000000 !important;
+  border: 2px solid #ffff00 !important;
+}
+
+body.high-contrast-yellow-active button:not(.accessibility-panel button):hover,
+body.high-contrast-yellow-active .btn:hover,
+body.high-contrast-yellow-active nav a:hover,
+body.high-contrast-yellow-active .quick-btn:hover {
+  background: #000000 !important;
+  color: #ffff00 !important;
+  border: 2px solid #ffff00 !important;
+}
+
+/* Header */
+body.high-contrast-yellow-active header {
+  background: #000000 !important;
+  border-bottom: 3px solid #ffff00 !important;
+}
+
+/* Footer */
+body.high-contrast-yellow-active footer {
+  background: #000000 !important;
+  border-top: 3px solid #ffff00 !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  position: relative !important;
+  z-index: 10 !important;
+}
+
+body.high-contrast-yellow-active footer * {
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+body.high-contrast-yellow-active footer a,
+body.high-contrast-yellow-active footer .footer-link {
+  color: #00ffff !important;
+}
+
+body.high-contrast-yellow-active footer .social-links a {
+  background: #ffff00 !important;
+  color: #000000 !important;
+}
+
+/* Gallery items */
+body.high-contrast-yellow-active .gallery-item {
+  background: #000000 !important;
+  border: 2px solid #ffff00 !important;
+}
+
+/* Contact badge */
+body.high-contrast-yellow-active .contact-badge {
+  background: #000000 !important;
+  color: #ffff00 !important;
+  border: 2px solid #ffff00 !important;
+}
+
+/* Chatbot */
+body.high-contrast-yellow-active .chatbot-container {
+  background: #000000 !important;
+  border: 3px solid #ffff00 !important;
+}
+
+body.high-contrast-yellow-active .chatbot-header {
+  background: #ffff00 !important;
+  color: #000000 !important;
+}
+
+body.high-contrast-yellow-active .chatbot-header h3,
+body.high-contrast-yellow-active .chatbot-header p,
+body.high-contrast-yellow-active .chatbot-status {
+  color: #000000 !important;
+}
+
+body.high-contrast-yellow-active .chatbot-messages {
+  background: #000000 !important;
+}
+
+body.high-contrast-yellow-active .bot-message .message-content {
+  background: #222222 !important;
+  color: #ffff00 !important;
+  border: 1px solid #ffff00 !important;
+}
+
+body.high-contrast-yellow-active .user-message .message-content {
+  background: #ffff00 !important;
+  color: #000000 !important;
+}
+
+body.high-contrast-yellow-active .chatbot-input-area {
+  background: #000000 !important;
+  border-top: 2px solid #ffff00 !important;
+}
+
+body.high-contrast-yellow-active #chatbotInput {
+  background: #000000 !important;
+  color: #ffff00 !important;
+  border: 2px solid #ffff00 !important;
+}
+
+body.high-contrast-yellow-active #chatbotSend {
+  background: #ffff00 !important;
+  color: #000000 !important;
+}
+
+body.high-contrast-yellow-active .chatbot-btn {
+  background: #ffff00 !important;
+  color: #000000 !important;
+}
+
+/* WhatsApp button */
+body.high-contrast-yellow-active .whatsapp-float {
+  background: #ffff00 !important;
+  color: #000000 !important;
+  border: 2px solid #ffff00 !important;
+}
+
+/* Back to top */
+body.high-contrast-yellow-active .back-to-top {
+  background: #ffff00 !important;
+  color: #000000 !important;
+}
+
+/* Social links */
+body.high-contrast-yellow-active .social-links a {
+  background: #ffff00 !important;
+  color: #000000 !important;
+}
+
+/* Lightbox */
+body.high-contrast-yellow-active .lightbox {
+  background: rgba(0, 0, 0, 0.98) !important;
+}
+
+body.high-contrast-yellow-active #lightbox-controls button {
+  background: #ffff00 !important;
+  color: #000000 !important;
+}
+
+body.high-contrast-yellow-active #lightbox-caption {
+  background: #000000 !important;
+  color: #ffff00 !important;
+  border: 1px solid #ffff00 !important;
+}
+
+/* Images - keep them visible but with border */
+body.high-contrast-yellow-active img {
+  border: 2px solid #ffff00 !important;
+}
+
+body.high-contrast-yellow-active .logo {
+  border: none !important;
+  filter: brightness(1.2) contrast(1.2) !important;
+}
+
+/* שמירת פאנל הנגישות בצבעים רגילים */
+body.high-contrast-yellow-active .accessibility-panel,
+body.high-contrast-yellow-active .accessibility-panel * {
+  background-color: inherit !important;
+  color: inherit !important;
+  border-color: inherit !important;
+}
+
+body.high-contrast-yellow-active .accessibility-panel {
+  background: white !important;
+  border: none !important;
+}
+
+body.high-contrast-yellow-active .accessibility-header {
+  background: linear-gradient(135deg, #2196f3, #1976d2) !important;
+  color: white !important;
+}
+
+body.high-contrast-yellow-active .accessibility-content {
+  background: white !important;
+  color: #333 !important;
+}
+
+body.high-contrast-yellow-active .accessibility-section h3 {
+  color: #1976d2 !important;
+}
+
+body.high-contrast-yellow-active .accessibility-panel .accessibility-btn {
+  background: #f5f5f5 !important;
+  color: #333 !important;
+  border-color: transparent !important;
+}
+
+body.high-contrast-yellow-active .accessibility-panel .accessibility-btn:hover {
+  background: #e3f2fd !important;
+  border-color: #2196f3 !important;
+}
+
+body.high-contrast-yellow-active
+  .accessibility-panel
+  .accessibility-btn[aria-pressed="true"] {
+  background: linear-gradient(135deg, #4caf50 0%, #45a049 100%) !important;
+  color: white !important;
+}
+
+body.high-contrast-yellow-active .accessibility-panel .accessibility-btn i {
+  color: #2196f3 !important;
+}
+
+body.high-contrast-yellow-active
+  .accessibility-panel
+  .accessibility-btn[aria-pressed="true"]
+  i {
+  color: white !important;
+}
+
+/* שמירת כפתור הנגישות */
+body.high-contrast-yellow-active .accessibility-trigger {
+  background: linear-gradient(135deg, #2196f3, #1976d2) !important;
+  color: white !important;
+  filter: none !important;
+}
+
+/* מובייל - שמירת מיקום פאנל נגישות */
+@media (max-width: 768px) {
+  body.high-contrast-yellow-active .accessibility-panel {
+    left: 15px !important;
+    right: 15px !important;
+    width: auto !important;
+  }
+}
