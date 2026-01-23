@@ -58,6 +58,14 @@ if (track && indicatorsContainer) {
 
   function updateSlider() {
     const sliderWidth = document.querySelector(".side-slider").offsetWidth;
+
+    // Set each image to exactly match the slider width
+    const images = track.querySelectorAll('img');
+    images.forEach(img => {
+      img.style.width = sliderWidth + 'px';
+      img.style.minWidth = sliderWidth + 'px';
+    });
+
     const offset = currentSlide * -sliderWidth;
     track.style.transform = `translateX(${offset}px)`;
 
@@ -1111,216 +1119,184 @@ if (document.readyState === "loading") {
   AccessibilityManager.init();
 }
 
-// ===== צ'אטבוט חכם =====
+// ===== צ'אטבוט חכם - סאנרייז ספא =====
 const chatbotBtn = document.getElementById("chatbotBtn");
 const chatbotContainer = document.getElementById("chatbotContainer");
 const chatbotClose = document.getElementById("chatbotClose");
 const chatbotMessages = document.getElementById("chatbotMessages");
-const quickBtns = document.querySelectorAll(".quick-btn");
 
-// מאגר תשובות מורחב
-const responses = {
+// מידע על הספא
+const spaInfo = {
+  name: "סאנרייז ספא",
+  address: "ההסתדרות 2, קומה 2, פתח תקווה",
+  phone: "058-658-8751",
+  whatsapp: "https://wa.me/972586588751",
+  waze: "https://www.waze.com/live-map/directions/il/center-district/%D7%A4%D7%AA/sunrise-spa-%D7%A1%D7%A4%D7%90-%D7%A2%D7%99%D7%A1%D7%95%D7%99-%D7%A4%D7%AA%D7%97-%D7%AA%D7%A7%D7%95%D7%95%D7%94?navigate=yes&to=place.ChIJSZXBMVY3HRURy-oaXLqTcrg",
+  maps: "https://www.google.com/maps/dir//Sunrise+Spa",
   hours: {
-    text: `שעות הפעילות שלנו:<br><br>
-        📅 <strong>ראשון - חמישי:</strong> 10:00 - 22:00<br>
-        📅 <strong>שישי:</strong> 09:00 - 16:00<br>
-        📅 <strong>שבת:</strong> סגור<br><br>
-        מומלץ לתאם תור מראש!`,
-    keywords: [
-      "שעות",
-      "פעילות",
-      "פתוח",
-      "סגור",
-      "מתי",
-      "זמינות",
-      "לפתוח",
-      "עובד",
-    ],
+    weekdays: "10:00 - 22:00",
+    friday: "09:00 - 16:00",
+    saturday: "סגור"
   },
+  services: [
+    { name: "עיסוי תאילנדי", description: "עיסוי מסורתי עם מתיחות ולחיצות עמוקות, משפר גמישות ומשחרר מתחים" },
+    { name: "עיסוי שוודי", description: "עיסוי קלאסי עם תנועות ליטוף ולישה, מושלם להרפיה ושיפור זרימת הדם" },
+    { name: "עיסוי רקמות עמוק", description: "עיסוי חזק המתמקד בשרירים עמוקים, מתאים לכאבים כרוניים" },
+    { name: "עיסוי רגליים (רפלקסולוגיה)", description: "לחיצות על נקודות בכפות הרגליים המחוברות לאיברי הגוף" },
+    { name: "עיסוי זוגי", description: "עיסוי זוגי בחדר מרווח לשני אנשים" }
+  ],
   prices: {
-    text: `המחירים שלנו:<br><br>
-        <strong>💆 עיסוי גוף:</strong><br>
-        • 45 דקות - ₪220<br>
-        • 60 דקות - ₪270<br>
-        • 75 דקות - ₪325<br>
-        • 90 דקות - ₪380<br>
-        • 120 דקות - ₪500<br><br>
-        <strong>👫 עיסוי זוגי:</strong><br>
-        • 60 דקות - ₪500<br>
-        • 75 דקות - ₪600<br>
-        • 90 דקות - ₪700<br>
-        • 120 דקות - ₪850<br><br>
-        <strong>🦶 עיסוי רגליים:</strong><br>
-        • 30 דקות - ₪150<br>
-        • 45 דקות - ₪200<br>
-        • 60 דקות - ₪240`,
-    keywords: [
-      "מחיר",
-      "כמה",
-      "עולה",
-      "עלות",
-      "תשלום",
-      "לשלם",
-      "מחירון",
-      "כסף",
-      "₪",
+    body: [
+      { duration: "45 דקות", price: 220 },
+      { duration: "60 דקות", price: 270 },
+      { duration: "75 דקות", price: 325 },
+      { duration: "90 דקות", price: 380 },
+      { duration: "120 דקות", price: 500 }
     ],
-  },
-  location: {
-    text: `אנחנו נמצאים ב:<br><br>
-        📍 <strong>ההסתדרות 2, קומה 2</strong><br>
-        🏙️ <strong>פתח תקווה</strong><br><br>
-        ניתן להגיע אלינו בקלות באמצעות:<br><br>
-        🚗 <a href="https://www.waze.com/live-map/directions/il/center-district/%D7%A4%D7%AA/sunrise-spa-%D7%A1%D7%A4%D7%90-%D7%A2%D7%99%D7%A1%D7%95%D7%99-%D7%A4%D7%AA%D7%97-%D7%AA%D7%A7%D7%95%D7%95%D7%94?navigate=yes&to=place.ChIJSZXBMVY3HRURy-oaXLqTcrg" target="_blank" style="color: #1565C0; font-weight: bold; text-decoration: underline;">ניווט בוויז</a><br><br>
-        🗺️ <a href="https://www.google.com/maps/dir//Sunrise+Spa" target="_blank" style="color: #1565C0; font-weight: bold; text-decoration: underline;">ניווט בגוגל מפות</a>`,
-    keywords: [
-      "איפה",
-      "כתובת",
-      "מיקום",
-      "נמצא",
-      "ממוקם",
-      "להגיע",
-      "וויז",
-      "waze",
-      "maps",
-      "הדרכה",
+    couples: [
+      { duration: "60 דקות", price: 500 },
+      { duration: "75 דקות", price: 600 },
+      { duration: "90 דקות", price: 700 },
+      { duration: "120 דקות", price: 850 }
     ],
+    feet: [
+      { duration: "30 דקות", price: 150 },
+      { duration: "45 דקות", price: 200 },
+      { duration: "60 דקות", price: 240 }
+    ]
   },
-  services: {
-    text: `אנחנו מציעים:<br><br>
-        ✨ <strong>עיסוי תאילנדי</strong> - עיסוי מסורתי עם מתיחות<br>
-        ✨ <strong>עיסוי שוודי</strong> - עיסוי מרגיע ונעים<br>
-        ✨ <strong>עיסוי רקמות עמוק</strong> - לשחרור מתחים<br>
-        ✨ <strong>עיסוי רגליים</strong> - רפלקסולוגיה<br>
-        ✨ <strong>עיסוי זוגי</strong> - חוויה משותפת<br><br>
-        כל העיסויים מבוצעים על ידי מעסים מקצועיים ומוסמכים.`,
-    keywords: [
-      "עיסוי",
-      "טיפול",
-      "מסאז",
-      "סוגי",
-      "סוג",
-      "מציעים",
-      "יש",
-      "עושים",
-      "שירות",
-    ],
-  },
-  booking: {
-    text: `📞 <strong>להזמנת תור:</strong><br><br>
-        ניתן להזמין תור בקלות באחת מהדרכים הבאות:<br><br>
-        💬 <a href="https://wa.me/972586588751" target="_blank" style="color: #128C7E; font-weight: bold; text-decoration: underline;">שליחת הודעה בוואטסאפ</a><br>
-        📱 <strong>058-658-8751</strong><br><br>
-        📞 <a href="tel:0586588751" style="color: #667eea; font-weight: bold; text-decoration: underline;">התקשרות ישירה - 058-658-8751</a><br><br>
-        💡 מומלץ להזמין מראש!`,
-    keywords: [
-      "להזמין",
-      "תור",
-      "הזמנה",
-      "לקבוע",
-      "לתאם",
-      "booking",
-      "זימון",
-      "איך",
-    ],
-  },
-  parking: {
-    text: `🚗 <strong>חניה:</strong><br><br>
-        באזור יש מספר אפשרויות חניה:<br>
-        • חניה בחינם ברחוב (כחול לבן)<br>
-        • חניון ציבורי קרוב<br>
-        • חניה בתשלום בסביבה<br><br>
-        מומלץ להגיע 5-10 דקות מוקדם כדי למצוא חניה בנוחות 😊`,
-    keywords: ["חניה", "חונים", "לחנות", "parking", "רכב", "מכונית"],
-  },
-  difference: {
-    text: `<strong>ההבדלים בין סוגי העיסויים:</strong><br><br>
-        🌿 <strong>עיסוי תאילנדי:</strong> מתיחות ולחיצות עמוקות, משפר גמישות<br><br>
-        🧘 <strong>עיסוי שוודי:</strong> ליטופים רכים ומרגיעים, מושלם להרפיה<br><br>
-        💪 <strong>עיסוי רקמות עמוק:</strong> אינטנסיבי, מתמקד בשרירים - לכאבים כרוניים<br><br>
-        🦶 <strong>עיסוי רגליים:</strong> רפלקסולוגיה - לחיצה על נקודות בכפות הרגליים`,
-    keywords: ["הבדל", "ההבדל", "שונה", "תאילנדי", "שוודי", "רקמות", "עמוק"],
-  },
-  pregnant: {
-    text: `🤰 <strong>עיסוי בהריון:</strong><br><br>
-        כן, אבל יש כמה דברים חשובים:<br>
-        ✓ רק לאחר החודש השלישי<br>
-        ✓ חובה לעדכן את המעסה על ההריון<br>
-        ✓ מומלץ להתייעץ עם הרופא לפני<br>
-        ✓ נבצע עיסוי מותאם במיוחד<br><br>
-        צרי קשר ונתאים לך טיפול מיוחד! 💕`,
-    keywords: ["הריון", "הרה", "בהריון", "בהרה", "הריונית", "הרות", "pregnant"],
-  },
-  cancellation: {
-    text: `🗓️ <strong>מדיניות ביטולים:</strong><br><br>
-        ✓ ביטול עד 24 שעות לפני - ללא עלות<br>
-        ⚠️ ביטול פחות מ-24 שעות - חיוב חלקי<br>
-        ❌ אי הגעה ללא הודעה - חיוב מלא<br><br>
-        לביטול או שינוי, צור קשר בטלפון או WhatsApp.`,
-    keywords: ["ביטול", "לבטל", "לשנות", "שינוי", "cancellation", "cancel"],
-  },
-  duration: {
-    text: `⏱️ <strong>משך הטיפולים:</strong><br><br>
-        אנו מציעים טיפולים במשכים שונים:<br>
-        • עיסוי גוף: 45, 60, 75, 90 או 120 דקות<br>
-        • עיסוי זוגי: 60, 75, 90 או 120 דקות<br>
-        • עיסוי רגליים: 30, 45 או 60 דקות<br><br>
-        💡 המשך המפורט מופיע במחירון!`,
-    keywords: ["כמה זמן", "משך", "זמן", "דקות", "שעה", "לוקח", "אורך"],
-  },
-  qualified: {
-    text: `👨‍⚕️ <strong>מעסים מוסמכים:</strong><br><br>
-        בהחלט! כל המעסים שלנו:<br>
-        ✓ בעלי הסמכה מקצועית בעיסוי<br>
-        ✓ ניסיון רב בתחום<br>
-        ✓ עברו קורסים מוסמכים<br>
-        ✓ עוברים השתלמויות שוטפות<br><br>
-        אתם בידיים טובות! 😊`,
-    keywords: ["מוסמך", "הסמכה", "מקצועי", "ניסיון", "qualified", "רישיון"],
-  },
-  payment: {
-    text: `💳 <strong>אמצעי תשלום:</strong><br><br>
-        אנו מקבלים:<br>
-        • מזומן<br>
-        • כרטיסי אשראי (ויזה, מאסטרקארד)<br>
-        • העברה בנקאית (בתאום מראש)<br>
-        • bit (בתאום מראש)<br><br>
-        📄 חשבונית ניתנת עבור כל תשלום`,
-    keywords: [
-      "תשלום",
-      "לשלם",
-      "אשראי",
-      "מזומן",
-      "כרטיס",
-      "bit",
-      "העברה",
-      "payment",
-    ],
-  },
-  couples: {
-    text: `👫 <strong>עיסוי זוגי:</strong><br><br>
-        חווית עיסוי מושלמת לזוגות!<br>
-        • שני מעסים מקצועיים במקביל<br>
-        • חדר מרווח ומיוחד<br>
-        • אווירה רומנטית ומרגיעה<br><br>
-        💕 <strong>מחירים מיוחדים:</strong><br>
-        60 דק' - ₪500 | 90 דק' - ₪700<br><br>
-        מושלם למתנה או לאירוע מיוחד!`,
-    keywords: ["זוגי", "זוג", "זוגות", "couple", "לזוג", "ביחד"],
-  },
+  social: {
+    facebook: "https://www.facebook.com/snryyzsp/",
+    instagram: "https://www.instagram.com/sunrise._.spa/",
+    tiktok: "https://www.tiktok.com/@sunrise.spa7",
+    youtube: "https://www.youtube.com/@SunriseSpa-z8u"
+  }
 };
 
-// זיהוי מילות מפתח חכם
-function findBestMatch(userInput) {
+// מערכת זיהוי כוונה חכמה
+const intentPatterns = {
+  greeting: {
+    patterns: [/^(היי|הי|שלום|בוקר טוב|ערב טוב|צהריים טובים|מה נשמע|מה קורה|אהלן|הלו|hello|hi|hey)/i],
+    response: () => `שלום וברוכים הבאים! 👋<br><br>אני כאן לעזור לך בכל שאלה על <strong>סאנרייז ספא</strong>.<br>מה תרצה לדעת?`
+  },
+  thanks: {
+    patterns: [/(תודה|תודה רבה|מעולה|אחלה|מושלם|נהדר|תנקס|thanks|thank you|tnx)/i],
+    response: () => `בשמחה! 😊<br><br>אם יש עוד שאלות, אני כאן לעזור.<br>מחכים לראות אותך ב<strong>סאנרייז ספא</strong>! 💆`
+  },
+  goodbye: {
+    patterns: [/(להתראות|ביי|יאללה|שיהיה|bye|goodbye|יום טוב|לילה טוב)/i],
+    response: () => `להתראות! 👋<br><br>תודה שפנית אלינו. מחכים לראות אותך בספא! 💕<br><br>📞 להזמנת תור: <a href="tel:0586588751" style="color: #667eea; font-weight: bold;">058-658-8751</a>`
+  },
+  hours: {
+    patterns: [/(שעות|פעילות|פתוח|סגור|מתי|עובד|עובדים|פותח|נסגר|זמין|זמינים|מה השעות)/i],
+    response: () => `⏰ <strong>שעות הפעילות שלנו:</strong><br><br>📅 ראשון - חמישי: ${spaInfo.hours.weekdays}<br>📅 שישי: ${spaInfo.hours.friday}<br>📅 שבת: ${spaInfo.hours.saturday}<br><br>💡 מומלץ לתאם תור מראש!`
+  },
+  prices: {
+    patterns: [/(מחיר|כמה|עולה|עלות|תשלום|לשלם|מחירון|כסף|₪|שקל|תעריף|עלויות)/i],
+    response: () => {
+      let priceText = `💰 <strong>המחירון שלנו:</strong><br><br>`;
+      priceText += `<strong>💆 עיסוי גוף</strong> (תאילנדי/שוודי/רקמות עמוק):<br>`;
+      spaInfo.prices.body.forEach(p => priceText += `• ${p.duration} - ₪${p.price}<br>`);
+      priceText += `<br><strong>👫 עיסוי זוגי:</strong><br>`;
+      spaInfo.prices.couples.forEach(p => priceText += `• ${p.duration} - ₪${p.price}<br>`);
+      priceText += `<br><strong>🦶 עיסוי רגליים:</strong><br>`;
+      spaInfo.prices.feet.forEach(p => priceText += `• ${p.duration} - ₪${p.price}<br>`);
+      return priceText;
+    }
+  },
+  location: {
+    patterns: [/(איפה|כתובת|מיקום|נמצא|ממוקם|להגיע|הגעה|וייז|waze|maps|מפה|ניווט|איך מגיעים|דרך)/i],
+    response: () => `📍 <strong>המיקום שלנו:</strong><br><br>🏢 <strong>${spaInfo.address}</strong><br><br>🚗 <a href="${spaInfo.waze}" target="_blank" style="color: #1565C0; font-weight: bold;">ניווט בוויז</a><br><br>🗺️ <a href="${spaInfo.maps}" target="_blank" style="color: #1565C0; font-weight: bold;">ניווט בגוגל מפות</a>`
+  },
+  services: {
+    patterns: [/(סוג|סוגי|עיסוי|עיסויים|טיפול|טיפולים|מסאז|מציעים|שירות|שירותים|מה יש|אפשרויות)/i],
+    response: () => {
+      let text = `✨ <strong>סוגי העיסויים שלנו:</strong><br><br>`;
+      spaInfo.services.forEach(s => {
+        text += `<strong>${s.name}</strong><br>${s.description}<br><br>`;
+      });
+      text += `כל העיסויים מבוצעים על ידי מעסים מקצועיים ומוסמכים! 👨‍⚕️`;
+      return text;
+    }
+  },
+  booking: {
+    patterns: [/(הזמנה|להזמין|תור|לקבוע|לתאם|booking|זימון|לזמן|קביעת|מזמינים)/i],
+    response: () => `📅 <strong>להזמנת תור:</strong><br><br>💬 <a href="${spaInfo.whatsapp}" target="_blank" style="color: #128C7E; font-weight: bold;">וואטסאפ - לחץ כאן</a><br><br>📞 <a href="tel:0586588751" style="color: #667eea; font-weight: bold;">התקשרו: ${spaInfo.phone}</a><br><br>💡 מומלץ להזמין מראש לקבלת השעה המועדפת!`
+  },
+  phone: {
+    patterns: [/(טלפון|פלאפון|מספר|להתקשר|התקשרות|נייד)/i],
+    response: () => `📞 <strong>הטלפון שלנו:</strong><br><br><a href="tel:0586588751" style="color: #667eea; font-weight: bold; font-size: 18px;">${spaInfo.phone}</a><br><br>💬 או שלחו הודעה ב<a href="${spaInfo.whatsapp}" target="_blank" style="color: #128C7E; font-weight: bold;">וואטסאפ</a>`
+  },
+  parking: {
+    patterns: [/(חניה|חנייה|חונה|לחנות|parking|רכב|מכונית|אוטו)/i],
+    response: () => `🚗 <strong>חניה באזור:</strong><br><br>• חניה בחינם ברחוב (כחול-לבן)<br>• חניון ציבורי קרוב<br>• חניה בתשלום בסביבה<br><br>💡 מומלץ להגיע 5-10 דקות מוקדם למציאת חניה נוחה`
+  },
+  thai: {
+    patterns: [/(תאילנדי|תאילנד|thai)/i],
+    response: () => `🌿 <strong>עיסוי תאילנדי:</strong><br><br>עיסוי מסורתי בן אלפי שנים הכולל:<br>• מתיחות יוגה<br>• לחיצות אקופרסורה<br>• תנוחות ייחודיות<br><br>✨ מתאים לשיפור גמישות ושחרור מתחים עמוקים<br><br>💰 מחירים: החל מ-₪220 (45 דקות)`
+  },
+  swedish: {
+    patterns: [/(שוודי|שבדי|swedish)/i],
+    response: () => `🧘 <strong>עיסוי שוודי:</strong><br><br>העיסוי הקלאסי והפופולרי ביותר:<br>• תנועות ליטוף ארוכות<br>• לישה עדינה<br>• תנועות מעגליות<br><br>✨ מושלם להרפיה, שיפור זרימת הדם והקלה על כאבי שרירים<br><br>💰 מחירים: החל מ-₪220 (45 דקות)`
+  },
+  deep: {
+    patterns: [/(רקמות עמוק|עמוק|deep tissue|דיפ)/i],
+    response: () => `💪 <strong>עיסוי רקמות עמוק:</strong><br><br>עיסוי אינטנסיבי ממוקד:<br>• מתמקד בשכבות העמוקות של השרירים<br>• לחיצות חזקות וממוקדות<br>• מתאים לכאבים כרוניים ופגיעות ספורט<br><br>✨ מספק הקלה ארוכת טווח<br><br>💰 מחירים: החל מ-₪220 (45 דקות)`
+  },
+  feet: {
+    patterns: [/(רגליים|רגל|רפלקסולוגיה|reflexology|כף רגל)/i],
+    response: () => `🦶 <strong>עיסוי רגליים / רפלקסולוגיה:</strong><br><br>שיטת טיפול עתיקה:<br>• לחיצות על נקודות בכפות הרגליים<br>• הנקודות מחוברות לאיברים שונים בגוף<br>• מרגיע ומפחית מתח<br><br>💰 מחירים:<br>• 30 דקות - ₪150<br>• 45 דקות - ₪200<br>• 60 דקות - ₪240`
+  },
+  couples: {
+    patterns: [/(זוגי|זוג|זוגות|couple|ביחד|שנינו|רומנטי)/i],
+    response: () => `👫 <strong>עיסוי זוגי:</strong><br><br>חוויה מושלמת לזוגות!<br>• שני מעסים מקצועיים במקביל<br>• חדר מרווח ומיוחד<br>• אווירה רומנטית ומרגיעה<br><br>💰 מחירים:<br>• 60 דקות - ₪500<br>• 75 דקות - ₪600<br>• 90 דקות - ₪700<br>• 120 דקות - ₪850<br><br>💕 מושלם למתנה או לאירוע מיוחד!`
+  },
+  payment: {
+    patterns: [/(אשראי|מזומן|כרטיס|bit|ביט|תשלום|לשלם|משלמים|אפשר לשלם)/i],
+    response: () => `💳 <strong>אמצעי תשלום:</strong><br><br>אנו מקבלים:<br>• מזומן<br>• כרטיסי אשראי (ויזה, מאסטרקארד)<br>• bit (בתיאום מראש)<br>• העברה בנקאית (בתיאום מראש)<br><br>📄 חשבונית ניתנת לפי בקשה`
+  },
+  cancel: {
+    patterns: [/(ביטול|לבטל|שינוי|לשנות|cancel|להעביר|הזיז)/i],
+    response: () => `🗓️ <strong>מדיניות ביטולים:</strong><br><br>✅ ביטול עד 24 שעות מראש - ללא עלות<br>⚠️ ביטול פחות מ-24 שעות - חיוב חלקי<br>❌ אי הגעה ללא הודעה - חיוב מלא<br><br>📞 לביטול או שינוי: <a href="tel:0586588751" style="color: #667eea; font-weight: bold;">${spaInfo.phone}</a>`
+  },
+  duration: {
+    patterns: [/(כמה זמן|משך|זמן|דקות|שעה|לוקח|אורך|ארוך|קצר)/i],
+    response: () => `⏱️ <strong>משך הטיפולים:</strong><br><br><strong>עיסוי גוף:</strong> 45, 60, 75, 90 או 120 דקות<br><strong>עיסוי זוגי:</strong> 60, 75, 90 או 120 דקות<br><strong>עיסוי רגליים:</strong> 30, 45 או 60 דקות<br><br>💡 ככל שהטיפול ארוך יותר, כך ההרפיה עמוקה יותר!`
+  },
+  recommend: {
+    patterns: [/(ממליצים|מומלץ|הכי טוב|מה עדיף|איזה עיסוי|מתאים לי|לבחור)/i],
+    response: () => `🤔 <strong>איזה עיסוי מומלץ?</strong><br><br>🧘 <strong>להרפיה כללית:</strong> עיסוי שוודי<br>💪 <strong>לכאבי שרירים:</strong> עיסוי רקמות עמוק<br>🌿 <strong>לגמישות ואנרגיה:</strong> עיסוי תאילנדי<br>🦶 <strong>לעייפות ברגליים:</strong> רפלקסולוגיה<br>👫 <strong>לחוויה רומנטית:</strong> עיסוי זוגי<br><br>💬 לא בטוחים? התקשרו ונעזור לבחור!`
+  },
+  about: {
+    patterns: [/(מה זה|מי אתם|על הספא|ספר לי|ספרי לי|תגיד לי|תגידי לי|פרטים)/i],
+    response: () => `✨ <strong>אודות סאנרייז ספא:</strong><br><br>אנחנו ספא מקצועי בלב פתח תקווה, מתמחים במגוון טיפולי עיסוי.<br><br>🏢 <strong>כתובת:</strong> ${spaInfo.address}<br>📞 <strong>טלפון:</strong> ${spaInfo.phone}<br><br>💆 המעסים שלנו מוסמכים ומנוסים<br>🌟 אווירה מרגיעה ומפנקת<br>💕 שירות אישי וחם<br><br>נשמח לראותכם!`
+  },
+  social: {
+    patterns: [/(פייסבוק|אינסטגרם|טיקטוק|יוטיוב|facebook|instagram|tiktok|youtube|רשתות חברתיות)/i],
+    response: () => `📱 <strong>עקבו אחרינו:</strong><br><br>📘 <a href="${spaInfo.social.facebook}" target="_blank" style="color: #1877f2; font-weight: bold;">פייסבוק</a><br>📸 <a href="${spaInfo.social.instagram}" target="_blank" style="color: #E4405F; font-weight: bold;">אינסטגרם</a><br>🎵 <a href="${spaInfo.social.tiktok}" target="_blank" style="color: #000; font-weight: bold;">טיקטוק</a><br>▶️ <a href="${spaInfo.social.youtube}" target="_blank" style="color: #FF0000; font-weight: bold;">יוטיוב</a>`
+  },
+  gift: {
+    patterns: [/(מתנה|גיפט|gift|שובר|voucher|קארד|כרטיס מתנה)/i],
+    response: () => `🎁 <strong>מתנה מושלמת!</strong><br><br>רוצה לפנק מישהו יקר בעיסוי?<br><br>📞 צרו קשר ונסדר לכם שובר מתנה:<br>טלפון: <a href="tel:0586588751" style="color: #667eea; font-weight: bold;">${spaInfo.phone}</a><br><br>💕 עיסוי זוגי = מתנה רומנטית מושלמת!`
+  },
+  pain: {
+    patterns: [/(כאב|כואב|כאבים|גב|צוואר|כתפיים|שרירים|מתח|לחץ)/i],
+    response: () => `💪 <strong>עיסוי לכאבים:</strong><br><br>מומלץ לנסות <strong>עיסוי רקמות עמוק</strong>!<br><br>✨ יתרונות:<br>• מתמקד בשכבות העמוקות<br>• משחרר מתחים כרוניים<br>• מקל על כאבי גב, צוואר וכתפיים<br><br>💡 לתוצאות טובות יותר - מומלץ טיפול של 60-90 דקות<br><br>📞 הזמינו תור: <a href="tel:0586588751" style="color: #667eea; font-weight: bold;">${spaInfo.phone}</a>`
+  },
+  relax: {
+    patterns: [/(להירגע|רגיעה|סטרס|לחוץ|מתוח|עייף|עייפות|מנוחה|פינוק)/i],
+    response: () => `🧘 <strong>זמן להירגע!</strong><br><br>מומלץ לנסות <strong>עיסוי שוודי</strong> - הכי מרגיע!<br><br>✨ מה תקבלו:<br>• תנועות רכות ומלטפות<br>• הרפיה עמוקה<br>• שיפור זרימת הדם<br>• יציאה מרוגעים ומאושרים<br><br>💆 שעה של עיסוי = כמו חופשה קטנה!<br><br>📞 להזמנת פינוק: <a href="tel:0586588751" style="color: #667eea; font-weight: bold;">${spaInfo.phone}</a>`
+  }
+};
+
+// פונקציה לזיהוי כוונת המשתמש
+function detectIntent(userInput) {
   const input = userInput.toLowerCase().trim();
 
-  // בדיקה ישירה של מילים
-  for (const [key, response] of Object.entries(responses)) {
-    if (response.keywords) {
-      for (const keyword of response.keywords) {
-        if (input.includes(keyword.toLowerCase())) {
-          return key;
-        }
+  for (const [intentName, intent] of Object.entries(intentPatterns)) {
+    for (const pattern of intent.patterns) {
+      if (pattern.test(input)) {
+        return intent.response();
       }
     }
   }
@@ -1328,7 +1304,16 @@ function findBestMatch(userInput) {
   return null;
 }
 
-// פתיחה/סגירה של הצ'אט - רק אם האלמנטים קיימים
+// תשובת ברירת מחדל חכמה
+function getSmartDefaultResponse(userInput) {
+  const responses = [
+    `אני מבין שאתה שואל על "${userInput}".<br><br>אני יכול לעזור לך עם:<br>• שעות פעילות ומיקום<br>• מחירון וסוגי עיסויים<br>• הזמנת תור<br><br>נסה לשאול שאלה ספציפית יותר, או <a href="${spaInfo.whatsapp}" target="_blank" style="color: #128C7E; font-weight: bold;">שלח לנו הודעה בוואטסאפ</a> ונשמח לעזור! 😊`,
+    `לא הצלחתי להבין בדיוק מה אתה מחפש 🤔<br><br>הנה כמה דברים שאני יכול לעזור בהם:<br>• "מה השעות?" - שעות פעילות<br>• "כמה עולה?" - מחירון<br>• "איפה אתם?" - כתובת וניווט<br>• "איזה עיסויים יש?" - סוגי טיפולים<br><br>או פשוט התקשרו: <a href="tel:0586588751" style="color: #667eea; font-weight: bold;">${spaInfo.phone}</a>`
+  ];
+  return responses[Math.floor(Math.random() * responses.length)];
+}
+
+// פתיחה/סגירה של הצ'אט
 if (chatbotBtn && chatbotContainer) {
   chatbotBtn.addEventListener("click", () => {
     chatbotContainer.classList.add("active");
@@ -1352,7 +1337,7 @@ if (chatbotContainer) {
 
 // הוספת הודעה לצ'אט
 function addMessage(text, sender) {
-  if (!chatbotMessages) return; // בדיקה שהאלמנט קיים
+  if (!chatbotMessages) return;
 
   const messageDiv = document.createElement("div");
   messageDiv.className = sender === "user" ? "user-message" : "bot-message";
@@ -1377,7 +1362,7 @@ function addMessage(text, sender) {
 
 // הצגת אינדיקטור הקלדה
 function showTypingIndicator() {
-  if (!chatbotMessages) return; // בדיקה שהאלמנט קיים
+  if (!chatbotMessages) return;
 
   const typingDiv = document.createElement("div");
   typingDiv.className = "bot-message typing-message";
@@ -1397,73 +1382,12 @@ function showTypingIndicator() {
 
 // הסרת אינדיקטור הקלדה
 function hideTypingIndicator() {
-  if (!chatbotMessages) return; // בדיקה שהאלמנט קיים
+  if (!chatbotMessages) return;
 
   const typingMsg = chatbotMessages.querySelector(".typing-message");
   if (typingMsg) {
     typingMsg.remove();
   }
-}
-
-// הוספת כל הכפתורים הראשיים
-function addAllQuestions() {
-  if (!chatbotMessages) return; // בדיקה שהאלמנט קיים
-
-  const quickDiv = document.createElement("div");
-  quickDiv.className = "quick-questions";
-  quickDiv.style.marginTop = "10px";
-
-  const allQuestions = [
-    { id: "hours", label: "🕐 שעות פעילות" },
-    { id: "prices", label: "💰 מחירון" },
-    { id: "location", label: "📍 איפה אתם נמצאים?" },
-    { id: "services", label: "💆 אילו עיסויים יש?" },
-    { id: "booking", label: "📅 איך מזמינים תור?" },
-  ];
-
-  allQuestions.forEach((q) => {
-    const btn = document.createElement("button");
-    btn.className = "quick-btn";
-    btn.textContent = q.label;
-    btn.onclick = () => handleQuickQuestion(q.id);
-    quickDiv.appendChild(btn);
-  });
-
-  chatbotMessages.appendChild(quickDiv);
-  chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
-}
-
-// טיפול בשאלה מהירה
-function handleQuickQuestion(question) {
-  const labels = {
-    hours: "שעות פעילות",
-    prices: "מחירון",
-    location: "איפה אתם נמצאים?",
-    services: "אילו עיסויים יש?",
-    booking: "איך מזמינים תור?",
-  };
-
-  addMessage(labels[question], "user");
-  showTypingIndicator();
-
-  setTimeout(() => {
-    hideTypingIndicator();
-    const response = responses[question];
-    addMessage(response.text, "bot");
-
-    // תמיד להציג את כל השאלות אחרי התשובה
-    addAllQuestions();
-  }, 1000);
-}
-
-// כפתורים מהירים ראשוניים - רק אם הם קיימים
-if (quickBtns && quickBtns.length > 0) {
-  quickBtns.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const question = btn.dataset.question;
-      handleQuickQuestion(question);
-    });
-  });
 }
 
 // שליחת הודעה חופשית
@@ -1481,29 +1405,20 @@ function handleUserMessage() {
   // נקה את שדה הקלט
   chatbotInput.value = "";
 
-  // חפש התאמה
-  const matchedKey = findBestMatch(userMessage);
+  // זיהוי כוונה
+  const response = detectIntent(userMessage);
 
   showTypingIndicator();
 
   setTimeout(() => {
     hideTypingIndicator();
 
-    if (matchedKey) {
-      const response = responses[matchedKey];
-      addMessage(response.text, "bot");
+    if (response) {
+      addMessage(response, "bot");
     } else {
-      // תשובת ברירת מחדל
-      const defaultResponse = `
-                מצטער, לא הבנתי את השאלה שלך 🤔<br><br>
-                בחר אחת מהאפשרויות הבאות או נסח את השאלה אחרת:
-            `;
-      addMessage(defaultResponse, "bot");
+      addMessage(getSmartDefaultResponse(userMessage), "bot");
     }
-
-    // הצג את כל הכפתורים
-    addAllQuestions();
-  }, 1000);
+  }, 800 + Math.random() * 700);
 }
 
 // בדיקה אם קלט הצ'אטבוט קיים לפני הוספת listeners
