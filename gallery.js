@@ -673,7 +673,7 @@ const AccessibilityManager = {
       highContrastBtn: (btn) => this.toggleFeature("high-contrast", btn),
       darkContrastBtn: (btn) => this.toggleFeature("dark-mode", btn),
       highContrastYellowBtn: (btn) =>
-        this.toggleFeature("high-contrast", btn),
+        this.toggleFeature("high-contrast-yellow", btn),
       highlightLinksBtn: (btn) => this.toggleFeature("highlight-links", btn),
       textDirectionBtn: (btn) => this.toggleTextDirection(btn),
       stopAnimationsBtn: (btn) => this.toggleStopAnimations(btn),
@@ -967,7 +967,7 @@ const AccessibilityManager = {
 
       // סנכרון מצב כפתורים לפי קלאסים של body (לתאימות אחורה)
       const classToButton = {
-        "high-contrast-active": "highContrastYellowBtn",
+        "high-contrast-yellow-active": "highContrastYellowBtn",
         "dark-mode-active": "darkContrastBtn",
         "high-contrast-active": "highContrastBtn",
         "highlight-links-active": "highlightLinksBtn",
