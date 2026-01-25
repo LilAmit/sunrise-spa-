@@ -528,27 +528,72 @@ footer {
   border: 0;
 }
 
-/* Skip Links */
-.skip-link {
-  position: absolute;
-  top: -40px;
-  left: 0;
-  background: #000;
-  color: #fff;
-  padding: 8px;
-  text-decoration: none;
-  z-index: 100000;
-}
-
-.skip-link:focus {
-  top: 0;
-}
-
+/* Skip Links - קישורי דילוג לנגישות */
 #skipLinks {
   position: fixed;
   top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 999999;
+  display: flex !important;
+  gap: 10px;
+  padding: 0;
+}
+
+.skip-link {
+  position: absolute;
+  top: -100px;
   left: 0;
-  z-index: 100000;
+  background: linear-gradient(135deg, #2196f3, #1976d2);
+  color: #fff;
+  padding: 15px 25px;
+  text-decoration: none;
+  z-index: 999999;
+  font-weight: 700;
+  font-size: 16px;
+  border-radius: 0 0 10px 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  transition: top 0.3s ease;
+  white-space: nowrap;
+}
+
+.skip-link:focus,
+.skip-link:focus-visible {
+  top: 0;
+  outline: 3px solid #ffc107;
+  outline-offset: 2px;
+}
+
+.skip-link:hover {
+  background: linear-gradient(135deg, #1976d2, #0d47a1);
+}
+
+/* מיקום קישורי הדילוג בצורה נפרדת */
+#skipLinks .skip-link:nth-child(1) {
+  left: 0;
+}
+
+#skipLinks .skip-link:nth-child(2) {
+  left: 200px;
+}
+
+#skipLinks .skip-link:nth-child(3) {
+  left: 400px;
+}
+
+@media (max-width: 768px) {
+  .skip-link {
+    padding: 12px 18px;
+    font-size: 14px;
+  }
+
+  #skipLinks .skip-link:nth-child(2) {
+    left: 160px;
+  }
+
+  #skipLinks .skip-link:nth-child(3) {
+    left: 320px;
+  }
 }
 
 /* כפתור נגישות ראשי */
@@ -780,10 +825,106 @@ footer {
   box-shadow: 0 0 10px rgba(255, 193, 7, 0.6);
 }
 
-/* מצבי נגישות */
-body.keyboard-nav-active *:focus {
+/* ===============================================
+   מחווני פוקוס משופרים - Global Focus Indicators
+   =============================================== */
+
+/* מחוון פוקוס ברירת מחדל לכל האלמנטים האינטראקטיביים */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible:not([tabindex="-1"]),
+[role="button"]:focus-visible {
+  outline: 3px solid #2196f3 !important;
+  outline-offset: 3px !important;
+  box-shadow: 0 0 0 6px rgba(33, 150, 243, 0.25) !important;
+  transition: outline 0.15s ease, box-shadow 0.15s ease;
+}
+
+/* מחוון פוקוס לקישורים בניווט */
+nav a:focus-visible {
   outline: 3px solid #ffc107 !important;
   outline-offset: 2px !important;
+  background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%) !important;
+  color: white !important;
+}
+
+/* מחוון פוקוס לכפתורים צפים */
+.whatsapp-float:focus-visible,
+.chatbot-btn:focus-visible,
+.back-to-top:focus-visible,
+.accessibility-trigger:focus-visible {
+  outline: 4px solid #ffc107 !important;
+  outline-offset: 4px !important;
+  transform: scale(1.1);
+}
+
+/* מחוון פוקוס לכרטיסי תוכן */
+.content-box:focus-visible,
+.price-item:focus-visible,
+.blog-post:focus-visible,
+.faq-item:focus-visible {
+  outline: 3px solid #ff758c !important;
+  outline-offset: 4px !important;
+  box-shadow: 0 0 20px rgba(255, 117, 140, 0.4) !important;
+}
+
+/* מחוון פוקוס לקישורים ברשתות חברתיות */
+.social-links a:focus-visible {
+  outline: 3px solid #ffc107 !important;
+  outline-offset: 4px !important;
+  transform: translateY(-5px) scale(1.15);
+}
+
+/* ===============================================
+   מערכת מסגרות אחידה לנגישות
+   עובדת גם ב"הפעל קורא מסך" וגם ב"ניווט מקלדת מלא"
+   מסגרות מופיעות רק ב-hover או focus
+   =============================================== */
+
+/* הדגשה בהובר - לכל האלמנטים */
+body.screen-reader-active *:hover,
+body.keyboard-nav-active *:hover {
+  outline: 3px solid #e91e63 !important;
+  outline-offset: 3px !important;
+  box-shadow: 0 0 15px rgba(233, 30, 99, 0.4) !important;
+  cursor: pointer;
+}
+
+/* הדגשה בפוקוס - לכל האלמנטים */
+body.screen-reader-active *:focus,
+body.keyboard-nav-active *:focus {
+  outline: 4px solid #e91e63 !important;
+  outline-offset: 4px !important;
+  box-shadow: 0 0 20px rgba(233, 30, 99, 0.5) !important;
+}
+
+/* ביטול הדגשה על body ו-html */
+body.screen-reader-active:hover,
+body.keyboard-nav-active:hover,
+body.screen-reader-active html:hover,
+body.keyboard-nav-active html:hover {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* שמירה על מיקום כפתורים צפים */
+body.screen-reader-active .whatsapp-float,
+body.screen-reader-active .chatbot-btn,
+body.screen-reader-active .back-to-top,
+body.screen-reader-active .accessibility-trigger,
+body.keyboard-nav-active .whatsapp-float,
+body.keyboard-nav-active .chatbot-btn,
+body.keyboard-nav-active .back-to-top,
+body.keyboard-nav-active .accessibility-trigger {
+  position: fixed !important;
+}
+
+body.screen-reader-active footer,
+body.keyboard-nav-active footer {
+  position: relative !important;
 }
 
 /* במקום להפעיל על body, מפעילים על ה-wrapper של התוכן */
