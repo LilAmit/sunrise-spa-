@@ -911,11 +911,11 @@
       </div>
     </div>
 
-    <!-- Skip Links לניווט מקלדת -->
-    <div id="skipLinks" style="display: none">
-      <a href="#main-content" class="skip-link">דלג לתוכן הראשי</a>
-      <a href="#navigation" class="skip-link">דלג לתפריט ניווט</a>
-      <a href="#footer" class="skip-link">דלג לתחתית העמוד</a>
+    <!-- Skip Links לניווט מקלדת - מופיעים בפוקוס -->
+    <div id="skipLinks" role="navigation" aria-label="קישורי דילוג">
+      <a href="#about" class="skip-link">דלג לתוכן הראשי</a>
+      <a href="javascript:void(0)" class="skip-link" onclick="document.querySelector('nav a').focus()">דלג לתפריט ניווט</a>
+      <a href="#footer" class="skip-link" onclick="document.querySelector('footer').setAttribute('tabindex', '-1'); document.querySelector('footer').focus();">דלג לתחתית העמוד</a>
     </div>
 
     <!-- Reading Guide -->
@@ -930,7 +930,7 @@
       id="srAnnouncer"
     ></div>
 
-    <footer>
+    <footer id="footer">
       © 2026 סאנרייז ספא – ההסתדרות 2, פתח תקווה
 
       <div style="margin-top: 15px; margin-bottom: 15px">
