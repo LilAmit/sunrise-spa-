@@ -1,5 +1,5 @@
-// ===== צ'אטבוט =====
-// הערה: AccessibilityManager מוגדר ב-script.js
+// ===== Blog.js - פונקציונליות ספציפית לדף הבלוג =====
+// הערה: הצ'אטבוט החכם ו-AccessibilityManager מוגדרים ב-script.js
 document.addEventListener("DOMContentLoaded", () => {
   console.log("=== DOM Content Loaded ===");
   console.log("Blog.js is running!");
@@ -37,187 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // ===== צ'אטבוט =====
-  const chatbotBtn = document.getElementById("chatbotBtn");
-  const chatbotContainer = document.getElementById("chatbotContainer");
-  const chatbotClose = document.getElementById("chatbotClose");
-  const chatbotMessages = document.getElementById("chatbotMessages");
-  const quickBtns = document.querySelectorAll(".quick-btn");
-
-  if (!chatbotBtn || !chatbotContainer) {
-    console.log("Chatbot elements not found");
-  } else {
-    // מאגר תשובות
-    const responses = {
-      hours: {
-        text: `שעות הפעילות שלנו:<br><br>
-        📅 <strong>ראשון - חמישי:</strong> 10:00 - 22:00<br>
-        📅 <strong>שישי:</strong> 09:00 - 16:00<br>
-        📅 <strong>שבת:</strong> סגור<br><br>
-        מומלץ לתאם תור מראש!`,
-      },
-      prices: {
-        text: `המחירים שלנו:<br><br>
-        <strong>💆 עיסוי גוף:</strong><br>
-        • 45 דקות - ₪220<br>
-        • 60 דקות - ₪270<br>
-        • 90 דקות - ₪380<br><br>
-        <strong>👫 עיסוי זוגי:</strong><br>
-        • 60 דקות - ₪500<br>
-        • 90 דקות - ₪700<br><br>
-        <strong>🦶 עיסוי רגליים:</strong><br>
-        • 30 דקות - ₪150<br>
-        • 60 דקות - ₪240`,
-      },
-      location: {
-        text: `אנחנו נמצאים ב:<br><br>
-        📍 <strong>ההסתדרות 2, קומה 2</strong><br>
-        🏙️ <strong>פתח תקווה</strong><br><br>
-        ניתן להגיע אלינו בקלות באמצעות:<br><br>
-        🚗 <a href="https://www.waze.com/live-map/directions/il/center-district/%D7%A4%D7%AA/sunrise-spa-%D7%A1%D7%A4%D7%90-%D7%A2%D7%99%D7%A1%D7%95%D7%99-%D7%A4%D7%AA%D7%97-%D7%AA%D7%A7%D7%95%D7%95%D7%94?navigate=yes&to=place.ChIJSZXBMVY3HRURy-oaXLqTcrg" target="_blank" style="color: #1565C0; font-weight: bold; text-decoration: underline;">ניווט בוויז</a><br><br>
-        🗺️ <a href="https://www.google.com/maps/dir//Sunrise+Spa" target="_blank" style="color: #1565C0; font-weight: bold; text-decoration: underline;">ניווט בגוגל מפות</a>`,
-      },
-      services: {
-        text: `אנחנו מציעים:<br><br>
-        ✨ <strong>עיסוי תאילנדי</strong> - עיסוי מסורתי עם מתיחות<br>
-        ✨ <strong>עיסוי שוודי</strong> - עיסוי מרגיע ונעים<br>
-        ✨ <strong>עיסוי רקמות עמוק</strong> - לשחרור מתחים<br>
-        ✨ <strong>עיסוי רגליים</strong> - רפלקסולוגיה<br>
-        ✨ <strong>עיסוי זוגי</strong> - חוויה משותפת<br><br>
-        כל העיסויים מבוצעים על ידי מעסים מקצועיים ומוסמכים.`,
-      },
-      booking: {
-        text: `📞 <strong>להזמנת תור:</strong><br><br>
-        ניתן להזמין תור בקלות באחת מהדרכים הבאות:<br><br>
-        💬 <a href="https://wa.me/972586588751" target="_blank" style="color: #128C7E; font-weight: bold; text-decoration: underline;">שליחת הודעה בוואטסאפ</a><br>
-        📱 <strong>058-658-8751</strong><br><br>
-        📞 <a href="tel:0586588751" style="color: #667eea; font-weight: bold; text-decoration: underline;">התקשרות ישירה - 058-658-8751</a><br><br>
-        💡 מומלץ להזמין מראש!`,
-      },
-    };
-
-    // פתיחה/סגירה של הצ'אט
-    chatbotBtn.addEventListener("click", () => {
-      chatbotContainer.classList.add("active");
-    });
-
-    chatbotClose.addEventListener("click", () => {
-      chatbotContainer.classList.remove("active");
-    });
-
-    // סגירה בלחיצה על ESC
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && chatbotContainer.classList.contains("active")) {
-        chatbotContainer.classList.remove("active");
-      }
-    });
-
-    // הוספת הודעה לצ'אט
-    function addMessage(text, sender) {
-      const messageDiv = document.createElement("div");
-      messageDiv.className = sender === "user" ? "user-message" : "bot-message";
-
-      const avatar = document.createElement("div");
-      avatar.className = "message-avatar";
-      avatar.innerHTML =
-        sender === "user"
-          ? '<i class="fa-solid fa-user"></i>'
-          : '<i class="fa-solid fa-spa"></i>';
-
-      const content = document.createElement("div");
-      content.className = "message-content";
-      content.innerHTML = text;
-
-      messageDiv.appendChild(avatar);
-      messageDiv.appendChild(content);
-
-      chatbotMessages.appendChild(messageDiv);
-      chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
-    }
-
-    // הצגת אינדיקטור הקלדה
-    function showTypingIndicator() {
-      const typingDiv = document.createElement("div");
-      typingDiv.className = "bot-message typing-message";
-      typingDiv.innerHTML = `
-        <div class="message-avatar">
-            <i class="fa-solid fa-spa"></i>
-        </div>
-        <div class="message-content typing-indicator">
-            <div class="typing-dot"></div>
-            <div class="typing-dot"></div>
-            <div class="typing-dot"></div>
-        </div>
-    `;
-      chatbotMessages.appendChild(typingDiv);
-      chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
-    }
-
-    // הסרת אינדיקטור הקלדה
-    function hideTypingIndicator() {
-      const typingMsg = chatbotMessages.querySelector(".typing-message");
-      if (typingMsg) {
-        typingMsg.remove();
-      }
-    }
-
-    // הוספת כל הכפתורים הראשיים
-    function addAllQuestions() {
-      const quickDiv = document.createElement("div");
-      quickDiv.className = "quick-questions";
-      quickDiv.style.marginTop = "10px";
-
-      const allQuestions = [
-        { id: "hours", label: "🕐 שעות פעילות" },
-        { id: "prices", label: "💰 מחירון" },
-        { id: "location", label: "📍 איפה אתם נמצאים?" },
-        { id: "services", label: "💆 אילו עיסויים יש?" },
-        { id: "booking", label: "📅 איך מזמינים תור?" },
-      ];
-
-      allQuestions.forEach((q) => {
-        const btn = document.createElement("button");
-        btn.className = "quick-btn";
-        btn.textContent = q.label;
-        btn.onclick = () => handleQuickQuestion(q.id);
-        quickDiv.appendChild(btn);
-      });
-
-      chatbotMessages.appendChild(quickDiv);
-      chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
-    }
-
-    // טיפול בשאלה מהירה
-    function handleQuickQuestion(question) {
-      const labels = {
-        hours: "שעות פעילות",
-        prices: "מחירון",
-        location: "איפה אתם נמצאים?",
-        services: "אילו עיסויים יש?",
-        booking: "איך מזמינים תור?",
-      };
-
-      addMessage(labels[question], "user");
-      showTypingIndicator();
-
-      setTimeout(() => {
-        hideTypingIndicator();
-        const response = responses[question];
-        addMessage(response.text, "bot");
-
-        // תמיד להציג את כל השאלות אחרי התשובה
-        addAllQuestions();
-      }, 1000);
-    }
-
-    // כפתורים מהירים ראשוניים
-    quickBtns.forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const question = btn.dataset.question;
-        handleQuickQuestion(question);
-      });
-    });
-  } // סיום else של הצ'אטבוט
+  // הערה: הצ'אטבוט החכם מוגדר ב-script.js ועובד אוטומטית בכל הדפים
 
   // ===== תוכן מלא של הפוסטים (לשימוש המודאל) =====
   // חשוב: מוגדר מחוץ לכל block כדי שיהיה נגיש מכל מקום
@@ -655,6 +475,21 @@ document.addEventListener("DOMContentLoaded", () => {
       modal.classList.add("active");
       document.body.style.overflow = "hidden";
 
+      // הכרזה על פתיחת המודאל לקוראי מסך
+      setTimeout(function() {
+        const announcer = document.getElementById('modalAnnouncer') || document.getElementById('srAnnouncer');
+        if (announcer) {
+          announcer.textContent = 'נפתח מאמר: ' + post.title + '. השתמש בחצים לגלילה, Escape לסגירה.';
+        }
+      }, 100);
+
+      // העברת פוקוס למודאל לנגישות
+      modal.setAttribute('tabindex', '-1');
+      modal.setAttribute('role', 'dialog');
+      modal.setAttribute('aria-modal', 'true');
+      modal.setAttribute('aria-label', post.title);
+      modal.focus();
+
       console.log("Modal opened successfully!");
     });
   });
@@ -672,12 +507,65 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // סגירת מודאל ב-ESC
+  // סגירת מודאל ב-ESC וניווט במקלדת
   document.addEventListener("keydown", function (e) {
-    if (e.key === "Escape" && modal.classList.contains("active")) {
-      closeModal();
+    if (!modal.classList.contains("active")) return;
+
+    const modalContent = modal.querySelector('.modal-content');
+    const scrollAmount = 100; // כמות הגלילה בכל לחיצה
+    const pageScrollAmount = modalContent ? modalContent.clientHeight * 0.8 : 400;
+
+    switch(e.key) {
+      case "Escape":
+        closeModal();
+        break;
+      case "ArrowDown":
+        if (modalContent) {
+          e.preventDefault();
+          modalContent.scrollTop += scrollAmount;
+        }
+        break;
+      case "ArrowUp":
+        if (modalContent) {
+          e.preventDefault();
+          modalContent.scrollTop -= scrollAmount;
+        }
+        break;
+      case "PageDown":
+        if (modalContent) {
+          e.preventDefault();
+          modalContent.scrollTop += pageScrollAmount;
+        }
+        break;
+      case "PageUp":
+        if (modalContent) {
+          e.preventDefault();
+          modalContent.scrollTop -= pageScrollAmount;
+        }
+        break;
+      case "Home":
+        if (e.ctrlKey && modalContent) {
+          e.preventDefault();
+          modalContent.scrollTop = 0;
+        }
+        break;
+      case "End":
+        if (e.ctrlKey && modalContent) {
+          e.preventDefault();
+          modalContent.scrollTop = modalContent.scrollHeight;
+        }
+        break;
     }
   });
+
+  // הוספת ARIA live region להכרזות במודאל
+  const modalAnnouncer = document.createElement('div');
+  modalAnnouncer.id = 'modalAnnouncer';
+  modalAnnouncer.className = 'sr-only';
+  modalAnnouncer.setAttribute('role', 'status');
+  modalAnnouncer.setAttribute('aria-live', 'polite');
+  modalAnnouncer.setAttribute('aria-atomic', 'true');
+  document.body.appendChild(modalAnnouncer);
 
   console.log("=== All initialization complete ===");
 }); // סיום DOMContentLoaded הראשי
