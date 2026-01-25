@@ -99,12 +99,110 @@ if (track && indicatorsContainer) {
   }
 
   createIndicators();
+  updateSlider(); // Initialize slider width on page load
   autoSlideInterval = setInterval(nextSlide, 4000);
 
   const slider = document.querySelector(".side-slider");
+
+  // הפיכת הסליידר לנגיש במקלדת
+  slider.setAttribute('tabindex', '0');
+  slider.setAttribute('role', 'region');
+  slider.setAttribute('aria-label', 'גלריית תמונות - השתמש בחצים לניווט');
+  slider.setAttribute('aria-roledescription', 'סליידר תמונות');
+
+  // יצירת אזור הכרזות לקורא מסך
+  const sliderAnnouncer = document.createElement('div');
+  sliderAnnouncer.id = 'sliderAnnouncer';
+  sliderAnnouncer.className = 'sr-only';
+  sliderAnnouncer.setAttribute('role', 'status');
+  sliderAnnouncer.setAttribute('aria-live', 'polite');
+  sliderAnnouncer.setAttribute('aria-atomic', 'true');
+  slider.appendChild(sliderAnnouncer);
+
+  // פונקציה להכרזה על שינוי שקופית
+  function announceSlide() {
+    const announcer = document.getElementById('sliderAnnouncer');
+    if (announcer) {
+      const currentImage = track.children[currentSlide];
+      const altText = currentImage ? currentImage.alt : '';
+      announcer.textContent = `תמונה ${currentSlide + 1} מתוך ${totalSlides}${altText ? ': ' + altText : ''}`;
+    }
+  }
+
+  // ניווט במקלדת עבור הסליידר
+  slider.addEventListener('keydown', (e) => {
+    // בדיקת כיוון RTL
+    const isRTL = document.documentElement.dir === 'rtl' ||
+                  document.documentElement.lang === 'he' ||
+                  getComputedStyle(document.body).direction === 'rtl';
+
+    switch(e.key) {
+      case 'ArrowLeft':
+        e.preventDefault();
+        // ב-RTL: חץ שמאלה = הבא, ב-LTR: חץ שמאלה = קודם
+        if (isRTL) {
+          nextSlide();
+        } else {
+          prevSlide();
+        }
+        announceSlide();
+        break;
+      case 'ArrowRight':
+        e.preventDefault();
+        // ב-RTL: חץ ימינה = קודם, ב-LTR: חץ ימינה = הבא
+        if (isRTL) {
+          prevSlide();
+        } else {
+          nextSlide();
+        }
+        announceSlide();
+        break;
+      case 'Home':
+        e.preventDefault();
+        goToSlide(0);
+        announceSlide();
+        break;
+      case 'End':
+        e.preventDefault();
+        goToSlide(totalSlides - 1);
+        announceSlide();
+        break;
+      case ' ':
+      case 'Enter':
+        e.preventDefault();
+        // עצירה/התחלה של הניגון האוטומטי
+        if (autoSlideInterval) {
+          clearInterval(autoSlideInterval);
+          autoSlideInterval = null;
+          if (document.getElementById('sliderAnnouncer')) {
+            document.getElementById('sliderAnnouncer').textContent = 'ניגון אוטומטי הופסק';
+          }
+        } else {
+          autoSlideInterval = setInterval(nextSlide, 4000);
+          if (document.getElementById('sliderAnnouncer')) {
+            document.getElementById('sliderAnnouncer').textContent = 'ניגון אוטומטי הופעל';
+          }
+        }
+        break;
+    }
+  });
+
   slider.addEventListener("mouseenter", () => clearInterval(autoSlideInterval));
   slider.addEventListener("mouseleave", () => {
     autoSlideInterval = setInterval(nextSlide, 4000);
+  });
+
+  // עצירת הסליידר כאשר יש פוקוס עליו
+  slider.addEventListener('focus', () => {
+    clearInterval(autoSlideInterval);
+    autoSlideInterval = null;
+    announceSlide();
+  });
+
+  slider.addEventListener('blur', () => {
+    if (!autoSlideInterval) {
+      autoSlideInterval = setInterval(nextSlide, 4000);
+    }
   });
 
   // תמיכה ב-Touch
@@ -339,9 +437,15 @@ const AccessibilityManager = {
     btn.setAttribute("aria-pressed", this.screenReaderActive);
 
     if (this.screenReaderActive) {
-      this.announce("קורא מסך הופעל. לחץ על כל טקסט כדי לשמוע אותו");
+      this.announce("קורא מסך הופעל. לחץ על אלמנטים לשמיעה, או השתמש ב-Tab לניווט. קורא המסך יקריא אוטומטית כל אלמנט שתגיע אליו.");
       this.enableScreenReaderListeners();
       document.body.classList.add("screen-reader-active");
+
+      // קרא את כותרת הדף בתחילה
+      setTimeout(() => {
+        const pageTitle = document.querySelector('h1')?.innerText || document.title;
+        this.speak(`עמוד: ${pageTitle}`);
+      }, 1500);
     } else {
       this.announce("קורא מסך בוטל");
       this.disableScreenReaderListeners();
@@ -350,57 +454,222 @@ const AccessibilityManager = {
     }
   },
 
-  enableScreenReaderListeners() {
-    // הוסף מאזינים לכל האלמנטים הטקסטואליים
-    this.screenReaderListener = (e) => {
-      const target = e.target;
-      let textToRead = "";
+  // קריאת כל תוכן הדף
+  readEntirePage() {
+    if (!this.synth) return;
 
-      if (target.tagName === "A") {
-        textToRead = "קישור: " + target.innerText;
-      } else if (target.tagName === "BUTTON") {
-        textToRead = "כפתור: " + target.innerText;
-      } else if (target.tagName.match(/^H[1-6]$/)) {
-        textToRead = "כותרת: " + target.innerText;
-      } else if (target.tagName === "IMG") {
-        textToRead = "תמונה: " + (target.alt || "ללא תיאור");
-      } else if (target.innerText && target.innerText.trim()) {
-        textToRead = target.innerText.trim();
+    const contentElements = document.querySelectorAll('h1, h2, h3, h4, h5, h6, p, li, .price-item, .content-box, a, button');
+    const textsToRead = [];
+
+    contentElements.forEach(el => {
+      // דלג על אלמנטים מוסתרים
+      if (el.offsetParent === null) return;
+      if (el.closest('.accessibility-panel') && !document.querySelector('.accessibility-panel.active')) return;
+      if (el.closest('.chatbot-container') && !document.querySelector('.chatbot-container.active')) return;
+
+      let text = '';
+      const tagName = el.tagName;
+
+      if (tagName.match(/^H[1-6]$/)) {
+        text = `כותרת: ${el.innerText.trim()}`;
+      } else if (tagName === 'P') {
+        text = el.innerText.trim();
+      } else if (tagName === 'LI') {
+        text = `פריט: ${el.innerText.trim()}`;
+      } else if (el.classList.contains('price-item')) {
+        const time = el.querySelector('.price-time')?.innerText || '';
+        const amount = el.querySelector('.price-amount')?.innerText || '';
+        text = `מחיר: ${time} - ${amount}`;
+      } else if (el.classList.contains('content-box')) {
+        const heading = el.querySelector('h2, h3')?.innerText || '';
+        const content = el.querySelector('p')?.innerText || '';
+        text = `${heading}. ${content}`;
       }
 
+      if (text && text.trim()) {
+        textsToRead.push(text.trim());
+      }
+    });
+
+    // קרא את כל הטקסטים ברצף
+    const fullText = textsToRead.join('. ');
+    this.speak(fullText);
+  },
+
+  enableScreenReaderListeners() {
+    // פונקציה לקבלת תיאור מלא של אלמנט
+    const getElementDescription = (target) => {
+      let textToRead = "";
+      const tagName = target.tagName;
+      const ariaLabel = target.getAttribute('aria-label');
+      const title = target.getAttribute('title');
+
+      // אם יש aria-label, השתמש בו קודם
+      if (ariaLabel) {
+        textToRead = ariaLabel;
+      }
+      // קישורים
+      else if (tagName === "A") {
+        const href = target.getAttribute('href');
+        const text = target.innerText.trim() || title || 'ללא טקסט';
+        if (href && href.startsWith('tel:')) {
+          textToRead = `קישור טלפון: ${text}`;
+        } else if (href && href.startsWith('mailto:')) {
+          textToRead = `קישור אימייל: ${text}`;
+        } else if (href && href.includes('whatsapp')) {
+          textToRead = `קישור וואטסאפ: ${text}`;
+        } else if (target.target === '_blank') {
+          textToRead = `קישור חיצוני: ${text} - נפתח בחלון חדש`;
+        } else {
+          textToRead = `קישור: ${text}`;
+        }
+      }
+      // כפתורים
+      else if (tagName === "BUTTON") {
+        const text = target.innerText.trim() || title || ariaLabel || 'ללא תיאור';
+        const pressed = target.getAttribute('aria-pressed');
+        if (pressed !== null) {
+          textToRead = `כפתור מתג: ${text} - ${pressed === 'true' ? 'מופעל' : 'כבוי'}`;
+        } else {
+          textToRead = `כפתור: ${text}`;
+        }
+      }
+      // כותרות
+      else if (tagName.match(/^H[1-6]$/)) {
+        const level = tagName.charAt(1);
+        textToRead = `כותרת רמה ${level}: ${target.innerText.trim()}`;
+      }
+      // תמונות
+      else if (tagName === "IMG") {
+        textToRead = `תמונה: ${target.alt || 'ללא תיאור'}`;
+      }
+      // סרטונים
+      else if (tagName === "VIDEO") {
+        textToRead = "סרטון וידאו";
+      }
+      // שדות קלט
+      else if (tagName === "INPUT") {
+        const type = target.type;
+        const label = target.labels?.[0]?.innerText || target.placeholder || ariaLabel || '';
+        const value = target.value || '';
+        if (type === 'checkbox') {
+          textToRead = `תיבת סימון: ${label} - ${target.checked ? 'מסומן' : 'לא מסומן'}`;
+        } else if (type === 'radio') {
+          textToRead = `כפתור בחירה: ${label} - ${target.checked ? 'נבחר' : 'לא נבחר'}`;
+        } else {
+          textToRead = `שדה קלט ${label}: ${value || 'ריק'}`;
+        }
+      }
+      // אזור טקסט
+      else if (tagName === "TEXTAREA") {
+        const label = target.labels?.[0]?.innerText || target.placeholder || '';
+        textToRead = `אזור טקסט ${label}: ${target.value || 'ריק'}`;
+      }
+      // רשימת בחירה
+      else if (tagName === "SELECT") {
+        const label = target.labels?.[0]?.innerText || '';
+        const selected = target.options[target.selectedIndex]?.text || '';
+        textToRead = `רשימת בחירה ${label}: ${selected}`;
+      }
+      // פריטים ברשימה
+      else if (tagName === "LI") {
+        textToRead = `פריט: ${target.innerText.trim()}`;
+      }
+      // תאי טבלה
+      else if (tagName === "TD" || tagName === "TH") {
+        textToRead = tagName === "TH" ? `כותרת טבלה: ${target.innerText.trim()}` : target.innerText.trim();
+      }
+      // כרטיסי מחיר
+      else if (target.classList.contains('price-item')) {
+        const time = target.querySelector('.price-time')?.innerText || '';
+        const amount = target.querySelector('.price-amount')?.innerText || '';
+        textToRead = `מחיר: ${time} - ${amount}`;
+      }
+      // תיבות תוכן
+      else if (target.classList.contains('content-box')) {
+        const heading = target.querySelector('h2, h3')?.innerText || '';
+        textToRead = `תיבת תוכן: ${heading}`;
+      }
+      // פריטי גלריה
+      else if (target.classList.contains('gallery-item')) {
+        const img = target.querySelector('img');
+        const video = target.querySelector('video');
+        if (video) {
+          textToRead = 'פריט גלריה: סרטון. לחץ Enter לצפייה';
+        } else if (img) {
+          textToRead = `פריט גלריה: ${img.alt || 'תמונה'}. לחץ Enter לצפייה`;
+        }
+      }
+      // שאלות נפוצות
+      else if (target.classList.contains('faq-question')) {
+        const expanded = target.getAttribute('aria-expanded');
+        const question = target.querySelector('span')?.innerText || target.innerText;
+        textToRead = `שאלה: ${question} - ${expanded === 'true' ? 'פתוח' : 'סגור'}. לחץ Enter לפתיחה`;
+      }
+      // פסקאות ותוכן כללי
+      else if (tagName === "P") {
+        textToRead = target.innerText.trim();
+      }
+      // span, div ותוכן אחר
+      else if (target.innerText && target.innerText.trim()) {
+        // בדוק אם זה לא כולל הרבה אלמנטים ילדים
+        if (target.children.length <= 2) {
+          textToRead = target.innerText.trim();
+        }
+      }
+
+      return textToRead;
+    };
+
+    // מאזין ללחיצות
+    this.screenReaderListener = (e) => {
+      const target = e.target;
+      const textToRead = getElementDescription(target);
+      if (textToRead) {
+        this.speak(textToRead);
+      }
+    };
+
+    // מאזין לשינויי פוקוס - קריאה אוטומטית כשמגיעים לאלמנט
+    this.screenReaderFocusListener = (e) => {
+      const target = e.target;
+      const textToRead = getElementDescription(target);
       if (textToRead) {
         this.speak(textToRead);
       }
     };
 
     document.body.addEventListener("click", this.screenReaderListener);
+    document.body.addEventListener("focusin", this.screenReaderFocusListener);
 
     // קריאה אוטומטית בעת hover (אופציונלי)
     this.screenReaderHoverListener = (e) => {
-      if (e.target.matches("a, button, h1, h2, h3, h4, h5, h6")) {
+      if (e.target.matches("a, button, h1, h2, h3, h4, h5, h6, .price-item, .gallery-item, .faq-question")) {
         clearTimeout(this.hoverTimeout);
         this.hoverTimeout = setTimeout(() => {
-          let text = e.target.innerText || e.target.alt || "";
-          if (text.trim()) {
-            this.speak(text.trim(), true); // קריאה שקטה יותר
+          const textToRead = getElementDescription(e.target);
+          if (textToRead) {
+            this.speak(textToRead, true); // קריאה שקטה יותר
           }
-        }, 1000); // המתן שנייה לפני הקריאה
+        }, 800); // המתן 0.8 שנייה לפני הקריאה
       }
     };
 
-    // הפעל את hover רק אם המשתמש רוצה
-    // document.body.addEventListener('mouseover', this.screenReaderHoverListener);
+    document.body.addEventListener('mouseover', this.screenReaderHoverListener);
   },
 
   disableScreenReaderListeners() {
     if (this.screenReaderListener) {
       document.body.removeEventListener("click", this.screenReaderListener);
     }
+    if (this.screenReaderFocusListener) {
+      document.body.removeEventListener("focusin", this.screenReaderFocusListener);
+    }
     if (this.screenReaderHoverListener) {
-      document.body.removeEventListener(
-        "mouseover",
-        this.screenReaderHoverListener,
-      );
+      document.body.removeEventListener("mouseover", this.screenReaderHoverListener);
+    }
+    if (this.hoverTimeout) {
+      clearTimeout(this.hoverTimeout);
     }
   },
 
@@ -764,11 +1033,29 @@ const AccessibilityManager = {
   },
 
   enableFullKeyboardNav() {
-    // הפוך את כל האלמנטים לנגישים במקלדת
+    // הסר מאזין קודם אם קיים (מונע כפילויות)
+    if (this.keyboardNavHandler) {
+      document.removeEventListener("keydown", this.keyboardNavHandler);
+    }
+
+    // הפוך את כל האלמנטים לנגישים במקלדת - כמו בקורא מסך
+    // לא כולל: תמונות בslider, אינדיקטורים של slider, price-item (יש להם ניווט משלהם)
     const interactiveElements = document.querySelectorAll(
-      'a, button, input, select, textarea, [role="button"], .gallery-item, .content-box, .service-card',
+      'a, button, input, select, textarea, [role="button"], ' +
+      'h1, h2, h3, h4, h5, h6, p, li, video, ' +
+      '.gallery-item, .content-box, .service-card, ' +
+      '.faq-question, .faq-answer, .blog-post, .blog-card, ' +
+      'table, th, td, section, article',
     );
     interactiveElements.forEach((el) => {
+      // דלג על תמונות בתוך slider ועל אינדיקטורים
+      if (el.closest('.slider-track') || el.closest('.slider-indicators')) {
+        return;
+      }
+      // דלג על price-item - יש להם ניווט נפרד
+      if (el.classList.contains('price-item')) {
+        return;
+      }
       if (!el.hasAttribute("tabindex")) {
         el.setAttribute("tabindex", "0");
         el.setAttribute("data-keyboard-nav-added", "true");
@@ -784,12 +1071,6 @@ const AccessibilityManager = {
       const focusableElements = this.getVisibleFocusableElements();
       const currentIndex = focusableElements.indexOf(document.activeElement);
 
-      // בדיקה האם האתר הוא RTL (עברית)
-      const isRTL =
-        document.documentElement.dir === "rtl" ||
-        document.documentElement.lang === "he" ||
-        getComputedStyle(document.body).direction === "rtl";
-
       switch (e.key) {
         case "ArrowDown":
           // חץ למטה - גלילה למטה (התנהגות רגילה של הדפדפן)
@@ -797,23 +1078,15 @@ const AccessibilityManager = {
         case "ArrowUp":
           // חץ למעלה - גלילה למעלה (התנהגות רגילה של הדפדפן)
           break;
-        case "ArrowRight":
-          e.preventDefault();
-          // ב-RTL: חץ ימינה = אלמנט קודם, ב-LTR: חץ ימינה = אלמנט הבא
-          if (isRTL) {
-            this.focusPrevElement(focusableElements, currentIndex);
-          } else {
-            this.focusNextElement(focusableElements, currentIndex);
-          }
-          break;
         case "ArrowLeft":
           e.preventDefault();
-          // ב-RTL: חץ שמאלה = אלמנט הבא, ב-LTR: חץ שמאלה = אלמנט קודם
-          if (isRTL) {
-            this.focusNextElement(focusableElements, currentIndex);
-          } else {
-            this.focusPrevElement(focusableElements, currentIndex);
-          }
+          // חץ שמאל = כמו Tab (אלמנט הבא)
+          this.focusNextElement(focusableElements, currentIndex);
+          break;
+        case "ArrowRight":
+          e.preventDefault();
+          // חץ ימין = כמו Shift+Tab (אלמנט קודם)
+          this.focusPrevElement(focusableElements, currentIndex);
           break;
         case "Home":
           e.preventDefault();
@@ -844,19 +1117,72 @@ const AccessibilityManager = {
     }
   },
 
-  // פונקציה לקבלת אלמנטים גלויים בלבד
+  // פונקציה לקבלת אלמנטים גלויים בלבד - ממוינים לפי סדר: header → content → footer
   getVisibleFocusableElements() {
     const allFocusable = document.querySelectorAll(
       'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])',
     );
+
     // סנן רק אלמנטים שנראים על המסך
-    return Array.from(allFocusable).filter((el) => {
-      return (
-        el.offsetParent !== null &&
-        !el.closest('[style*="display: none"]') &&
-        !el.closest('[style*="visibility: hidden"]') &&
-        !el.closest(".hidden")
-      );
+    const visibleElements = Array.from(allFocusable).filter((el) => {
+      // בדוק שהאלמנט גלוי
+      if (el.offsetParent === null) return false;
+
+      // בדוק שלא מוסתר על ידי style
+      const style = window.getComputedStyle(el);
+      if (style.display === 'none' || style.visibility === 'hidden') return false;
+
+      // בדוק שההורה לא מוסתר
+      if (el.closest('[style*="display: none"]') ||
+          el.closest('[style*="visibility: hidden"]') ||
+          el.closest(".hidden")) return false;
+
+      // אל תכלול אלמנטים בתפריט נגישות אם הוא סגור
+      const accessibilityPanel = el.closest('.accessibility-panel');
+      if (accessibilityPanel && !accessibilityPanel.classList.contains('active')) return false;
+
+      // אל תכלול אלמנטים בצ'אטבוט אם הוא סגור
+      const chatbotContainer = el.closest('.chatbot-container');
+      if (chatbotContainer && !chatbotContainer.classList.contains('active')) return false;
+
+      return true;
+    });
+
+    // מיון לפי סדר: header → content → footer
+    return visibleElements.sort((a, b) => {
+      // קבל את האזור של כל אלמנט
+      const getZone = (el) => {
+        if (el.closest('header')) return 0;
+        if (el.closest('footer')) return 2;
+        return 1; // תוכן
+      };
+
+      const zoneA = getZone(a);
+      const zoneB = getZone(b);
+
+      // מיון ראשי לפי אזור
+      if (zoneA !== zoneB) {
+        return zoneA - zoneB;
+      }
+
+      // בתוך אותו אזור - מיון לפי מיקום
+      const rectA = a.getBoundingClientRect();
+      const rectB = b.getBoundingClientRect();
+
+      // מיון לפי מיקום אנכי (Y)
+      const yDiff = rectA.top - rectB.top;
+      if (Math.abs(yDiff) > 10) { // טולרנס של 10px לאלמנטים באותה שורה
+        return yDiff;
+      }
+
+      // אם באותה שורה, מיין לפי מיקום אופקי (X) - בהתחשב ב-RTL
+      const isRTL = document.documentElement.dir === "rtl" ||
+                    document.documentElement.lang === "he";
+      if (isRTL) {
+        return rectB.left - rectA.left; // ב-RTL: מימין לשמאל
+      } else {
+        return rectA.left - rectB.left; // ב-LTR: משמאל לימין
+      }
     });
   },
 
@@ -1431,6 +1757,173 @@ if (chatbotSend && chatbotInput) {
     }
   });
 }
+
+// ===== יצירת ARIA live region גלובלי =====
+if (!document.getElementById('globalAnnouncer')) {
+  const globalAnnouncer = document.createElement('div');
+  globalAnnouncer.id = 'globalAnnouncer';
+  globalAnnouncer.className = 'sr-only';
+  globalAnnouncer.setAttribute('role', 'status');
+  globalAnnouncer.setAttribute('aria-live', 'polite');
+  globalAnnouncer.setAttribute('aria-atomic', 'true');
+  document.body.appendChild(globalAnnouncer);
+}
+
+// פונקציה גלובלית להכרזות
+function announceToScreenReader(message) {
+  const announcer = document.getElementById('globalAnnouncer') || document.getElementById('srAnnouncer');
+  if (announcer) {
+    announcer.textContent = '';
+    setTimeout(() => {
+      announcer.textContent = message;
+    }, 50);
+  }
+}
+
+// ===== ניווט מקלדת לכרטיסי מחירים ואלמנטים אינטראקטיביים =====
+document.addEventListener('DOMContentLoaded', () => {
+  // הוספת tabindex וניווט לכרטיסי מחירים
+  const priceItems = document.querySelectorAll('.price-item');
+  priceItems.forEach((item, index) => {
+    item.setAttribute('tabindex', '0');
+    item.setAttribute('role', 'listitem');
+
+    // הוספת ARIA label עם המידע על המחיר
+    const time = item.querySelector('.price-time');
+    const amount = item.querySelector('.price-amount');
+    if (time && amount) {
+      item.setAttribute('aria-label', `${time.textContent}: ${amount.textContent}`);
+    }
+
+    // ניווט בחצים בין פריטי מחיר - ללא לולאה
+    item.addEventListener('keydown', (e) => {
+      const items = Array.from(document.querySelectorAll('.price-item'));
+      const currentIndex = items.indexOf(item);
+
+      switch(e.key) {
+        case 'ArrowDown':
+        case 'ArrowLeft': // RTL support
+          // אם זה הפריט האחרון - אל תעשה כלום, תן ל-Tab לעבוד
+          if (currentIndex < items.length - 1) {
+            e.preventDefault();
+            e.stopPropagation();
+            items[currentIndex + 1].focus();
+          }
+          break;
+        case 'ArrowUp':
+        case 'ArrowRight': // RTL support
+          // אם זה הפריט הראשון - אל תעשה כלום, תן ל-Tab לעבוד
+          if (currentIndex > 0) {
+            e.preventDefault();
+            e.stopPropagation();
+            items[currentIndex - 1].focus();
+          }
+          break;
+        case 'Enter':
+        case ' ':
+          e.preventDefault();
+          e.stopPropagation();
+          // הכרזה על הפריט הנבחר
+          if (time && amount) {
+            announceToScreenReader(`נבחר: ${time.textContent} במחיר ${amount.textContent}`);
+          }
+          break;
+      }
+    });
+  });
+
+  // הוספת tabindex לתיבות תוכן
+  const contentBoxes = document.querySelectorAll('.content-box');
+  contentBoxes.forEach((box) => {
+    box.setAttribute('tabindex', '0');
+    const heading = box.querySelector('h2, h3');
+    if (heading) {
+      box.setAttribute('aria-label', heading.textContent);
+    }
+  });
+
+  // הוספת tabindex וניווט לשאלות FAQ
+  const faqQuestions = document.querySelectorAll('.faq-question');
+  faqQuestions.forEach((question) => {
+    if (!question.hasAttribute('tabindex')) {
+      question.setAttribute('tabindex', '0');
+    }
+
+    // ניווט בחצים בין שאלות FAQ - ללא לולאה
+    question.addEventListener('keydown', (e) => {
+      const questions = Array.from(document.querySelectorAll('.faq-question'));
+      const currentIndex = questions.indexOf(question);
+
+      switch(e.key) {
+        case 'ArrowDown':
+        case 'ArrowLeft': // RTL support
+          // אם זו השאלה האחרונה - אל תעשה כלום
+          if (currentIndex < questions.length - 1) {
+            e.preventDefault();
+            e.stopPropagation();
+            questions[currentIndex + 1].focus();
+          }
+          break;
+        case 'ArrowUp':
+        case 'ArrowRight': // RTL support
+          // אם זו השאלה הראשונה - אל תעשה כלום
+          if (currentIndex > 0) {
+            e.preventDefault();
+            e.stopPropagation();
+            questions[currentIndex - 1].focus();
+          }
+          break;
+      }
+    });
+  });
+
+  // הוספת tabindex וניווט לשורות טבלה
+  const tableRows = document.querySelectorAll('table tbody tr');
+  tableRows.forEach((row) => {
+    row.setAttribute('tabindex', '0');
+    row.setAttribute('role', 'row');
+
+    // ניווט בחצים בין שורות טבלה - ללא לולאה
+    row.addEventListener('keydown', (e) => {
+      const rows = Array.from(document.querySelectorAll('table tbody tr'));
+      const currentIndex = rows.indexOf(row);
+
+      switch(e.key) {
+        case 'ArrowDown':
+          // אם זו השורה האחרונה - אל תעשה כלום
+          if (currentIndex < rows.length - 1) {
+            e.preventDefault();
+            e.stopPropagation();
+            rows[currentIndex + 1].focus();
+          }
+          break;
+        case 'ArrowUp':
+          // אם זו השורה הראשונה - אל תעשה כלום
+          if (currentIndex > 0) {
+            e.preventDefault();
+            e.stopPropagation();
+            rows[currentIndex - 1].focus();
+          }
+          break;
+      }
+    });
+  });
+
+  // הסתר את תמונות ה-slider ואינדיקטורים מניווט מקלדת
+  // כפתורי החצים נגישים בסדר Tab רגיל - Enter מפעיל אותם
+  const sliderImages = document.querySelectorAll('.slider-track img');
+  sliderImages.forEach((img) => {
+    img.setAttribute('tabindex', '-1');
+  });
+
+  const sliderIndicators = document.querySelectorAll('.slider-indicators button, .slider-indicators span');
+  sliderIndicators.forEach((indicator) => {
+    indicator.setAttribute('tabindex', '-1');
+  });
+
+  // הערה: ניווט מקלדת לקישורי ניווט ורשתות חברתיות מטופל ב-AccessibilityManager
+  // כאשר מופעל "ניווט מקלדת מלא" כדי למנוע כפילויות
+});
 
 // ===== קיצורי מקלדת גלובליים =====
 document.addEventListener("keydown", (e) => {
