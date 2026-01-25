@@ -238,25 +238,9 @@
             <i class="fa-solid fa-spa"></i>
           </div>
           <div class="message-content">
-            שלום! 👋 אני עוזר וירטואלי של סאנרייז ספא.<br />
-            איך אוכל לעזור לך היום?
+            שלום! 👋 אני העוזר הוירטואלי של סאנרייז ספא.<br />
+            אפשר לשאול אותי כל שאלה על הספא - שעות פעילות, מחירים, סוגי עיסויים, איך להגיע ועוד. איך אוכל לעזור?
           </div>
-        </div>
-
-        <div class="quick-questions">
-          <button class="quick-btn" data-question="hours">
-            🕐 שעות פעילות
-          </button>
-          <button class="quick-btn" data-question="prices">💰 מחירון</button>
-          <button class="quick-btn" data-question="location">
-            📍 איפה אתם?
-          </button>
-          <button class="quick-btn" data-question="services">
-            💆 אילו עיסויים יש?
-          </button>
-          <button class="quick-btn" data-question="booking">
-            📅 איך מזמינים תור?
-          </button>
         </div>
       </div>
 
@@ -623,11 +607,11 @@
       style="display: none"
     ></div>
 
-    <!-- Skip Links לניווט מקלדת -->
-    <div id="skipLinks" style="display: none">
-      <a href="#main-content" class="skip-link">דלג לתוכן הראשי</a>
-      <a href="#navigation" class="skip-link">דלג לתפריט ניווט</a>
-      <a href="#footer" class="skip-link">דלג לתחתית העמוד</a>
+    <!-- Skip Links לניווט מקלדת - מופיעים בפוקוס -->
+    <div id="skipLinks" role="navigation" aria-label="קישורי דילוג">
+      <a href=".blog-wrapper" class="skip-link">דלג לתוכן הראשי</a>
+      <a href="javascript:void(0)" class="skip-link" onclick="document.querySelector('nav a').focus()">דלג לתפריט ניווט</a>
+      <a href="#footer" class="skip-link" onclick="document.querySelector('footer').setAttribute('tabindex', '-1'); document.querySelector('footer').focus();">דלג לתחתית העמוד</a>
     </div>
 
     <!-- Reading Guide -->
@@ -642,7 +626,7 @@
       id="srAnnouncer"
     ></div>
 
-    <footer>
+    <footer id="footer">
       © 2026 סאנרייז ספא – ההסתדרות 2, פתח תקווה
 
       <div style="margin-top: 15px; margin-bottom: 15px">
