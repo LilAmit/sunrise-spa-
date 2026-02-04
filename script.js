@@ -1612,6 +1612,40 @@ const intentPatterns = {
   relax: {
     patterns: [/(להירגע|רגיעה|סטרס|לחוץ|מתוח|עייף|עייפות|מנוחה|פינוק)/i],
     response: () => `🧘 <strong>זמן להירגע!</strong><br><br>מומלץ לנסות <strong>עיסוי שוודי</strong> - הכי מרגיע!<br><br>✨ מה תקבלו:<br>• תנועות רכות ומלטפות<br>• הרפיה עמוקה<br>• שיפור זרימת הדם<br>• יציאה מרוגעים ומאושרים<br><br>💆 שעה של עיסוי = כמו חופשה קטנה!<br><br>📞 להזמנת פינוק: <a href="tel:0586588751" style="color: #667eea; font-weight: bold;">${spaInfo.phone}</a>`
+  },
+  // שאלות כלליות
+  time: {
+    patterns: [/(מה השעה|כמה השעה|שעה עכשיו|מה השעה עכשיו)/i],
+    response: () => {
+      const now = new Date();
+      const timeStr = now.toLocaleTimeString('he-IL', { hour: '2-digit', minute: '2-digit' });
+      return `🕐 השעה עכשיו: <strong>${timeStr}</strong><br><br>💡 שעות הפעילות שלנו:<br>ראשון-חמישי: ${spaInfo.hours.weekdays}<br>שישי: ${spaInfo.hours.friday}`;
+    }
+  },
+  date: {
+    patterns: [/(מה התאריך|איזה תאריך|תאריך היום|איזה יום היום)/i],
+    response: () => {
+      const now = new Date();
+      const days = ['ראשון', 'שני', 'שלישי', 'רביעי', 'חמישי', 'שישי', 'שבת'];
+      const dayName = days[now.getDay()];
+      const dateStr = now.toLocaleDateString('he-IL', { day: 'numeric', month: 'long', year: 'numeric' });
+      const isOpen = now.getDay() !== 6;
+      const statusText = isOpen ? '✅ אנחנו פתוחים היום!' : '🔴 היום שבת - אנחנו סגורים';
+      return `📅 היום יום <strong>${dayName}</strong>, ${dateStr}<br><br>${statusText}`;
+    }
+  },
+  howAreYou: {
+    patterns: [/(מה העניינים|איך אתה|איך את|מה המצב|הכל טוב|מה איתך)/i],
+    response: () => `הכל מעולה, תודה ששאלת! 😊<br><br>אני כאן כדי לעזור לך למצוא את העיסוי המושלם ב<strong>סאנרייז ספא</strong>.<br><br>איך אני יכול לעזור לך היום?`
+  },
+  whatIsThis: {
+    patterns: [/(מה אתה|מי אתה|אתה בוט|אתה רובוט|צאטבוט|צ'אטבוט|בינה מלאכותית)/i],
+    response: () => `🤖 אני העוזר הוירטואלי של <strong>סאנרייז ספא</strong>!<br><br>אני יכול לעזור לך עם:<br>• מידע על שעות פעילות ומיקום<br>• פרטים על סוגי העיסויים<br>• מחירון<br>• הזמנת תור<br>• ועוד!<br><br>פשוט שאל אותי מה שתרצה 😊`
+  },
+  // חדרים פרטיים
+  privateRoom: {
+    patterns: [/(חדר פרטי|חדרים פרטיים|פרטיות|אינטימי|חדר נפרד|יש פרטיות)/i],
+    response: () => `✅ <strong>כן, יש לנו חדרים פרטיים!</strong><br><br>🚪 כל הטיפולים מתבצעים בחדרים פרטיים ואינטימיים.<br>👫 לעיסוי זוגי - חדר מרווח ומיוחד לשני אנשים.<br><br>💆 אצלנו תוכלו ליהנות מפרטיות מלאה ואווירה מרגיעה.<br><br>📞 להזמנת תור: <a href="tel:0586588751" style="color: #667eea; font-weight: bold;">${spaInfo.phone}</a>`
   }
 };
 
