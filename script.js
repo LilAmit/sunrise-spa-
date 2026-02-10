@@ -254,11 +254,11 @@ function updateStatus() {
     isOpen = false;
   } else if (day >= 0 && day <= 4) {
     const openTime = 10 * 60;
-    const closeTime = 22 * 60;
+    const closeTime = 20 * 60;
     isOpen = timeInMinutes >= openTime && timeInMinutes < closeTime;
   } else if (day === 5) {
     const openTime = 9 * 60;
-    const closeTime = 16 * 60;
+    const closeTime = 15 * 60;
     isOpen = timeInMinutes >= openTime && timeInMinutes < closeTime;
   }
 
@@ -1460,8 +1460,8 @@ const spaInfo = {
   waze: "https://www.waze.com/live-map/directions/il/center-district/%D7%A4%D7%AA/sunrise-spa-%D7%A1%D7%A4%D7%90-%D7%A2%D7%99%D7%A1%D7%95%D7%99-%D7%A4%D7%AA%D7%97-%D7%AA%D7%A7%D7%95%D7%95%D7%94?navigate=yes&to=place.ChIJSZXBMVY3HRURy-oaXLqTcrg",
   maps: "https://www.google.com/maps/dir//Sunrise+Spa",
   hours: {
-    weekdays: "10:00 - 22:00",
-    friday: "09:00 - 16:00",
+    weekdays: "20:00 - 10:00",
+    friday: "15:00 - 9:00",
     saturday: "סגור"
   },
   services: [
