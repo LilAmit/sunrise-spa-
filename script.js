@@ -1695,6 +1695,15 @@ if (chatbotContainer) {
   });
 }
 
+// סגירה בלחיצה מחוץ לחלון הצ'אט
+document.addEventListener("click", (e) => {
+  if (chatbotContainer && chatbotContainer.classList.contains("active")) {
+    if (!chatbotContainer.contains(e.target) && !chatbotBtn.contains(e.target)) {
+      chatbotContainer.classList.remove("active");
+    }
+  }
+});
+
 // הוספת הודעה לצ'אט
 function addMessage(text, sender) {
   if (!chatbotMessages) return;

@@ -892,13 +892,14 @@ nav a:hover {
 .dark-mode-active .accessibility-trigger,
 .invert-colors-active .accessibility-trigger {
   position: fixed !important;
-  top: 50% !important;
-  left: 15px !important;
-  transform: translateY(-50%) !important;
+  top: auto !important;
+  bottom: 250px !important;
+  left: 25px !important;
+  transform: none !important;
   filter: none !important;
   background: linear-gradient(135deg, #2196f3, #1976d2) !important;
   color: white !important;
-  z-index: 100000 !important;
+  z-index: 9999 !important;
 }
 
 .high-contrast-active .accessibility-trigger:hover,
@@ -907,7 +908,7 @@ nav a:hover {
 .dark-mode-active .accessibility-trigger:focus,
 .invert-colors-active .accessibility-trigger:hover,
 .invert-colors-active .accessibility-trigger:focus {
-  transform: translateY(-50%) scale(1.1) !important;
+  transform: scale(1.1) !important;
 }
 
 /* מובייל - שמירת מיקום פאנל נגישות */
@@ -934,6 +935,8 @@ nav a:hover {
   .high-contrast-active .accessibility-trigger,
   .dark-mode-active .accessibility-trigger,
   .invert-colors-active .accessibility-trigger {
-    top: 40% !important;
+    top: auto !important;
+    bottom: 235px !important;
+    left: 15px !important;
   }
 }

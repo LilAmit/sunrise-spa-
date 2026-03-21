@@ -32,8 +32,16 @@ body::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background: url("WallpaperGallery.jpg") center/cover no-repeat;
+  background: url("WallpaperIndex.jpg") center/cover no-repeat;
   z-index: -1;
+}
+
+@media (max-width: 768px) {
+  body::before {
+    background-attachment: scroll;
+    background-size: cover;
+    background-position: center top;
+  }
 }
 
 /* הסתרת רקע במצב כהה */
@@ -567,11 +575,10 @@ footer {
 /* כפתור נגישות ראשי */
 .accessibility-trigger {
   position: fixed;
-  top: 50%;
-  left: 15px;
-  transform: translateY(-50%);
-  width: 55px;
-  height: 55px;
+  bottom: 250px;
+  left: 25px;
+  width: 60px;
+  height: 60px;
   background: linear-gradient(135deg, #2196f3, #1976d2);
   color: white;
   border: none;
@@ -579,7 +586,7 @@ footer {
   font-size: 24px;
   cursor: pointer;
   box-shadow: 0 4px 15px rgba(33, 150, 243, 0.4);
-  z-index: 100001;
+  z-index: 9999;
   transition: all 0.3s ease;
   display: flex;
   align-items: center;
@@ -591,7 +598,7 @@ footer {
 
 .accessibility-trigger:hover,
 .accessibility-trigger:focus {
-  transform: translateY(-50%) scale(1.1);
+  transform: scale(1.1);
   box-shadow: 0 6px 20px rgba(33, 150, 243, 0.6);
   outline: none;
 }
@@ -1233,13 +1240,14 @@ html body.dark-mode-active .accessibility-panel.active {
 .dark-mode-active .accessibility-trigger,
 .invert-colors-active .accessibility-trigger {
   position: fixed !important;
-  top: 50% !important;
-  left: 15px !important;
-  transform: translateY(-50%) !important;
+  top: auto !important;
+  bottom: 250px !important;
+  left: 25px !important;
+  transform: none !important;
   filter: none !important;
   background: linear-gradient(135deg, #2196f3, #1976d2) !important;
   color: white !important;
-  z-index: 100000 !important;
+  z-index: 9999 !important;
 }
 
 .high-contrast-active .accessibility-trigger:hover,
@@ -1248,7 +1256,7 @@ html body.dark-mode-active .accessibility-panel.active {
 .dark-mode-active .accessibility-trigger:focus,
 .invert-colors-active .accessibility-trigger:hover,
 .invert-colors-active .accessibility-trigger:focus {
-  transform: translateY(-50%) scale(1.1) !important;
+  transform: scale(1.1) !important;
 }
 
 /* מובייל - שמירת מיקום פאנל נגישות */
@@ -1285,8 +1293,10 @@ html body.dark-mode-active .accessibility-panel.active {
   body.dark-mode-active .accessibility-trigger,
   body.invert-colors-active .accessibility-trigger {
     position: fixed !important;
-    top: 50% !important;
-    transform: translateY(-50%) !important;
+    top: auto !important;
+    bottom: 235px !important;
+    left: 15px !important;
+    transform: none !important;
   }
 }
 
@@ -1742,17 +1752,17 @@ body.focus-highlight-active *:focus {
 /* כפתור WhatsApp צף */
 .whatsapp-float {
   position: fixed;
-  bottom: 30px;
-  left: 30px;
+  bottom: 25px;
+  left: 25px;
   background: #25d366;
   color: white;
-  width: 65px;
-  height: 65px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 35px;
+  font-size: 32px;
   box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
   z-index: 9000;
   transition: all 0.3s ease;
@@ -1768,12 +1778,12 @@ body.focus-highlight-active *:focus {
 /* כפתור חזרה למעלה */
 .back-to-top {
   position: fixed;
-  bottom: 110px;
-  left: 30px;
+  bottom: 100px;
+  left: 25px;
   background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
   color: white;
-  width: 55px;
-  height: 55px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
   display: none;
   align-items: center;
@@ -1799,15 +1809,15 @@ body.focus-highlight-active *:focus {
 /* צ'אטבוט */
 .chatbot-btn {
   position: fixed;
-  bottom: 200px;
-  left: 30px;
-  width: 65px;
-  height: 65px;
+  bottom: 175px;
+  left: 25px;
+  width: 60px;
+  height: 60px;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
   border: none;
   border-radius: 50%;
-  font-size: 30px;
+  font-size: 28px;
   cursor: pointer;
   box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
   z-index: 10000;
@@ -1836,14 +1846,21 @@ body.focus-highlight-active *:focus {
   border-radius: 20px;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
   z-index: 10001;
-  display: none;
+  display: flex;
   flex-direction: column;
   overflow: hidden;
-  animation: slideUp 0.3s ease-out;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px) scale(0.95);
+  transition: all 0.3s ease;
+  pointer-events: none;
 }
 
 .chatbot-container.active {
-  display: flex;
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
 }
 
 @keyframes slideUp {
@@ -2065,7 +2082,7 @@ body.focus-highlight-active *:focus {
   padding: 12px 15px;
   border: 2px solid #e0e0e0;
   border-radius: 25px;
-  font-size: 15px;
+  font-size: 16px;
   font-family: "Heebo", sans-serif;
   outline: none;
   transition: border-color 0.3s ease;
@@ -2244,15 +2261,15 @@ body.focus-highlight-active *:focus {
     height: 55px;
     font-size: 28px;
     bottom: 20px;
-    left: 20px;
+    left: 15px;
   }
 
   .back-to-top {
-    width: 48px;
-    height: 48px;
+    width: 55px;
+    height: 55px;
     font-size: 20px;
     bottom: 90px;
-    left: 20px;
+    left: 15px;
   }
 
   .accessibility-menu {
@@ -2274,13 +2291,14 @@ body.focus-highlight-active *:focus {
     height: 55px;
     font-size: 24px;
     left: 15px;
-    top: 40%;
-    transform: translateY(-50%);
+    top: auto;
+    bottom: 235px;
+    transform: none;
   }
 
   .accessibility-trigger:hover,
   .accessibility-trigger:focus {
-    transform: translateY(-50%) scale(1.1);
+    transform: scale(1.1);
   }
 
   .accessibility-panel {
@@ -2297,11 +2315,11 @@ body.focus-highlight-active *:focus {
 
   /* צ'אטבוט במובייל */
   .chatbot-btn {
-    bottom: 260px;
-    left: 20px;
-    width: 60px;
-    height: 60px;
-    font-size: 26px;
+    bottom: 165px;
+    left: 15px;
+    width: 55px;
+    height: 55px;
+    font-size: 24px;
   }
 
   .chatbot-container {
@@ -2376,8 +2394,8 @@ body.focus-highlight-active *:focus {
   }
 
   .back-to-top {
-    width: 45px;
-    height: 45px;
+    width: 50px;
+    height: 50px;
     font-size: 18px;
     bottom: 85px;
     left: 15px;
@@ -2388,14 +2406,15 @@ body.focus-highlight-active *:focus {
     width: 50px;
     height: 50px;
     font-size: 22px;
-    top: 40%;
+    top: auto;
+    bottom: 210px;
     left: 15px;
-    transform: translateY(-50%);
+    transform: none;
   }
 
   .accessibility-trigger:hover,
   .accessibility-trigger:focus {
-    transform: translateY(-50%) scale(1.1);
+    transform: scale(1.1);
   }
 
   .accessibility-panel {
@@ -2419,10 +2438,10 @@ body.focus-highlight-active *:focus {
 
   /* צ'אטבוט מובייל קטן */
   .chatbot-btn {
-    width: 55px;
-    height: 55px;
-    font-size: 24px;
-    bottom: 240px;
+    width: 50px;
+    height: 50px;
+    font-size: 22px;
+    bottom: 145px;
     left: 15px;
   }
 
