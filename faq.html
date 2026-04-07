@@ -2,13 +2,42 @@
 <html lang="he" dir="rtl">
   <head>
     <meta charset="UTF-8" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9SS1CPQK7E"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-9SS1CPQK7E');
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
     <meta
       name="description"
       content="שאלות נפוצות על סאנרייז ספא - כל מה שרצית לדעת על העיסויים והטיפולים שלנו"
     />
     <title>שאלות נפוצות (FAQ) - סאנרייז ספא</title>
+    <link rel="canonical" href="https://sunrisespa.biz/faq.html" />
     <link rel="icon" type="image/png" href="SunriseLogo.png" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://sunrisespa.biz/faq.html" />
+    <meta property="og:title" content="שאלות נפוצות (FAQ) - סאנרייז ספא" />
+    <meta property="og:description" content="שאלות נפוצות על סאנרייז ספא - כל מה שרצית לדעת על העיסויים והטיפולים שלנו" />
+    <meta property="og:image" content="https://sunrisespa.biz/SunriseLogo.png" />
+    <meta property="og:locale" content="he_IL" />
+
+    <!-- BreadcrumbList Schema -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "בית", "item": "https://sunrisespa.biz/" },
+          { "@type": "ListItem", "position": 2, "name": "שאלות נפוצות", "item": "https://sunrisespa.biz/faq.html" }
+        ]
+      }
+    </script>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
@@ -24,7 +53,8 @@
         margin: 180px auto 50px;
         padding: 40px;
       }
-      .faq-container h1 {
+      .faq-container h1,
+      .faq-container .page-title {
         color: #2c3e50;
         font-size: 36px;
         margin-bottom: 40px;
@@ -197,7 +227,8 @@
       .dark-mode-active .faq-container {
         background-color: transparent !important;
       }
-      .dark-mode-active .faq-container h1 {
+      .dark-mode-active .faq-container h1,
+      .dark-mode-active .faq-container .page-title {
         background: #252542 !important;
         color: #ffffff !important;
       }
@@ -295,7 +326,7 @@
     </header>
 
     <div class="faq-container">
-      <h1>שאלות נפוצות (FAQ)</h1>
+      <h2 class="page-title">שאלות נפוצות (FAQ)</h2>
 
       <!-- שאלה 1 -->
       <div class="faq-item">

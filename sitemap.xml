@@ -3,50 +3,58 @@
 
     <!-- עמוד ראשי -->
     <url>
-        <loc>https://www.sunrisespa.biz/</loc>
-        <lastmod>2025-01-14</lastmod>
+        <loc>https://sunrisespa.biz/</loc>
+        <lastmod>2026-04-07</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
     </url>
 
     <!-- גלריה -->
     <url>
-        <loc>https://www.sunrisespa.biz/gallery.html</loc>
-        <lastmod>2025-01-14</lastmod>
+        <loc>https://sunrisespa.biz/gallery.html</loc>
+        <lastmod>2026-04-07</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
 
     <!-- בלוג -->
     <url>
-        <loc>https://www.sunrisespa.biz/blog.html</loc>
-        <lastmod>2025-01-14</lastmod>
+        <loc>https://sunrisespa.biz/blog.html</loc>
+        <lastmod>2026-04-07</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.7</priority>
     </url>
 
+    <!-- שאלות נפוצות -->
+    <url>
+        <loc>https://sunrisespa.biz/faq.html</loc>
+        <lastmod>2026-04-07</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+
+    <!-- הצהרת נגישות -->
+    <url>
+        <loc>https://sunrisespa.biz/accessibility-statement.html</loc>
+        <lastmod>2026-04-07</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.4</priority>
+    </url>
+
     <!-- מדיניות פרטיות -->
     <url>
-        <loc>https://www.sunrisespa.biz/privacy.html</loc>
-        <lastmod>2025-01-14</lastmod>
+        <loc>https://sunrisespa.biz/privacy.html</loc>
+        <lastmod>2026-04-07</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.3</priority>
     </url>
 
     <!-- תנאי שימוש -->
     <url>
-        <loc>https://www.sunrisespa.biz/terms.html</loc>
-        <lastmod>2025-01-14</lastmod>
+        <loc>https://sunrisespa.biz/terms.html</loc>
+        <lastmod>2026-04-07</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.3</priority>
-    </url>
-
-    <!-- שאלות נפוצות -->
-    <url>
-        <loc>https://www.sunrisespa.biz/faq.html</loc>
-        <lastmod>2025-01-14</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.6</priority>
     </url>
 
 </urlset>

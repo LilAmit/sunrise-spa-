@@ -3,9 +3,8 @@
 User-agent: *
 Allow: /
 
-# קבצים שלא לסרוק
-Disallow: /admin/
-Disallow: /private/
+# קבצי בדיקות פנימיים
+Disallow: /test-modal.html
 
 # Sitemap
-Sitemap: https://www.sunrisespa.co.il/sitemap.xml
+Sitemap: https://sunrisespa.biz/sitemap.xml
