@@ -575,7 +575,7 @@ footer {
 /* כפתור נגישות ראשי */
 .accessibility-trigger {
   position: fixed;
-  bottom: 250px;
+  bottom: 175px;
   left: 25px;
   width: 60px;
   height: 60px;
@@ -1241,7 +1241,7 @@ html body.dark-mode-active .accessibility-panel.active {
 .invert-colors-active .accessibility-trigger {
   position: fixed !important;
   top: auto !important;
-  bottom: 250px !important;
+  bottom: 175px !important;
   left: 25px !important;
   transform: none !important;
   filter: none !important;
@@ -1294,7 +1294,7 @@ html body.dark-mode-active .accessibility-panel.active {
   body.invert-colors-active .accessibility-trigger {
     position: fixed !important;
     top: auto !important;
-    bottom: 235px !important;
+    bottom: 165px !important;
     left: 15px !important;
     transform: none !important;
   }
@@ -1778,7 +1778,7 @@ body.focus-highlight-active *:focus {
 /* כפתור חזרה למעלה */
 .back-to-top {
   position: fixed;
-  bottom: 100px;
+  bottom: 250px;
   left: 25px;
   background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
   color: white;
@@ -1809,7 +1809,7 @@ body.focus-highlight-active *:focus {
 /* צ'אטבוט */
 .chatbot-btn {
   position: fixed;
-  bottom: 175px;
+  bottom: 100px;
   left: 25px;
   width: 60px;
   height: 60px;
@@ -2268,7 +2268,7 @@ body.focus-highlight-active *:focus {
     width: 55px;
     height: 55px;
     font-size: 20px;
-    bottom: 90px;
+    bottom: 235px;
     left: 15px;
   }
 
@@ -2292,7 +2292,7 @@ body.focus-highlight-active *:focus {
     font-size: 24px;
     left: 15px;
     top: auto;
-    bottom: 235px;
+    bottom: 165px;
     transform: none;
   }
 
@@ -2315,7 +2315,7 @@ body.focus-highlight-active *:focus {
 
   /* צ'אטבוט במובייל */
   .chatbot-btn {
-    bottom: 165px;
+    bottom: 90px;
     left: 15px;
     width: 55px;
     height: 55px;
@@ -2397,7 +2397,7 @@ body.focus-highlight-active *:focus {
     width: 50px;
     height: 50px;
     font-size: 18px;
-    bottom: 85px;
+    bottom: 210px;
     left: 15px;
   }
 
@@ -2407,7 +2407,7 @@ body.focus-highlight-active *:focus {
     height: 50px;
     font-size: 22px;
     top: auto;
-    bottom: 210px;
+    bottom: 145px;
     left: 15px;
     transform: none;
   }
@@ -2441,7 +2441,7 @@ body.focus-highlight-active *:focus {
     width: 50px;
     height: 50px;
     font-size: 22px;
-    bottom: 145px;
+    bottom: 85px;
     left: 15px;
   }
 
