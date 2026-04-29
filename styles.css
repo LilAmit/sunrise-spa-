@@ -1858,14 +1858,21 @@ body.letter-spacing-active * {
   right: 0;
 }
 
-/* תיקון Header למובייל - מניעת הסתרת תוכן */
+/* תיקון Header למובייל - מניעת הסתרת תוכן.
+   הכללים חוזרים על מה שיש ב-blog.css/gallery.css כדי שכל הדפים יראו זהים
+   במובייל, גם בלי הסטיילים הספציפיים של אותם דפים. */
 @media (max-width: 900px) {
   header {
     padding: 10px 15px;
   }
 
+  .logo-container {
+    gap: 10px;
+  }
+
   .logo {
     width: 50px;
+    height: auto;
   }
 
   header h1 {
@@ -1906,8 +1913,13 @@ body.letter-spacing-active * {
     padding: 8px 10px;
   }
 
+  .logo-container {
+    gap: 8px;
+  }
+
   .logo {
     width: 45px;
+    height: auto;
   }
 
   header h1 {
