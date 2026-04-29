@@ -1457,6 +1457,7 @@ const spaInfo = {
   address: "ההסתדרות 2, קומה 2, פתח תקווה",
   phone: "058-658-8751",
   whatsapp: "https://wa.me/972586588751",
+  whatsappBooking: "https://wa.me/972586588751?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%90%D7%A0%D7%99%20%D7%9E%D7%A2%D7%95%D7%A0%D7%99%D7%99%D7%9F%2F%D7%AA%20%D7%9C%D7%94%D7%96%D7%9E%D7%99%D7%9F%20%D7%AA%D7%95%D7%A8%20%D7%9C%D7%A2%D7%99%D7%A1%D7%95%D7%99%20%D7%91%D7%A1%D7%90%D7%A0%D7%A8%D7%99%D7%99%D7%96%20%D7%A1%D7%A4%D7%90%20%F0%9F%8C%BF",
   waze: "https://www.waze.com/live-map/directions/il/center-district/%D7%A4%D7%AA/sunrise-spa-%D7%A1%D7%A4%D7%90-%D7%A2%D7%99%D7%A1%D7%95%D7%99-%D7%A4%D7%AA%D7%97-%D7%AA%D7%A7%D7%95%D7%95%D7%94?navigate=yes&to=place.ChIJSZXBMVY3HRURy-oaXLqTcrg",
   maps: "https://www.google.com/maps/dir//Sunrise+Spa",
   hours: {
@@ -1547,11 +1548,11 @@ const intentPatterns = {
   },
   booking: {
     patterns: [/(הזמנה|להזמין|תור|לקבוע|לתאם|booking|זימון|לזמן|קביעת|מזמינים)/i],
-    response: () => `📅 <strong>להזמנת תור:</strong><br><br>💬 <a href="${spaInfo.whatsapp}" target="_blank" style="color: #128C7E; font-weight: bold;">וואטסאפ - לחץ כאן</a><br><br>📞 <a href="tel:0586588751" style="color: #667eea; font-weight: bold;">התקשרו: ${spaInfo.phone}</a><br><br>💡 מומלץ להזמין מראש לקבלת השעה המועדפת!`
+    response: () => `📅 <strong>להזמנת תור:</strong><br><br>💬 <a href="${spaInfo.whatsappBooking}" target="_blank" style="color: #128C7E; font-weight: bold;">וואטסאפ - לחץ כאן</a><br><br>📞 <a href="tel:0586588751" style="color: #667eea; font-weight: bold;">התקשרו: ${spaInfo.phone}</a><br><br>💡 מומלץ להזמין מראש לקבלת השעה המועדפת!`
   },
   phone: {
     patterns: [/(טלפון|פלאפון|מספר|להתקשר|התקשרות|נייד)/i],
-    response: () => `📞 <strong>הטלפון שלנו:</strong><br><br><a href="tel:0586588751" style="color: #667eea; font-weight: bold; font-size: 18px;">${spaInfo.phone}</a><br><br>💬 או שלחו הודעה ב<a href="${spaInfo.whatsapp}" target="_blank" style="color: #128C7E; font-weight: bold;">וואטסאפ</a>`
+    response: () => `📞 <strong>הטלפון שלנו:</strong><br><br><a href="tel:0586588751" style="color: #667eea; font-weight: bold; font-size: 18px;">${spaInfo.phone}</a><br><br>💬 או שלחו הודעה ב<a href="${spaInfo.whatsappBooking}" target="_blank" style="color: #128C7E; font-weight: bold;">וואטסאפ</a>`
   },
   parking: {
     patterns: [/(חניה|חנייה|חונה|לחנות|parking|רכב|מכונית|אוטו)/i],
@@ -2023,7 +2024,7 @@ document.addEventListener("keydown", (e) => {
       case "w": // Alt+W - וואטסאפ
       case "W":
         e.preventDefault();
-        window.open("https://wa.me/972586588751", "_blank");
+        window.open(spaInfo.whatsappBooking, "_blank");
         break;
       case "a": // Alt+A - תפריט נגישות
       case "A":

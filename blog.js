@@ -112,7 +112,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <div class="cta-section">
                 <h3>מוכנים לחוויה תאילנדית אותנטית?</h3>
                 <p>הצוות המקצועי שלנו מוכשר בטכניקות עיסוי תאילנדי מסורתיות</p>
-                <a href="https://wa.me/972586588751" class="cta-button" target="_blank">
+                <a href="https://wa.me/972586588751?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%90%D7%A0%D7%99%20%D7%9E%D7%A2%D7%95%D7%A0%D7%99%D7%99%D7%9F%2F%D7%AA%20%D7%9C%D7%94%D7%96%D7%9E%D7%99%D7%9F%20%D7%AA%D7%95%D7%A8%20%D7%9C%D7%A2%D7%99%D7%A1%D7%95%D7%99%20%D7%91%D7%A1%D7%90%D7%A0%D7%A8%D7%99%D7%99%D7%96%20%D7%A1%D7%A4%D7%90%20%F0%9F%8C%BF" class="cta-button" target="_blank">
                     <i class="fa-brands fa-whatsapp"></i>
                     הזמן עיסוי תאילנדי עכשיו
                 </a>
@@ -197,7 +197,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <div class="cta-section">
                 <h3>הרגע הזה להירגע הגיע!</h3>
                 <p>חוו עיסוי שוודי מקצועי במיטב המסורת</p>
-                <a href="https://wa.me/972586588751" class="cta-button" target="_blank">
+                <a href="https://wa.me/972586588751?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%90%D7%A0%D7%99%20%D7%9E%D7%A2%D7%95%D7%A0%D7%99%D7%99%D7%9F%2F%D7%AA%20%D7%9C%D7%94%D7%96%D7%9E%D7%99%D7%9F%20%D7%AA%D7%95%D7%A8%20%D7%9C%D7%A2%D7%99%D7%A1%D7%95%D7%99%20%D7%91%D7%A1%D7%90%D7%A0%D7%A8%D7%99%D7%99%D7%96%20%D7%A1%D7%A4%D7%90%20%F0%9F%8C%BF" class="cta-button" target="_blank">
                     <i class="fa-brands fa-whatsapp"></i>
                     הזמן עיסוי שוודי עכשיו
                 </a>
@@ -288,7 +288,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <div class="cta-section">
                 <h3>מוכנים לשחרור אמיתי?</h3>
                 <p>המעסים המנוסים שלנו יעניקו לכם טיפול מקצועי וממוקד</p>
-                <a href="https://wa.me/972586588751" class="cta-button" target="_blank">
+                <a href="https://wa.me/972586588751?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%90%D7%A0%D7%99%20%D7%9E%D7%A2%D7%95%D7%A0%D7%99%D7%99%D7%9F%2F%D7%AA%20%D7%9C%D7%94%D7%96%D7%9E%D7%99%D7%9F%20%D7%AA%D7%95%D7%A8%20%D7%9C%D7%A2%D7%99%D7%A1%D7%95%D7%99%20%D7%91%D7%A1%D7%90%D7%A0%D7%A8%D7%99%D7%99%D7%96%20%D7%A1%D7%A4%D7%90%20%F0%9F%8C%BF" class="cta-button" target="_blank">
                     <i class="fa-brands fa-whatsapp"></i>
                     הזמן עיסוי רקמות עמוק עכשיו
                 </a>
@@ -368,7 +368,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <div class="cta-section">
                 <h3>הגוף שלכם צריך את זה עכשיו</h3>
                 <p>תנו לעצמכם את ההפסקה שאתם זקוקים לה – הצוות המקצועי שלנו כאן בשבילכם</p>
-                <a href="https://wa.me/972586588751" class="cta-button" target="_blank">
+                <a href="https://wa.me/972586588751?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%90%D7%A0%D7%99%20%D7%9E%D7%A2%D7%95%D7%A0%D7%99%D7%99%D7%9F%2F%D7%AA%20%D7%9C%D7%94%D7%96%D7%9E%D7%99%D7%9F%20%D7%AA%D7%95%D7%A8%20%D7%9C%D7%A2%D7%99%D7%A1%D7%95%D7%99%20%D7%91%D7%A1%D7%90%D7%A0%D7%A8%D7%99%D7%99%D7%96%20%D7%A1%D7%A4%D7%90%20%F0%9F%8C%BF" class="cta-button" target="_blank">
                     <i class="fa-brands fa-whatsapp"></i>
                     הזמן טיפול עכשיו
                 </a>
@@ -473,7 +473,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <div class="cta-section">
                 <h3>גלו את כוח הריפוי ברגליכם</h3>
                 <p>חוו טיפול רפלקסולוגיה מקצועי ומרגיע</p>
-                <a href="https://wa.me/972586588751" class="cta-button" target="_blank">
+                <a href="https://wa.me/972586588751?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%90%D7%A0%D7%99%20%D7%9E%D7%A2%D7%95%D7%A0%D7%99%D7%99%D7%9F%2F%D7%AA%20%D7%9C%D7%94%D7%96%D7%9E%D7%99%D7%9F%20%D7%AA%D7%95%D7%A8%20%D7%9C%D7%A2%D7%99%D7%A1%D7%95%D7%99%20%D7%91%D7%A1%D7%90%D7%A0%D7%A8%D7%99%D7%99%D7%96%20%D7%A1%D7%A4%D7%90%20%F0%9F%8C%BF" class="cta-button" target="_blank">
                     <i class="fa-brands fa-whatsapp"></i>
                     הזמן טיפול רפלקסולוגיה עכשיו
                 </a>
