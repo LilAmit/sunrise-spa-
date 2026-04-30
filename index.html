@@ -566,7 +566,7 @@
             <p class="testimonial-author">— עמית תבור</p>
           </div>
 
-          <div class="testimonial-card">
+          <div class="testimonial-card testimonial-extra">
             <div class="testimonial-stars" aria-label="חמישה כוכבים">★★★★★</div>
             <p class="testimonial-text">
               "טיפול מקצועי, מחיר הוגן, נשמח לבקר שוב. מומלץ."
@@ -574,7 +574,7 @@
             <p class="testimonial-author">— Ofir Chakee</p>
           </div>
 
-          <div class="testimonial-card">
+          <div class="testimonial-card testimonial-extra">
             <div class="testimonial-stars" aria-label="חמישה כוכבים">★★★★★</div>
             <p class="testimonial-text">
               "מקום מקצועי."
@@ -582,7 +582,7 @@
             <p class="testimonial-author">— סגא אבו מוך</p>
           </div>
 
-          <div class="testimonial-card">
+          <div class="testimonial-card testimonial-extra">
             <div class="testimonial-stars" aria-label="חמישה כוכבים">★★★★★</div>
             <p class="testimonial-text">
               "באמת חוויה כיפית! המקום נעים, הצוות מחייך וגורם להרגיש בבית,
@@ -592,6 +592,19 @@
             </p>
             <p class="testimonial-author">— Ver Aba</p>
           </div>
+        </div>
+
+        <div class="show-more-wrapper">
+          <button
+            type="button"
+            class="show-more-btn"
+            id="showMoreTestimonials"
+            aria-expanded="false"
+            aria-controls="testimonials"
+          >
+            <i class="fa-solid fa-chevron-down"></i>
+            <span class="show-more-label">ראה עוד</span>
+          </button>
         </div>
 
         <div class="reviews-link-wrapper">
@@ -1107,5 +1120,22 @@
     </footer>
 
     <script src="script.js"></script>
+    <script>
+      // טוגל "ראה עוד" / "הסתר" להמלצות לקוחות
+      (function () {
+        var btn = document.getElementById("showMoreTestimonials");
+        if (!btn) return;
+        var grid = document.querySelector(".testimonials-grid");
+        var label = btn.querySelector(".show-more-label");
+        var icon = btn.querySelector("i");
+        btn.addEventListener("click", function () {
+          var expanded = grid.classList.toggle("expanded");
+          btn.setAttribute("aria-expanded", expanded ? "true" : "false");
+          label.textContent = expanded ? "הסתר" : "ראה עוד";
+          icon.classList.toggle("fa-chevron-down", !expanded);
+          icon.classList.toggle("fa-chevron-up", expanded);
+        });
+      })();
+    </script>
   </body>
 </html>

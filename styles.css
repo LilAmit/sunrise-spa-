@@ -3385,9 +3385,64 @@ body.high-contrast-yellow-active .accessibility-trigger {
   margin: 0 !important;
 }
 
+.testimonial-extra {
+  display: none;
+}
+
+.testimonials-grid.expanded .testimonial-extra {
+  display: flex;
+}
+
+.show-more-wrapper {
+  text-align: center;
+  margin-top: 18px;
+}
+
+.show-more-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 26px;
+  background: white;
+  color: #c2185b;
+  border: 2px solid #ff758c;
+  border-radius: 999px;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 3px 10px rgba(255, 117, 140, 0.2);
+  min-height: 44px;
+}
+
+.show-more-btn:hover,
+.show-more-btn:focus {
+  background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(255, 117, 140, 0.4);
+}
+
+.show-more-btn:focus-visible {
+  outline: 3px solid #ffc107;
+  outline-offset: 3px;
+}
+
+.show-more-btn i {
+  font-size: 14px;
+  transition: transform 0.25s ease;
+}
+
+.dark-mode-active .show-more-btn {
+  background: #252542;
+  color: #ff8db3;
+  border-color: rgba(255, 117, 140, 0.5);
+}
+
 .reviews-link-wrapper {
   text-align: center;
-  margin-top: 10px;
+  margin-top: 14px;
 }
 
 .reviews-link {
