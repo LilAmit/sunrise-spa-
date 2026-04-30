@@ -141,6 +141,12 @@ function openLightbox(item) {
     const mediaElement = item.querySelector("img, video");
     lightboxCaption.textContent = mediaElement ? mediaElement.alt || "" : "";
   }
+
+  // נגישות: העברת פוקוס לכפתור הסגירה כדי שמשתמשי מקלדת
+  // יוכלו לפעול מיד ולא יישארו עם פוקוס נסתר על הפריט שמתחת.
+  setTimeout(() => {
+    if (closeBtn) closeBtn.focus();
+  }, 60);
 }
 
 // פונקציה לסגירת Lightbox
@@ -197,6 +203,23 @@ if (nextBtn) {
 // תמיכה במקלדת - מותאם ל-RTL
 document.addEventListener("keydown", (e) => {
   if (lightbox && lightbox.classList.contains("show")) {
+    // Focus trap: Tab מסתובב רק בין close/prev/next ולא בורח לרקע
+    if (e.key === "Tab") {
+      const focusable = [closeBtn, prevBtn, nextBtn].filter(Boolean);
+      if (focusable.length > 0) {
+        const idx = focusable.indexOf(document.activeElement);
+        e.preventDefault();
+        if (idx === -1) {
+          focusable[0].focus();
+        } else if (e.shiftKey) {
+          focusable[(idx - 1 + focusable.length) % focusable.length].focus();
+        } else {
+          focusable[(idx + 1) % focusable.length].focus();
+        }
+      }
+      return;
+    }
+
     switch(e.key) {
       case "Escape":
         closeLightbox();
@@ -232,6 +255,44 @@ function announceImage(direction) {
   const announcer = document.getElementById('srAnnouncer') || document.getElementById('globalAnnouncer');
   if (announcer) {
     announcer.textContent = `תמונה ${direction}: ${currentIndex + 1} מתוך ${galleryItems.length}`;
+  }
+}
+
+// תמיכה ב-swipe למובייל
+if (lightbox) {
+  let touchStartX = 0;
+  let touchStartY = 0;
+  let touchEndX = 0;
+  let touchEndY = 0;
+  const SWIPE_THRESHOLD = 50; // מינימום פיקסלים אופקיים לזיהוי החלקה
+
+  lightbox.addEventListener("touchstart", (e) => {
+    if (!lightbox.classList.contains("show")) return;
+    touchStartX = e.changedTouches[0].screenX;
+    touchStartY = e.changedTouches[0].screenY;
+  }, { passive: true });
+
+  lightbox.addEventListener("touchend", (e) => {
+    if (!lightbox.classList.contains("show")) return;
+    touchEndX = e.changedTouches[0].screenX;
+    touchEndY = e.changedTouches[0].screenY;
+    handleLightboxSwipe();
+  }, { passive: true });
+
+  function handleLightboxSwipe() {
+    const dx = touchStartX - touchEndX;
+    const dy = touchStartY - touchEndY;
+    // נדחה החלקה אם היא יותר אנכית מאופקית (כדי לא להפריע לגלילה)
+    if (Math.abs(dx) < SWIPE_THRESHOLD || Math.abs(dx) < Math.abs(dy)) return;
+    if (dx > 0) {
+      // אצבע נעה ימינה→שמאלה: התקדמות לתמונה הבאה
+      if (nextBtn) nextBtn.click();
+      announceImage('הבאה');
+    } else {
+      // אצבע נעה שמאלה→ימינה: חזרה לתמונה הקודמת
+      if (prevBtn) prevBtn.click();
+      announceImage('קודמת');
+    }
   }
 }
 

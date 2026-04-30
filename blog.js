@@ -520,57 +520,64 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log("Modal closed");
   }
 
-  // הוספת מאזינים לכפתורי "קרא עוד"
-  readMoreBtns.forEach(function (btn, index) {
-    const postId = btn.getAttribute("data-post");
-    console.log("Button " + index + ' has data-post="' + postId + '"');
+  // פונקציה לפתיחת פוסט במודאל (משותפת לכפתור "קרא עוד" ולקליק על כל הכרטיס)
+  function openPost(postId) {
+    const post = fullPosts[postId];
 
-    btn.addEventListener("click", function (e) {
-      e.preventDefault();
-      console.log(">>> CLICK on button " + index + ", postId=" + postId);
+    if (!post) {
+      console.error("Post not found for ID: " + postId);
+      alert("שגיאה: לא נמצא תוכן לפוסט זה");
+      return;
+    }
 
-      const post = fullPosts[postId];
+    modalBody.innerHTML =
+      "<h2>" +
+      post.title +
+      "</h2>" +
+      '<div class="post-meta">' +
+      '<span><i class="fa-regular fa-calendar"></i> ' +
+      post.date +
+      "</span>" +
+      "</div>" +
+      post.content;
 
-      if (!post) {
-        console.error("Post not found for ID: " + postId);
-        alert("שגיאה: לא נמצא תוכן לפוסט זה");
-        return;
+    modal.classList.add("active");
+    document.body.style.overflow = "hidden";
+
+    setTimeout(function() {
+      const announcer = document.getElementById('modalAnnouncer') || document.getElementById('srAnnouncer');
+      if (announcer) {
+        announcer.textContent = 'נפתח מאמר: ' + post.title + '. השתמש בחצים לגלילה, Escape לסגירה.';
       }
+    }, 100);
 
-      console.log("Post found: " + post.title);
+    modal.setAttribute('tabindex', '-1');
+    modal.setAttribute('role', 'dialog');
+    modal.setAttribute('aria-modal', 'true');
+    modal.setAttribute('aria-label', post.title);
+    modal.focus();
+  }
 
-      // מילוי התוכן במודאל
-      modalBody.innerHTML =
-        "<h2>" +
-        post.title +
-        "</h2>" +
-        '<div class="post-meta">' +
-        '<span><i class="fa-regular fa-calendar"></i> ' +
-        post.date +
-        "</span>" +
-        "</div>" +
-        post.content;
+  // הוספת מאזינים: גם לכפתור "קרא עוד" וגם לכרטיס כולו
+  const blogPosts = document.querySelectorAll(".blog-post");
+  blogPosts.forEach(function (article, index) {
+    const btn = article.querySelector(".read-more-btn");
+    if (!btn) return;
+    const postId = btn.getAttribute("data-post");
+    console.log("Article " + index + ' has data-post="' + postId + '"');
 
-      // פתיחת המודאל
-      modal.classList.add("active");
-      document.body.style.overflow = "hidden";
+    // קליק על הכרטיס כולו (כולל הכפתור הפנימי שמתפזר למעלה)
+    article.addEventListener("click", function (e) {
+      e.preventDefault();
+      openPost(postId);
+    });
 
-      // הכרזה על פתיחת המודאל לקוראי מסך
-      setTimeout(function() {
-        const announcer = document.getElementById('modalAnnouncer') || document.getElementById('srAnnouncer');
-        if (announcer) {
-          announcer.textContent = 'נפתח מאמר: ' + post.title + '. השתמש בחצים לגלילה, Escape לסגירה.';
-        }
-      }, 100);
-
-      // העברת פוקוס למודאל לנגישות
-      modal.setAttribute('tabindex', '-1');
-      modal.setAttribute('role', 'dialog');
-      modal.setAttribute('aria-modal', 'true');
-      modal.setAttribute('aria-label', post.title);
-      modal.focus();
-
-      console.log("Modal opened successfully!");
+    // תמיכה במקלדת: Enter / Space פותחים את המאמר
+    article.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        openPost(postId);
+      }
     });
   });
 

@@ -227,9 +227,15 @@ nav a:hover {
   right: 12px;
 }
 
-.slider-btn:hover {
+.slider-btn:hover,
+.slider-btn:focus-visible {
   background: #ff758c;
   transform: translateY(-50%) scale(1.1);
+}
+
+.slider-btn:focus-visible {
+  outline: 3px solid #ffc107;
+  outline-offset: 2px;
 }
 
 .slider-indicators {

@@ -63,11 +63,18 @@
   border: 2px solid rgba(255, 182, 193, 0.3);
   display: flex;
   flex-direction: column;
+  cursor: pointer;
 }
 
-.blog-post:hover {
+.blog-post:hover,
+.blog-post:focus-visible {
   transform: translateY(-10px);
   box-shadow: 0 15px 35px rgba(255, 117, 140, 0.3);
+}
+
+.blog-post:focus-visible {
+  outline: 3px solid #ffc107;
+  outline-offset: 4px;
 }
 
 /* תמונת הפוסט */
@@ -85,7 +92,8 @@
   transition: transform 0.5s ease;
 }
 
-.blog-post:hover .post-image img {
+.blog-post:hover .post-image img,
+.blog-post:focus-visible .post-image img {
   transform: scale(1.1);
 }
 
@@ -120,7 +128,8 @@
   transition: color 0.3s ease;
 }
 
-.blog-post:hover .post-title {
+.blog-post:hover .post-title,
+.blog-post:focus-visible .post-title {
   color: #ff758c;
 }
 

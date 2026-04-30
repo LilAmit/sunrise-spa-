@@ -1684,10 +1684,10 @@ function getSmartDefaultResponse(userInput) {
   return responses[Math.floor(Math.random() * responses.length)];
 }
 
-// פתיחה/סגירה של הצ'אט
+// פתיחה/סגירה של הצ'אט (toggle - לחיצה שנייה סוגרת)
 if (chatbotBtn && chatbotContainer) {
   chatbotBtn.addEventListener("click", () => {
-    chatbotContainer.classList.add("active");
+    chatbotContainer.classList.toggle("active");
   });
 }
 
@@ -1836,54 +1836,21 @@ function announceToScreenReader(message) {
 
 // ===== ניווט מקלדת לכרטיסי מחירים ואלמנטים אינטראקטיביים =====
 document.addEventListener('DOMContentLoaded', () => {
-  // הוספת tabindex וניווט לכרטיסי מחירים
-  const priceItems = document.querySelectorAll('.price-item');
-  priceItems.forEach((item, index) => {
-    item.setAttribute('tabindex', '0');
-    item.setAttribute('role', 'listitem');
+  // .price-item עצמו אינו פוקוסבילי - כפתור ה"הזמן תור" הפנימי (<a>) הוא
+  // האלמנט האינטראקטיבי וכבר נכנס ל-Tab order טבעית. ניווט החצים בין
+  // כפתורי הזמנה מטופל כעת על ידי AccessibilityManager (במצב "ניווט מקלדת
+  // מלא") שעובר לפי סדר ויזואלי, כך ש-ArrowDown על הכפתור האחרון במחירון
+  // ממשיך אוטומטית לאלמנט הבא בעמוד (כפתור ה-CTA או ההמלצות).
 
-    // הוספת ARIA label עם המידע על המחיר
+  // נשאיר אריאה-לייבל אינפורמטיבי לקוראי מסך על שורת המחיר עצמה
+  const priceItems = document.querySelectorAll('.price-item');
+  priceItems.forEach((item) => {
     const time = item.querySelector('.price-time');
     const amount = item.querySelector('.price-amount');
     if (time && amount) {
       item.setAttribute('aria-label', `${time.textContent}: ${amount.textContent}`);
     }
-
-    // ניווט בחצים בין פריטי מחיר - ללא לולאה
-    item.addEventListener('keydown', (e) => {
-      const items = Array.from(document.querySelectorAll('.price-item'));
-      const currentIndex = items.indexOf(item);
-
-      switch(e.key) {
-        case 'ArrowDown':
-        case 'ArrowLeft': // RTL support
-          // אם זה הפריט האחרון - אל תעשה כלום, תן ל-Tab לעבוד
-          if (currentIndex < items.length - 1) {
-            e.preventDefault();
-            e.stopPropagation();
-            items[currentIndex + 1].focus();
-          }
-          break;
-        case 'ArrowUp':
-        case 'ArrowRight': // RTL support
-          // אם זה הפריט הראשון - אל תעשה כלום, תן ל-Tab לעבוד
-          if (currentIndex > 0) {
-            e.preventDefault();
-            e.stopPropagation();
-            items[currentIndex - 1].focus();
-          }
-          break;
-        case 'Enter':
-        case ' ':
-          e.preventDefault();
-          e.stopPropagation();
-          // הכרזה על הפריט הנבחר
-          if (time && amount) {
-            announceToScreenReader(`נבחר: ${time.textContent} במחיר ${amount.textContent}`);
-          }
-          break;
-      }
-    });
+    item.setAttribute('role', 'listitem');
   });
 
   // הוספת tabindex לתיבות תוכן
@@ -1990,67 +1957,83 @@ document.addEventListener("keydown", (e) => {
 
   if (isInInput) return;
 
-  // Alt + מספר לניווט מהיר
+  // Alt + מקש לניווט מהיר.
+  // משתמשים גם ב-e.key וגם ב-e.code כדי שהקיצורים יעבדו ללא תלות בפריסת
+  // המקלדת (עברית, אנגלית, macOS Option, וכו'). e.code נותן את המקש הפיזי
+  // (KeyW, Digit1) בעוד e.key נותן את התו המוצג (שמשתנה לפי layout).
   if (e.altKey) {
-    switch (e.key) {
-      case "1": // Alt+1 - עמוד הבית
-        e.preventDefault();
-        window.location.href = "index.html";
-        break;
-      case "2": // Alt+2 - גלריה
-        e.preventDefault();
-        window.location.href = "gallery.html";
-        break;
-      case "3": // Alt+3 - בלוג
-        e.preventDefault();
-        window.location.href = "blog.html";
-        break;
-      case "4": // Alt+4 - שאלות נפוצות
-        e.preventDefault();
-        window.location.href = "faq.html";
-        break;
-      case "5": // Alt+5 - מדיניות פרטיות
-        e.preventDefault();
-        window.location.href = "privacy.html";
-        break;
-      case "6": // Alt+6 - תנאי שימוש
-        e.preventDefault();
-        window.location.href = "terms.html";
-        break;
-      case "7": // Alt+7 - הצהרת נגישות
-        e.preventDefault();
-        window.location.href = "accessibility-statement.html";
-        break;
-      case "w": // Alt+W - וואטסאפ
-      case "W":
-        e.preventDefault();
-        window.open(spaInfo.whatsappBooking, "_blank");
-        break;
-      case "a": // Alt+A - תפריט נגישות
-      case "A":
-        e.preventDefault();
-        const accessibilityBtn = document.getElementById("accessibilityBtn");
-        if (accessibilityBtn) accessibilityBtn.click();
-        break;
-      case "c": // Alt+C - צ'אטבוט
-      case "C":
-        e.preventDefault();
-        const chatBtn = document.getElementById("chatbotBtn");
-        if (chatBtn) chatBtn.click();
-        break;
-      case "t": // Alt+T - חזרה לראש העמוד
-      case "T":
-        e.preventDefault();
+    const code = e.code;
+    const key = (e.key || "").toLowerCase();
+
+    if (code === "Digit1" || key === "1") {
+      e.preventDefault();
+      window.location.href = "index.html";
+    } else if (code === "Digit2" || key === "2") {
+      e.preventDefault();
+      window.location.href = "gallery.html";
+    } else if (code === "Digit3" || key === "3") {
+      e.preventDefault();
+      window.location.href = "blog.html";
+    } else if (code === "Digit4" || key === "4") {
+      e.preventDefault();
+      window.location.href = "faq.html";
+    } else if (code === "Digit5" || key === "5") {
+      e.preventDefault();
+      window.location.href = "privacy.html";
+    } else if (code === "Digit6" || key === "6") {
+      e.preventDefault();
+      window.location.href = "terms.html";
+    } else if (code === "Digit7" || key === "7") {
+      e.preventDefault();
+      window.location.href = "accessibility-statement.html";
+    } else if (code === "KeyW" || key === "w") {
+      // Alt+W — כפתור הוואטסאפ הצף
+      e.preventDefault();
+      const wa = document.querySelector(".whatsapp-float");
+      if (wa) wa.focus();
+      window.open(spaInfo.whatsappBooking, "_blank");
+      announceToScreenReader("נפתח וואטסאפ ליצירת קשר");
+    } else if (code === "KeyA" || key === "a") {
+      // Alt+A — כפתור תפריט הנגישות הצף (טוגל פתח/סגור)
+      e.preventDefault();
+      const accessibilityBtn = document.getElementById("accessibilityBtn");
+      const panel = document.getElementById("accessibilityPanel");
+      if (accessibilityBtn) {
+        accessibilityBtn.focus();
+        accessibilityBtn.click();
+        const isOpen = panel && panel.classList.contains("active");
+        announceToScreenReader(isOpen ? "נפתח תפריט הנגישות" : "נסגר תפריט הנגישות");
+      }
+    } else if (code === "KeyC" || key === "c") {
+      // Alt+C — כפתור הצ'אטבוט הצף (טוגל פתח/סגור)
+      e.preventDefault();
+      const chatBtn = document.getElementById("chatbotBtn");
+      const container = document.getElementById("chatbotContainer");
+      if (chatBtn) {
+        chatBtn.focus();
+        chatBtn.click();
+        const isOpen = container && container.classList.contains("active");
+        announceToScreenReader(isOpen ? "נפתח צ'אטבוט" : "נסגר צ'אטבוט");
+      }
+    } else if (code === "KeyT" || key === "t") {
+      // Alt+T — כפתור "חזרה למעלה" הצף (גלילה לראש העמוד)
+      e.preventDefault();
+      const back = document.getElementById("backToTop");
+      if (back && back.classList.contains("show")) {
+        back.focus();
+        back.click();
+      } else {
         window.scrollTo({ top: 0, behavior: "smooth" });
-        break;
-      case "b": // Alt+B - לתחתית העמוד
-      case "B":
-        e.preventDefault();
-        window.scrollTo({
-          top: document.body.scrollHeight,
-          behavior: "smooth",
-        });
-        break;
+      }
+      announceToScreenReader("גלילה לראש העמוד");
+    } else if (code === "KeyB" || key === "b") {
+      // Alt+B — גלילה לתחתית העמוד
+      e.preventDefault();
+      window.scrollTo({
+        top: document.body.scrollHeight,
+        behavior: "smooth",
+      });
+      announceToScreenReader("גלילה לתחתית העמוד");
     }
   }
 

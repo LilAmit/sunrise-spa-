@@ -541,7 +541,7 @@
       <!-- ===== המלצות לקוחות ===== -->
       <div class="content-box testimonials-box fade-in" id="testimonials">
         <h2>מה הלקוחות שלנו אומרים</h2>
-        <div class="testimonials-grid">
+        <div class="testimonials-grid" id="testimonialsGrid">
           <div class="testimonial-card">
             <div class="testimonial-stars" aria-label="חמישה כוכבים">★★★★★</div>
             <p class="testimonial-text">
@@ -600,7 +600,7 @@
             class="show-more-btn"
             id="showMoreTestimonials"
             aria-expanded="false"
-            aria-controls="testimonials"
+            aria-controls="testimonialsGrid"
           >
             <i class="fa-solid fa-chevron-down"></i>
             <span class="show-more-label">ראה עוד</span>
@@ -955,34 +955,6 @@
           </button>
         </div>
 
-        <!-- כיוון וניווט -->
-        <div class="accessibility-section">
-          <h3><i class="fa-solid fa-compass"></i> ניווט וכיוון</h3>
-          <button
-            class="accessibility-btn"
-            id="textDirectionBtn"
-            title="שנה כיוון טקסט"
-            aria-pressed="false"
-          >
-            <i class="fa-solid fa-exchange-alt"></i>
-            היפוך כיוון (LTR/RTL)
-          </button>
-        </div>
-
-        <!-- אנימציות -->
-        <div class="accessibility-section">
-          <h3><i class="fa-solid fa-film"></i> אנימציות</h3>
-          <button
-            class="accessibility-btn"
-            id="stopAnimationsBtn"
-            title="הפסק אנימציות"
-            aria-pressed="false"
-          >
-            <i class="fa-solid fa-ban"></i>
-            עצור אנימציות
-          </button>
-        </div>
-
         <!-- הסתרת מדיה -->
         <div class="accessibility-section">
           <h3><i class="fa-solid fa-image"></i> תמונות וסרטונים</h3>
@@ -1008,6 +980,34 @@
           >
             <i class="fa-solid fa-keyboard"></i>
             ניווט מקלדת מלא
+          </button>
+        </div>
+
+        <!-- כיוון וניווט -->
+        <div class="accessibility-section">
+          <h3><i class="fa-solid fa-compass"></i> ניווט וכיוון</h3>
+          <button
+            class="accessibility-btn"
+            id="textDirectionBtn"
+            title="שנה כיוון טקסט"
+            aria-pressed="false"
+          >
+            <i class="fa-solid fa-exchange-alt"></i>
+            היפוך כיוון (LTR/RTL)
+          </button>
+        </div>
+
+        <!-- אנימציות -->
+        <div class="accessibility-section">
+          <h3><i class="fa-solid fa-film"></i> אנימציות</h3>
+          <button
+            class="accessibility-btn"
+            id="stopAnimationsBtn"
+            title="הפסק אנימציות"
+            aria-pressed="false"
+          >
+            <i class="fa-solid fa-ban"></i>
+            עצור אנימציות
           </button>
         </div>
 
@@ -1134,6 +1134,13 @@
           label.textContent = expanded ? "הסתר" : "ראה עוד";
           icon.classList.toggle("fa-chevron-down", !expanded);
           icon.classList.toggle("fa-chevron-up", expanded);
+          // הכרזה לקוראי מסך
+          var announcer = document.getElementById("srAnnouncer");
+          if (announcer) {
+            announcer.textContent = expanded
+              ? "נחשפו 3 ביקורות נוספות"
+              : "3 הביקורות הנוספות הוסתרו";
+          }
         });
       })();
     </script>
