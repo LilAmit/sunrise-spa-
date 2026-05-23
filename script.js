@@ -1533,7 +1533,7 @@ const intentPatterns = {
   },
   location: {
     patterns: [/(איפה|כתובת|מיקום|נמצא|ממוקם|להגיע|הגעה|וייז|waze|maps|מפה|ניווט|איך מגיעים|דרך)/i],
-    response: () => `📍 <strong>המיקום שלנו:</strong><br><br>🏢 <strong>${spaInfo.address}</strong><br><br>🚗 <a href="${spaInfo.waze}" target="_blank" style="color: #1565C0; font-weight: bold;">ניווט בוויז</a><br><br>🗺️ <a href="${spaInfo.maps}" target="_blank" style="color: #1565C0; font-weight: bold;">ניווט בגוגל מפות</a>`
+    response: () => `📍 <strong>המיקום שלנו:</strong><br><br>🏢 <strong>${spaInfo.address}</strong><br><br>🚗 <a href="${spaInfo.waze}" target="_blank" rel="noopener noreferrer" style="color: #1565C0; font-weight: bold;">ניווט בוויז</a><br><br>🗺️ <a href="${spaInfo.maps}" target="_blank" rel="noopener noreferrer" style="color: #1565C0; font-weight: bold;">ניווט בגוגל מפות</a>`
   },
   services: {
     patterns: [/(סוג|סוגי|עיסוי|עיסויים|טיפול|טיפולים|מסאז|מציעים|שירות|שירותים|מה יש|אפשרויות)/i],
@@ -1548,11 +1548,11 @@ const intentPatterns = {
   },
   booking: {
     patterns: [/(הזמנה|להזמין|תור|לקבוע|לתאם|booking|זימון|לזמן|קביעת|מזמינים)/i],
-    response: () => `📅 <strong>להזמנת תור:</strong><br><br>💬 <a href="${spaInfo.whatsappBooking}" target="_blank" style="color: #128C7E; font-weight: bold;">וואטסאפ - לחץ כאן</a><br><br>📞 <a href="tel:0586588751" style="color: #667eea; font-weight: bold;">התקשרו: ${spaInfo.phone}</a><br><br>💡 מומלץ להזמין מראש לקבלת השעה המועדפת!`
+    response: () => `📅 <strong>להזמנת תור:</strong><br><br>💬 <a href="${spaInfo.whatsappBooking}" target="_blank" rel="noopener noreferrer" style="color: #128C7E; font-weight: bold;">וואטסאפ - לחץ כאן</a><br><br>📞 <a href="tel:0586588751" style="color: #667eea; font-weight: bold;">התקשרו: ${spaInfo.phone}</a><br><br>💡 מומלץ להזמין מראש לקבלת השעה המועדפת!`
   },
   phone: {
     patterns: [/(טלפון|פלאפון|מספר|להתקשר|התקשרות|נייד)/i],
-    response: () => `📞 <strong>הטלפון שלנו:</strong><br><br><a href="tel:0586588751" style="color: #667eea; font-weight: bold; font-size: 18px;">${spaInfo.phone}</a><br><br>💬 או שלחו הודעה ב<a href="${spaInfo.whatsappBooking}" target="_blank" style="color: #128C7E; font-weight: bold;">וואטסאפ</a>`
+    response: () => `📞 <strong>הטלפון שלנו:</strong><br><br><a href="tel:0586588751" style="color: #667eea; font-weight: bold; font-size: 18px;">${spaInfo.phone}</a><br><br>💬 או שלחו הודעה ב<a href="${spaInfo.whatsappBooking}" target="_blank" rel="noopener noreferrer" style="color: #128C7E; font-weight: bold;">וואטסאפ</a>`
   },
   parking: {
     patterns: [/(חניה|חנייה|חונה|לחנות|parking|רכב|מכונית|אוטו)/i],
@@ -1600,7 +1600,7 @@ const intentPatterns = {
   },
   social: {
     patterns: [/(פייסבוק|אינסטגרם|טיקטוק|יוטיוב|facebook|instagram|tiktok|youtube|רשתות חברתיות)/i],
-    response: () => `📱 <strong>עקבו אחרינו:</strong><br><br>📘 <a href="${spaInfo.social.facebook}" target="_blank" style="color: #1877f2; font-weight: bold;">פייסבוק</a><br>📸 <a href="${spaInfo.social.instagram}" target="_blank" style="color: #E4405F; font-weight: bold;">אינסטגרם</a><br>🎵 <a href="${spaInfo.social.tiktok}" target="_blank" style="color: #000; font-weight: bold;">טיקטוק</a><br>▶️ <a href="${spaInfo.social.youtube}" target="_blank" style="color: #FF0000; font-weight: bold;">יוטיוב</a>`
+    response: () => `📱 <strong>עקבו אחרינו:</strong><br><br>📘 <a href="${spaInfo.social.facebook}" target="_blank" rel="noopener noreferrer" style="color: #1877f2; font-weight: bold;">פייסבוק</a><br>📸 <a href="${spaInfo.social.instagram}" target="_blank" rel="noopener noreferrer" style="color: #E4405F; font-weight: bold;">אינסטגרם</a><br>🎵 <a href="${spaInfo.social.tiktok}" target="_blank" rel="noopener noreferrer" style="color: #000; font-weight: bold;">טיקטוק</a><br>▶️ <a href="${spaInfo.social.youtube}" target="_blank" rel="noopener noreferrer" style="color: #FF0000; font-weight: bold;">יוטיוב</a>`
   },
   gift: {
     patterns: [/(מתנה|גיפט|gift|שובר|voucher|קארד|כרטיס מתנה)/i],
@@ -1656,7 +1656,7 @@ const intentPatterns = {
   // תלונות
   complaint: {
     patterns: [/(תלונה|להתלונן|לא מרוצה|בעיה|תקלה|שירות גרוע|רוצה לדבר עם מנהל|מנהל)/i],
-    response: () => `📞 <strong>שירות לקוחות:</strong><br><br>חשוב לנו שתהיו מרוצים!<br>אם יש בעיה כלשהי, אנא צרו קשר ישירות:<br><br>📞 <a href="tel:0586588751" style="color: #667eea; font-weight: bold;">${spaInfo.phone}</a><br>💬 <a href="${spaInfo.whatsapp}" target="_blank" style="color: #128C7E; font-weight: bold;">וואטסאפ</a><br><br>נטפל בכל פנייה במהירות וברצינות 🙏`
+    response: () => `📞 <strong>שירות לקוחות:</strong><br><br>חשוב לנו שתהיו מרוצים!<br>אם יש בעיה כלשהי, אנא צרו קשר ישירות:<br><br>📞 <a href="tel:0586588751" style="color: #667eea; font-weight: bold;">${spaInfo.phone}</a><br>💬 <a href="${spaInfo.whatsapp}" target="_blank" rel="noopener noreferrer" style="color: #128C7E; font-weight: bold;">וואטסאפ</a><br><br>נטפל בכל פנייה במהירות וברצינות 🙏`
   }
 };
 
@@ -1677,8 +1677,10 @@ function detectIntent(userInput) {
 
 // תשובת ברירת מחדל חכמה
 function getSmartDefaultResponse(userInput) {
+  // SECURITY: userInput is echoed back into an HTML string; escape before interpolation to prevent XSS
+  const safeInput = escapeHtml(userInput);
   const responses = [
-    `אני מבין שאתה שואל על "${userInput}".<br><br>אני יכול לעזור לך עם:<br>• שעות פעילות ומיקום<br>• מחירון וסוגי עיסויים<br>• הזמנת תור<br><br>נסה לשאול שאלה ספציפית יותר, או <a href="${spaInfo.whatsapp}" target="_blank" style="color: #128C7E; font-weight: bold;">שלח לנו הודעה בוואטסאפ</a> ונשמח לעזור! 😊`,
+    `אני מבין שאתה שואל על "${safeInput}".<br><br>אני יכול לעזור לך עם:<br>• שעות פעילות ומיקום<br>• מחירון וסוגי עיסויים<br>• הזמנת תור<br><br>נסה לשאול שאלה ספציפית יותר, או <a href="${spaInfo.whatsapp}" target="_blank" rel="noopener noreferrer" style="color: #128C7E; font-weight: bold;">שלח לנו הודעה בוואטסאפ</a> ונשמח לעזור! 😊`,
     `לא הצלחתי להבין בדיוק מה אתה מחפש 🤔<br><br>הנה כמה דברים שאני יכול לעזור בהם:<br>• "מה השעות?" - שעות פעילות<br>• "כמה עולה?" - מחירון<br>• "איפה אתם?" - כתובת וניווט<br>• "איזה עיסויים יש?" - סוגי טיפולים<br><br>או פשוט התקשרו: <a href="tel:0586588751" style="color: #667eea; font-weight: bold;">${spaInfo.phone}</a>`
   ];
   return responses[Math.floor(Math.random() * responses.length)];
@@ -1716,6 +1718,7 @@ document.addEventListener("click", (e) => {
 });
 
 // הוספת הודעה לצ'אט
+// SECURITY: user-typed text is rendered as textContent; only hardcoded bot responses use innerHTML
 function addMessage(text, sender) {
   if (!chatbotMessages) return;
 
@@ -1724,6 +1727,7 @@ function addMessage(text, sender) {
 
   const avatar = document.createElement("div");
   avatar.className = "message-avatar";
+  // SECURITY: avatar HTML is a constant string literal — no user data here
   avatar.innerHTML =
     sender === "user"
       ? '<i class="fa-solid fa-user"></i>'
@@ -1731,13 +1735,30 @@ function addMessage(text, sender) {
 
   const content = document.createElement("div");
   content.className = "message-content";
-  content.innerHTML = text;
+  if (sender === "user") {
+    // SECURITY: user input rendered as plain text — prevents XSS from chatbot prompts like <img onerror=...>
+    content.textContent = text;
+  } else {
+    // SECURITY: bot responses come only from intentPatterns / getSmartDefaultResponse, which are
+    // hardcoded strings in this file. They legitimately contain HTML (<br>, <a>, <strong>).
+    // FLAGGED: if you ever feed dynamic/user data into a bot response template, you MUST escape it
+    // (e.g. replace `${userInput}` interpolation with textContent or an escape helper) — the default
+    // smart response at script.js:1681 already interpolates userInput into HTML; see fix below.
+    content.innerHTML = text;
+  }
 
   messageDiv.appendChild(avatar);
   messageDiv.appendChild(content);
 
   chatbotMessages.appendChild(messageDiv);
   chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+}
+
+// SECURITY: HTML-escape helper for any user data we need to embed inside a bot HTML response
+function escapeHtml(str) {
+  const div = document.createElement("div");
+  div.textContent = String(str);
+  return div.innerHTML;
 }
 
 // הצגת אינדיקטור הקלדה
@@ -2056,3 +2077,10 @@ document.addEventListener("keydown", (e) => {
     window.location.href = "accessibility-statement.html#keyboard-shortcuts";
   }
 });
+
+// ===== עדכון אוטומטי של שנת הקופירייט בפוטר =====
+// HTML keeps a literal "2026" for users without JS; this just refreshes it each year.
+(function updateFooterYear() {
+  const el = document.getElementById("footerYear");
+  if (el) el.textContent = new Date().getFullYear();
+})();

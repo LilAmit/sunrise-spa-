@@ -1,9 +1,6 @@
 // ===== Blog.js - פונקציונליות ספציפית לדף הבלוג =====
 // הערה: הצ'אטבוט החכם ו-AccessibilityManager מוגדרים ב-script.js
 document.addEventListener("DOMContentLoaded", () => {
-  console.log("=== DOM Content Loaded ===");
-  console.log("Blog.js is running!");
-
   // ===== אפקט Fade-in =====
   const blogFaders = document.querySelectorAll(".blog-wrapper .fade-in");
   const blogObserver = new IntersectionObserver(
@@ -483,8 +480,6 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   // ===== פונקציונליות המודאל =====
-  console.log("=== Modal Initialization Started ===");
-
   // קבלת כל האלמנטים הדרושים
   const modal = document.getElementById("postModal");
   const modalBody = document.getElementById("modalBody");
@@ -492,16 +487,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const readMoreBtns = document.querySelectorAll(".read-more-btn");
 
   // בדיקות ראשוניות
-  console.log("Modal:", modal ? "Found" : "NOT FOUND");
-  console.log("Modal Body:", modalBody ? "Found" : "NOT FOUND");
-  console.log("Modal Close:", modalClose ? "Found" : "NOT FOUND");
-  console.log("Buttons:", readMoreBtns.length);
-  console.log(
-    "fullPosts:",
-    typeof fullPosts,
-    fullPosts ? "Defined" : "UNDEFINED",
-  );
-
   // אם חסרים אלמנטים - עצור
   if (!modal || !modalBody || !modalClose) {
     console.error("CRITICAL: Modal elements missing!");
@@ -517,7 +502,6 @@ document.addEventListener("DOMContentLoaded", () => {
   function closeModal() {
     modal.classList.remove("active");
     document.body.style.overflow = "";
-    console.log("Modal closed");
   }
 
   // פונקציה לפתיחת פוסט במודאל (משותפת לכפתור "קרא עוד" ולקליק על כל הכרטיס)
@@ -564,8 +548,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const btn = article.querySelector(".read-more-btn");
     if (!btn) return;
     const postId = btn.getAttribute("data-post");
-    console.log("Article " + index + ' has data-post="' + postId + '"');
-
     // קליק על הכרטיס כולו (כולל הכפתור הפנימי שמתפזר למעלה)
     article.addEventListener("click", function (e) {
       e.preventDefault();
@@ -653,6 +635,4 @@ document.addEventListener("DOMContentLoaded", () => {
   modalAnnouncer.setAttribute('aria-live', 'polite');
   modalAnnouncer.setAttribute('aria-atomic', 'true');
   document.body.appendChild(modalAnnouncer);
-
-  console.log("=== All initialization complete ===");
 }); // סיום DOMContentLoaded הראשי

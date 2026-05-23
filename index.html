@@ -2,6 +2,9 @@
 <html lang="he" dir="rtl">
   <head>
     <meta charset="UTF-8" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com; font-src 'self' https://cdnjs.cloudflare.com https://fonts.gstatic.com; img-src 'self' data: https:; media-src 'self'; connect-src 'self' https://www.google-analytics.com https://*.analytics.google.com https://*.google-analytics.com https://stats.g.doubleclick.net; frame-src https://www.google.com https://www.youtube.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-9SS1CPQK7E"></script>
     <script>
@@ -11,6 +14,8 @@
       gtag('config', 'G-9SS1CPQK7E');
     </script>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#ff9a9e" />
+    <meta name="color-scheme" content="light" />
     <meta
       name="description"
       content="סאנרייז ספא - ספא מסאז' בפתח תקווה. עיסוי מקצועי בההסתדרות 2 קומה 2. עיסוי תאילנדי, שוודי, רקמות עמוק, עיסוי זוגי ורפלקסולוגיה. צוות מעסים מקצועיים ומוסמכים"
@@ -75,9 +80,16 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
+    <!-- Preload first slider image (LCP candidate) and the background wallpaper -->
+    <link rel="preload" as="image" href="Sunrise1.jpg" fetchpriority="high" />
+    <link rel="preload" as="image" href="WallpaperIndex.jpg" />
+
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+      integrity="sha384-/o6I2CkkWC//PSjvWC/eYN7l3xM3tJm8ZzVkCOfp//W05QcE3mlGskpoHB6XqI+B"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
     />
     <link
       href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700&display=swap"
@@ -163,6 +175,51 @@
           "https://www.tiktok.com/@sunrise.spa7",
           "https://www.youtube.com/@SunriseSpa-z8u"
         ],
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "5.0",
+          "reviewCount": "6",
+          "bestRating": "5",
+          "worstRating": "1"
+        },
+        "review": [
+          {
+            "@type": "Review",
+            "author": { "@type": "Person", "name": "Adiel" },
+            "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+            "reviewBody": "מקצועיות רמה מאד גבוה שווה להגיע!"
+          },
+          {
+            "@type": "Review",
+            "author": { "@type": "Person", "name": "ארז אביצור" },
+            "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+            "reviewBody": "עיסוי מעולה, שירות אדיב מומלץ בחום, אחד הטובים בארץ."
+          },
+          {
+            "@type": "Review",
+            "author": { "@type": "Person", "name": "עמית תבור" },
+            "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+            "reviewBody": "עיסוי מצויין ומקצועי מומלץ מאוד."
+          },
+          {
+            "@type": "Review",
+            "author": { "@type": "Person", "name": "Ofir Chakee" },
+            "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+            "reviewBody": "טיפול מקצועי, מחיר הוגן, נשמח לבקר שוב. מומלץ."
+          },
+          {
+            "@type": "Review",
+            "author": { "@type": "Person", "name": "סגא אבו מוך" },
+            "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+            "reviewBody": "מקום מקצועי."
+          },
+          {
+            "@type": "Review",
+            "author": { "@type": "Person", "name": "Ver Aba" },
+            "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+            "reviewBody": "באמת חוויה כיפית! המקום נעים, הצוות מחייך וגורם להרגיש בבית."
+          }
+        ],
         "hasOfferCatalog": {
           "@type": "OfferCatalog",
           "name": "שירותי עיסוי",
@@ -191,10 +248,30 @@
               "@type": "Offer",
               "itemOffered": {
                 "@type": "Service",
+                "name": "עיסוי גוף 75 דקות",
+                "description": "עיסוי תאילנדי, שוודי או רקמות עמוק"
+              },
+              "price": "325",
+              "priceCurrency": "ILS"
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
                 "name": "עיסוי גוף 90 דקות",
                 "description": "עיסוי תאילנדי, שוודי או רקמות עמוק"
               },
               "price": "380",
+              "priceCurrency": "ILS"
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "עיסוי גוף 120 דקות",
+                "description": "עיסוי תאילנדי, שוודי או רקמות עמוק"
+              },
+              "price": "500",
               "priceCurrency": "ILS"
             },
             {
@@ -211,6 +288,16 @@
               "@type": "Offer",
               "itemOffered": {
                 "@type": "Service",
+                "name": "עיסוי זוגי 75 דקות",
+                "description": "עיסוי זוגי מקצועי"
+              },
+              "price": "600",
+              "priceCurrency": "ILS"
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
                 "name": "עיסוי זוגי 90 דקות",
                 "description": "עיסוי זוגי מקצועי"
               },
@@ -221,10 +308,30 @@
               "@type": "Offer",
               "itemOffered": {
                 "@type": "Service",
+                "name": "עיסוי זוגי 120 דקות",
+                "description": "עיסוי זוגי מקצועי"
+              },
+              "price": "850",
+              "priceCurrency": "ILS"
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
                 "name": "עיסוי רגליים 30 דקות",
                 "description": "רפלקסולוגיה ועיסוי רגליים"
               },
               "price": "150",
+              "priceCurrency": "ILS"
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "עיסוי רגליים 45 דקות",
+                "description": "רפלקסולוגיה ועיסוי רגליים"
+              },
+              "price": "200",
               "priceCurrency": "ILS"
             },
             {
@@ -308,18 +415,21 @@
           href="https://wa.me/972586588751?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%90%D7%A0%D7%99%20%D7%9E%D7%A2%D7%95%D7%A0%D7%99%D7%99%D7%9F%2F%D7%AA%20%D7%9C%D7%94%D7%96%D7%9E%D7%99%D7%9F%20%D7%AA%D7%95%D7%A8%20%D7%9C%D7%A2%D7%99%D7%A1%D7%95%D7%99%20%D7%91%D7%A1%D7%90%D7%A0%D7%A8%D7%99%D7%99%D7%96%20%D7%A1%D7%A4%D7%90%20%F0%9F%8C%BF"
           target="_blank"
           title="שלח הודעה בוואטסאפ"
+          rel="noopener noreferrer"
           ><i class="fa-brands fa-whatsapp"></i> צור קשר</a
         >
         <a
           href="https://www.waze.com/live-map/directions/il/center-district/%D7%A4%D7%AA/sunrise-spa-%D7%A1%D7%A4%D7%90-%D7%A2%D7%99%D7%A1%D7%95%D7%99-%D7%A4%D7%AA%D7%97-%D7%AA%D7%A7%D7%95%D7%95%D7%94?navigate=yes&to=place.ChIJSZXBMVY3HRURy-oaXLqTcrg"
           target="_blank"
           title="ניווט ב-Waze"
+          rel="noopener noreferrer"
           ><i class="fa-brands fa-waze"></i> Waze</a
         >
         <a
           href="https://www.google.com/maps/dir//Sunrise+Spa"
           target="_blank"
           title="צפייה במפה"
+          rel="noopener noreferrer"
           ><i class="fa-solid fa-map-location-dot"></i> Maps</a
         >
       </nav>
@@ -357,6 +467,8 @@
               height="1600"
               alt="מחירון עיסויים בסאנרייז ספא - מחירים מפורטים לכל סוגי העיסויים"
               loading="eager"
+              fetchpriority="high"
+              decoding="async"
             />
             <img
               src="Sunrise2.jpg"
@@ -364,6 +476,7 @@
               height="1280"
               alt="עיסוי מקצועי בסאנרייז ספא - מעסה מוסמכת מבצעת עיסוי שוודי מרגיע"
               loading="lazy"
+              decoding="async"
             />
             <img
               src="Sunrise3.jpg"
@@ -371,6 +484,7 @@
               height="1530"
               alt="חדר טיפולים מעוצב ומרגיע בסאנרייז ספא פתח תקווה"
               loading="lazy"
+              decoding="async"
             />
             <img
               src="Sunrise4.jpg"
@@ -378,6 +492,7 @@
               height="1530"
               alt="כניסה לסאנרייז ספא - מרחב מסוגנן ומזמין ברחוב ההסתדרות 2"
               loading="lazy"
+              decoding="async"
             />
             <img
               src="Sunrise5.jpg"
@@ -385,6 +500,7 @@
               height="1530"
               alt="אווירה מרגיעה ונעימה בספא - תאורה רכה ועיצוב מושקע"
               loading="lazy"
+              decoding="async"
             />
             <img
               src="Sunrise6.jpg"
@@ -392,6 +508,7 @@
               height="2048"
               alt="עיסוי רפלקסולוגיה רגליים מקצועי בסאנרייז ספא"
               loading="lazy"
+              decoding="async"
             />
             <img
               src="Sunrise7.jpg"
@@ -399,6 +516,7 @@
               height="960"
               alt="חדר עיסוי זוגי מרווח עם שתי מיטות טיפול נוחות"
               loading="lazy"
+              decoding="async"
             />
             <img
               src="Sunrise8.jpg"
@@ -406,6 +524,7 @@
               height="1280"
               alt="עיסוי כתפיים וגב עליון לשחרור מתחים ושיפור תנוחה"
               loading="lazy"
+              decoding="async"
             />
             <img
               src="Sunrise9.jpg"
@@ -413,6 +532,7 @@
               height="2048"
               alt="טיפול באבנים חמות - שילוב של חום ועיסוי לרפיאה עמוקה"
               loading="lazy"
+              decoding="async"
             />
             <img
               src="Sunrise10.jpg"
@@ -449,66 +569,66 @@
         </p>
         <div class="price-item">
           <span class="price-time">45 דקות</span>
-          <a href="https://wa.me/972586588751?text=%D7%90%D7%A0%D7%99%20%D7%9E%D7%A2%D7%95%D7%A0%D7%99%D7%99%D7%9F%20%D7%9C%D7%A7%D7%91%D7%95%D7%A2%20%D7%AA%D7%95%D7%A8%20%D7%9C%D7%A2%D7%99%D7%A1%D7%95%D7%99%20%D7%92%D7%95%D7%A3%2045%20%D7%93%D7%A7%D7%95%D7%AA" target="_blank" class="book-btn" aria-label="הזמן תור לעיסוי גוף 45 דקות"><i class="fa-brands fa-whatsapp"></i><span>הזמן תור</span></a>
+          <a href="https://wa.me/972586588751?text=%D7%90%D7%A0%D7%99%20%D7%9E%D7%A2%D7%95%D7%A0%D7%99%D7%99%D7%9F%20%D7%9C%D7%A7%D7%91%D7%95%D7%A2%20%D7%AA%D7%95%D7%A8%20%D7%9C%D7%A2%D7%99%D7%A1%D7%95%D7%99%20%D7%92%D7%95%D7%A3%2045%20%D7%93%D7%A7%D7%95%D7%AA" target="_blank" class="book-btn" aria-label="הזמן תור לעיסוי גוף 45 דקות" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i><span>הזמן תור</span></a>
           <span class="price-amount">₪220</span>
         </div>
         <div class="price-item">
           <span class="price-time">60 דקות</span>
-          <a href="https://wa.me/972586588751?text=%D7%90%D7%A0%D7%99%20%D7%9E%D7%A2%D7%95%D7%A0%D7%99%D7%99%D7%9F%20%D7%9C%D7%A7%D7%91%D7%95%D7%A2%20%D7%AA%D7%95%D7%A8%20%D7%9C%D7%A2%D7%99%D7%A1%D7%95%D7%99%20%D7%92%D7%95%D7%A3%2060%20%D7%93%D7%A7%D7%95%D7%AA" target="_blank" class="book-btn" aria-label="הזמן תור לעיסוי גוף 60 דקות"><i class="fa-brands fa-whatsapp"></i><span>הזמן תור</span></a>
+          <a href="https://wa.me/972586588751?text=%D7%90%D7%A0%D7%99%20%D7%9E%D7%A2%D7%95%D7%A0%D7%99%D7%99%D7%9F%20%D7%9C%D7%A7%D7%91%D7%95%D7%A2%20%D7%AA%D7%95%D7%A8%20%D7%9C%D7%A2%D7%99%D7%A1%D7%95%D7%99%20%D7%92%D7%95%D7%A3%2060%20%D7%93%D7%A7%D7%95%D7%AA" target="_blank" class="book-btn" aria-label="הזמן תור לעיסוי גוף 60 דקות" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i><span>הזמן תור</span></a>
           <span class="price-amount">₪270</span>
         </div>
         <div class="price-item">
           <span class="price-time">75 דקות</span>
-          <a href="https://wa.me/972586588751?text=%D7%90%D7%A0%D7%99%20%D7%9E%D7%A2%D7%95%D7%A0%D7%99%D7%99%D7%9F%20%D7%9C%D7%A7%D7%91%D7%95%D7%A2%20%D7%AA%D7%95%D7%A8%20%D7%9C%D7%A2%D7%99%D7%A1%D7%95%D7%99%20%D7%92%D7%95%D7%A3%2075%20%D7%93%D7%A7%D7%95%D7%AA" target="_blank" class="book-btn" aria-label="הזמן תור לעיסוי גוף 75 דקות"><i class="fa-brands fa-whatsapp"></i><span>הזמן תור</span></a>
+          <a href="https://wa.me/972586588751?text=%D7%90%D7%A0%D7%99%20%D7%9E%D7%A2%D7%95%D7%A0%D7%99%D7%99%D7%9F%20%D7%9C%D7%A7%D7%91%D7%95%D7%A2%20%D7%AA%D7%95%D7%A8%20%D7%9C%D7%A2%D7%99%D7%A1%D7%95%D7%99%20%D7%92%D7%95%D7%A3%2075%20%D7%93%D7%A7%D7%95%D7%AA" target="_blank" class="book-btn" aria-label="הזמן תור לעיסוי גוף 75 דקות" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i><span>הזמן תור</span></a>
           <span class="price-amount">₪325</span>
         </div>
         <div class="price-item">
           <span class="price-time">90 דקות</span>
-          <a href="https://wa.me/972586588751?text=%D7%90%D7%A0%D7%99%20%D7%9E%D7%A2%D7%95%D7%A0%D7%99%D7%99%D7%9F%20%D7%9C%D7%A7%D7%91%D7%95%D7%A2%20%D7%AA%D7%95%D7%A8%20%D7%9C%D7%A2%D7%99%D7%A1%D7%95%D7%99%20%D7%92%D7%95%D7%A3%2090%20%D7%93%D7%A7%D7%95%D7%AA" target="_blank" class="book-btn" aria-label="הזמן תור לעיסוי גוף 90 דקות"><i class="fa-brands fa-whatsapp"></i><span>הזמן תור</span></a>
+          <a href="https://wa.me/972586588751?text=%D7%90%D7%A0%D7%99%20%D7%9E%D7%A2%D7%95%D7%A0%D7%99%D7%99%D7%9F%20%D7%9C%D7%A7%D7%91%D7%95%D7%A2%20%D7%AA%D7%95%D7%A8%20%D7%9C%D7%A2%D7%99%D7%A1%D7%95%D7%99%20%D7%92%D7%95%D7%A3%2090%20%D7%93%D7%A7%D7%95%D7%AA" target="_blank" class="book-btn" aria-label="הזמן תור לעיסוי גוף 90 דקות" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i><span>הזמן תור</span></a>
           <span class="price-amount">₪380</span>
         </div>
         <div class="price-item">
           <span class="price-time">120 דקות</span>
-          <a href="https://wa.me/972586588751?text=%D7%90%D7%A0%D7%99%20%D7%9E%D7%A2%D7%95%D7%A0%D7%99%D7%99%D7%9F%20%D7%9C%D7%A7%D7%91%D7%95%D7%A2%20%D7%AA%D7%95%D7%A8%20%D7%9C%D7%A2%D7%99%D7%A1%D7%95%D7%99%20%D7%92%D7%95%D7%A3%20120%20%D7%93%D7%A7%D7%95%D7%AA" target="_blank" class="book-btn" aria-label="הזמן תור לעיסוי גוף 120 דקות"><i class="fa-brands fa-whatsapp"></i><span>הזמן תור</span></a>
+          <a href="https://wa.me/972586588751?text=%D7%90%D7%A0%D7%99%20%D7%9E%D7%A2%D7%95%D7%A0%D7%99%D7%99%D7%9F%20%D7%9C%D7%A7%D7%91%D7%95%D7%A2%20%D7%AA%D7%95%D7%A8%20%D7%9C%D7%A2%D7%99%D7%A1%D7%95%D7%99%20%D7%92%D7%95%D7%A3%20120%20%D7%93%D7%A7%D7%95%D7%AA" target="_blank" class="book-btn" aria-label="הזמן תור לעיסוי גוף 120 דקות" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i><span>הזמן תור</span></a>
           <span class="price-amount">₪500</span>
         </div>
 
         <h3>עיסוי זוגי</h3>
         <div class="price-item">
           <span class="price-time">60 דקות</span>
-          <a href="https://wa.me/972586588751?text=%D7%90%D7%A0%D7%99%20%D7%9E%D7%A2%D7%95%D7%A0%D7%99%D7%99%D7%9F%20%D7%9C%D7%A7%D7%91%D7%95%D7%A2%20%D7%AA%D7%95%D7%A8%20%D7%9C%D7%A2%D7%99%D7%A1%D7%95%D7%99%20%D7%96%D7%95%D7%92%D7%99%2060%20%D7%93%D7%A7%D7%95%D7%AA" target="_blank" class="book-btn" aria-label="הזמן תור לעיסוי זוגי 60 דקות"><i class="fa-brands fa-whatsapp"></i><span>הזמן תור</span></a>
+          <a href="https://wa.me/972586588751?text=%D7%90%D7%A0%D7%99%20%D7%9E%D7%A2%D7%95%D7%A0%D7%99%D7%99%D7%9F%20%D7%9C%D7%A7%D7%91%D7%95%D7%A2%20%D7%AA%D7%95%D7%A8%20%D7%9C%D7%A2%D7%99%D7%A1%D7%95%D7%99%20%D7%96%D7%95%D7%92%D7%99%2060%20%D7%93%D7%A7%D7%95%D7%AA" target="_blank" class="book-btn" aria-label="הזמן תור לעיסוי זוגי 60 דקות" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i><span>הזמן תור</span></a>
           <span class="price-amount">₪500</span>
         </div>
         <div class="price-item">
           <span class="price-time">75 דקות</span>
-          <a href="https://wa.me/972586588751?text=%D7%90%D7%A0%D7%99%20%D7%9E%D7%A2%D7%95%D7%A0%D7%99%D7%99%D7%9F%20%D7%9C%D7%A7%D7%91%D7%95%D7%A2%20%D7%AA%D7%95%D7%A8%20%D7%9C%D7%A2%D7%99%D7%A1%D7%95%D7%99%20%D7%96%D7%95%D7%92%D7%99%2075%20%D7%93%D7%A7%D7%95%D7%AA" target="_blank" class="book-btn" aria-label="הזמן תור לעיסוי זוגי 75 דקות"><i class="fa-brands fa-whatsapp"></i><span>הזמן תור</span></a>
+          <a href="https://wa.me/972586588751?text=%D7%90%D7%A0%D7%99%20%D7%9E%D7%A2%D7%95%D7%A0%D7%99%D7%99%D7%9F%20%D7%9C%D7%A7%D7%91%D7%95%D7%A2%20%D7%AA%D7%95%D7%A8%20%D7%9C%D7%A2%D7%99%D7%A1%D7%95%D7%99%20%D7%96%D7%95%D7%92%D7%99%2075%20%D7%93%D7%A7%D7%95%D7%AA" target="_blank" class="book-btn" aria-label="הזמן תור לעיסוי זוגי 75 דקות" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i><span>הזמן תור</span></a>
           <span class="price-amount">₪600</span>
         </div>
         <div class="price-item">
           <span class="price-time">90 דקות</span>
-          <a href="https://wa.me/972586588751?text=%D7%90%D7%A0%D7%99%20%D7%9E%D7%A2%D7%95%D7%A0%D7%99%D7%99%D7%9F%20%D7%9C%D7%A7%D7%91%D7%95%D7%A2%20%D7%AA%D7%95%D7%A8%20%D7%9C%D7%A2%D7%99%D7%A1%D7%95%D7%99%20%D7%96%D7%95%D7%92%D7%99%2090%20%D7%93%D7%A7%D7%95%D7%AA" target="_blank" class="book-btn" aria-label="הזמן תור לעיסוי זוגי 90 דקות"><i class="fa-brands fa-whatsapp"></i><span>הזמן תור</span></a>
+          <a href="https://wa.me/972586588751?text=%D7%90%D7%A0%D7%99%20%D7%9E%D7%A2%D7%95%D7%A0%D7%99%D7%99%D7%9F%20%D7%9C%D7%A7%D7%91%D7%95%D7%A2%20%D7%AA%D7%95%D7%A8%20%D7%9C%D7%A2%D7%99%D7%A1%D7%95%D7%99%20%D7%96%D7%95%D7%92%D7%99%2090%20%D7%93%D7%A7%D7%95%D7%AA" target="_blank" class="book-btn" aria-label="הזמן תור לעיסוי זוגי 90 דקות" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i><span>הזמן תור</span></a>
           <span class="price-amount">₪700</span>
         </div>
         <div class="price-item">
           <span class="price-time">120 דקות</span>
-          <a href="https://wa.me/972586588751?text=%D7%90%D7%A0%D7%99%20%D7%9E%D7%A2%D7%95%D7%A0%D7%99%D7%99%D7%9F%20%D7%9C%D7%A7%D7%91%D7%95%D7%A2%20%D7%AA%D7%95%D7%A8%20%D7%9C%D7%A2%D7%99%D7%A1%D7%95%D7%99%20%D7%96%D7%95%D7%92%D7%99%20120%20%D7%93%D7%A7%D7%95%D7%AA" target="_blank" class="book-btn" aria-label="הזמן תור לעיסוי זוגי 120 דקות"><i class="fa-brands fa-whatsapp"></i><span>הזמן תור</span></a>
+          <a href="https://wa.me/972586588751?text=%D7%90%D7%A0%D7%99%20%D7%9E%D7%A2%D7%95%D7%A0%D7%99%D7%99%D7%9F%20%D7%9C%D7%A7%D7%91%D7%95%D7%A2%20%D7%AA%D7%95%D7%A8%20%D7%9C%D7%A2%D7%99%D7%A1%D7%95%D7%99%20%D7%96%D7%95%D7%92%D7%99%20120%20%D7%93%D7%A7%D7%95%D7%AA" target="_blank" class="book-btn" aria-label="הזמן תור לעיסוי זוגי 120 דקות" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i><span>הזמן תור</span></a>
           <span class="price-amount">₪850</span>
         </div>
 
         <h3>עיסוי רגליים</h3>
         <div class="price-item">
           <span class="price-time">30 דקות</span>
-          <a href="https://wa.me/972586588751?text=%D7%90%D7%A0%D7%99%20%D7%9E%D7%A2%D7%95%D7%A0%D7%99%D7%99%D7%9F%20%D7%9C%D7%A7%D7%91%D7%95%D7%A2%20%D7%AA%D7%95%D7%A8%20%D7%9C%D7%A2%D7%99%D7%A1%D7%95%D7%99%20%D7%A8%D7%92%D7%9C%D7%99%D7%99%D7%9D%2030%20%D7%93%D7%A7%D7%95%D7%AA" target="_blank" class="book-btn" aria-label="הזמן תור לעיסוי רגליים 30 דקות"><i class="fa-brands fa-whatsapp"></i><span>הזמן תור</span></a>
+          <a href="https://wa.me/972586588751?text=%D7%90%D7%A0%D7%99%20%D7%9E%D7%A2%D7%95%D7%A0%D7%99%D7%99%D7%9F%20%D7%9C%D7%A7%D7%91%D7%95%D7%A2%20%D7%AA%D7%95%D7%A8%20%D7%9C%D7%A2%D7%99%D7%A1%D7%95%D7%99%20%D7%A8%D7%92%D7%9C%D7%99%D7%99%D7%9D%2030%20%D7%93%D7%A7%D7%95%D7%AA" target="_blank" class="book-btn" aria-label="הזמן תור לעיסוי רגליים 30 דקות" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i><span>הזמן תור</span></a>
           <span class="price-amount">₪150</span>
         </div>
         <div class="price-item">
           <span class="price-time">45 דקות</span>
-          <a href="https://wa.me/972586588751?text=%D7%90%D7%A0%D7%99%20%D7%9E%D7%A2%D7%95%D7%A0%D7%99%D7%99%D7%9F%20%D7%9C%D7%A7%D7%91%D7%95%D7%A2%20%D7%AA%D7%95%D7%A8%20%D7%9C%D7%A2%D7%99%D7%A1%D7%95%D7%99%20%D7%A8%D7%92%D7%9C%D7%99%D7%99%D7%9D%2045%20%D7%93%D7%A7%D7%95%D7%AA" target="_blank" class="book-btn" aria-label="הזמן תור לעיסוי רגליים 45 דקות"><i class="fa-brands fa-whatsapp"></i><span>הזמן תור</span></a>
+          <a href="https://wa.me/972586588751?text=%D7%90%D7%A0%D7%99%20%D7%9E%D7%A2%D7%95%D7%A0%D7%99%D7%99%D7%9F%20%D7%9C%D7%A7%D7%91%D7%95%D7%A2%20%D7%AA%D7%95%D7%A8%20%D7%9C%D7%A2%D7%99%D7%A1%D7%95%D7%99%20%D7%A8%D7%92%D7%9C%D7%99%D7%99%D7%9D%2045%20%D7%93%D7%A7%D7%95%D7%AA" target="_blank" class="book-btn" aria-label="הזמן תור לעיסוי רגליים 45 דקות" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i><span>הזמן תור</span></a>
           <span class="price-amount">₪200</span>
         </div>
         <div class="price-item">
           <span class="price-time">60 דקות</span>
-          <a href="https://wa.me/972586588751?text=%D7%90%D7%A0%D7%99%20%D7%9E%D7%A2%D7%95%D7%A0%D7%99%D7%99%D7%9F%20%D7%9C%D7%A7%D7%91%D7%95%D7%A2%20%D7%AA%D7%95%D7%A8%20%D7%9C%D7%A2%D7%99%D7%A1%D7%95%D7%99%20%D7%A8%D7%92%D7%9C%D7%99%D7%99%D7%9D%2060%20%D7%93%D7%A7%D7%95%D7%AA" target="_blank" class="book-btn" aria-label="הזמן תור לעיסוי רגליים 60 דקות"><i class="fa-brands fa-whatsapp"></i><span>הזמן תור</span></a>
+          <a href="https://wa.me/972586588751?text=%D7%90%D7%A0%D7%99%20%D7%9E%D7%A2%D7%95%D7%A0%D7%99%D7%99%D7%9F%20%D7%9C%D7%A7%D7%91%D7%95%D7%A2%20%D7%AA%D7%95%D7%A8%20%D7%9C%D7%A2%D7%99%D7%A1%D7%95%D7%99%20%D7%A8%D7%92%D7%9C%D7%99%D7%99%D7%9D%2060%20%D7%93%D7%A7%D7%95%D7%AA" target="_blank" class="book-btn" aria-label="הזמן תור לעיסוי רגליים 60 דקות" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i><span>הזמן תור</span></a>
           <span class="price-amount">₪240</span>
         </div>
       </div>
@@ -523,7 +643,7 @@
             class="cta-btn cta-btn-whatsapp"
             target="_blank"
             aria-label="הזמנת תור בוואטסאפ"
-          >
+           rel="noopener noreferrer">
             <i class="fa-brands fa-whatsapp"></i>
             הזמנה בוואטסאפ
           </a>
@@ -640,7 +760,7 @@
       class="whatsapp-float"
       target="_blank"
       aria-label="שלח הודעה בוואטסאפ"
-    >
+     rel="noopener noreferrer">
       <i class="fa-brands fa-whatsapp"></i>
     </a>
 
@@ -1034,7 +1154,7 @@
           </button>
         </div>
         <div style="text-align: center; margin-top: 10px; padding-top: 10px; border-top: 1px solid #e0e0e0; font-size: 13px; color: #888;">
-          הונגש על ידי <a href="https://lilamit.github.io/WebNova/" target="_blank" style="color: #2196f3; text-decoration: none; font-weight: 600;">WebNova</a>
+          הונגש על ידי <a href="https://lilamit.github.io/WebNova/" target="_blank" style="color: #2196f3; text-decoration: none; font-weight: 600;" rel="noopener noreferrer">WebNova</a>
         </div>
       </div>
     </div>
@@ -1059,7 +1179,7 @@
     ></div>
 
     <footer id="footer">
-      © 2026 סאנרייז ספא – ההסתדרות 2, פתח תקווה
+      © <span id="footerYear">2026</span> סאנרייז ספא – ההסתדרות 2, פתח תקווה
 
       <div style="margin-top: 15px; margin-bottom: 15px">
         <a href="privacy.html" class="footer-link">מדיניות פרטיות</a> |
@@ -1078,7 +1198,7 @@
           target="_blank"
           aria-label="עמוד הפייסבוק שלנו"
           title="Facebook"
-        >
+         rel="noopener noreferrer">
           <i class="fa-brands fa-facebook-f"></i>
         </a>
         <a
@@ -1086,7 +1206,7 @@
           target="_blank"
           aria-label="עמוד האינסטגרם שלנו"
           title="Instagram"
-        >
+         rel="noopener noreferrer">
           <i class="fa-brands fa-instagram"></i>
         </a>
         <a
@@ -1094,7 +1214,7 @@
           target="_blank"
           aria-label="שלח הודעה בוואטסאפ"
           title="WhatsApp"
-        >
+         rel="noopener noreferrer">
           <i class="fa-brands fa-whatsapp"></i>
         </a>
         <a
@@ -1102,7 +1222,7 @@
           target="_blank"
           aria-label="עמוד הטיקטוק שלנו"
           title="TikTok"
-        >
+         rel="noopener noreferrer">
           <i class="fa-brands fa-tiktok"></i>
         </a>
         <a
@@ -1110,12 +1230,12 @@
           target="_blank"
           aria-label="ערוץ היוטיוב שלנו"
           title="YouTube"
-        >
+         rel="noopener noreferrer">
           <i class="fa-brands fa-youtube"></i>
         </a>
       </div>
       <div style="margin-top: 20px; font-size: 14px; opacity: 0.9;">
-        נבנה על ידי <a href="https://lilamit.github.io/WebNova/" target="_blank" style="color: #60b0ff; text-decoration: none; font-weight: 600;">WebNova</a>
+        נבנה על ידי <a href="https://lilamit.github.io/WebNova/" target="_blank" style="color: #60b0ff; text-decoration: none; font-weight: 600;" rel="noopener noreferrer">WebNova</a>
       </div>
     </footer>
 

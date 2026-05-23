@@ -2,6 +2,9 @@
 <html lang="he" dir="rtl">
   <head>
     <meta charset="UTF-8" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com; font-src 'self' https://cdnjs.cloudflare.com https://fonts.gstatic.com; img-src 'self' data: https:; media-src 'self'; connect-src 'self' https://www.google-analytics.com https://*.analytics.google.com https://*.google-analytics.com https://stats.g.doubleclick.net; frame-src https://www.google.com https://www.youtube.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-9SS1CPQK7E"></script>
     <script>
@@ -11,6 +14,8 @@
       gtag('config', 'G-9SS1CPQK7E');
     </script>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#ff9a9e" />
+    <meta name="color-scheme" content="light" />
     <title>גלריה - סאנרייז ספא</title>
     <meta
       name="description"
@@ -41,6 +46,9 @@
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+      integrity="sha384-/o6I2CkkWC//PSjvWC/eYN7l3xM3tJm8ZzVkCOfp//W05QcE3mlGskpoHB6XqI+B"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
     />
     <link
       href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700&display=swap"
@@ -91,18 +99,21 @@
           href="https://wa.me/972586588751?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%90%D7%A0%D7%99%20%D7%9E%D7%A2%D7%95%D7%A0%D7%99%D7%99%D7%9F%2F%D7%AA%20%D7%9C%D7%94%D7%96%D7%9E%D7%99%D7%9F%20%D7%AA%D7%95%D7%A8%20%D7%9C%D7%A2%D7%99%D7%A1%D7%95%D7%99%20%D7%91%D7%A1%D7%90%D7%A0%D7%A8%D7%99%D7%99%D7%96%20%D7%A1%D7%A4%D7%90%20%F0%9F%8C%BF"
           target="_blank"
           title="שלח הודעה בוואטסאפ"
+          rel="noopener noreferrer"
           ><i class="fa-brands fa-whatsapp"></i> צור קשר</a
         >
         <a
           href="https://www.waze.com/live-map/directions/il/center-district/%D7%A4%D7%AA/sunrise-spa-%D7%A1%D7%A4%D7%90-%D7%A2%D7%99%D7%A1%D7%95%D7%99-%D7%A4%D7%AA%D7%97-%D7%AA%D7%A7%D7%95%D7%95%D7%94?navigate=yes&to=place.ChIJSZXBMVY3HRURy-oaXLqTcrg"
           target="_blank"
           title="ניווט ב-Waze"
+          rel="noopener noreferrer"
           ><i class="fa-brands fa-waze"></i> Waze</a
         >
         <a
           href="https://www.google.com/maps/dir//Sunrise+Spa"
           target="_blank"
           title="צפייה במפה"
+          rel="noopener noreferrer"
           ><i class="fa-solid fa-map-location-dot"></i> Maps</a
         >
       </nav>
@@ -115,40 +126,40 @@
 
     <section class="image-container" id="gallery">
       <div class="gallery-item" style="--item-index: 0" data-type="image">
-        <img src="Sunrise1.jpg" alt="תמונה מהספא" loading="lazy" />
+        <img src="Sunrise1.jpg" width="900" height="1600" alt="מחירון עיסויים בסאנרייז ספא - מחירים מפורטים לכל סוגי העיסויים" loading="lazy" decoding="async" />
       </div>
       <div class="gallery-item" style="--item-index: 1" data-type="image">
-        <img src="Sunrise2.jpg" alt="תמונה מהספא" loading="lazy" />
+        <img src="Sunrise2.jpg" width="1920" height="1280" alt="עיסוי מקצועי בסאנרייז ספא - מעסה מוסמכת מבצעת עיסוי שוודי מרגיע" loading="lazy" decoding="async" />
       </div>
       <div class="gallery-item" style="--item-index: 2" data-type="image">
-        <img src="Sunrise3.jpg" alt="תמונה מהספא" loading="lazy" />
+        <img src="Sunrise3.jpg" width="2040" height="1530" alt="חדר טיפולים מעוצב ומרגיע בסאנרייז ספא פתח תקווה" loading="lazy" decoding="async" />
       </div>
       <div class="gallery-item" style="--item-index: 3" data-type="video">
-        <video src="SunriseVid1.mp4" loading="lazy" muted playsinline></video>
+        <video src="SunriseVid1.mp4" preload="metadata" muted playsinline aria-label="סרטון תדמית מסאנרייז ספא"></video>
         <div class="video-indicator">
           <i class="fa-solid fa-play"></i>
         </div>
       </div>
       <div class="gallery-item" style="--item-index: 4" data-type="image">
-        <img src="Sunrise4.jpg" alt="תמונה מהספא" loading="lazy" />
+        <img src="Sunrise4.jpg" width="2040" height="1530" alt="כניסה לסאנרייז ספא - מרחב מסוגנן ומזמין ברחוב ההסתדרות 2" loading="lazy" decoding="async" />
       </div>
       <div class="gallery-item" style="--item-index: 5" data-type="image">
-        <img src="Sunrise5.jpg" alt="תמונה מהספא" loading="lazy" />
+        <img src="Sunrise5.jpg" width="2040" height="1530" alt="אווירה מרגיעה ונעימה בספא - תאורה רכה ועיצוב מושקע" loading="lazy" decoding="async" />
       </div>
       <div class="gallery-item" style="--item-index: 6" data-type="image">
-        <img src="Sunrise6.jpg" alt="תמונה מהספא" loading="lazy" />
+        <img src="Sunrise6.jpg" width="1482" height="2048" alt="עיסוי רפלקסולוגיה רגליים מקצועי בסאנרייז ספא" loading="lazy" decoding="async" />
       </div>
       <div class="gallery-item" style="--item-index: 7" data-type="image">
-        <img src="Sunrise7.jpg" alt="תמונה מהספא" loading="lazy" />
+        <img src="Sunrise7.jpg" width="1280" height="960" alt="חדר עיסוי זוגי מרווח עם שתי מיטות טיפול נוחות" loading="lazy" decoding="async" />
       </div>
       <div class="gallery-item" style="--item-index: 8" data-type="image">
-        <img src="Sunrise8.jpg" alt="תמונה מהספא" loading="lazy" />
+        <img src="Sunrise8.jpg" width="1920" height="1280" alt="עיסוי כתפיים וגב עליון לשחרור מתחים ושיפור תנוחה" loading="lazy" decoding="async" />
       </div>
       <div class="gallery-item" style="--item-index: 9" data-type="image">
-        <img src="Sunrise9.jpg" alt="תמונה מהספא" loading="lazy" />
+        <img src="Sunrise9.jpg" width="1367" height="2048" alt="טיפול באבנים חמות - שילוב של חום ועיסוי לרפיאה עמוקה" loading="lazy" decoding="async" />
       </div>
       <div class="gallery-item" style="--item-index: 10" data-type="image">
-        <img src="Sunrise10.jpg" alt="תמונה מהספא" loading="lazy" />
+        <img src="Sunrise10.jpg" width="1367" height="2048" alt="עיסוי רגליים עם שמנים ארומתרפיים מרגיעים" loading="lazy" decoding="async" />
       </div>
     </section>
 
@@ -174,7 +185,7 @@
       class="whatsapp-float"
       target="_blank"
       aria-label="שלח הודעה בוואטסאפ"
-    >
+     rel="noopener noreferrer">
       <i class="fa-brands fa-whatsapp"></i>
     </a>
 
@@ -568,7 +579,7 @@
           </button>
         </div>
         <div style="text-align: center; margin-top: 10px; padding-top: 10px; border-top: 1px solid #e0e0e0; font-size: 13px; color: #888;">
-          הונגש על ידי <a href="https://lilamit.github.io/WebNova/" target="_blank" style="color: #2196f3; text-decoration: none; font-weight: 600;">WebNova</a>
+          הונגש על ידי <a href="https://lilamit.github.io/WebNova/" target="_blank" style="color: #2196f3; text-decoration: none; font-weight: 600;" rel="noopener noreferrer">WebNova</a>
         </div>
       </div>
     </div>
@@ -593,7 +604,7 @@
     ></div>
 
     <footer id="footer">
-      © 2026 סאנרייז ספא – ההסתדרות 2, פתח תקווה
+      © <span id="footerYear">2026</span> סאנרייז ספא – ההסתדרות 2, פתח תקווה
 
       <div style="margin-top: 15px; margin-bottom: 15px">
         <a href="privacy.html" class="footer-link">מדיניות פרטיות</a> |
@@ -612,7 +623,7 @@
           target="_blank"
           aria-label="עמוד הפייסבוק שלנו"
           title="Facebook"
-        >
+         rel="noopener noreferrer">
           <i class="fa-brands fa-facebook-f"></i>
         </a>
         <a
@@ -620,7 +631,7 @@
           target="_blank"
           aria-label="עמוד האינסטגרם שלנו"
           title="Instagram"
-        >
+         rel="noopener noreferrer">
           <i class="fa-brands fa-instagram"></i>
         </a>
         <a
@@ -628,7 +639,7 @@
           target="_blank"
           aria-label="שלח הודעה בוואטסאפ"
           title="WhatsApp"
-        >
+         rel="noopener noreferrer">
           <i class="fa-brands fa-whatsapp"></i>
         </a>
         <a
@@ -636,7 +647,7 @@
           target="_blank"
           aria-label="עמוד הטיקטוק שלנו"
           title="TikTok"
-        >
+         rel="noopener noreferrer">
           <i class="fa-brands fa-tiktok"></i>
         </a>
         <a
@@ -644,12 +655,12 @@
           target="_blank"
           aria-label="ערוץ היוטיוב שלנו"
           title="YouTube"
-        >
+         rel="noopener noreferrer">
           <i class="fa-brands fa-youtube"></i>
         </a>
       </div>
       <div style="margin-top: 20px; font-size: 14px; opacity: 0.9;">
-        נבנה על ידי <a href="https://lilamit.github.io/WebNova/" target="_blank" style="color: #60b0ff; text-decoration: none; font-weight: 600;">WebNova</a>
+        נבנה על ידי <a href="https://lilamit.github.io/WebNova/" target="_blank" style="color: #60b0ff; text-decoration: none; font-weight: 600;" rel="noopener noreferrer">WebNova</a>
       </div>
     </footer>
 
