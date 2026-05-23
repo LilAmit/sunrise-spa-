@@ -2084,3 +2084,116 @@ document.addEventListener("keydown", (e) => {
   const el = document.getElementById("footerYear");
   if (el) el.textContent = new Date().getFullYear();
 })();
+
+// ===== וידאו תדמית - lightbox במסך מלא =====
+// קיים רק בדף הבית; מוגן ע"י בדיקת קיום האלמנטים.
+(function videoLightboxModule() {
+  const card = document.getElementById("sideVideo");
+  const lightbox = document.getElementById("videoLightbox");
+  const player = document.getElementById("videoLightboxPlayer");
+  const closeBtn = document.getElementById("videoLightboxClose");
+  if (!card || !lightbox || !player || !closeBtn) return;
+
+  // Ensure the thumbnail shows a real frame (not a blank box) on browsers
+  // that ignore the #t= fragment hint — notably iOS Safari.
+  const thumb = card.querySelector("video.video-thumbnail");
+  if (thumb) {
+    const seekToPreview = () => {
+      try {
+        if (thumb.duration && isFinite(thumb.duration)) {
+          thumb.currentTime = Math.min(0.5, thumb.duration - 0.05);
+        }
+      } catch (_) {
+        /* some browsers throw if metadata not fully ready; harmless */
+      }
+    };
+    if (thumb.readyState >= 1) {
+      seekToPreview();
+    } else {
+      thumb.addEventListener("loadedmetadata", seekToPreview, { once: true });
+    }
+  }
+
+  let lastFocused = null;
+
+  function openLightbox() {
+    lastFocused = document.activeElement;
+    lightbox.hidden = false;
+    // force reflow so the CSS transition fires
+    void lightbox.offsetWidth;
+    lightbox.classList.add("show");
+    document.body.style.overflow = "hidden";
+
+    // play with sound — the click that triggered us is a valid user gesture
+    player.currentTime = 0;
+    player.muted = false;
+    const playPromise = player.play();
+    if (playPromise && typeof playPromise.catch === "function") {
+      // If autoplay-with-sound is blocked despite the user gesture, fall back to muted.
+      playPromise.catch(() => {
+        player.muted = true;
+        player.play().catch(() => {});
+      });
+    }
+
+    setTimeout(() => closeBtn.focus(), 60);
+    if (typeof announceToScreenReader === "function") {
+      announceToScreenReader("נפתח סרטון תדמית. לחץ Escape לסגירה");
+    }
+  }
+
+  function closeLightbox() {
+    if (lightbox.hidden) return;
+    lightbox.classList.remove("show");
+    player.pause();
+
+    // wait for fade-out before hiding (matches CSS transition)
+    setTimeout(() => {
+      lightbox.hidden = true;
+      document.body.style.overflow = "";
+      // restore focus to the trigger card so keyboard users don't get lost
+      if (lastFocused && typeof lastFocused.focus === "function") {
+        lastFocused.focus();
+      } else {
+        card.focus();
+      }
+    }, 300);
+  }
+
+  // open: click anywhere on the card, or Enter/Space when focused (the card is role="button")
+  card.addEventListener("click", openLightbox);
+  card.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      openLightbox();
+    }
+  });
+
+  // close: X button
+  closeBtn.addEventListener("click", closeLightbox);
+
+  // close: click on backdrop (anywhere on the lightbox that isn't the player or the close button)
+  lightbox.addEventListener("click", (e) => {
+    if (e.target === lightbox) closeLightbox();
+  });
+
+  // close: ESC anywhere while open
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && !lightbox.hidden) closeLightbox();
+  });
+
+  // Focus trap: while open, keep Tab inside [closeBtn ↔ player]
+  lightbox.addEventListener("keydown", (e) => {
+    if (e.key !== "Tab" || lightbox.hidden) return;
+    const focusables = [closeBtn, player].filter(Boolean);
+    const idx = focusables.indexOf(document.activeElement);
+    e.preventDefault();
+    if (idx === -1) {
+      focusables[0].focus();
+    } else if (e.shiftKey) {
+      focusables[(idx - 1 + focusables.length) % focusables.length].focus();
+    } else {
+      focusables[(idx + 1) % focusables.length].focus();
+    }
+  });
+})();

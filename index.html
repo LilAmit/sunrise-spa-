@@ -457,6 +457,34 @@
         <p>שבת: סגור</p>
       </div>
 
+      <!-- וידאו צד (mirror של הסליידר ב-desktop: למעלה משמאל; ב-mobile: מתחת לשעות) -->
+      <div
+        class="side-video"
+        id="sideVideo"
+        role="button"
+        tabindex="0"
+        aria-label="פתיחת סרטון תדמית סאנרייז ספא במסך מלא"
+      >
+        <!--
+          #t=0.5 → הדפדפן מדלג ל-0.5 שניות ומציג את ה-frame כתצוגה מקדימה
+          (במקום רקע ריק). מספיק שהדפדפן יוריד את ה-metadata + byte-range
+          קטן של frame אחד; הסרטון השלם לא נטען עד שלוחצים play.
+        -->
+        <video
+          class="video-thumbnail"
+          muted
+          playsinline
+          preload="metadata"
+          aria-hidden="true"
+          tabindex="-1"
+        >
+          <source src="SunriseVid2.mp4#t=0.5" type="video/mp4" />
+        </video>
+        <span class="video-play-overlay" aria-hidden="true">
+          <i class="fa-solid fa-play"></i>
+        </span>
+      </div>
+
       <!-- סליידר -->
       <div class="side-slider">
         <div class="slider-container">
@@ -1238,6 +1266,36 @@
         נבנה על ידי <a href="https://lilamit.github.io/WebNova/" target="_blank" style="color: #60b0ff; text-decoration: none; font-weight: 600;" rel="noopener noreferrer">WebNova</a>
       </div>
     </footer>
+
+    <!-- Lightbox למסך מלא של הסרטון -->
+    <div
+      class="video-lightbox"
+      id="videoLightbox"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="videoLightboxTitle"
+      hidden
+    >
+      <h2 id="videoLightboxTitle" class="sr-only">סרטון תדמית סאנרייז ספא</h2>
+      <button
+        class="video-lightbox-close"
+        id="videoLightboxClose"
+        type="button"
+        aria-label="סגור סרטון"
+      >
+        <i class="fa-solid fa-times"></i>
+      </button>
+      <video
+        id="videoLightboxPlayer"
+        class="video-lightbox-player"
+        controls
+        playsinline
+        preload="metadata"
+      >
+        <source src="SunriseVid2.mp4" type="video/mp4" />
+        הדפדפן שלך לא תומך בנגינת וידאו.
+      </video>
+    </div>
 
     <script src="script.js"></script>
     <script>
