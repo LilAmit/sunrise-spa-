@@ -3609,7 +3609,10 @@ body.high-contrast-yellow-active .accessibility-trigger {
 
 @media (max-width: 900px) {
   .side-video {
-    position: static;
+    /* relative (not static!) so the absolutely-positioned .video-play-overlay
+       inside still positions relative to this card. With static, the overlay
+       would escape to the nearest positioned ancestor and disappear. */
+    position: relative;
     left: auto;
     top: auto;
     margin: 30px auto;
