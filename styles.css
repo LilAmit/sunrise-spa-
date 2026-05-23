@@ -3572,11 +3572,25 @@ body.high-contrast-yellow-active .accessibility-trigger {
 }
 
 .video-thumbnail {
+  /* iOS Safari bug: a non-positioned <video> renders in its own compositing
+     layer that paints ABOVE absolutely-positioned siblings regardless of CSS
+     stacking. Forcing position: absolute + explicit z-index puts the video
+     into a stacking context where the play overlay (z-index 2) sits above. */
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
   pointer-events: none;
+  z-index: 1;
+}
+
+.side-video {
+  /* Force a stacking context so child z-indexes (thumbnail 1, overlay 2)
+     are isolated from the rest of the page. */
+  isolation: isolate;
 }
 
 .video-play-overlay {
@@ -3598,6 +3612,7 @@ body.high-contrast-yellow-active .accessibility-trigger {
     0 0 0 3px rgba(255, 255, 255, 0.85);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   pointer-events: none;
+  z-index: 2;
 }
 
 .side-video:hover .video-play-overlay,
